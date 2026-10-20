@@ -8,4 +8,4 @@ The optional Apple Silicon adapter calls Apple's separately installed MIT-licens
 
 Runtime dependencies retain their own licenses: FastAPI (MIT), Pydantic (MIT), Uvicorn (BSD-3-Clause), NumPy (BSD-3-Clause), faster-whisper and CTranslate2 (MIT); development HTTPX (BSD-3-Clause). See each installed distribution for authoritative notices and transitive dependencies. Models, ONNX artifacts, optional NVIDIA libraries and FFmpeg binaries are not bundled. Their applicable licenses depend on the actual model/distribution/build. Installing a separate binary does not change that binary's license to MIT.
 
-Feishu course documents, copied passages, private source tables, local business data and customer media are excluded. Public methods are repository-authored workflow instructions, not a publication of the private corpus. Evaluation uses new synthetic content explicitly labeled as simulation; no synthetic result establishes real marketing performance.
+Public methods are repository-authored workflow instructions. Evaluation uses new synthetic content explicitly labeled as simulation; no synthetic result establishes real marketing performance.

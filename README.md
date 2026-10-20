@@ -81,6 +81,8 @@ Windows supports CPU and NVIDIA CUDA when its optional runtime is available, wit
 
 Windows, macOS 15 ARM64 and macOS 15 Intel have each passed 36 tests plus real ASR/HTTP export/decode and source/output timeline checks in [final CI](https://github.com/MkaliezZ/self-media-workbench/actions/runs/39441097022). ARM64 also completed real **MLX GPU** transcription with a Metal kernel, isolated worker and no CPU fallback. macOS 26 ARM/Intel and local Windows CUDA were separately exercised. CI uses explicitly downloaded tiny test models and native synthetic speech. [Validation records and limits](docs/validation.md).
 
+A separate [fresh macOS installation audit](evaluation/fresh-macos-20261021.md) passed real new GitHub clones/venvs/model caches on Apple Silicon and Intel, including persisted model configuration, installed Agent entry, automatic startup, first saved script, actual GPU/CPU transcription, reviewed export and project resume. Initial audit-packaging and short-caption issues are retained alongside their repaired retests. This was deterministic cloud execution independently designed/reviewed by an Agent, not a live cloud LLM session.
+
 MP4 and SRT are separate outputs. There is no automatic external publishing, burned-caption/compositing feature or guarantee of content/marketing effectiveness. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
 
 ## License and private materials

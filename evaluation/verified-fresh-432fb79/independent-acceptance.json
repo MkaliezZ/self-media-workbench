@@ -1,0 +1,106 @@
+{
+  "decision": "PASS within the stated automated fresh-install and media-processing scope",
+  "formal_double_architecture_pass": true,
+  "supplement_macos26_intel_pass": true,
+  "commit": "432fb79cd62c5226b486880f342257140f5e97e2",
+  "formal_run": 39469031595,
+  "supplement_run": 39469037629,
+  "driver_sha256": "e36187b434873771e0b36ea92b3e8548b55c16172572b25d8eac9ffb451c0cbb",
+  "independent_method": [
+    "Rehashed every downloaded driver evidence-manifest and artifact-manifest entry; verified artifact seal covers every file other than its own manifest.",
+    "Read initial dependency/model-absent doctor, clone/venv log, foreign interpreter inventory, actual installed-wrapper invocation, configure output and private on-disk configuration.",
+    "Independently fetched fixed-revision Hugging Face metadata again and compared manifest LFS SHA256 and Git blob identities to the public source.",
+    "Read original immutable ASR, actual terminal jobs, full source/corrected word lists, exports, provenance and service logs; recomputed every word and SRT time mapping.",
+    "Decoded each actual downloaded MP4 fully again using the reviewer machine FFmpeg; no decode errors."
+  ],
+  "first_round_reconciliation": {
+    "preserved_run": 39467127371,
+    "preserved_report": "independent-review-39467127371/arm-independent-review.json",
+    "packaging_race": "First run had two post-manifest writes (first-use.log and service log). The primary reviewer first identified them and independent review reproduced them. Revised runs wait for own service exit, separate the external tee envelope, and seal the finished artifact. All rehashed entries now match.",
+    "caption_fragments": "First ARM run cue 5 was computer, for 0.40 seconds and cue 14 result. for 0.44 seconds. Revised explicit ASR-ID groups contain no isolated one-group tails and all cues exceed one second on all three runners. This is a fixture acceptance condition, not a universal caption standard.",
+    "revision_scope": "Changes are in the acceptance orchestration and caption decisions passed through the public review API. The result does not establish an automatic product caption-quality fix for arbitrary material. Original first-run evidence and report were not modified."
+  },
+  "runners": {
+    "arm64": {
+      "passed": true,
+      "architecture": "arm64",
+      "summary": {
+        "asr_backend": "mlx",
+        "asr_device": "gpu",
+        "asr_elapsed_seconds": 9.153455972671509,
+        "word_groups": 73,
+        "ordered_token_recall": 1.0,
+        "cues": 12,
+        "min_cue_duration": 1.2800000000000011,
+        "source_duration": 32.12,
+        "output_duration": 30.6,
+        "cut": [
+          {
+            "start": 12.81,
+            "end": 14.342
+          }
+        ],
+        "driver_hash": "e36187b434873771e0b36ea92b3e8548b55c16172572b25d8eac9ffb451c0cbb"
+      },
+      "checks": 32,
+      "report": "arm64/independent-review.json"
+    },
+    "intel": {
+      "passed": true,
+      "architecture": "x86_64",
+      "summary": {
+        "asr_backend": "faster-whisper",
+        "asr_device": "cpu",
+        "asr_elapsed_seconds": 19.545647144317627,
+        "word_groups": 73,
+        "ordered_token_recall": 1.0,
+        "cues": 12,
+        "min_cue_duration": 1.3000000000000007,
+        "source_duration": 31.6,
+        "output_duration": 30.08,
+        "cut": [
+          {
+            "start": 12.81,
+            "end": 14.342
+          }
+        ],
+        "driver_hash": "e36187b434873771e0b36ea92b3e8548b55c16172572b25d8eac9ffb451c0cbb"
+      },
+      "checks": 30,
+      "report": "intel/independent-review.json"
+    },
+    "supplement-macos26-intel": {
+      "passed": true,
+      "architecture": "x86_64",
+      "summary": {
+        "asr_backend": "faster-whisper",
+        "asr_device": "cpu",
+        "asr_elapsed_seconds": 11.855037212371826,
+        "word_groups": 73,
+        "ordered_token_recall": 1.0,
+        "cues": 12,
+        "min_cue_duration": 1.1999999999999993,
+        "source_duration": 29.44,
+        "output_duration": 27.92,
+        "cut": [
+          {
+            "start": 11.65,
+            "end": 13.19
+          }
+        ],
+        "driver_hash": "e36187b434873771e0b36ea92b3e8548b55c16172572b25d8eac9ffb451c0cbb"
+      },
+      "checks": 30,
+      "report": "supplement-macos26-intel/independent-review.json"
+    }
+  },
+  "unverified_boundaries": [
+    "This is independent deterministic acceptance orchestration, not a live LLM Agent trial or an actual account/customer/published result.",
+    "Native generated English speech and a generated solid background with a known inserted pause were used. No human listening, target-player subtitle display, real recorded footage, Chinese/accent/noisy/long-form recognition quality or general editorial judgment was validated.",
+    "The bundled character-budget checker reports false fit for both English script segments. The scripts remain needs_review; no human read-aloud timing or production-ready script claim is established.",
+    "One successful ASR/export path per runner does not establish forced failure recovery, GPU failure fallback, concurrent operation, upgrade/migration, large-model performance or a broad hardware matrix.",
+    "Normal inference was run with local configured model paths and Hub/Transformers offline flags. There was no OS-level network trace or firewall enforcement to prove absence of every network packet.",
+    "Model weights were excluded from the downloaded evidence by design. Their cloud-recorded computed SHA256 was compared to fixed public upstream metadata; absent model bytes could not be independently rehashed locally.",
+    "Separate SRT plus MP4 were exported; subtitle burn-in/compositing and external publication were not tested. ASR times are individual observations across different runners and must not be interpreted as a controlled GPU-versus-CPU benchmark."
+  ]
+}

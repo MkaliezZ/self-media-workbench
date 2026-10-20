@@ -1,0 +1,120 @@
+[
+  {
+    "repo": "Systran/faster-whisper-tiny",
+    "requested_revision": "d90ca5fe260221311c53c58e660288d3deb8d356",
+    "resolved_revision": "d90ca5fe260221311c53c58e660288d3deb8d356",
+    "source": "https://huggingface.co/Systran/faster-whisper-tiny/tree/d90ca5fe260221311c53c58e660288d3deb8d356",
+    "files": [
+      {
+        "path": ".gitattributes",
+        "bytes": 1477,
+        "sha256": "db7c0371f46f0840b8f25794c1e3321c9b5820a8cb6ba9694a46fc64b8fae5a6",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "c7d9f3332a950355d5a77d85000f05e6f45435ea",
+        "actual_git_blob_id": "c7d9f3332a950355d5a77d85000f05e6f45435ea",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "README.md",
+        "bytes": 1991,
+        "sha256": "29fb8444a02c1f133ab7e538525aa478ff68845964f21cf42500842b0e4a7b20",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "7e9bc5761a3e88762273fb1011479f2e501266c4",
+        "actual_git_blob_id": "7e9bc5761a3e88762273fb1011479f2e501266c4",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "config.json",
+        "bytes": 2249,
+        "sha256": "a73a28cdfe1c43ccc7202fa333d1f89c202477271407ae9a7f19afa52039cac8",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "3baa18e2b321a2f489614607852a729fcd516480",
+        "actual_git_blob_id": "3baa18e2b321a2f489614607852a729fcd516480",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "model.bin",
+        "bytes": 75538270,
+        "sha256": "dcb76c6586fc06cbdac6dd21f14cfd129cc4cdd9dce19bf4ffa62e59cbe6e6d1",
+        "expected_lfs_sha256": "dcb76c6586fc06cbdac6dd21f14cfd129cc4cdd9dce19bf4ffa62e59cbe6e6d1",
+        "expected_git_blob_id": "ee1fa0720a33a1e4a7b698cf5e4aacfcb360b99a",
+        "actual_git_blob_id": null,
+        "verification": "LFS SHA256",
+        "verified": true
+      },
+      {
+        "path": "tokenizer.json",
+        "bytes": 2203239,
+        "sha256": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "7818adb6de9fa3064d3ff81226fdd675be1f6344",
+        "actual_git_blob_id": "7818adb6de9fa3064d3ff81226fdd675be1f6344",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "vocabulary.txt",
+        "bytes": 459861,
+        "sha256": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "c9074644d9d1205686f16d411564729461324b75",
+        "actual_git_blob_id": "c9074644d9d1205686f16d411564729461324b75",
+        "verification": "Git blob SHA1",
+        "verified": true
+      }
+    ],
+    "all_hashes_verified": true
+  },
+  {
+    "repo": "mlx-community/whisper-tiny-mlx",
+    "requested_revision": "6caf9c55601caafbe6508a8b0d216bdf4783c4e8",
+    "resolved_revision": "6caf9c55601caafbe6508a8b0d216bdf4783c4e8",
+    "source": "https://huggingface.co/mlx-community/whisper-tiny-mlx/tree/6caf9c55601caafbe6508a8b0d216bdf4783c4e8",
+    "files": [
+      {
+        "path": ".gitattributes",
+        "bytes": 1519,
+        "sha256": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "actual_git_blob_id": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "README.md",
+        "bytes": 299,
+        "sha256": "64166743e9db4d6907c1655930648089e0f7c895d950b20409d13b7ccfe9f948",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "aff94e0887d859b21a6b3ad683ddbb916a1e3b87",
+        "actual_git_blob_id": "aff94e0887d859b21a6b3ad683ddbb916a1e3b87",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "config.json",
+        "bytes": 262,
+        "sha256": "aaff20ce8f69beddee3fe0cc1e08f4e92f58586cb9f12ba00a6f73cbfec1cb1c",
+        "expected_lfs_sha256": null,
+        "expected_git_blob_id": "a5f93cd58e229a777d10e77c753693018cd25264",
+        "actual_git_blob_id": "a5f93cd58e229a777d10e77c753693018cd25264",
+        "verification": "Git blob SHA1",
+        "verified": true
+      },
+      {
+        "path": "weights.npz",
+        "bytes": 74418540,
+        "sha256": "0e03a5993d6eea43b07ee2dcc772b0e4cef5bb227257dacc24bf289387d49186",
+        "expected_lfs_sha256": "0e03a5993d6eea43b07ee2dcc772b0e4cef5bb227257dacc24bf289387d49186",
+        "expected_git_blob_id": "007bd74057e69c35db2f87ac11c5384fcf8513ff",
+        "actual_git_blob_id": null,
+        "verification": "LFS SHA256",
+        "verified": true
+      }
+    ],
+    "all_hashes_verified": true
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "run": 39469037629,
+  "source_sha256": "d1a8293b08341abe939e1e37bd865bb77123f1f295799e2ac7a19d9ae02a0705",
+  "source_duration": 29.44,
+  "planned_output_duration": 27.9,
+  "actual_output_duration": 27.92,
+  "source_word_groups": 73,
+  "exported_word_groups": 73,
+  "word_ids_retained": true,
+  "original_probabilities_retained": true,
+  "word_timeline_assertions_passed": true,
+  "caption_count": 12,
+  "minimum_caption_seconds": 1.2,
+  "negation_cue": [
+    [
+      " never place a drink above the keyboard."
+    ]
+  ],
+  "synthetic": true,
+  "human_listening": false
+}

@@ -3,6 +3,12 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      runner_set:
+        description: Standard matrix, or alternate macOS 26 capacity probe
+        type: choice
+        default: standard
+        options: [standard, macos-26]
 permissions:
   contents: read
 jobs:
@@ -10,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-15, macos-15-intel]
+        os: ${{ fromJSON(github.event.inputs.runner_set == 'macos-26' && '["macos-26","macos-26-intel"]' || '["windows-latest","macos-15","macos-15-intel"]') }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 25
     steps:

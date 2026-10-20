@@ -9,3 +9,7 @@ New unified task API/CLI and an independently authored Python/FFmpeg renderer. T
 The first installed wrapper used the calling Agent's Python. Agents with another interpreter could then miss the installed workbench dependencies. The wrapper now prefers the checkout's virtual environment, then the interpreter recorded privately at installation. A Windows invocation from a different bundled Python selected the recorded interpreter successfully. The cross-platform smoke also exercises the installed entry. No content answers were provided to the independent evaluator.
 
 Subsequent actual CI failures and independent evaluation findings are appended here; initial failures must not be rewritten as first-pass success.
+
+## Runner allocation
+
+The initial Windows CI completed successfully. macOS 15 ARM/Intel jobs remained queued without runner names or executed steps; this is pending allocation, not a compatibility pass or an observed code failure. A manual macOS 26 ARM/Intel runner set is available to test alternate hosted capacity. Superseded queued workflows may be cancelled; their original statuses remain visible in Actions.

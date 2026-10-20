@@ -1,0 +1,4 @@
+{
+  "failed": true,
+  "reason": "Evaluator expected exact keeps dictionary without actual outputOffset; actual plan correctly includes outputOffset=0.0. Original generated cut/restored exports retained; repair is checking documented fields, not changing plan/product."
+}

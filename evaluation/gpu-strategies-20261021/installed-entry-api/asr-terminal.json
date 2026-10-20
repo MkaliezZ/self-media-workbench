@@ -1,0 +1,32 @@
+{
+  "id": "e80efd0320c346cbab3fcc7572a30a41",
+  "media_id": "5cfe748a78b04554981f04fb96040626",
+  "kind": "asr",
+  "status": "done",
+  "created_at": "2026-10-20T18:57:39.147666+00:00",
+  "started_at": "2026-10-20T18:57:39.148666+00:00",
+  "result": {
+    "run_id": "5d3a041eb9f044a593ab660f2b7b7c22",
+    "device": "cuda",
+    "backend": "faster-whisper",
+    "execution": {
+      "gpu_inference_verified": true,
+      "compute_type": "int8_float16",
+      "supported_cuda_compute_types": [
+        "bfloat16",
+        "float16",
+        "float32",
+        "int8",
+        "int8_bfloat16",
+        "int8_float16",
+        "int8_float32"
+      ],
+      "isolated_worker": true,
+      "evidence_dir": "F:\\Codex Workspace\\Studio\\自媒体工作台\\data\\projects\\e1c6a189254f4bf5b1ce391b07ea3f29\\media\\5cfe748a78b04554981f04fb96040626\\asr\\5d3a041eb9f044a593ab660f2b7b7c22\\engine\\cuda-47ba76257f4a42c99a5ecdb0e7d151df"
+    },
+    "words": 126,
+    "candidates": 3,
+    "fallback_errors": []
+  },
+  "finished_at": "2026-10-20T18:57:50.737584+00:00"
+}

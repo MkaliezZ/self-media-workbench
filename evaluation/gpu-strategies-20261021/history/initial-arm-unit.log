@@ -1,0 +1,481 @@
+﻿2026-10-20T18:47:05.2905180Z Current runner version: '2.337.0'
+2026-10-20T18:47:05.2921970Z ##[group]Runner Image Provisioner
+2026-10-20T18:47:05.2922520Z Hosted Compute Agent
+2026-10-20T18:47:05.2922900Z Version: 20260828.587
+2026-10-20T18:47:05.2923410Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-10-20T18:47:05.2923940Z Build Date: 2026-08-28T16:44:25Z
+2026-10-20T18:47:05.2924740Z Worker ID: {594b8ceb-1800-4b1b-b4ff-bb4319667428}
+2026-10-20T18:47:05.2925280Z Azure Region: westus
+2026-10-20T18:47:05.2925660Z ##[endgroup]
+2026-10-20T18:47:05.2926580Z ##[group]Operating System
+2026-10-20T18:47:05.2926980Z macOS
+2026-10-20T18:47:05.2927400Z 15.7.9
+2026-10-20T18:47:05.2927710Z 24G830
+2026-10-20T18:47:05.2928030Z ##[endgroup]
+2026-10-20T18:47:05.2928390Z ##[group]Runner Image
+2026-10-20T18:47:05.2928820Z Image: macos-15-arm64
+2026-10-20T18:47:05.2929180Z Version: 20260907.0337.1
+2026-10-20T18:47:05.2929980Z Included Software: https://github.com/actions/runner-images/blob/macos-15-arm64/20260907.0337/images/macos/macos-15-arm64-Readme.md
+2026-10-20T18:47:05.2931000Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-15-arm64%2F20260907.0337
+2026-10-20T18:47:05.2931650Z ##[endgroup]
+2026-10-20T18:47:05.2932450Z ##[group]GITHUB_TOKEN Permissions
+2026-10-20T18:47:05.2933480Z Contents: read
+2026-10-20T18:47:05.2933890Z Metadata: read
+2026-10-20T18:47:05.2934250Z ##[endgroup]
+2026-10-20T18:47:05.2935520Z Secret source: Actions
+2026-10-20T18:47:05.2936090Z Cache mode: write
+2026-10-20T18:47:05.2936530Z Prepare workflow directory
+2026-10-20T18:47:05.3216640Z Prepare all required actions
+2026-10-20T18:47:05.3262300Z Getting action download info
+2026-10-20T18:47:05.6120920Z Download action repository 'actions/checkout@v7' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-20T18:47:05.7968520Z Download action repository 'actions/setup-python@v7' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+2026-10-20T18:47:05.8909800Z Download action repository 'actions/upload-artifact@v7' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)
+2026-10-20T18:47:06.4035920Z Complete job name: platform (macos-15)
+2026-10-20T18:47:06.4607400Z ##[group]Run actions/checkout@v7
+2026-10-20T18:47:06.4608010Z with:
+2026-10-20T18:47:06.4608460Z   repository: MkaliezZ/self-media-workbench
+2026-10-20T18:47:06.4612680Z   token: ***
+2026-10-20T18:47:06.4613120Z   ssh-strict: true
+2026-10-20T18:47:06.4626670Z   ssh-user: git
+2026-10-20T18:47:06.4627060Z   persist-credentials: true
+2026-10-20T18:47:06.4627420Z   clean: true
+2026-10-20T18:47:06.4627820Z   sparse-checkout-cone-mode: true
+2026-10-20T18:47:06.4628260Z   fetch-depth: 1
+2026-10-20T18:47:06.4628580Z   fetch-tags: false
+2026-10-20T18:47:06.4628910Z   show-progress: true
+2026-10-20T18:47:06.4629240Z   lfs: false
+2026-10-20T18:47:06.4630460Z   submodules: false
+2026-10-20T18:47:06.4631790Z   set-safe-directory: true
+2026-10-20T18:47:06.4632880Z   allow-unsafe-pr-checkout: false
+2026-10-20T18:47:06.4635820Z ##[endgroup]
+2026-10-20T18:47:06.8909120Z Syncing repository: MkaliezZ/self-media-workbench
+2026-10-20T18:47:06.8919320Z ##[group]Getting Git version info
+2026-10-20T18:47:06.8920850Z Working directory is '/Users/runner/work/self-media-workbench/self-media-workbench'
+2026-10-20T18:47:06.8922630Z [command]/opt/homebrew/bin/git version
+2026-10-20T18:47:06.9561400Z git version 2.55.0
+2026-10-20T18:47:06.9574950Z ##[endgroup]
+2026-10-20T18:47:06.9582440Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/019302c7-ff2d-4b4a-a89a-9e9863bf583e/.gitconfig'
+2026-10-20T18:47:06.9583970Z Temporarily overriding HOME='/Users/runner/work/_temp/019302c7-ff2d-4b4a-a89a-9e9863bf583e' before making global git config changes
+2026-10-20T18:47:06.9585150Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T18:47:06.9587200Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/self-media-workbench/self-media-workbench
+2026-10-20T18:47:06.9700890Z Deleting the contents of '/Users/runner/work/self-media-workbench/self-media-workbench'
+2026-10-20T18:47:06.9702780Z ##[group]Determining repository object format
+2026-10-20T18:47:06.9703850Z ##[endgroup]
+2026-10-20T18:47:06.9704630Z ##[group]Initializing the repository
+2026-10-20T18:47:06.9706220Z [command]/opt/homebrew/bin/git init /Users/runner/work/self-media-workbench/self-media-workbench
+2026-10-20T18:47:06.9973690Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-20T18:47:06.9977580Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-20T18:47:06.9980310Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-20T18:47:06.9985100Z hint: call:
+2026-10-20T18:47:06.9986660Z hint:
+2026-10-20T18:47:06.9988020Z hint: 	git config --global init.defaultBranch <name>
+2026-10-20T18:47:06.9990120Z hint:
+2026-10-20T18:47:06.9990830Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-20T18:47:06.9991760Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-20T18:47:06.9992570Z hint:
+2026-10-20T18:47:06.9993110Z hint: 	git branch -m <name>
+2026-10-20T18:47:06.9993660Z hint:
+2026-10-20T18:47:06.9994360Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-20T18:47:06.9995750Z Initialized empty Git repository in /Users/runner/work/self-media-workbench/self-media-workbench/.git/
+2026-10-20T18:47:06.9999870Z [command]/opt/homebrew/bin/git remote add origin https://github.com/MkaliezZ/self-media-workbench
+2026-10-20T18:47:07.0062370Z ##[endgroup]
+2026-10-20T18:47:07.0064310Z ##[group]Disabling automatic garbage collection
+2026-10-20T18:47:07.0065820Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-10-20T18:47:07.0254120Z ##[endgroup]
+2026-10-20T18:47:07.0322650Z ##[group]Setting up auth
+2026-10-20T18:47:07.0327350Z Removing SSH command configuration
+2026-10-20T18:47:07.0328530Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T18:47:07.0342530Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T18:47:07.1334580Z Removing HTTP extra header
+2026-10-20T18:47:07.1383790Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T18:47:07.1398720Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T18:47:07.2179580Z Removing includeIf entries pointing to credentials config files
+2026-10-20T18:47:07.2182480Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T18:47:07.2249290Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T18:47:07.3072690Z [command]/opt/homebrew/bin/git config --file /Users/runner/work/_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-20T18:47:07.3153660Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git.path /Users/runner/work/_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:07.3249790Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git/worktrees/*.path /Users/runner/work/_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:07.3321470Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:07.3390150Z [command]/opt/homebrew/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:07.3456980Z ##[endgroup]
+2026-10-20T18:47:07.3458340Z ##[group]Fetching the repository
+2026-10-20T18:47:07.3463800Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +2e8f03028d9bec26f08a97c54b108dc9381282e2:refs/remotes/origin/main
+2026-10-20T18:47:07.8921320Z From https://github.com/MkaliezZ/self-media-workbench
+2026-10-20T18:47:07.8922690Z  * [new ref]         2e8f03028d9bec26f08a97c54b108dc9381282e2 -> origin/main
+2026-10-20T18:47:07.8928260Z [command]/opt/homebrew/bin/git branch --list --remote origin/main
+2026-10-20T18:47:07.8998430Z   origin/main
+2026-10-20T18:47:07.9004260Z [command]/opt/homebrew/bin/git rev-parse refs/remotes/origin/main
+2026-10-20T18:47:07.9059720Z 2e8f03028d9bec26f08a97c54b108dc9381282e2
+2026-10-20T18:47:07.9062550Z ##[endgroup]
+2026-10-20T18:47:07.9063790Z ##[group]Determining the checkout info
+2026-10-20T18:47:07.9065370Z ##[endgroup]
+2026-10-20T18:47:07.9066410Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-10-20T18:47:07.9145640Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-20T18:47:07.9204880Z ##[group]Checking out the ref
+2026-10-20T18:47:07.9206920Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-10-20T18:47:07.9839790Z Switched to a new branch 'main'
+2026-10-20T18:47:07.9849100Z branch 'main' set up to track 'origin/main'.
+2026-10-20T18:47:07.9854270Z ##[endgroup]
+2026-10-20T18:47:07.9933310Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-10-20T18:47:07.9995630Z 2e8f03028d9bec26f08a97c54b108dc9381282e2
+2026-10-20T18:47:08.0304350Z ##[group]Run actions/setup-python@v7
+2026-10-20T18:47:08.0305380Z with:
+2026-10-20T18:47:08.0306110Z   python-version: 3.11
+2026-10-20T18:47:08.0306810Z   cache: pip
+2026-10-20T18:47:08.0308290Z   check-latest: false
+2026-10-20T18:47:08.0316590Z   token: ***
+2026-10-20T18:47:08.0317340Z   update-environment: true
+2026-10-20T18:47:08.0318280Z   allow-prereleases: false
+2026-10-20T18:47:08.0319110Z   freethreaded: false
+2026-10-20T18:47:08.0319780Z ##[endgroup]
+2026-10-20T18:47:08.1409640Z ##[group]Installed versions
+2026-10-20T18:47:08.1459830Z Successfully set up CPython (3.11.9)
+2026-10-20T18:47:08.1461130Z ##[endgroup]
+2026-10-20T18:47:08.2074940Z [command]/Users/runner/hostedtoolcache/Python/3.11.9/arm64/bin/pip cache dir
+2026-10-20T18:47:09.0079850Z /Users/runner/Library/Caches/pip
+2026-10-20T18:47:09.2051240Z Cache hit for: setup-python-macOS-arm64-python-3.11.9-pip-c137cc9e1fc61fd90422dca3d6a921fa9880013376acbbfc242ef391bffc9fee
+2026-10-20T18:47:10.2880010Z Received 65171575 of 65171575 (100.0%), 66.3 MBs/sec
+2026-10-20T18:47:10.2955360Z Cache Size: ~62 MB (65171575 B)
+2026-10-20T18:47:10.3026750Z [command]/opt/homebrew/bin/gtar -xf /Users/runner/work/_temp/60b2803a-81ad-450b-b48c-321b5d30acbd/cache.tzst -P -C /Users/runner/work/self-media-workbench/self-media-workbench --delay-directory-restore --use-compress-program unzstd
+2026-10-20T18:47:10.4825980Z Cache restored successfully
+2026-10-20T18:47:10.4904170Z Cache restored from key: setup-python-macOS-arm64-python-3.11.9-pip-c137cc9e1fc61fd90422dca3d6a921fa9880013376acbbfc242ef391bffc9fee
+2026-10-20T18:47:10.4994850Z ##[group]Run python -m pip install -r requirements-dev.txt
+2026-10-20T18:47:10.4995310Z [36;1mpython -m pip install -r requirements-dev.txt[0m
+2026-10-20T18:47:10.5039500Z shell: /bin/bash -e {0}
+2026-10-20T18:47:10.5039770Z env:
+2026-10-20T18:47:10.5040180Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:10.5040690Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.11.9/arm64/lib/pkgconfig
+2026-10-20T18:47:10.5041190Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:10.5041680Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:10.5042100Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:10.5042890Z ##[endgroup]
+2026-10-20T18:47:11.4352730Z Collecting fastapi<1,>=0.115 (from -r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 1))
+2026-10-20T18:47:11.4912360Z   Downloading fastapi-0.156.1-py3-none-any.whl.metadata (26 kB)
+2026-10-20T18:47:11.5403310Z Collecting uvicorn<1,>=0.30 (from -r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 2))
+2026-10-20T18:47:11.5418260Z   Using cached uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-10-20T18:47:11.6347550Z Collecting pydantic<3,>=2.8 (from -r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 3))
+2026-10-20T18:47:11.6364420Z   Using cached pydantic-2.14.1-py3-none-any.whl.metadata (133 kB)
+2026-10-20T18:47:11.7613740Z Collecting numpy<3,>=1.26 (from -r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 4))
+2026-10-20T18:47:11.7628580Z   Using cached numpy-2.4.6-cp311-cp311-macosx_14_0_arm64.whl.metadata (6.6 kB)
+2026-10-20T18:47:11.7820840Z Collecting faster-whisper<2,>=1.1 (from -r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:11.7830880Z   Using cached faster_whisper-1.2.1-py3-none-any.whl.metadata (16 kB)
+2026-10-20T18:47:11.8038590Z Collecting httpx<1,>=0.27 (from -r requirements-dev.txt (line 2))
+2026-10-20T18:47:11.8051920Z   Using cached httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-10-20T18:47:11.8311170Z Collecting starlette>=0.46.0 (from fastapi<1,>=0.115->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 1))
+2026-10-20T18:47:11.8322130Z   Using cached starlette-1.9.0-py3-none-any.whl.metadata (6.6 kB)
+2026-10-20T18:47:11.8535080Z Collecting typing-extensions>=4.8.0 (from fastapi<1,>=0.115->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 1))
+2026-10-20T18:47:11.8546000Z   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-10-20T18:47:11.8717720Z Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.115->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 1))
+2026-10-20T18:47:11.8729150Z   Using cached typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+2026-10-20T18:47:11.8897240Z Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.115->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 1))
+2026-10-20T18:47:11.8909480Z   Using cached annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+2026-10-20T18:47:11.9130620Z Collecting opentelemetry-api>=1.44.0 (from fastapi<1,>=0.115->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 1))
+2026-10-20T18:47:11.9146420Z   Using cached opentelemetry_api-1.45.1-py3-none-any.whl.metadata (1.4 kB)
+2026-10-20T18:47:11.9351350Z Collecting click>=7.0 (from uvicorn<1,>=0.30->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 2))
+2026-10-20T18:47:11.9363980Z   Using cached click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+2026-10-20T18:47:11.9535980Z Collecting h11>=0.8 (from uvicorn<1,>=0.30->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 2))
+2026-10-20T18:47:11.9549360Z   Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-10-20T18:47:11.9728610Z Collecting annotated-types>=0.6.0 (from pydantic<3,>=2.8->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 3))
+2026-10-20T18:47:11.9742000Z   Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-10-20T18:47:12.3855530Z Collecting pydantic-core==2.50.1 (from pydantic<3,>=2.8->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements.txt (line 3))
+2026-10-20T18:47:12.3872050Z   Using cached pydantic_core-2.50.1-cp311-cp311-macosx_11_0_arm64.whl.metadata (6.5 kB)
+2026-10-20T18:47:12.4435250Z Collecting ctranslate2<5,>=4.0 (from faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.4477710Z   Using cached ctranslate2-4.8.3-cp311-cp311-macosx_11_0_arm64.whl.metadata (11 kB)
+2026-10-20T18:47:12.4790110Z Collecting huggingface-hub>=0.21 (from faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.4801610Z   Using cached huggingface_hub-2.2.0-py3-none-any.whl.metadata (16 kB)
+2026-10-20T18:47:12.6057850Z Collecting tokenizers<1,>=0.13 (from faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.6068920Z   Using cached tokenizers-0.23.3-cp310-abi3-macosx_11_0_arm64.whl.metadata (9.8 kB)
+2026-10-20T18:47:12.6515490Z Collecting onnxruntime<2,>=1.14 (from faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.6530060Z   Using cached onnxruntime-1.31.0-cp311-cp311-macosx_14_0_arm64.whl.metadata (5.7 kB)
+2026-10-20T18:47:12.6896210Z Collecting av>=11 (from faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.6910660Z   Using cached av-18.1.0-cp311-abi3-macosx_14_0_arm64.whl.metadata (5.0 kB)
+2026-10-20T18:47:12.7207330Z Collecting tqdm (from faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.7221450Z   Using cached tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+2026-10-20T18:47:12.7468360Z Collecting anyio (from httpx<1,>=0.27->-r requirements-dev.txt (line 2))
+2026-10-20T18:47:12.7488330Z   Using cached anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+2026-10-20T18:47:12.7742650Z Requirement already satisfied: certifi in /Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages (from httpx<1,>=0.27->-r requirements-dev.txt (line 2)) (2026.7.22)
+2026-10-20T18:47:12.7932160Z Collecting httpcore==1.* (from httpx<1,>=0.27->-r requirements-dev.txt (line 2))
+2026-10-20T18:47:12.7944810Z   Using cached httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-10-20T18:47:12.8154520Z Collecting idna (from httpx<1,>=0.27->-r requirements-dev.txt (line 2))
+2026-10-20T18:47:12.8167480Z   Using cached idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-10-20T18:47:12.8493660Z Collecting pyyaml<7,>=5.3 (from ctranslate2<5,>=4.0->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.8506720Z   Using cached pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl.metadata (2.4 kB)
+2026-10-20T18:47:12.8705440Z Collecting flatbuffers (from onnxruntime<2,>=1.14->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.8719300Z   Using cached flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+2026-10-20T18:47:12.8963230Z Collecting packaging (from onnxruntime<2,>=1.14->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.8974810Z   Using cached packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-20T18:47:12.9909070Z Collecting protobuf>=4.25.8 (from onnxruntime<2,>=1.14->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:12.9920620Z   Using cached protobuf-7.36.2-cp310-abi3-macosx_10_9_universal2.whl.metadata (595 bytes)
+2026-10-20T18:47:13.0223430Z Collecting filelock>=3.10.0 (from huggingface-hub>=0.21->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:13.0236500Z   Using cached filelock-4.2.4-py3-none-any.whl.metadata (2.0 kB)
+2026-10-20T18:47:13.0453770Z Collecting fsspec>=2023.5.0 (from huggingface-hub>=0.21->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:13.0466270Z   Using cached fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+2026-10-20T18:47:13.0880560Z Collecting hf-xet<2.0.0,>=1.6.0 (from huggingface-hub>=0.21->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:13.0894650Z   Using cached hf_xet-1.7.0-cp38-abi3-macosx_11_0_arm64.whl.metadata (4.9 kB)
+2026-10-20T18:47:13.1090130Z Collecting httpx2<3,>=2.0.0 (from huggingface-hub>=0.21->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:13.1110450Z   Using cached httpx2-2.15.1-py3-none-any.whl.metadata (9.6 kB)
+2026-10-20T18:47:13.1532160Z Collecting httpcore2==2.15.1 (from httpx2<3,>=2.0.0->huggingface-hub>=0.21->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:13.1545430Z   Using cached httpcore2-2.15.1-py3-none-any.whl.metadata (27 kB)
+2026-10-20T18:47:13.1929060Z Collecting truststore>=0.10 (from httpx2<3,>=2.0.0->huggingface-hub>=0.21->faster-whisper<2,>=1.1->-r /Users/runner/work/self-media-workbench/self-media-workbench/requirements-asr.txt (line 2))
+2026-10-20T18:47:13.1942330Z   Using cached truststore-0.10.5-py3-none-any.whl.metadata (4.5 kB)
+2026-10-20T18:47:13.2362180Z Downloading fastapi-0.156.1-py3-none-any.whl (146 kB)
+2026-10-20T18:47:13.2594340Z Using cached uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-10-20T18:47:13.2612480Z Using cached pydantic-2.14.1-py3-none-any.whl (488 kB)
+2026-10-20T18:47:13.2632510Z Using cached pydantic_core-2.50.1-cp311-cp311-macosx_11_0_arm64.whl (2.0 MB)
+2026-10-20T18:47:13.2654410Z Using cached numpy-2.4.6-cp311-cp311-macosx_14_0_arm64.whl (5.5 MB)
+2026-10-20T18:47:13.2701420Z Using cached faster_whisper-1.2.1-py3-none-any.whl (1.1 MB)
+2026-10-20T18:47:13.2719410Z Using cached httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-10-20T18:47:13.2738830Z Using cached ctranslate2-4.8.3-cp311-cp311-macosx_11_0_arm64.whl (1.3 MB)
+2026-10-20T18:47:13.2760720Z Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-10-20T18:47:13.2776180Z Using cached onnxruntime-1.31.0-cp311-cp311-macosx_14_0_arm64.whl (20.9 MB)
+2026-10-20T18:47:13.2878790Z Using cached pyyaml-6.0.3-cp311-cp311-macosx_11_0_arm64.whl (175 kB)
+2026-10-20T18:47:13.2899500Z Using cached tokenizers-0.23.3-cp310-abi3-macosx_11_0_arm64.whl (3.1 MB)
+2026-10-20T18:47:13.2930300Z Using cached huggingface_hub-2.2.0-py3-none-any.whl (839 kB)
+2026-10-20T18:47:13.2949790Z Using cached click-8.5.0-py3-none-any.whl (125 kB)
+2026-10-20T18:47:13.2967840Z Using cached hf_xet-1.7.0-cp38-abi3-macosx_11_0_arm64.whl (3.6 MB)
+2026-10-20T18:47:13.3002430Z Using cached httpx2-2.15.1-py3-none-any.whl (96 kB)
+2026-10-20T18:47:13.3021410Z Using cached httpcore2-2.15.1-py3-none-any.whl (85 kB)
+2026-10-20T18:47:13.3034830Z Using cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+2026-10-20T18:47:13.3047960Z Using cached annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-10-20T18:47:13.3065490Z Using cached anyio-4.15.1-py3-none-any.whl (132 kB)
+2026-10-20T18:47:13.3087410Z Using cached av-18.1.0-cp311-abi3-macosx_14_0_arm64.whl (18.2 MB)
+2026-10-20T18:47:13.3207850Z Using cached filelock-4.2.4-py3-none-any.whl (162 kB)
+2026-10-20T18:47:13.3240900Z Using cached fsspec-2026.9.0-py3-none-any.whl (221 kB)
+2026-10-20T18:47:13.3282750Z Using cached h11-0.16.0-py3-none-any.whl (37 kB)
+2026-10-20T18:47:13.3285680Z Using cached idna-3.20-py3-none-any.whl (69 kB)
+2026-10-20T18:47:13.3292600Z Using cached opentelemetry_api-1.45.1-py3-none-any.whl (60 kB)
+2026-10-20T18:47:13.3310630Z Using cached packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-20T18:47:13.3329730Z Using cached protobuf-7.36.2-cp310-abi3-macosx_10_9_universal2.whl (456 kB)
+2026-10-20T18:47:13.3347240Z Using cached starlette-1.9.0-py3-none-any.whl (80 kB)
+2026-10-20T18:47:13.3359390Z Using cached tqdm-4.70.1-py3-none-any.whl (80 kB)
+2026-10-20T18:47:13.3370730Z Using cached truststore-0.10.5-py3-none-any.whl (19 kB)
+2026-10-20T18:47:13.3383180Z Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-10-20T18:47:13.3394380Z Using cached typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+2026-10-20T18:47:13.3405960Z Using cached flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+2026-10-20T18:47:13.5137300Z Installing collected packages: flatbuffers, typing-extensions, truststore, tqdm, pyyaml, protobuf, packaging, numpy, idna, hf-xet, h11, fsspec, filelock, click, av, annotated-types, annotated-doc, uvicorn, typing-inspection, pydantic-core, opentelemetry-api, onnxruntime, httpcore2, httpcore, ctranslate2, anyio, starlette, pydantic, httpx2, httpx, huggingface-hub, fastapi, tokenizers, faster-whisper
+2026-10-20T18:47:17.9433850Z 
+2026-10-20T18:47:17.9492460Z Successfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 av-18.1.0 click-8.5.0 ctranslate2-4.8.3 fastapi-0.156.1 faster-whisper-1.2.1 filelock-4.2.4 flatbuffers-25.12.19 fsspec-2026.9.0 h11-0.16.0 hf-xet-1.7.0 httpcore-1.0.9 httpcore2-2.15.1 httpx-0.28.1 httpx2-2.15.1 huggingface-hub-2.2.0 idna-3.20 numpy-2.4.6 onnxruntime-1.31.0 opentelemetry-api-1.45.1 packaging-26.3 protobuf-7.36.2 pydantic-2.14.1 pydantic-core-2.50.1 pyyaml-6.0.3 starlette-1.9.0 tokenizers-0.23.3 tqdm-4.70.1 truststore-0.10.5 typing-extensions-4.16.0 typing-inspection-0.4.4 uvicorn-0.54.0
+2026-10-20T18:47:18.2285150Z ##[group]Run command -v ffmpeg >/dev/null || brew install ffmpeg
+2026-10-20T18:47:18.2285670Z [36;1mcommand -v ffmpeg >/dev/null || brew install ffmpeg[0m
+2026-10-20T18:47:18.2359220Z shell: /bin/bash -e {0}
+2026-10-20T18:47:18.2359590Z env:
+2026-10-20T18:47:18.2359900Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:18.2360370Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.11.9/arm64/lib/pkgconfig
+2026-10-20T18:47:18.2360800Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:18.2361280Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:18.2361670Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:18.2362090Z ##[endgroup]
+2026-10-20T18:47:20.8793220Z [32m==>[0m [1mDownloading bottle manifests[0m
+2026-10-20T18:47:20.8875290Z ✔︎ Bottle Manifest ffmpeg (9.0.1_1)
+2026-10-20T18:47:20.8899810Z [34m==>[0m [1mWould install 1 formula:[0m
+2026-10-20T18:47:20.8973930Z ffmpeg
+2026-10-20T18:47:20.9639180Z [34m==>[0m [1mWould install 11 dependencies for ffmpeg:[0m
+2026-10-20T18:47:20.9639750Z dav1d
+2026-10-20T18:47:20.9640480Z mpg123
+2026-10-20T18:47:20.9640700Z lame
+2026-10-20T18:47:20.9640930Z libvmaf
+2026-10-20T18:47:20.9641150Z libvpx
+2026-10-20T18:47:20.9641370Z opus
+2026-10-20T18:47:20.9641580Z sdl3
+2026-10-20T18:47:20.9641820Z sdl2-compat
+2026-10-20T18:47:20.9642050Z svt-av1
+2026-10-20T18:47:20.9643040Z x264
+2026-10-20T18:47:20.9643670Z x265
+2026-10-20T18:47:21.0308570Z [32m==>[0m [1mFetching downloads for: [32mffmpeg[39m[0m
+2026-10-20T18:47:21.9172560Z ✔︎ Bottle Manifest dav1d (1.5.4)
+2026-10-20T18:47:21.9277580Z ✔︎ Bottle Manifest mpg123 (1.33.7)
+2026-10-20T18:47:21.9392220Z ✔︎ Bottle Manifest lame (4.0)
+2026-10-20T18:47:21.9508170Z ✔︎ Bottle mpg123 (1.33.7)
+2026-10-20T18:47:21.9845280Z ✔︎ Bottle dav1d (1.5.4)
+2026-10-20T18:47:21.9946340Z ✔︎ Bottle Manifest libvmaf (3.2.0)
+2026-10-20T18:47:22.0672110Z ✔︎ Bottle lame (4.0)
+2026-10-20T18:47:22.1255300Z ✔︎ Bottle Manifest libvpx (1.17.0)
+2026-10-20T18:47:22.1391910Z ✔︎ Bottle Manifest opus (1.6.1)
+2026-10-20T18:47:22.1635170Z ✔︎ Bottle Manifest sdl3 (3.4.16)
+2026-10-20T18:47:22.1763070Z ✔︎ Bottle opus (1.6.1)
+2026-10-20T18:47:22.1886450Z ✔︎ Bottle Manifest sdl2-compat (2.32.72)
+2026-10-20T18:47:22.2240350Z ✔︎ Bottle libvmaf (3.2.0)
+2026-10-20T18:47:22.2348540Z ✔︎ Bottle libvpx (1.17.0)
+2026-10-20T18:47:22.2455670Z ✔︎ Bottle Manifest svt-av1 (4.2.0)
+2026-10-20T18:47:22.2557140Z ✔︎ Bottle Manifest x264 (r3222)
+2026-10-20T18:47:22.2657460Z ✔︎ Bottle Manifest x265 (4.3)
+2026-10-20T18:47:22.2678110Z ✔︎ Bottle sdl2-compat (2.32.72)
+2026-10-20T18:47:22.2678550Z ✔︎ Bottle svt-av1 (4.2.0)
+2026-10-20T18:47:22.2679050Z ✔︎ Bottle sdl3 (3.4.16)
+2026-10-20T18:47:22.2679920Z ✔︎ Bottle ffmpeg (9.0.1_1)
+2026-10-20T18:47:22.2781050Z ✔︎ Bottle x264 (r3222)
+2026-10-20T18:47:22.3298510Z ✔︎ Bottle x265 (4.3)
+2026-10-20T18:47:22.3559530Z [32m==>[0m [1mInstalling dependencies for ffmpeg:[0m [32mdav1d[39m, [32mmpg123[39m, [32mlame[39m, [32mlibvmaf[39m, [32mlibvpx[39m, [32mopus[39m, [32msdl3[39m, [32msdl2-compat[39m, [32msvt-av1[39m, [32mx264[39m and [32mx265[39m[0m
+2026-10-20T18:47:22.3560650Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mdav1d[39m[0m
+2026-10-20T18:47:22.3642380Z [34m==>[0m [1mPouring dav1d--1.5.4.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.5064640Z 🍺  /opt/homebrew/Cellar/dav1d/1.5.4: 16 files, 976KB
+2026-10-20T18:47:22.5080910Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mmpg123[39m[0m
+2026-10-20T18:47:22.5090230Z [34m==>[0m [1mPouring mpg123--1.33.7.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.5555160Z 🍺  /opt/homebrew/Cellar/mpg123/1.33.7: 34 files, 1.9MB
+2026-10-20T18:47:22.5583750Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mlame[39m[0m
+2026-10-20T18:47:22.5621320Z [34m==>[0m [1mPouring lame--4.0.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.5856160Z 🍺  /opt/homebrew/Cellar/lame/4.0: 29 files, 1.9MB
+2026-10-20T18:47:22.5857160Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mlibvmaf[39m[0m
+2026-10-20T18:47:22.5923770Z [34m==>[0m [1mPouring libvmaf--3.2.0.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.6479890Z 🍺  /opt/homebrew/Cellar/libvmaf/3.2.0: 243 files, 8.2MB
+2026-10-20T18:47:22.6581170Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mlibvpx[39m[0m
+2026-10-20T18:47:22.6682420Z [34m==>[0m [1mPouring libvpx--1.17.0.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.6783690Z 🍺  /opt/homebrew/Cellar/libvpx/1.17.0: 22 files, 4.4MB
+2026-10-20T18:47:22.6800740Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mopus[39m[0m
+2026-10-20T18:47:22.6814650Z [34m==>[0m [1mPouring opus--1.6.1.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.7318840Z 🍺  /opt/homebrew/Cellar/opus/1.6.1: 16 files, 1MB
+2026-10-20T18:47:22.7324890Z [32m==>[0m [1mInstalling ffmpeg dependency: [32msdl3[39m[0m
+2026-10-20T18:47:22.7357220Z [34m==>[0m [1mPouring sdl3--3.4.16.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.8170850Z 🍺  /opt/homebrew/Cellar/sdl3/3.4.16: 103 files, 6.3MB
+2026-10-20T18:47:22.8172600Z [32m==>[0m [1mInstalling ffmpeg dependency: [32msdl2-compat[39m[0m
+2026-10-20T18:47:22.8248090Z [34m==>[0m [1mPouring sdl2-compat--2.32.72.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.8588940Z 🍺  /opt/homebrew/Cellar/sdl2-compat/2.32.72: 117 files, 3.3MB
+2026-10-20T18:47:22.8590570Z [32m==>[0m [1mInstalling ffmpeg dependency: [32msvt-av1[39m[0m
+2026-10-20T18:47:22.8615230Z [34m==>[0m [1mPouring svt-av1--4.2.0.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.9191650Z 🍺  /opt/homebrew/Cellar/svt-av1/4.2.0: 23 files, 3.3MB
+2026-10-20T18:47:22.9192720Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mx264[39m[0m
+2026-10-20T18:47:22.9227200Z [34m==>[0m [1mPouring x264--r3222.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:22.9532670Z 🍺  /opt/homebrew/Cellar/x264/r3222: 12 files, 4.4MB
+2026-10-20T18:47:22.9538880Z [32m==>[0m [1mInstalling ffmpeg dependency: [32mx265[39m[0m
+2026-10-20T18:47:22.9583600Z [34m==>[0m [1mPouring x265--4.3.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:23.0612640Z 🍺  /opt/homebrew/Cellar/x265/4.3: 12 files, 17.4MB
+2026-10-20T18:47:23.0615180Z [32m==>[0m [1mInstalling [32mffmpeg[39m[0m
+2026-10-20T18:47:23.0618290Z [34m==>[0m [1mPouring ffmpeg--9.0.1_1.arm64_sequoia.bottle.tar.gz[0m
+2026-10-20T18:47:23.4476780Z 🍺  /opt/homebrew/Cellar/ffmpeg/9.0.1_1: 290 files, 54.4MB
+2026-10-20T18:47:23.4480020Z [32m==>[0m [1mCaveats[0m
+2026-10-20T18:47:23.4481590Z [34m==>[0m [1mffmpeg[0m
+2026-10-20T18:47:23.4483690Z ffmpeg-full includes additional tools and libraries that are not included in the regular ffmpeg formula.
+2026-10-20T18:47:23.4621720Z ##[group]Run python -B -X utf8 -m unittest discover -s tests -v
+2026-10-20T18:47:23.4622230Z [36;1mpython -B -X utf8 -m unittest discover -s tests -v[0m
+2026-10-20T18:47:23.4661290Z shell: /bin/bash -e {0}
+2026-10-20T18:47:23.4661570Z env:
+2026-10-20T18:47:23.4661900Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:23.4662470Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.11.9/arm64/lib/pkgconfig
+2026-10-20T18:47:23.4662990Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:23.4663570Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:23.4663960Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:23.4664330Z ##[endgroup]
+2026-10-20T18:47:24.0534640Z test_amd_and_intel_never_probe_cuda (test_accelerators.AcceleratorTests.test_amd_and_intel_never_probe_cuda) ... ok
+2026-10-20T18:47:24.0535770Z test_compiled_flags_or_detected_device_are_not_gpu_inference (test_accelerators.AcceleratorTests.test_compiled_flags_or_detected_device_are_not_gpu_inference) ... ok
+2026-10-20T18:47:24.0536670Z test_cpu_override_and_headless_are_cpu_only (test_accelerators.AcceleratorTests.test_cpu_override_and_headless_are_cpu_only) ... ok
+2026-10-20T18:47:24.0537410Z test_display_vendor_not_processor_brand (test_accelerators.AcceleratorTests.test_display_vendor_not_processor_brand) ... ok
+2026-10-20T18:47:24.0538260Z test_nvidia_precedes_integrated_intel_and_optional_vulkan (test_accelerators.AcceleratorTests.test_nvidia_precedes_integrated_intel_and_optional_vulkan) ... ok
+2026-10-20T18:47:24.0539200Z test_real_offsets_preserved_and_missing_alignment_is_coarse (test_accelerators.AcceleratorTests.test_real_offsets_preserved_and_missing_alignment_is_coarse) ... ok
+2026-10-20T18:47:24.0546460Z test_require_gpu_never_returns_cpu (test_accelerators.AcceleratorTests.test_require_gpu_never_returns_cpu) ... FAIL
+2026-10-20T18:47:24.0553490Z test_vulkan_failure_preserved_before_cpu_fallback (test_accelerators.AcceleratorTests.test_vulkan_failure_preserved_before_cpu_fallback) ... FAIL
+2026-10-20T18:47:24.1611580Z test_collection_time_is_real_timestamp_format_with_timezone (test_agent_protocol.AgentTests.test_collection_time_is_real_timestamp_format_with_timezone) ... ok
+2026-10-20T18:47:24.2610540Z test_complete_continuation_is_noop_but_explicit_new_topic_runs (test_agent_protocol.AgentTests.test_complete_continuation_is_noop_but_explicit_new_topic_runs) ... ok
+2026-10-20T18:47:24.3178500Z test_complete_handoff_and_no_automatic_verification (test_agent_protocol.AgentTests.test_complete_handoff_and_no_automatic_verification) ... ok
+2026-10-20T18:47:24.3384560Z test_context_change_without_project_revision_and_source_integrity (test_agent_protocol.AgentTests.test_context_change_without_project_revision_and_source_integrity) ... ok
+2026-10-20T18:47:24.3789200Z test_failure_preserved_repair_and_idempotent_retry (test_agent_protocol.AgentTests.test_failure_preserved_repair_and_idempotent_retry) ... ok
+2026-10-20T18:47:24.3964010Z test_invalid_root_does_not_poison_later_requests (test_agent_protocol.AgentTests.test_invalid_root_does_not_poison_later_requests) ... ok
+2026-10-20T18:47:24.4745180Z test_missing_metrics_need_no_fake_time_or_evidence_but_numeric_ones_do (test_agent_protocol.AgentTests.test_missing_metrics_need_no_fake_time_or_evidence_but_numeric_ones_do) ... ok
+2026-10-20T18:47:24.5500550Z test_no_fake_real_publication_and_metric_math (test_agent_protocol.AgentTests.test_no_fake_real_publication_and_metric_math) ... ok
+2026-10-20T18:47:24.6221500Z test_recursive_dependency_staleness (test_agent_protocol.AgentTests.test_recursive_dependency_staleness) ... ok
+2026-10-20T18:47:24.6958790Z test_schemas_and_missing_handoff_are_discoverable (test_agent_protocol.AgentTests.test_schemas_and_missing_handoff_are_discoverable) ... ok
+2026-10-20T18:47:24.7370280Z test_topic_and_timeline_binding (test_agent_protocol.AgentTests.test_topic_and_timeline_binding) ... ok
+2026-10-20T18:47:24.7378310Z test_apple_auto_prefers_mlx_and_explicit_cpu_is_respected (test_asr_backends.AsrBackendTests.test_apple_auto_prefers_mlx_and_explicit_cpu_is_respected) ... ok
+2026-10-20T18:47:24.7379560Z test_conflicting_backend_device_is_not_silently_reinterpreted (test_asr_backends.AsrBackendTests.test_conflicting_backend_device_is_not_silently_reinterpreted) ... ok
+2026-10-20T18:47:24.7387360Z test_local_ct2_weights_cannot_trigger_mlx_hub_download (test_asr_backends.AsrBackendTests.test_local_ct2_weights_cannot_trigger_mlx_hub_download) ... ok
+2026-10-20T18:47:24.7393380Z test_mlx_native_failure_uses_cpu_and_keeps_reason (test_asr_backends.AsrBackendTests.test_mlx_native_failure_uses_cpu_and_keeps_reason) ... ok
+2026-10-20T18:47:24.7399060Z test_non_apple_auto_does_not_load_mlx (test_asr_backends.AsrBackendTests.test_non_apple_auto_does_not_load_mlx) ... ok
+2026-10-20T18:47:24.7521770Z test_document_versions_and_conflicts (test_local_api.LocalApiTests.test_document_versions_and_conflicts) ... ok
+2026-10-20T18:47:24.9276950Z test_media_declaration_versions_and_task_pack (test_local_api.LocalApiTests.test_media_declaration_versions_and_task_pack) ... ok
+2026-10-20T18:47:24.9319050Z test_original_asr_cannot_be_overwritten (test_local_api.LocalApiTests.test_original_asr_cannot_be_overwritten) ... ok
+2026-10-20T18:47:24.9393600Z test_origins_and_empty_title (test_local_api.LocalApiTests.test_origins_and_empty_title) ... ok
+2026-10-20T18:47:24.9599280Z test_review_correction_does_not_change_alignment (test_local_api.LocalApiTests.test_review_correction_does_not_change_alignment) ... ok
+2026-10-20T18:47:24.9730820Z test_structured_document_keeps_fields_and_original_version (test_local_api.LocalApiTests.test_structured_document_keeps_fields_and_original_version) ... ok
+2026-10-20T18:47:25.4362580Z test_cut_restore_captions_and_actual_decoding (test_portable_render.PortableRenderTests.test_cut_restore_captions_and_actual_decoding) ... ok
+2026-10-20T18:47:25.4868050Z test_caption_groups_preserve_audio_and_require_complete_retained_order (test_speech_edits.SpeechEditTests.test_caption_groups_preserve_audio_and_require_complete_retained_order) ... ok
+2026-10-20T18:47:25.4986590Z test_display_correction_keeps_english_token_separator (test_speech_edits.SpeechEditTests.test_display_correction_keeps_english_token_separator) ... ok
+2026-10-20T18:47:25.5131600Z test_initial_review_exposes_revision_for_discovered_write_contract (test_speech_edits.SpeechEditTests.test_initial_review_exposes_revision_for_discovered_write_contract) ... ok
+2026-10-20T18:47:25.5327590Z test_reject_partial_group_or_unselected_qualifier_and_keep_failures (test_speech_edits.SpeechEditTests.test_reject_partial_group_or_unselected_qualifier_and_keep_failures) ... ok
+2026-10-20T18:47:25.5588250Z test_run_source_and_revision_bindings_reject_stale_edit_and_export (test_speech_edits.SpeechEditTests.test_run_source_and_revision_bindings_reject_stale_edit_and_export) ... ok
+2026-10-20T18:47:25.5837290Z test_schema_discovery_and_correction_alignment (test_speech_edits.SpeechEditTests.test_schema_discovery_and_correction_alignment) ... ok
+2026-10-20T18:47:25.6016890Z test_spoken_cut_omission_and_restore_are_independent_from_pause (test_speech_edits.SpeechEditTests.test_spoken_cut_omission_and_restore_are_independent_from_pause) ... ok
+2026-10-20T18:47:25.6157130Z test_ambiguity_requires_selection_and_no_silent_project (test_task_entry.TaskEntryTests.test_ambiguity_requires_selection_and_no_silent_project) ... ok
+2026-10-20T18:47:25.6225680Z test_focus_negation_and_media_routing (test_task_entry.TaskEntryTests.test_focus_negation_and_media_routing) ... ok
+2026-10-20T18:47:25.6416310Z test_full_workflow_resumes_first_missing_and_stale_stage (test_task_entry.TaskEntryTests.test_full_workflow_resumes_first_missing_and_stale_stage) ... ok
+2026-10-20T18:47:25.6445060Z test_invalid_input_has_no_partial_project (test_task_entry.TaskEntryTests.test_invalid_input_has_no_partial_project) ... ok
+2026-10-20T18:47:25.6609250Z test_resume_session_and_explicit_project_across_sessions (test_task_entry.TaskEntryTests.test_resume_session_and_explicit_project_across_sessions) ... ok
+2026-10-20T18:47:25.6802410Z test_source_dedup_and_task_retry (test_task_entry.TaskEntryTests.test_source_dedup_and_task_retry) ... ok
+2026-10-20T18:47:25.6802880Z 
+2026-10-20T18:47:25.6803050Z ======================================================================
+2026-10-20T18:47:25.6803610Z FAIL: test_require_gpu_never_returns_cpu (test_accelerators.AcceleratorTests.test_require_gpu_never_returns_cpu)
+2026-10-20T18:47:25.6804180Z ----------------------------------------------------------------------
+2026-10-20T18:47:25.6804780Z RuntimeError: All ASR attempts failed: [{"backend": "mlx", "device": "gpu", "error": "Local MLX model needs config.json; no automatic model download"}]
+2026-10-20T18:47:25.6805230Z 
+2026-10-20T18:47:25.6805400Z During handling of the above exception, another exception occurred:
+2026-10-20T18:47:25.6805650Z 
+2026-10-20T18:47:25.6805750Z Traceback (most recent call last):
+2026-10-20T18:47:25.6812380Z   File "/Users/runner/work/self-media-workbench/self-media-workbench/tests/test_accelerators.py", line 42, in test_require_gpu_never_returns_cpu
+2026-10-20T18:47:25.6813280Z     with self.assertRaisesRegex(RuntimeError,'missing cuDNN'):b.infer(np.zeros(1),'ct2','mlx','auto','auto','zh',require_gpu=True)
+2026-10-20T18:47:25.6814130Z AssertionError: "missing cuDNN" does not match "All ASR attempts failed: [{"backend": "mlx", "device": "gpu", "error": "Local MLX model needs config.json; no automatic model download"}]"
+2026-10-20T18:47:25.6814680Z 
+2026-10-20T18:47:25.6827260Z ======================================================================
+2026-10-20T18:47:25.6827980Z FAIL: test_vulkan_failure_preserved_before_cpu_fallback (test_accelerators.AcceleratorTests.test_vulkan_failure_preserved_before_cpu_fallback)
+2026-10-20T18:47:25.6828590Z ----------------------------------------------------------------------
+2026-10-20T18:47:25.6828960Z Traceback (most recent call last):
+2026-10-20T18:47:25.6829690Z   File "/Users/runner/work/self-media-workbench/self-media-workbench/tests/test_accelerators.py", line 49, in test_vulkan_failure_preserved_before_cpu_fallback
+2026-10-20T18:47:25.6830440Z     self.assertEqual(result['fallback_errors'][0]['device'],'vulkan')
+2026-10-20T18:47:25.6830770Z AssertionError: 'gpu' != 'vulkan'
+2026-10-20T18:47:25.6830970Z - gpu
+2026-10-20T18:47:25.6831120Z + vulkan
+2026-10-20T18:47:25.6831210Z 
+2026-10-20T18:47:25.6831210Z 
+2026-10-20T18:47:25.6831340Z ----------------------------------------------------------------------
+2026-10-20T18:47:25.6831620Z Ran 44 tests in 1.627s
+2026-10-20T18:47:25.6831770Z 
+2026-10-20T18:47:25.6831850Z FAILED (failures=2)
+2026-10-20T18:47:25.7366660Z ##[error]Process completed with exit code 1.
+2026-10-20T18:47:25.7466520Z ##[group]Run actions/upload-artifact@v7
+2026-10-20T18:47:25.7466810Z with:
+2026-10-20T18:47:25.7467020Z   name: result-macos-15
+2026-10-20T18:47:25.7467270Z   path: evaluation/runs/
+2026-10-20T18:47:25.7467460Z   if-no-files-found: warn
+2026-10-20T18:47:25.7467660Z   compression-level: 6
+2026-10-20T18:47:25.7467840Z   overwrite: false
+2026-10-20T18:47:25.7468030Z   include-hidden-files: false
+2026-10-20T18:47:25.7468210Z   archive: true
+2026-10-20T18:47:25.7468340Z env:
+2026-10-20T18:47:25.7468590Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:25.7469020Z   PKG_CONFIG_PATH: /Users/runner/hostedtoolcache/Python/3.11.9/arm64/lib/pkgconfig
+2026-10-20T18:47:25.7469430Z   Python_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:25.7469800Z   Python2_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:25.7470200Z   Python3_ROOT_DIR: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-10-20T18:47:25.7470520Z ##[endgroup]
+2026-10-20T18:47:26.0968030Z ##[warning]No files were found with the provided path: evaluation/runs/. No artifacts will be uploaded.
+2026-10-20T18:47:26.1107750Z Post job cleanup.
+2026-10-20T18:47:26.2036490Z [command]/opt/homebrew/bin/git version
+2026-10-20T18:47:26.2118130Z git version 2.55.0
+2026-10-20T18:47:26.2145280Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/09db758f-2da4-424d-8bf8-2acd148ad630/.gitconfig'
+2026-10-20T18:47:26.2152850Z Temporarily overriding HOME='/Users/runner/work/_temp/09db758f-2da4-424d-8bf8-2acd148ad630' before making global git config changes
+2026-10-20T18:47:26.2154840Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-20T18:47:26.2162570Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/self-media-workbench/self-media-workbench
+2026-10-20T18:47:26.2264680Z Removing SSH command configuration
+2026-10-20T18:47:26.2268940Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-20T18:47:26.2333320Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-20T18:47:26.3384980Z Removing HTTP extra header
+2026-10-20T18:47:26.3390360Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-20T18:47:26.3469120Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-20T18:47:26.4933900Z Removing includeIf entries pointing to credentials config files
+2026-10-20T18:47:26.5035280Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-20T18:47:26.5081150Z includeif.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git.path
+2026-10-20T18:47:26.5192000Z includeif.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git/worktrees/*.path
+2026-10-20T18:47:26.5256340Z includeif.gitdir:/github/workspace/.git.path
+2026-10-20T18:47:26.5357420Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-20T18:47:26.5564570Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git.path
+2026-10-20T18:47:26.5645470Z /Users/runner/work/_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:26.5857210Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git.path \/Users\/runner\/work\/_temp\/git\-credentials\-da7fb46e\-503e\-4223\-a98d\-fcda002edb96\.config
+2026-10-20T18:47:26.5912820Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git/worktrees/*.path
+2026-10-20T18:47:26.5916710Z /Users/runner/work/_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:26.5934070Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/Users/runner/work/self-media-workbench/self-media-workbench/.git/worktrees/*.path \/Users\/runner\/work\/_temp\/git\-credentials\-da7fb46e\-503e\-4223\-a98d\-fcda002edb96\.config
+2026-10-20T18:47:26.5978770Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-20T18:47:26.5983050Z /github/runner_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:26.6054370Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-da7fb46e\-503e\-4223\-a98d\-fcda002edb96\.config
+2026-10-20T18:47:26.6096120Z [command]/opt/homebrew/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-20T18:47:26.6124700Z /github/runner_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config
+2026-10-20T18:47:26.6133470Z [command]/opt/homebrew/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-da7fb46e\-503e\-4223\-a98d\-fcda002edb96\.config
+2026-10-20T18:47:26.6163360Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-20T18:47:26.6564410Z Removing credentials config '/Users/runner/work/_temp/git-credentials-da7fb46e-503e-4223-a98d-fcda002edb96.config'
+2026-10-20T18:47:26.6640390Z Cleaning up orphan processes

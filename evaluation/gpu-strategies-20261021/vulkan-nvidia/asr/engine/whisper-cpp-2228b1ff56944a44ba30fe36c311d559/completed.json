@@ -1,0 +1,11 @@
+{
+  "selected_native_backend": "Vulkan0",
+  "gpu_model_megabytes": 77.11,
+  "acceleration": "vulkan",
+  "gpu_inference_verified": true,
+  "isolated_worker": true,
+  "binary_sha256": "daa6c9152a163d2334fef85e83278aa74d6971af8d14d02037d4a481ab4eec07",
+  "model_sha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+  "evidence_dir": "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\vulkan-nvidia-initial\\asr\\engine\\whisper-cpp-2228b1ff56944a44ba30fe36c311d559",
+  "coarse_segment_groups": 19
+}

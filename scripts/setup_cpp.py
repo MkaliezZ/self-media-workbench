@@ -58,6 +58,9 @@ def main():
         name='whisper-cli.exe' if os.name=='nt' else 'whisper-cli'
         executable=next((f for f in [build/'bin/Release'/name,build/'bin'/name] if f.is_file()),None)
         if not executable:raise RuntimeError('Build completed without expected executable')
+        # Keep upstream MIT notices alongside the optional native executable.
+        for original,name in [(source/'LICENSE','LICENSE-whisper.cpp.txt'),(source/'ggml/LICENSE','LICENSE-ggml.txt')]:
+            if original.is_file():shutil.copy2(original,executable.parent/name)
         model=args.model.expanduser().resolve() if args.model else None;download=None
         if args.download_model:
             if model:raise ValueError('Choose --model or --download-model')
@@ -79,7 +82,9 @@ def main():
             CONFIG_FILE.write_text(json.dumps(config,indent=2,ensure_ascii=False),encoding='utf8')
         result={'built':True,'configured':args.configure,'executable':str(executable),'model':str(model) if model else None,
                 'source_revision':actual,'acceleration':args.acceleration,'gpu_execution_verified':False,
-                'download':download,'workspace':str(folder),'requested_workspace':str(requested),'notice':'Run actual ASR and check backend/device/execution; build success is not GPU inference proof'}
+                'download':download,'workspace':str(folder),'requested_workspace':str(requested),
+                'restart_existing_service_required':args.configure,
+                'notice':'After configure, restart only the verified own idle service before resuming the same project. Run actual ASR and check backend/device/execution; build success is not GPU inference proof'}
         code=0
     except Exception as exc:result={'built':False,'error':str(exc),'workspace':str(folder)};code=1
     (folder/'setup-result.json').write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding='utf8')

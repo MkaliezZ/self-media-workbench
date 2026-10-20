@@ -1,0 +1,82 @@
+[
+  {
+    "path": "asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/attempt.json",
+    "bytes": 828,
+    "sha256": "10bd1b923d1d3b22b9ebed83f8a3ed3688610544d48d1f1bd50d9a72223459d0"
+  },
+  {
+    "path": "asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/completed.json",
+    "bytes": 537,
+    "sha256": "aaeac2554c777b063a85c14bb626d5a4e96ae0b91aaae7bcae155b91c49a3e0b"
+  },
+  {
+    "path": "asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/native.json",
+    "bytes": 41933,
+    "sha256": "adefd7782d00a9135094a2a4fde73e2b5a4d49419238e826512fcef98856e6a2"
+  },
+  {
+    "path": "asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/stderr.txt",
+    "bytes": 3387,
+    "sha256": "7bc9681c129cd4adc817a001b646e464396024c1a6e3b4f86e86760a05a5c78e"
+  },
+  {
+    "path": "asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/stdout.txt",
+    "bytes": 1076,
+    "sha256": "8e21dd9fd2ee59dc718eed99e2034174d9f9eccf227d8a4eb5b8f7fe1fa4279a"
+  },
+  {
+    "path": "asr/review.json",
+    "bytes": 7759,
+    "sha256": "480c2325e1877fc5e1256e7f27afcbf35ff26c4f37e0ba2339a4d58c93f2feb7"
+  },
+  {
+    "path": "asr/transcript.original.json",
+    "bytes": 7759,
+    "sha256": "480c2325e1877fc5e1256e7f27afcbf35ff26c4f37e0ba2339a4d58c93f2feb7"
+  },
+  {
+    "path": "decode.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "export/edit-decision.json",
+    "bytes": 348,
+    "sha256": "b2b9b31c47ee1a4fe5470eb9ee8610bb1ecb40ee70ec2b9b45d367c0d00fcf6e"
+  },
+  {
+    "path": "export/render-process.json",
+    "bytes": 813,
+    "sha256": "2977cff99e88ca09bdd534fd048d5f4a35c215716e32180d28a35c8b4f129b9a"
+  },
+  {
+    "path": "export/reviewed_cut.mp4",
+    "bytes": 418251,
+    "sha256": "833de236c979c981c92d9f2fe5af5ba73d748954ec4ae790312349342842f686"
+  },
+  {
+    "path": "export/reviewed_cut.srt",
+    "bytes": 673,
+    "sha256": "8396fcdd402af7575109ba245e162685c76c5f73fdb562a2f3c6171363dd0e39"
+  },
+  {
+    "path": "export/reviewed_cut.words.json",
+    "bytes": 3518,
+    "sha256": "cd06e38c4ea0b9dd24861527e2ea11856945b2a7c8eb4d84e0bf13b57008a0d0"
+  },
+  {
+    "path": "result.json",
+    "bytes": 1367,
+    "sha256": "073993e61fb8f4e24414ff4570c3ca8209e7a5f81c5762350cf575023a56e6d5"
+  },
+  {
+    "path": "source-snapshot.json",
+    "bytes": 1706,
+    "sha256": "41f3da72a4f8d8095517c3b672a7bc41b92a760ea21447cae47f5102ef53f4ca"
+  },
+  {
+    "path": "state/config.json",
+    "bytes": 373,
+    "sha256": "cb4b67d9ec163ae6da98b49f1f729f98a4f000976bff820ecf6031dc2637dd70"
+  }
+]

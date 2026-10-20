@@ -1,0 +1,72 @@
+[
+  {
+    "path": "asr/engine/cuda-1901046bc8954307a946e8f9494df84e/command.json",
+    "bytes": 399,
+    "sha256": "0d8a33e7b2876789a554ee4f0f8a019648323e7436dd06e2d8d3e4212645b2f2"
+  },
+  {
+    "path": "asr/engine/cuda-1901046bc8954307a946e8f9494df84e/stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "asr/engine/cuda-1901046bc8954307a946e8f9494df84e/stdout.json",
+    "bytes": 10308,
+    "sha256": "e924a07a9de6f78e8cb880649f0d88c1160334c3b6726278ce01432cc11b491d"
+  },
+  {
+    "path": "asr/review.json",
+    "bytes": 26230,
+    "sha256": "7ce07eca3b2842adff9b48c7e63699c7143c69fbee6f759432552eb94b4a4bf8"
+  },
+  {
+    "path": "asr/transcript.original.json",
+    "bytes": 26230,
+    "sha256": "7ce07eca3b2842adff9b48c7e63699c7143c69fbee6f759432552eb94b4a4bf8"
+  },
+  {
+    "path": "decode.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "export/edit-decision.json",
+    "bytes": 348,
+    "sha256": "b2b9b31c47ee1a4fe5470eb9ee8610bb1ecb40ee70ec2b9b45d367c0d00fcf6e"
+  },
+  {
+    "path": "export/render-process.json",
+    "bytes": 804,
+    "sha256": "2d11b382bbb8a0aba799a67b5541cedaa220f37731a47ffac8e70615ced30d89"
+  },
+  {
+    "path": "export/reviewed_cut.mp4",
+    "bytes": 418251,
+    "sha256": "833de236c979c981c92d9f2fe5af5ba73d748954ec4ae790312349342842f686"
+  },
+  {
+    "path": "export/reviewed_cut.srt",
+    "bytes": 781,
+    "sha256": "f4be1107aa392b0ae1a1e1f0459c96496f2693e4300773080580292f472b89d9"
+  },
+  {
+    "path": "export/reviewed_cut.words.json",
+    "bytes": 22127,
+    "sha256": "9bce873375d37515bc78b20d6e8a4eecc07fc188bc0f76457393d642273a2ba0"
+  },
+  {
+    "path": "result.json",
+    "bytes": 1255,
+    "sha256": "6b7cb978f7542f7ddbc3b46966187faa8b310e3583565d827ef4278aa27fc49d"
+  },
+  {
+    "path": "source-snapshot.json",
+    "bytes": 1596,
+    "sha256": "e3dea7fa952287026153b422742571a0b17633d87b139c10318eb89b8617fff6"
+  },
+  {
+    "path": "state/config.json",
+    "bytes": 152,
+    "sha256": "11bbb527f433344cf48071371f0b25413885024174e5f75609520225b4dc2277"
+  }
+]

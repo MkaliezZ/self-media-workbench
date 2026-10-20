@@ -1,0 +1,37 @@
+[
+  [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "--branch",
+    "v1.9.5",
+    "https://github.com/ggml-org/whisper.cpp.git",
+    "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan\\source"
+  ],
+  [
+    "cmake",
+    "-S",
+    "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan\\source",
+    "-B",
+    "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan\\build",
+    "-DWHISPER_BUILD_TESTS=OFF",
+    "-DWHISPER_BUILD_SERVER=OFF",
+    "-DBUILD_SHARED_LIBS=OFF",
+    "-DGGML_BACKEND_DL=OFF",
+    "-DGGML_NATIVE=OFF",
+    "-DGGML_VULKAN=ON",
+    "-DGGML_METAL=OFF"
+  ],
+  [
+    "cmake",
+    "--build",
+    "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan\\build",
+    "--config",
+    "Release",
+    "--target",
+    "whisper-cli",
+    "-j",
+    "2"
+  ]
+]

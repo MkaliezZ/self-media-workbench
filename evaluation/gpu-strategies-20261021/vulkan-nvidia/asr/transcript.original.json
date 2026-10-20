@@ -1,0 +1,318 @@
+{
+  "source": "F:\\Codex Workspace\\Studio\\self-media-workbench\\fixtures\\chinese-talk\\synthetic-zh.mkv",
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+  "model": "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\models\\ggml-tiny.bin",
+  "device": "vulkan",
+  "backend": "whisper.cpp",
+  "requested_backend": "whisper.cpp",
+  "requested_device": "vulkan",
+  "execution": {
+    "selected_native_backend": "Vulkan0",
+    "gpu_model_megabytes": 77.11,
+    "acceleration": "vulkan",
+    "gpu_inference_verified": true,
+    "isolated_worker": true,
+    "binary_sha256": "daa6c9152a163d2334fef85e83278aa74d6971af8d14d02037d4a481ab4eec07",
+    "model_sha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+    "evidence_dir": "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\vulkan-nvidia-initial\\asr\\engine\\whisper-cpp-2228b1ff56944a44ba30fe36c311d559",
+    "coarse_segment_groups": 19
+  },
+  "routing": {
+    "hardware": {
+      "platform": "win32",
+      "architecture": "AMD64",
+      "adapters": [
+        {
+          "name": "NVIDIA GeForce RTX 5060",
+          "vendor": "nvidia",
+          "driver_version": "32.0.16.1664"
+        }
+      ],
+      "errors": [],
+      "execution_verified": false
+    },
+    "attempts": [
+      {
+        "backend": "whisper.cpp",
+        "device": "vulkan"
+      }
+    ],
+    "require_gpu": true,
+    "selection_is_execution_proof": false
+  },
+  "fallback_errors": [],
+  "duration": 50.2,
+  "audio_duration": 48.5063125,
+  "cuda_dll_dirs": [],
+  "language": "zh",
+  "elapsed_seconds": 63.58060145378113,
+  "text": "這是中文口波和成眼收不是真實客戶案例拍攝前先關閉手機通知再擦乾淨鏡頭先鎖定曝光再檢查白平衡不要把提高亮度理解成修好了畫質這裡的24真核48千核是測試讀數不是推薦參數如果畫面仍然偏色先檢查光圓不要承諾一次解決下面這段停頓用於展示操作必須保留最後和對字幕保留圓篇檢掉的停頓也要能恢復",
+  "words": [
+    {
+      "id": 0,
+      "text": "這是中文口波和成眼收",
+      "start": 0.0,
+      "end": 2.72,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 1,
+      "text": "不是真實客戶案例",
+      "start": 2.72,
+      "end": 5.24,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 2,
+      "text": "拍攝前",
+      "start": 5.24,
+      "end": 6.48,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 3,
+      "text": "先關閉手機通知",
+      "start": 6.48,
+      "end": 8.52,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 4,
+      "text": "再擦乾淨鏡頭",
+      "start": 8.52,
+      "end": 10.96,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 5,
+      "text": "先鎖定曝光",
+      "start": 13.28,
+      "end": 14.96,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 6,
+      "text": "再檢查白平衡",
+      "start": 14.96,
+      "end": 17.36,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 7,
+      "text": "不要把提高亮度",
+      "start": 17.36,
+      "end": 19.28,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 8,
+      "text": "理解成修好了畫質",
+      "start": 19.28,
+      "end": 21.84,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 9,
+      "text": "這裡的24真核48千核",
+      "start": 21.84,
+      "end": 25.0,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 10,
+      "text": "是測試讀數",
+      "start": 25.0,
+      "end": 26.48,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 11,
+      "text": "不是推薦參數",
+      "start": 26.48,
+      "end": 28.8,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 12,
+      "text": "如果畫面仍然偏色",
+      "start": 28.8,
+      "end": 31.16,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 13,
+      "text": "先檢查光圓",
+      "start": 31.16,
+      "end": 32.8,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 14,
+      "text": "不要承諾一次解決",
+      "start": 32.8,
+      "end": 35.36,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 15,
+      "text": "下面這段停頓用於展示操作",
+      "start": 35.36,
+      "end": 38.64,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 16,
+      "text": "必須保留",
+      "start": 38.64,
+      "end": 41.0,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 17,
+      "text": "最後和對字幕保留圓篇",
+      "start": 42.2,
+      "end": 45.36,
+      "probability": null,
+      "alignment": "model_segment_group"
+    },
+    {
+      "id": 18,
+      "text": "檢掉的停頓也要能恢復",
+      "start": 45.36,
+      "end": 48.2,
+      "probability": null,
+      "alignment": "model_segment_group"
+    }
+  ],
+  "vad_speech": [
+    {
+      "start": 0.06,
+      "end": 2.564
+    },
+    {
+      "start": 2.812,
+      "end": 4.644
+    },
+    {
+      "start": 5.372,
+      "end": 6.308
+    },
+    {
+      "start": 6.524,
+      "end": 8.356
+    },
+    {
+      "start": 8.604,
+      "end": 10.276
+    },
+    {
+      "start": 13.404,
+      "end": 14.788
+    },
+    {
+      "start": 15.036,
+      "end": 16.74
+    },
+    {
+      "start": 17.468,
+      "end": 19.076
+    },
+    {
+      "start": 19.324,
+      "end": 21.22
+    },
+    {
+      "start": 21.948,
+      "end": 24.836
+    },
+    {
+      "start": 25.052,
+      "end": 26.34
+    },
+    {
+      "start": 26.588,
+      "end": 28.164
+    },
+    {
+      "start": 28.892,
+      "end": 30.98
+    },
+    {
+      "start": 31.228,
+      "end": 32.612
+    },
+    {
+      "start": 32.86,
+      "end": 34.788
+    },
+    {
+      "start": 35.452,
+      "end": 38.5
+    },
+    {
+      "start": 38.748,
+      "end": 39.812
+    },
+    {
+      "start": 42.364,
+      "end": 43.844
+    },
+    {
+      "start": 44.092,
+      "end": 45.284
+    },
+    {
+      "start": 45.532,
+      "end": 47.844
+    }
+  ],
+  "candidates": [
+    {
+      "id": "pause-0",
+      "start": 11.23,
+      "end": 13.01,
+      "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+      "selected": false,
+      "kind": "pause_candidate"
+    },
+    {
+      "id": "pause-1",
+      "start": 41.27,
+      "end": 41.93,
+      "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+      "selected": false,
+      "kind": "pause_candidate"
+    },
+    {
+      "id": "pause-2",
+      "start": 48.47,
+      "end": 50.2,
+      "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+      "selected": false,
+      "kind": "pause_candidate"
+    }
+  ],
+  "limits": [
+    "ASR识别和对齐可能有误，需要回听",
+    "不自动判断口误或删除任何短句",
+    "非语音不等于可删气口；默认全部保留",
+    "修改文字不会改变原词组时间戳"
+  ]
+}

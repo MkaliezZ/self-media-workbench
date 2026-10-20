@@ -1,0 +1,24 @@
+{
+  "command": [
+    "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\runtime-local\\whisper-cli.exe",
+    "-m",
+    "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\models\\ggml-tiny.bin",
+    "-f",
+    "C:\\Users\\Administrator\\AppData\\Local\\Temp\\workbench-cpp-4q65sz7n\\audio.wav",
+    "-l",
+    "zh",
+    "-ojf",
+    "-of",
+    "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\vulkan-nvidia-initial\\asr\\engine\\whisper-cpp-2228b1ff56944a44ba30fe36c311d559\\native",
+    "-ml",
+    "32",
+    "-sow",
+    "-nfa",
+    "-dev",
+    "0"
+  ],
+  "binary_sha256": "daa6c9152a163d2334fef85e83278aa74d6971af8d14d02037d4a481ab4eec07",
+  "model_sha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+  "requested_acceleration": "vulkan",
+  "gpu_index": 0
+}

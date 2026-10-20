@@ -1,5 +1,9 @@
 # Revision and failure history
 
+## GPU vendor routing — 2026-10-21
+
+Replaced the non-Mac blanket CUDA attempt with display-adapter vendor selection: NVIDIA CUDA, Windows AMD/Intel whisper.cpp Vulkan, Apple Silicon MLX, optional Intel Mac whisper.cpp Metal, then labelled CPU fallback. Added strict GPU requirement, explicit local GGML/CLI configuration, GPU allocation/inference evidence, native diagnostic retention and coarse actual-segment fallback without invented word timestamps. CUDA now runs in an isolated worker and selects precision from device-supported types. Agent doctor/setup/ref instructions expose the strategy and missing assets. Initial ARM mock-scope and Vulkan MSBuild long-path failures were repaired and retained. [Actual hardware results and remaining A/I/Intel-Metal limits](../evaluation/gpu-strategies-20261021.md).
+
 ## Chinese speech, three native platforms — 2026-10-21
 
 The common synthetic Chinese fixture exposed a comparison bug: first run 39472668879 (`80e5ae5`) stopped after raw ASR/export because numeric spelling differed across whole text and word groups. `9f37d82` repaired fixture-scoped numeric normalization and verified A's adjacent TTS padding with decoded PCM. Run 39473665015 then passed automated correction/cut/restore checks on all three platforms, but independent semantic review rejected the actual caption joining “必须保留。” to the next sentence across demonstration hold B. Both real original failures and the technically passed/quality-failed second SRT remain retained.

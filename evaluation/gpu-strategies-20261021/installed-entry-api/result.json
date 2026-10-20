@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "project_id": "e1c6a189254f4bf5b1ce391b07ea3f29",
+  "actual_backend": "faster-whisper",
+  "actual_device": "cuda",
+  "execution": {
+    "gpu_inference_verified": true,
+    "compute_type": "int8_float16",
+    "supported_cuda_compute_types": [
+      "bfloat16",
+      "float16",
+      "float32",
+      "int8",
+      "int8_bfloat16",
+      "int8_float16",
+      "int8_float32"
+    ],
+    "isolated_worker": true,
+    "evidence_dir": "F:\\Codex Workspace\\Studio\\\u81ea\u5a92\u4f53\u5de5\u4f5c\u53f0\\data\\projects\\e1c6a189254f4bf5b1ce391b07ea3f29\\media\\5cfe748a78b04554981f04fb96040626\\asr\\5d3a041eb9f044a593ab660f2b7b7c22\\engine\\cuda-47ba76257f4a42c99a5ecdb0e7d151df"
+  },
+  "fallback_errors": [],
+  "words": 126,
+  "scope": "Normal installed entry/root/state and actual asynchronous API ASR; generated separate test project and unique session; existing config/projects untouched"
+}

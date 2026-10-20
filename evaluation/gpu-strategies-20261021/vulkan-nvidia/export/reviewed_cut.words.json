@@ -1,0 +1,173 @@
+[
+  {
+    "id": 0,
+    "text": "這是中文口波和成眼收",
+    "source_start": 0.0,
+    "source_end": 2.72,
+    "asr_probability": null,
+    "start": 0.0,
+    "end": 2.72
+  },
+  {
+    "id": 1,
+    "text": "不是真實客戶案例",
+    "source_start": 2.72,
+    "source_end": 5.24,
+    "asr_probability": null,
+    "start": 2.72,
+    "end": 5.24
+  },
+  {
+    "id": 2,
+    "text": "拍攝前",
+    "source_start": 5.24,
+    "source_end": 6.48,
+    "asr_probability": null,
+    "start": 5.24,
+    "end": 6.48
+  },
+  {
+    "id": 3,
+    "text": "先關閉手機通知",
+    "source_start": 6.48,
+    "source_end": 8.52,
+    "asr_probability": null,
+    "start": 6.48,
+    "end": 8.52
+  },
+  {
+    "id": 4,
+    "text": "再擦乾淨鏡頭",
+    "source_start": 8.52,
+    "source_end": 10.96,
+    "asr_probability": null,
+    "start": 8.52,
+    "end": 10.96
+  },
+  {
+    "id": 5,
+    "text": "先鎖定曝光",
+    "source_start": 13.28,
+    "source_end": 14.96,
+    "asr_probability": null,
+    "start": 13.28,
+    "end": 14.96
+  },
+  {
+    "id": 6,
+    "text": "再檢查白平衡",
+    "source_start": 14.96,
+    "source_end": 17.36,
+    "asr_probability": null,
+    "start": 14.96,
+    "end": 17.36
+  },
+  {
+    "id": 7,
+    "text": "不要把提高亮度",
+    "source_start": 17.36,
+    "source_end": 19.28,
+    "asr_probability": null,
+    "start": 17.36,
+    "end": 19.28
+  },
+  {
+    "id": 8,
+    "text": "理解成修好了畫質",
+    "source_start": 19.28,
+    "source_end": 21.84,
+    "asr_probability": null,
+    "start": 19.28,
+    "end": 21.84
+  },
+  {
+    "id": 9,
+    "text": "這裡的24真核48千核",
+    "source_start": 21.84,
+    "source_end": 25.0,
+    "asr_probability": null,
+    "start": 21.84,
+    "end": 25.0
+  },
+  {
+    "id": 10,
+    "text": "是測試讀數",
+    "source_start": 25.0,
+    "source_end": 26.48,
+    "asr_probability": null,
+    "start": 25.0,
+    "end": 26.48
+  },
+  {
+    "id": 11,
+    "text": "不是推薦參數",
+    "source_start": 26.48,
+    "source_end": 28.8,
+    "asr_probability": null,
+    "start": 26.48,
+    "end": 28.8
+  },
+  {
+    "id": 12,
+    "text": "如果畫面仍然偏色",
+    "source_start": 28.8,
+    "source_end": 31.16,
+    "asr_probability": null,
+    "start": 28.8,
+    "end": 31.16
+  },
+  {
+    "id": 13,
+    "text": "先檢查光圓",
+    "source_start": 31.16,
+    "source_end": 32.8,
+    "asr_probability": null,
+    "start": 31.16,
+    "end": 32.8
+  },
+  {
+    "id": 14,
+    "text": "不要承諾一次解決",
+    "source_start": 32.8,
+    "source_end": 35.36,
+    "asr_probability": null,
+    "start": 32.8,
+    "end": 35.36
+  },
+  {
+    "id": 15,
+    "text": "下面這段停頓用於展示操作",
+    "source_start": 35.36,
+    "source_end": 38.64,
+    "asr_probability": null,
+    "start": 35.36,
+    "end": 38.64
+  },
+  {
+    "id": 16,
+    "text": "必須保留",
+    "source_start": 38.64,
+    "source_end": 41.0,
+    "asr_probability": null,
+    "start": 38.64,
+    "end": 41.0
+  },
+  {
+    "id": 17,
+    "text": "最後和對字幕保留圓篇",
+    "source_start": 42.2,
+    "source_end": 45.36,
+    "asr_probability": null,
+    "start": 42.2,
+    "end": 45.36
+  },
+  {
+    "id": 18,
+    "text": "檢掉的停頓也要能恢復",
+    "source_start": 45.36,
+    "source_end": 48.2,
+    "asr_probability": null,
+    "start": 45.36,
+    "end": 48.2
+  }
+]

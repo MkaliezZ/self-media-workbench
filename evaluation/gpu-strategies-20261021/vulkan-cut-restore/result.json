@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "actual_backend": "whisper.cpp",
+  "actual_device": "vulkan",
+  "candidate": {
+    "id": "pause-0",
+    "start": 11.23,
+    "end": 13.01,
+    "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+    "selected": false,
+    "kind": "pause_candidate"
+  },
+  "removed_seconds": 1.7799999999999994,
+  "cut_duration": 48.42,
+  "restored_duration": 50.2,
+  "source_candidate_peak": 0.0,
+  "B_preserved": true,
+  "restored_decoded_audio_matches_raw_full_export": true,
+  "original_asr_unchanged": true,
+  "old_export_unchanged": true,
+  "groups": 19,
+  "alignment": "model_segment_group",
+  "scope": "Actual cut/restore on original coarse native groups; not a corrected Chinese transcript quality pass"
+}

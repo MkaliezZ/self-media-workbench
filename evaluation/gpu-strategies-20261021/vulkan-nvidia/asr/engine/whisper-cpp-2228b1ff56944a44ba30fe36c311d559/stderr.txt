@@ -1,0 +1,55 @@
+whisper_init_from_file_with_params_no_state: loading model from 'F:\Codex Workspace\Studio\gpu-strategy-audit-20261021\models\ggml-tiny.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 0
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = NVIDIA GeForce RTX 5060 (NVIDIA) | uma: 0 | fp16: 1 | bf16: 1 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: NV_coopmat2v
+whisper_init_with_params_no_state: devices    = 2
+whisper_init_with_params_no_state: backends   = 2
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 384
+whisper_model_load: n_audio_head  = 6
+whisper_model_load: n_audio_layer = 4
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 384
+whisper_model_load: n_text_head   = 6
+whisper_model_load: n_text_layer  = 4
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 1 (tiny)
+whisper_model_load: adding 1608 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:      Vulkan0 total size =    77.11 MB
+whisper_model_load: model size    =   77.11 MB
+whisper_backend_init_gpu: device 0: Vulkan0 (type: 1)
+whisper_backend_init_gpu: found GPU device 0: Vulkan0 (type: 1, cnt: 0)
+whisper_backend_init_gpu: using Vulkan0 backend
+whisper_init_state: kv self size  =    3.15 MB
+whisper_init_state: kv cross size =    9.44 MB
+whisper_init_state: kv pad  size  =    2.36 MB
+whisper_init_state: compute buffer (conv)   =   14.17 MB
+whisper_init_state: compute buffer (encode) =   67.11 MB
+whisper_init_state: compute buffer (cross)  =   13.11 MB
+whisper_init_state: compute buffer (decode) =   96.83 MB
+read_audio_data: reading audio data from 'C:\Users\Administrator\AppData\Local\Temp\workbench-cpp-4q65sz7n\audio.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 12 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing 'C:\Users\Administrator\AppData\Local\Temp\workbench-cpp-4q65sz7n\audio.wav' (776101 samples, 48.5 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = zh, task = transcribe, timestamps = 1 ...
+
+output_json: saving output to 'F:\Codex Workspace\Studio\gpu-strategy-audit-20261021\vulkan-nvidia-initial\asr\engine\whisper-cpp-2228b1ff56944a44ba30fe36c311d559\native.json'
+
+whisper_print_timings:     load time =   319.15 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =    58.48 ms
+whisper_print_timings:   sample time =   668.43 ms /   996 runs (     0.67 ms per run)
+whisper_print_timings:   encode time = 20437.89 ms /     2 runs ( 10218.94 ms per run)
+whisper_print_timings:   decode time =  1129.15 ms /     1 runs (  1129.15 ms per run)
+whisper_print_timings:   batchd time = 37324.16 ms /   988 runs (    37.78 ms per run)
+whisper_print_timings:   prompt time =   874.46 ms /   120 runs (     7.29 ms per run)
+whisper_print_timings:    total time = 61002.63 ms

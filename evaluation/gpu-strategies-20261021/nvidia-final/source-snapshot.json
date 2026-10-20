@@ -1,0 +1,21 @@
+{
+  "commit": "49a63f368d49d339b0969de8b9d0f085782fcdc6",
+  "working_changes": [],
+  "runtime_sha256": {
+    "backend\\accelerators.py": "277d4cc44bf55c2ac3f3b785fc44e1ce6a4aa0465c99944c10453a377002c7b9",
+    "backend\\agent_api.py": "f318cdcba95a4f74bc5fe66bdd0e250f05251f45ddf50c16a9ff0cda7518074c",
+    "backend\\agent_models.py": "ecff84c418734f582fd8d700e08063bea0f83146b258794e98ec10b6f9c5f364",
+    "backend\\app.py": "24add0402f75a319db8fffaa35e95fd850e665973262a3c9fe598cbf9db53cb6",
+    "backend\\asr_backends.py": "7b3be119c1445465c5e232cb91e2902e4ca69ca728ecf61433ae75952dea94c7",
+    "backend\\cpp_asr.py": "75ccb1c2d0b54f08bcf61c75ea44cd52dea17835b49add6994483fcb66de5b14",
+    "backend\\ct2_worker.py": "ca692eb12a147797f8d2946016db1f0c906d0e4d46bd928c8595664ade1cf32c",
+    "backend\\gpu_runtime.py": "97613f72b8be36756d975c8939f13b5af6fdce31c763efd980f1c084f86ea997",
+    "backend\\local_asr.py": "cb3fb8ff0b8bd9886ef04fc2474773ffb7209377503ede475a4cc7f81c0b9f02",
+    "backend\\media_models.py": "6121e16e879b860722d3efd7008166133b66fde796877ad792bec29bb01b5f2b",
+    "backend\\media_render.py": "6aff59dea5c8411f321dee645b4185c9aa1bcb3262fa892ad7ad205e24211041",
+    "backend\\mlx_worker.py": "a0a9132ffe98b526eee1998c0d46cc9be0cf1321dc487cee9504b27f5f600b01",
+    "backend\\review_edits.py": "f4a0e5dbccc81acf3d92c036e8c488f1cca6f4deae3b318f5aaa3fe483f6076b",
+    "backend\\settings.py": "489657232f24dec028081fd97257b60d89195e436fb73348e128055ee8a9d4d5",
+    "backend\\task_api.py": "68cfc106bd9d6a04cd29559a3cdbbd615d602cdc97e7ca8ebfad53815e16ce0f"
+  }
+}

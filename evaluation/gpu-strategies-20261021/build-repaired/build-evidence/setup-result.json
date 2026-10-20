@@ -1,0 +1,19 @@
+{
+  "built": true,
+  "configured": true,
+  "executable": "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan\\build\\bin\\Release\\whisper-cli.exe",
+  "model": "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan\\models\\ggml-tiny.bin",
+  "source_revision": "d1be6fde11ac6e0407606b4e42fe72d34add8037",
+  "acceleration": "vulkan",
+  "gpu_execution_verified": false,
+  "download": {
+    "repo": "ggerganov/whisper.cpp",
+    "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+    "file": "ggml-tiny.bin",
+    "sha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+    "verified": true
+  },
+  "workspace": "D:\\.smw-build\\c4de2ecd\\d1be6fde-vulkan",
+  "requested_workspace": "D:\\a\\self-media-workbench\\self-media-workbench\\audit\\runtime",
+  "notice": "Run actual ASR and check backend/device/execution; build success is not GPU inference proof"
+}

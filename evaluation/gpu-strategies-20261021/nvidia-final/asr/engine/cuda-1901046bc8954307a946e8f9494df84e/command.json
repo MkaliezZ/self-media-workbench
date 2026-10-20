@@ -1,0 +1,13 @@
+[
+  "C:\\Users\\Administrator\\AppData\\Local\\hermes\\hermes-agent\\venv\\Scripts\\python.exe",
+  "-B",
+  "-X",
+  "utf8",
+  "F:\\Codex Workspace\\Studio\\self-media-workbench\\backend\\ct2_worker.py",
+  "--audio",
+  "C:\\Users\\Administrator\\AppData\\Local\\Temp\\workbench-cuda-du9bnf84\\audio.npy",
+  "--model",
+  "F:\\Faster Whisper\\faster-whisper-medium",
+  "--language",
+  "zh"
+]

@@ -1,5 +1,9 @@
 # Validation record
 
+## Vendor-aware GPU selection
+
+[2026-10-21 GPU strategy audit](../evaluation/gpu-strategies-20261021.md): actual local RTX 5060 auto/CUDA ASR (126 groups), installed-entry asynchronous CUDA job and decoded export passed; a separately compiled Vulkan adapter also completed real NVIDIA Vulkan ASR/export and explicit cut/restore. AMD/Intel Windows routes and failure contracts are implemented but have no AMD/Intel GPU hardware result. Native Intel Mac CPU fallback is tested; its optional new whisper.cpp Metal path remains hardware-unverified. Final run 39478474440 on `49a63f3` passed 46 tests and real CPU media checks on all three platforms, plus actual ARM MLX/Metal GPU. First platform-mock and MSBuild long-path failures remain. GPU offload is separate from a measured speed-up or recognition-quality verdict.
+
 ## Chinese speech correction, captions, pause cut and restore
 
 [2026-10-21 Chinese acceptance](../evaluation/chinese-acceptance-20261021.md), code `c8f5b99`, run 39473993837: native Windows faster-whisper/CPU, macOS 15 Intel faster-whisper/CPU and macOS 15 Apple Silicon MLX/GPU all executed identical Chinese PCM, real source-bound correction, semantic caption grouping, A-only silence deletion, full 50.2-second restore and complete MP4 decode. GPU evidence includes actual Metal kernel/isolated worker and no fallback. Each original transcript retains one real typo (1/141 normalized CER); known-reference correction is separate. Initial numeric-comparison failure and the second run's automatically passed but semantically wrong captions are retained. This is a short synthetic fixture, not human/noisy/long-form accuracy or a live cloud LLM test.

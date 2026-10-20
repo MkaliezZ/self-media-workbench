@@ -60,6 +60,8 @@ jobs:
             if ($taskCli) {
               New-Item -ItemType Directory -Force audit/native-bin | Out-Null
               Copy-Item -Path (Join-Path $taskCli.DirectoryName '*') -Destination audit/native-bin
+              Copy-Item -LiteralPath (Join-Path $taskSetupPath 'source/LICENSE') -Destination audit/native-bin/LICENSE-whisper.cpp.txt
+              if (Test-Path (Join-Path $taskSetupPath 'source/ggml/LICENSE')) { Copy-Item -LiteralPath (Join-Path $taskSetupPath 'source/ggml/LICENSE') -Destination audit/native-bin/LICENSE-ggml.txt }
               Get-ChildItem audit/native-bin -File | ForEach-Object { @{file=$_.Name;sha256=(Get-FileHash $_.FullName -Algorithm SHA256).Hash} } | ConvertTo-Json | Set-Content audit/native-bin-sha256.json -Encoding utf8
             }
           }

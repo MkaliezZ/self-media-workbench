@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "actual_backend": "faster-whisper",
+  "actual_device": "cuda",
+  "execution": {
+    "gpu_inference_verified": true,
+    "compute_type": "int8_float16",
+    "supported_cuda_compute_types": [
+      "bfloat16",
+      "float16",
+      "float32",
+      "int8",
+      "int8_bfloat16",
+      "int8_float16",
+      "int8_float32"
+    ],
+    "isolated_worker": true,
+    "evidence_dir": "F:\\Codex Workspace\\Studio\\gpu-strategy-audit-20261021\\nvidia-final\\asr\\engine\\cuda-1901046bc8954307a946e8f9494df84e"
+  },
+  "routing": {
+    "hardware": {
+      "platform": "win32",
+      "architecture": "AMD64",
+      "adapters": [
+        {
+          "name": "NVIDIA GeForce RTX 5060",
+          "vendor": "nvidia",
+          "driver_version": "32.0.16.1664"
+        }
+      ],
+      "errors": [],
+      "execution_verified": false
+    },
+    "attempts": [
+      {
+        "backend": "faster-whisper",
+        "device": "cuda"
+      }
+    ],
+    "require_gpu": true,
+    "selection_is_execution_proof": false
+  },
+  "fallback_errors": [],
+  "groups": 126,
+  "source_duration": 50.2,
+  "scope": "Actual Chinese synthetic ASR and full-source decoded export; no human/accuracy/general hardware claim"
+}

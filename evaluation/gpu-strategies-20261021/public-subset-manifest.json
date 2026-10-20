@@ -1,0 +1,327 @@
+[
+  {
+    "path": "build-initial/build-evidence/d1be6fde11ac-vulkan/build.log",
+    "bytes": 21321,
+    "sha256": "d673de468866eca9bf05495f84dc4874afc82e9aa3898a4c68fe55c6c9f3180d"
+  },
+  {
+    "path": "build-initial/build-evidence/d1be6fde11ac-vulkan/commands.json",
+    "bytes": 943,
+    "sha256": "5c8bb95f192e037e6344d9defc5bc88e416aac4f3ae5bc727e10dd719b31beb9"
+  },
+  {
+    "path": "build-initial/build-evidence/d1be6fde11ac-vulkan/setup-result.json",
+    "bytes": 379,
+    "sha256": "68b03f18ef262dee4f5918ff419c6be93475e00e69eaa423ebae044cea1d3963"
+  },
+  {
+    "path": "build-initial/sdk-download.json",
+    "bytes": 447,
+    "sha256": "c84b5d7bfd3ef1574a0c0df6e3a85ffa637c5ded1fca382dc86fc11d7186331f"
+  },
+  {
+    "path": "build-initial/setup.stdout.txt",
+    "bytes": 369,
+    "sha256": "1689b4eb3373b856f4c12508ae3e9eaed4ce08a1dba660c25cec2ca9d3692458"
+  },
+  {
+    "path": "build-repaired/build-evidence/build.log",
+    "bytes": 243645,
+    "sha256": "02800f4bd026041e2742dbe4d8aa468aefe2754f1689ec62a5b95b653700c99f"
+  },
+  {
+    "path": "build-repaired/build-evidence/commands.json",
+    "bytes": 763,
+    "sha256": "dcd0025066f5f84c0a54432f4562290535694848ea68546e0fec66973089bb19"
+  },
+  {
+    "path": "build-repaired/build-evidence/model-download.json",
+    "bytes": 228,
+    "sha256": "dc045ef8fb882002fc0600da3b3ee1dde2565fd17867e0138fd1b4d9aacaed3b"
+  },
+  {
+    "path": "build-repaired/build-evidence/setup-result.json",
+    "bytes": 876,
+    "sha256": "45f716863cb7ac0ca0e458855abb53464e815b5f08953e70038bab7d713166ba"
+  },
+  {
+    "path": "build-repaired/build-evidence/workbench-build-owner.json",
+    "bytes": 193,
+    "sha256": "15adc772e396ac911d5c80a582eea5dd5d844b082122ccd2d769aa464a0da967"
+  },
+  {
+    "path": "build-repaired/cpu-contract/result.json",
+    "bytes": 1277,
+    "sha256": "0cd20bf18c564508cdcfdbd27344e770cbea459c73095bbe51a65afb3b84a8f2"
+  },
+  {
+    "path": "build-repaired/native-bin-sha256.json",
+    "bytes": 116,
+    "sha256": "fa46e2314413e48c6a821e376735901d8932abd2d0b1070c163e66bfe4af6f53"
+  },
+  {
+    "path": "build-repaired/sdk-download.json",
+    "bytes": 447,
+    "sha256": "e5ffa2aa34dea6f5691c2cc46fc843cd1ad809520956adf094b0ae5be8295715"
+  },
+  {
+    "path": "build-repaired/setup.stdout.txt",
+    "bytes": 812,
+    "sha256": "db6938ed3c7911d897323525641a168278e82a4385e87945fc71d533dd0a4fed"
+  },
+  {
+    "path": "compatibility-final/result-macos-15/mlx-smoke.json",
+    "bytes": 1073,
+    "sha256": "96532fc14be19ae0654396a4e3e494f4f6b90c95749a0761224a97a3b83ac495"
+  },
+  {
+    "path": "compatibility-final/result-macos-15/platform-smoke.json",
+    "bytes": 1112,
+    "sha256": "c54ece7adfc2688e19d7a9c0412e3f49a7d5a7bec431629b334ff1f7b2a685c9"
+  },
+  {
+    "path": "compatibility-final/result-macos-15-intel/platform-smoke.json",
+    "bytes": 1113,
+    "sha256": "b7f12551c269c8269987f49e91d6c8cc69443498125aa81f823de7c21139fd27"
+  },
+  {
+    "path": "compatibility-final/result-windows-latest/platform-smoke.json",
+    "bytes": 1140,
+    "sha256": "cf7b974a952d58fc5cb515f980b7d0e5bf2b2aeba079f129abbeda8e9b143567"
+  },
+  {
+    "path": "history/final-windows-ci.log",
+    "bytes": 46736,
+    "sha256": "6ea31f8349b6d49d5aa708d402f4f183323a76fa07b0453a59d2825208ec7a59"
+  },
+  {
+    "path": "history/ggml-model-download.json",
+    "bytes": 311,
+    "sha256": "41afbdbb0b5a1960613fd79da1619031557c4848c36838e42a34afc9ee7d4ba5"
+  },
+  {
+    "path": "history/initial-arm-unit.log",
+    "bytes": 50370,
+    "sha256": "12390ac48379c962116ec91305d3d1b523ef58df7c3c4e73ed03492ac00f63d1"
+  },
+  {
+    "path": "history/initial-vulkan-build-failure.log",
+    "bytes": 2916,
+    "sha256": "62b65ae8f0908a66f97fd07f402ab1e30960775736ab13e83621a58f6aeab64b"
+  },
+  {
+    "path": "installed-entry-api/asr-terminal.json",
+    "bytes": 1087,
+    "sha256": "d3bffe2b23c8e3b5429a9e7c23e7453705f17e71e374cd7d9269132fb9ed7203"
+  },
+  {
+    "path": "installed-entry-api/original-review.json",
+    "bytes": 26637,
+    "sha256": "9201dcc161dca1ee3a8c98d378b4c2c2138e3a95b5a432dfb91b6d054fa2b36e"
+  },
+  {
+    "path": "installed-entry-api/result.json",
+    "bytes": 934,
+    "sha256": "89dc904627d63f13cbd640f961624635cc31321baae2fd1c8c8b9bbec69c505e"
+  },
+  {
+    "path": "nvidia-final/asr/engine/cuda-1901046bc8954307a946e8f9494df84e/command.json",
+    "bytes": 399,
+    "sha256": "0d8a33e7b2876789a554ee4f0f8a019648323e7436dd06e2d8d3e4212645b2f2"
+  },
+  {
+    "path": "nvidia-final/asr/engine/cuda-1901046bc8954307a946e8f9494df84e/stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "nvidia-final/asr/engine/cuda-1901046bc8954307a946e8f9494df84e/stdout.json",
+    "bytes": 10308,
+    "sha256": "e924a07a9de6f78e8cb880649f0d88c1160334c3b6726278ce01432cc11b491d"
+  },
+  {
+    "path": "nvidia-final/asr/transcript.original.json",
+    "bytes": 26230,
+    "sha256": "7ce07eca3b2842adff9b48c7e63699c7143c69fbee6f759432552eb94b4a4bf8"
+  },
+  {
+    "path": "nvidia-final/decode.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "nvidia-final/export/edit-decision.json",
+    "bytes": 348,
+    "sha256": "b2b9b31c47ee1a4fe5470eb9ee8610bb1ecb40ee70ec2b9b45d367c0d00fcf6e"
+  },
+  {
+    "path": "nvidia-final/export/render-process.json",
+    "bytes": 804,
+    "sha256": "2d11b382bbb8a0aba799a67b5541cedaa220f37731a47ffac8e70615ced30d89"
+  },
+  {
+    "path": "nvidia-final/export/reviewed_cut.srt",
+    "bytes": 781,
+    "sha256": "f4be1107aa392b0ae1a1e1f0459c96496f2693e4300773080580292f472b89d9"
+  },
+  {
+    "path": "nvidia-final/export/reviewed_cut.words.json",
+    "bytes": 22127,
+    "sha256": "9bce873375d37515bc78b20d6e8a4eecc07fc188bc0f76457393d642273a2ba0"
+  },
+  {
+    "path": "nvidia-final/manifest.json",
+    "bytes": 2233,
+    "sha256": "932ecc7357fbe3b8a6ff84fce25b5c488ba7caaff2dc0001067da0e7585319ba"
+  },
+  {
+    "path": "nvidia-final/result.json",
+    "bytes": 1255,
+    "sha256": "6b7cb978f7542f7ddbc3b46966187faa8b310e3583565d827ef4278aa27fc49d"
+  },
+  {
+    "path": "nvidia-final/source-snapshot.json",
+    "bytes": 1596,
+    "sha256": "e3dea7fa952287026153b422742571a0b17633d87b139c10318eb89b8617fff6"
+  },
+  {
+    "path": "README.md",
+    "bytes": 1937,
+    "sha256": "a98dd0499dde31533741a9e5d9476b4f3630b7ac1ffeaacffbd043a1d7ea566b"
+  },
+  {
+    "path": "runtime-hash-reconciliation.json",
+    "bytes": 411,
+    "sha256": "ff04ffe8c238891317ec893f79a0c2ddcb399ea89a9cd153b644a32f785d43d1"
+  },
+  {
+    "path": "vulkan-cut-restore/cut/edit-decision.json",
+    "bytes": 626,
+    "sha256": "11c74e20b23c1b152452a8c3907464aa274b0ee74d45428d412982fb6c10882a"
+  },
+  {
+    "path": "vulkan-cut-restore/cut/render-process.json",
+    "bytes": 949,
+    "sha256": "16311bdaf4f383a1d41a13766408c1dfad962895ee0fa57d1c99f622a22b977b"
+  },
+  {
+    "path": "vulkan-cut-restore/cut/reviewed_cut.srt",
+    "bytes": 635,
+    "sha256": "c0dbc9170174a2f59109135af4fa784b8aa2208563665140b95f552fcaf2590e"
+  },
+  {
+    "path": "vulkan-cut-restore/cut/reviewed_cut.words.json",
+    "bytes": 3522,
+    "sha256": "79f07bd4334a737e947f73ed9043add550232a72d646dd35fcc8e61b97fd591c"
+  },
+  {
+    "path": "vulkan-cut-restore/cut-decode.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "vulkan-cut-restore/initial-check-failure.json",
+    "bytes": 273,
+    "sha256": "4e7f841278639f93e2e9281b5a91defed245d4b5363f8e4f5bae6717452584ea"
+  },
+  {
+    "path": "vulkan-cut-restore/restored/edit-decision.json",
+    "bytes": 348,
+    "sha256": "b2b9b31c47ee1a4fe5470eb9ee8610bb1ecb40ee70ec2b9b45d367c0d00fcf6e"
+  },
+  {
+    "path": "vulkan-cut-restore/restored/render-process.json",
+    "bytes": 812,
+    "sha256": "0611512aa59f2c8461764af9fbcc71fb964f461b503934d5b2b8b9396516eef2"
+  },
+  {
+    "path": "vulkan-cut-restore/restored/reviewed_cut.srt",
+    "bytes": 673,
+    "sha256": "8396fcdd402af7575109ba245e162685c76c5f73fdb562a2f3c6171363dd0e39"
+  },
+  {
+    "path": "vulkan-cut-restore/restored/reviewed_cut.words.json",
+    "bytes": 3518,
+    "sha256": "cd06e38c4ea0b9dd24861527e2ea11856945b2a7c8eb4d84e0bf13b57008a0d0"
+  },
+  {
+    "path": "vulkan-cut-restore/restored-decode.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "vulkan-cut-restore/result.json",
+    "bytes": 759,
+    "sha256": "5e5298764fd609da671f8b06361804824b36928ada7032556e566fa508867462"
+  },
+  {
+    "path": "vulkan-nvidia/asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/attempt.json",
+    "bytes": 828,
+    "sha256": "10bd1b923d1d3b22b9ebed83f8a3ed3688610544d48d1f1bd50d9a72223459d0"
+  },
+  {
+    "path": "vulkan-nvidia/asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/completed.json",
+    "bytes": 537,
+    "sha256": "aaeac2554c777b063a85c14bb626d5a4e96ae0b91aaae7bcae155b91c49a3e0b"
+  },
+  {
+    "path": "vulkan-nvidia/asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/native.json",
+    "bytes": 41933,
+    "sha256": "adefd7782d00a9135094a2a4fde73e2b5a4d49419238e826512fcef98856e6a2"
+  },
+  {
+    "path": "vulkan-nvidia/asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/stderr.txt",
+    "bytes": 3387,
+    "sha256": "7bc9681c129cd4adc817a001b646e464396024c1a6e3b4f86e86760a05a5c78e"
+  },
+  {
+    "path": "vulkan-nvidia/asr/engine/whisper-cpp-2228b1ff56944a44ba30fe36c311d559/stdout.txt",
+    "bytes": 1076,
+    "sha256": "8e21dd9fd2ee59dc718eed99e2034174d9f9eccf227d8a4eb5b8f7fe1fa4279a"
+  },
+  {
+    "path": "vulkan-nvidia/asr/transcript.original.json",
+    "bytes": 7759,
+    "sha256": "480c2325e1877fc5e1256e7f27afcbf35ff26c4f37e0ba2339a4d58c93f2feb7"
+  },
+  {
+    "path": "vulkan-nvidia/decode.stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "vulkan-nvidia/export/edit-decision.json",
+    "bytes": 348,
+    "sha256": "b2b9b31c47ee1a4fe5470eb9ee8610bb1ecb40ee70ec2b9b45d367c0d00fcf6e"
+  },
+  {
+    "path": "vulkan-nvidia/export/render-process.json",
+    "bytes": 813,
+    "sha256": "2977cff99e88ca09bdd534fd048d5f4a35c215716e32180d28a35c8b4f129b9a"
+  },
+  {
+    "path": "vulkan-nvidia/export/reviewed_cut.srt",
+    "bytes": 673,
+    "sha256": "8396fcdd402af7575109ba245e162685c76c5f73fdb562a2f3c6171363dd0e39"
+  },
+  {
+    "path": "vulkan-nvidia/export/reviewed_cut.words.json",
+    "bytes": 3518,
+    "sha256": "cd06e38c4ea0b9dd24861527e2ea11856945b2a7c8eb4d84e0bf13b57008a0d0"
+  },
+  {
+    "path": "vulkan-nvidia/manifest.json",
+    "bytes": 2649,
+    "sha256": "705acdc2d5515b8eb69a5d9c05a12b413406abe7dbf50e179bc75d6af5897b86"
+  },
+  {
+    "path": "vulkan-nvidia/result.json",
+    "bytes": 1367,
+    "sha256": "073993e61fb8f4e24414ff4570c3ca8209e7a5f81c5762350cf575023a56e6d5"
+  },
+  {
+    "path": "vulkan-nvidia/source-snapshot.json",
+    "bytes": 1706,
+    "sha256": "41f3da72a4f8d8095517c3b672a7bc41b92a760ea21447cae47f5102ef53f4ca"
+  }
+]

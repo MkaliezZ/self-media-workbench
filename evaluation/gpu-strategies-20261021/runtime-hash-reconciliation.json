@@ -1,0 +1,14 @@
+{
+  "cuda": {
+    "source_commit": "49a63f368d49d339b0969de8b9d0f085782fcdc6",
+    "runtime_files_checked": 15,
+    "mismatches": [],
+    "all_current_backend_files_match_tested_snapshot": true
+  },
+  "vulkan": {
+    "source_commit": "49a63f368d49d339b0969de8b9d0f085782fcdc6",
+    "runtime_files_checked": 15,
+    "mismatches": [],
+    "all_current_backend_files_match_tested_snapshot": true
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "sha256": "94A82D378F7A5E3E54C9DB7D2FB7016AF136E14AC0A18DBF0F2F67A36352D141",
+  "signature_status": "Valid",
+  "publisher": "CN=\"LunarG, Inc.\", O=\"LunarG, Inc.\", L=Fort Collins, S=Colorado, C=US, SERIALNUMBER=20091538863, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Colorado, OID.1.3.6.1.4.1.311.60.2.1.3=US",
+  "url": "https://sdk.lunarg.com/sdk/download/1.4.363.0/windows/vulkansdk-windows-X64-1.4.363.0.exe"
+}

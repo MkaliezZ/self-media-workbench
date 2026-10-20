@@ -1,0 +1,35 @@
+{
+  "duration": 50.2,
+  "cuts": [
+    {
+      "start": 11.23,
+      "end": 13.01
+    }
+  ],
+  "keeps": [
+    {
+      "start": 0.0,
+      "end": 11.23,
+      "outputOffset": 0.0
+    },
+    {
+      "start": 13.01,
+      "end": 50.2,
+      "outputOffset": 11.23
+    }
+  ],
+  "output_duration": 48.42,
+  "selected_ids": [
+    "pause-0"
+  ],
+  "deleted_word_ids": [],
+  "decisions": [
+    {
+      "id": "pause-0",
+      "kind": "pause",
+      "start": 11.23,
+      "end": 13.01
+    }
+  ],
+  "policy": "Only explicit selected pauses/spoken groups; no hidden silence cutting or boundary snapping."
+}

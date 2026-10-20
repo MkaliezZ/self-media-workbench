@@ -1,6 +1,6 @@
 # Apple Silicon GPU ASR
 
-The Agent uses the same entry, media routes and review/export contracts. On native Apple Silicon macOS, backend=auto/device=auto tries the optional MLX engine and Metal GPU. Explicit CPU skips it; Intel Mac stays on CPU. The MLX worker runs in an isolated subprocess, so native load/kernel failures can be recorded and followed by CPU fallback rather than crashing project storage.
+The Agent uses the same entry, media routes and review/export contracts. On native Apple Silicon macOS, backend=auto/device=auto tries the optional MLX engine and Metal GPU. Explicit CPU skips it. Intel Mac does not use MLX; it can separately provision whisper.cpp Metal for supported GPUs, with recorded CPU fallback when unavailable. See [vendor strategies](accelerators.md). The MLX worker runs in an isolated subprocess, so native load/kernel failures can be recorded and followed by CPU fallback rather than crashing project storage.
 
 Install requirements-mlx.txt in the workbench's Python and configure --mlx-model with an existing local MLX model directory. It must contain config.json and model.safetensors, weights.safetensors or weights.npz. Configure --model separately with a CTranslate2 model.bin directory for CPU fallback. No normal inference path fetches Hub models; the worker runs with Hub offline mode. An explicitly authorized CI smoke can download tiny test weights. No user model/media is uploaded.
 

@@ -1,0 +1,1 @@
+{"built": false, "error": "Command '['cmake', '--build', 'D:\\\\a\\\\self-media-workbench\\\\self-media-workbench\\\\audit\\\\runtime\\\\d1be6fde11ac-vulkan\\\\build', '--config', 'Release', '--target', 'whisper-cli', '-j', '2']' returned non-zero exit status 1.", "workspace": "D:\\a\\self-media-workbench\\self-media-workbench\\audit\\runtime\\d1be6fde11ac-vulkan"}

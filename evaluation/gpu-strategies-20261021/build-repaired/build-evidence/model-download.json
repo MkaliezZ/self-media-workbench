@@ -1,0 +1,7 @@
+{
+  "repo": "ggerganov/whisper.cpp",
+  "revision": "5359861c739e955e79d9a303bcbc70fb988958b1",
+  "file": "ggml-tiny.bin",
+  "sha256": "be07e048e1e599ad46341c8d2a135645097a538221678b7acdd1b1919c6e1b21",
+  "verified": true
+}

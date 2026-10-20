@@ -1,0 +1,16 @@
+build	Build pinned upstream and explicitly provision test model	﻿2026-10-20T18:48:04.6743562Z ##[group]Run python -B -X utf8 scripts/setup_cpp.py --workspace audit/runtime --vulkan-sdk "$env:VULKAN_SDK" --download-model tiny --configure | Tee-Object audit/setup.stdout.txt
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6744829Z ^[[36;1mpython -B -X utf8 scripts/setup_cpp.py --workspace audit/runtime --vulkan-sdk "$env:VULKAN_SDK" --download-model tiny --configure | Tee-Object audit/setup.stdout.txt^[[0m
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6745413Z ^[[36;1mif ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }^[[0m
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6801034Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6801309Z env:
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6801598Z   SELF_MEDIA_STATE_DIR: D:\a\self-media-workbench\self-media-workbench/audit/setup-state
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6801942Z   HF_HUB_DISABLE_XET: 1
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6802179Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6802542Z   PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.11.9\x64/lib/pkgconfig
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6802882Z   Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6803235Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6803545Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6803810Z   VULKAN_SDK: D:\a\_temp\workbench-vulkan-sdk
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:48:04.6804018Z ##[endgroup]
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:49:04.3722309Z {"built": false, "error": "Command '['cmake', '--build', 'D:\\\\a\\\\self-media-workbench\\\\self-media-workbench\\\\audit\\\\runtime\\\\d1be6fde11ac-vulkan\\\\build', '--config', 'Release', '--target', 'whisper-cli', '-j', '2']' returned non-zero exit status 1.", "workspace": "D:\\a\\self-media-workbench\\self-media-workbench\\audit\\runtime\\d1be6fde11ac-vulkan"}
+build	Build pinned upstream and explicitly provision test model	2026-10-20T18:49:04.3949110Z ##[error]Process completed with exit code 1.

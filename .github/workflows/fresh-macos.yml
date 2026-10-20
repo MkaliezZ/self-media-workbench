@@ -1,0 +1,111 @@
+name: Fresh macOS installation and first task
+on:
+  workflow_dispatch:
+    inputs:
+      runner_set:
+        description: Native Apple Silicon and Intel hosted machines
+        type: choice
+        default: macos-15
+        options: [macos-15, macos-26]
+permissions:
+  contents: read
+jobs:
+  fresh-install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(github.event.inputs.runner_set == 'macos-26' && '["macos-26","macos-26-intel"]' || '["macos-15","macos-15-intel"]') }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    env:
+      PYTHONNOUSERSITE: '1'
+      HF_HUB_DISABLE_XET: '1'
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: audit-control
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: Isolate state and inventory host prerequisites
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p audit-evidence
+          echo "SELF_MEDIA_STATE_DIR=$GITHUB_WORKSPACE/audit-evidence/state" >> "$GITHUB_ENV"
+          echo "CODEX_HOME=$GITHUB_WORKSPACE/audit-evidence/agent-home" >> "$GITHUB_ENV"
+          echo "HF_HOME=$GITHUB_WORKSPACE/audit-evidence/hf-home" >> "$GITHUB_ENV"
+          echo "PIP_CACHE_DIR=$GITHUB_WORKSPACE/audit-evidence/pip-cache" >> "$GITHUB_ENV"
+          {
+            date -u
+            uname -a
+            sw_vers
+            git --version
+            python --version
+            command -v python
+            command -v brew || true
+            command -v ffmpeg || true
+            command -v ffprobe || true
+          } 2>&1 | tee audit-evidence/host-prerequisites.log
+      - name: Actually clone public GitHub and create a fresh venv
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            git clone https://github.com/MkaliezZ/self-media-workbench.git fresh-checkout
+            git -C fresh-checkout checkout --detach "$GITHUB_SHA"
+            git -C fresh-checkout rev-parse HEAD
+            git -C fresh-checkout remote -v
+            python -m venv fresh-checkout/.venv
+            cat fresh-checkout/.venv/pyvenv.cfg
+            fresh-checkout/.venv/bin/python -B -X utf8 fresh-checkout/workbench.py --out audit-evidence/doctor-before-dependencies.json doctor
+          } 2>&1 | tee audit-evidence/clone-and-venv.log
+      - name: Install prerequisites without shared package cache
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then
+              brew install ffmpeg
+            fi
+            ffmpeg -version
+            ffprobe -version
+            fresh-checkout/.venv/bin/python -m pip install --no-cache-dir -r fresh-checkout/requirements-dev.txt
+            if [ "$(uname -m)" = arm64 ]; then
+              fresh-checkout/.venv/bin/python -m pip install --no-cache-dir -r fresh-checkout/requirements-mlx.txt
+            fi
+            fresh-checkout/.venv/bin/python -m pip check
+            fresh-checkout/.venv/bin/python -m pip freeze
+          } 2>&1 | tee audit-evidence/install.log
+      - name: First script, configured models, auto service and actual native ASR/export
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -B -X utf8 audit-control/scripts/fresh_macos_acceptance.py --root "$GITHUB_WORKSPACE/fresh-checkout" --out "$GITHUB_WORKSPACE/audit-evidence" --expect "$(uname -m)" --download-models 2>&1 | tee audit-evidence/first-use.log
+      - name: Preserve final checkout identity even on failure
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p audit-evidence
+          if [ -d fresh-checkout/.git ]; then
+            git -C fresh-checkout status --short > audit-evidence/checkout-status.txt
+            git -C fresh-checkout rev-parse HEAD > audit-evidence/checkout-sha.txt
+          fi
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: fresh-install-${{ matrix.os }}
+          path: |
+            audit-evidence/
+            !audit-evidence/hf-home/**
+            !audit-evidence/pip-cache/**
+            !audit-evidence/foreign*/**
+            !audit-evidence/**/.venv/**
+            !audit-evidence/**/model.bin
+            !audit-evidence/**/*.safetensors
+            !audit-evidence/**/weights.npz
+            !audit-evidence/**/*.whl
+          if-no-files-found: error
+          retention-days: 14

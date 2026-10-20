@@ -79,20 +79,24 @@ def reference_review(words,reference):
 
 def chinese_groups(words,reference):
     breaks=[];cursor=0
-    for phrase in re.split(r'[，。；！？]',reference):
-        cursor+=len(norm(phrase))
-        if phrase:breaks.append(cursor)
-    groups=[];current=[];cursor=0;boundary=0;characters=0
+    for match in re.finditer(r'([^，。；！？]+)([，。；！？]|$)',reference):
+        cursor+=len(norm(match[1]));breaks.append((cursor,match[2] in '。！？'))
+    provisional=[];current=[];cursor=0;boundary=0
     for w in words:
-        current.append(w);cursor+=len(norm(w['text']));characters+=len(norm(w['text']))
-        if boundary<len(breaks) and cursor>=breaks[boundary]:
-            while boundary<len(breaks) and cursor>=breaks[boundary]:boundary+=1
-            if characters>=4 and current[-1]['end']-current[0]['start']>=.9:
-                groups.append(current);current=[];characters=0
-    if current:
-        if groups and (len(norm(''.join(w['text'] for w in current)))<4 or current[-1]['end']-current[0]['start']<.9):groups[-1].extend(current)
-        else:groups.append(current)
-    return [[w['id'] for w in group] for group in groups]
+        current.append(w);cursor+=len(norm(w['text']))
+        if boundary<len(breaks) and cursor>=breaks[boundary][0]:
+            ended=False
+            while boundary<len(breaks) and cursor>=breaks[boundary][0]:
+                ended=ended or breaks[boundary][1];boundary+=1
+            provisional.append([current,ended]);current=[]
+    if current:provisional.append([current,True])
+    def short(group):return len(norm(''.join(w['text'] for w in group)))<4 or group[-1]['end']-group[0]['start']<.9
+    groups=[]
+    for group,ended in provisional:
+        if groups and not groups[-1][1] and group[0]['start']-groups[-1][0][-1]['end']<.8 and (short(group) or short(groups[-1][0])):
+            groups[-1][0].extend(group);groups[-1][1]=ended
+        else:groups.append([group,ended])
+    return [[w['id'] for w in group] for group,_ in groups]
 
 
 class ChineseAudit(Audit):
@@ -192,6 +196,9 @@ Path(output).parent.mkdir(parents=True,exist_ok=True);Path(output).write_text(js
         self.check('reference assisted display text matches',norm(fixed['text'])==norm(reference),'This does not change original ASR accuracy')
         groups=chinese_groups(fixed['words'],reference)
         fixed=self.edit('group-captions',fixed,caption_groups=groups)['review']
+        lookup={w['id']:w for w in fixed['words']}
+        self.check('captions never bridge demonstration hold',all(not (lookup[g[0]]['start']<self.fixture['gaps'][1]['start'] and lookup[g[-1]]['end']>self.fixture['gaps'][1]['end']) for g in groups))
+        self.check('captions never bridge sentence ending',all(not re.search(r'[。！？].+', ''.join(lookup[i]['text'] for i in g)) for g in groups))
         full,_,_=self.export('reviewed-full',fixed)
         A,B=self.fixture['gaps']
         # Native TTS includes silent padding before the inserted gap. Accept a

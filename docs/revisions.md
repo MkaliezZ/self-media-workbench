@@ -1,5 +1,9 @@
 # Revision and failure history
 
+## Free GPU environment search closed — 2026-10-21
+
+The maintainer ended the free-only AMD/Intel/Intel-Mac-Metal environment search and chose community hardware testing. No target GPU was accessible, and queued Intel Mac native probes were cancelled before execution. Their source, access findings and queue records remain in the [investigation](../evaluation/vendor-cloud-20261021.md). Pre-execution review repaired the probe artifact manifest scope in a08a70a; it is not represented as a repaired ASR failure or successful GPU run. The [community guide](cloud-gpu-acceptance.md) retains the identical Chinese fixture and required recognition/captions/cut/restore evidence. Existing runtime verification remains unchanged.
+
 ## GPU vendor routing — 2026-10-21
 
 Replaced the non-Mac blanket CUDA attempt with display-adapter vendor selection: NVIDIA CUDA, Windows AMD/Intel whisper.cpp Vulkan, Apple Silicon MLX, optional Intel Mac whisper.cpp Metal, then labelled CPU fallback. Added strict GPU requirement, explicit local GGML/CLI configuration, GPU allocation/inference evidence, native diagnostic retention and coarse actual-segment fallback without invented word timestamps. CUDA now runs in an isolated worker and selects precision from device-supported types. Agent doctor/setup/ref instructions expose the strategy and missing assets. Initial ARM mock-scope and Vulkan MSBuild long-path failures were repaired and retained. [Actual hardware results and remaining A/I/Intel-Metal limits](../evaluation/gpu-strategies-20261021.md).

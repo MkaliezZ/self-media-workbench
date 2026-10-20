@@ -3,3 +3,4 @@
 evaluation/chinese-20261021/** -text whitespace=cr-at-eol
 # Native build/driver logs retain intentional trailing whitespace as raw evidence.
 evaluation/gpu-strategies-20261021/** -text -whitespace
+evaluation/vendor-cloud-20261021/** -text -whitespace

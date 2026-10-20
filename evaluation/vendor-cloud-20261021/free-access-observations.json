@@ -1,0 +1,57 @@
+{
+  "checked_at_utc": "2026-10-20T19:21:09.569566+00:00",
+  "budget_policy": "Existing or free only; no paid provision, billing, credit activation, new accounts or external application submitted",
+  "browser_observation": {
+    "url": "https://cloud.intel.com/",
+    "signed_in": false,
+    "visible_result": "Intel unified login requires email; no existing cloud instance or entitlement was accessible"
+  },
+  "providers": [
+    {
+      "target": "AMD Radeon",
+      "url": "https://experience.colfax-intl.com/project/amd-rocm/",
+      "kind": "free subject to application approval",
+      "login_or_instance_available": false,
+      "advertised_os": "Ubuntu 24.04; actual Vulkan device not verified",
+      "not_equivalent_to": "Windows Radeon driver acceptance"
+    },
+    {
+      "target": "AMD Radeon",
+      "url": "https://www.grando.ai/promo/experience-amd-rocm-on-radeon-tm-pro",
+      "kind": "free qualified evaluation after registration",
+      "login_or_instance_available": false
+    },
+    {
+      "target": "AMD Instinct",
+      "url": "https://www.amd.com/en/developer/resources/technical-articles/2026/how-to-claim-amd-cloud-credits.html",
+      "kind": "member credits after approval; not activated",
+      "login_or_instance_available": false,
+      "not_equivalent_to": "Radeon Vulkan or Windows driver acceptance"
+    },
+    {
+      "target": "Intel Arc / AI PC",
+      "url": "https://cloud.intel.com/docs/how_to_request.html",
+      "kind": "account and approved hardware reservation required; entitlement/capacity not visible before login",
+      "login_or_instance_available": false
+    },
+    {
+      "target": "Intel Mac Metal",
+      "url": "https://macstadium.com/company/opensource",
+      "kind": "current open source offering describes Apple Silicon; waitlist and minimum project age three months",
+      "login_or_instance_available": false
+    },
+    {
+      "target": "Intel Mac Metal",
+      "url": "https://raw.githubusercontent.com/cirruslabs/cirrus-ci-docs/master/docs/guide/macOS.md",
+      "kind": "current cloud docs describe Apple Silicon VMs, not native Intel",
+      "login_or_instance_available": false
+    },
+    {
+      "target": "Intel Mac Metal",
+      "url": "https://discuss.circleci.com/t/macos-intel-support-deprecation-in-january-2024/48718",
+      "kind": "official Intel retirement announcement",
+      "login_or_instance_available": false
+    }
+  ],
+  "all_target_gpu_asr_checks": "not_run; no simulated test substituted"
+}

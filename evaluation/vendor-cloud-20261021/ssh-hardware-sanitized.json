@@ -1,0 +1,56 @@
+{
+  "collected_at_utc": "2026-10-20T19:20:32.221428+00:00",
+  "kind": "sanitized derivative, not the original raw SSH log",
+  "original_private_sha256": "224f0adc344b0b1f20f4f05380bf33b8c4b0c1f11360dcf8411f9ecee3a40542",
+  "no_target_gpu_exposed": true,
+  "entries": [
+    {
+      "connection": 1,
+      "exit_code": 255,
+      "reason": "connection timeout"
+    },
+    {
+      "connection": 2,
+      "exit_code": 0,
+      "native_inventory": {
+        "platform": "linux",
+        "architecture": "x86_64",
+        "drm": [
+          {
+            "node": "card0-VGA-1"
+          },
+          {
+            "node": "card0",
+            "vendor": "0x1013",
+            "device": "0x00b8",
+            "class": "0x030000"
+          }
+        ]
+      }
+    },
+    {
+      "connection": 3,
+      "exit_code": 0,
+      "native_inventory": {
+        "platform": "linux",
+        "architecture": "x86_64",
+        "drm": []
+      }
+    },
+    {
+      "connection": 4,
+      "exit_code": 0,
+      "native_inventory": {
+        "platform": "linux",
+        "architecture": "x86_64",
+        "drm": []
+      }
+    },
+    {
+      "connection": 5,
+      "exit_code": 255,
+      "reason": "existing key permissions rejected; no key or ACL changes performed"
+    }
+  ],
+  "note": "Aliases, network addresses and key paths omitted from this derivative. Two successful aliases may refer to the same machine; do not count them as independent hosts."
+}

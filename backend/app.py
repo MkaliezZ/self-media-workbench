@@ -21,7 +21,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
 from local_asr import DEFAULT_MODEL, transcribe
-from review_edits import plan_keeps
+from review_edits import plan_keeps, corrected_text
 from media_models import MediaImport, ReviewEdit, ExportReview
 from settings import DATA, SKILL, LIBRARY
 from media_render import render
@@ -303,7 +303,8 @@ async def save_review(pid: str, mid: str, request: Request):
             for key, text in corrections.items():
                 if not key.isdigit() or int(key)>=len(review['words']) or not text.strip() or len(text)>200:
                     raise HTTPException(422,'改字须对应现有词组，不能清空或伪造时间戳')
-                review['words'][int(key)]['text']=text
+                word=review['words'][int(key)]
+                word['text']=corrected_text(word['text'],text)
             selected = review.get('selected_ids',[]) if body['selected_ids'] is None else body['selected_ids']
             speech = review.get('speech_cuts',[]) if body['speech_cuts'] is None else body['speech_cuts']
             try:

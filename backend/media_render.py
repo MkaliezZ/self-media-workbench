@@ -31,6 +31,8 @@ def project_words(review, keeps):
             raise ValueError('A keep boundary clips a spoken group; review the explicit cuts')
         lo, _, dest = overlaps[0]
         mapped.append({'id':word['id'], 'text':word['text'],
+                       'source_start':a,'source_end':b,
+                       'asr_probability':word.get('probability'),
                        'start':round(dest + a - lo, 6), 'end':round(dest + b - lo, 6)})
     return mapped
 
@@ -95,6 +97,6 @@ def render(source, review, plan, destination):
     srt = '\n\n'.join(f"{n}\n{stamp(c['start'])} --> {stamp(c['end'])}\n{c['text']}" for n,c in enumerate(cues, 1))
     (destination / 'reviewed_cut.srt').write_text(srt + '\n', encoding='utf-8')
     (destination / 'reviewed_cut.words.json').write_text(json.dumps(
-        [{k:v for k,v in w.items() if k != 'id'} for w in mapped], ensure_ascii=False, indent=2), encoding='utf-8')
+        mapped, ensure_ascii=False, indent=2), encoding='utf-8')
     (destination / 'edit-decision.json').write_text(json.dumps(plan, ensure_ascii=False, indent=2), encoding='utf-8')
     return {'words':len(mapped), 'captions':len(cues), 'output':str(video)}

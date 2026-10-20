@@ -101,6 +101,29 @@ class AgentTests(unittest.TestCase):
         self.assertIn('bundle_sha256',frozen['skill'])
         self.assertTrue(review['validation']['computed']['metrics'][0]['missing'])
 
+    def test_complete_continuation_is_noop_but_explicit_new_topic_runs(self):
+        self.chain();before=self.context()
+        result=self.client.post(P+'/tasks',json={'task':'继续这个项目，告诉我现在到哪一步、下一步做什么。',
+            'project':self.project['id'],'session_key':'complete-case'}).json()
+        self.assertEqual(result['workflow_status'],'complete')
+        self.assertIsNone(result['start_at']);self.assertEqual(result['plan'],[])
+        self.assertEqual(self.context()['heads'],before['heads'])
+        self.assertEqual(self.context()['project']['revision'],before['project']['revision'])
+        explicit=self.client.post(P+'/tasks',json={'task':'继续做下一轮选题','project':self.project['id']}).json()
+        self.assertEqual(explicit['start_at'],'topics')
+
+    def test_missing_metrics_need_no_fake_time_or_evidence_but_numeric_ones_do(self):
+        ids=self.chain();body=self.body('review',ids[3])
+        body.update(supersedes=ids[4],revision_reason='记录未取得的指标，不虚构时间或出处')
+        body['payload']['observation_type']='simulated'
+        accepted=self.submit(body)
+        self.assertEqual(accepted.status_code,200,accepted.text)
+        head=accepted.json()['artifact']['id']
+        body=self.body('review',ids[3]);body.update(supersedes=head,revision_reason='检查数值仍须证据')
+        body['payload']['observation_type']='simulated';body['payload']['metrics'][0]['value']=.12
+        rejected=self.submit(body)
+        self.assertIn('missing_metric_evidence',[e['code'] for e in rejected.json()['errors']])
+
     def test_failure_preserved_repair_and_idempotent_retry(self):
         invalid=self.body('diagnose');invalid['payload']['claims'][0]['evidence'][0]['quote']='不存在的原文'
         rejected=self.submit(invalid)

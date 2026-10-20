@@ -13,3 +13,17 @@ Subsequent actual CI failures and independent evaluation findings are appended h
 ## Runner allocation
 
 The initial Windows CI completed successfully. macOS 15 ARM/Intel jobs remained queued without runner names or executed steps; this is pending allocation, not a compatibility pass or an observed code failure. A manual macOS 26 ARM/Intel runner set is available to test alternate hosted capacity. Superseded queued workflows may be cancelled; their original statuses remain visible in Actions.
+
+## Independent DSH changed-material round 1
+
+DSH independently chose a synthetic rental-appliance account and a separate synthetic balcony TTS video, without tests, prior evaluation answers or earlier private materials. It completed five content stages, direct script entry, explicit project/session resume, actual CPU medium ASR (109 groups), full-group cut/restore, 18 caption groups and decoded export (98 groups). It caught and revised its own inaccurate median description; this initial content error and rejected requests remain in the private record. The initial report was **conditional**, not a clean pass.
+
+Confirmed product findings and fixes:
+
+- All-current continuation incorrectly started another topic cycle. It now returns complete/null/empty plan; an explicit next-topic request still runs topics. Complete means saved stages, not publication approval.
+- Submission revision/source-vs-artifact contracts were underspecified. Schema, Agent instructions and conflict errors now state the project lock and correct evidence binding.
+- Entirely unknown metrics no longer need invented collection times/anchors; numeric observations still require both. Null is not zero.
+- Export words now preserve ASR ID, original source bounds and original-group probability alongside mapped output bounds.
+- Correcting an English token without its original separator could join adjacent words. Corrections now retain existing edge whitespace.
+
+Post-fix Windows regression: 30 tests passed, including completed resume, unknown-vs-numeric evidence, original/export word identity, explicit FFmpeg cut/restore/decode and correction spacing. DSH's original report was written before its 15-minute harness timeout; the timeout receipt is preserved separately and is not reported as a normal final tool exit. A bounded independent retest follows.

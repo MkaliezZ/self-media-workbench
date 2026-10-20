@@ -1,5 +1,15 @@
 """Explicit pause and spoken-group decisions on the immutable source timeline."""
 import math
+import re
+
+
+def corrected_text(original, replacement):
+    """Keep ASR token whitespace when a correction supplies only display text."""
+    leading = re.match(r'^\s*',original).group()
+    trailing = re.search(r'\s*$',original).group()
+    if leading and not replacement[0].isspace():replacement=leading+replacement
+    if trailing and not replacement[-1].isspace():replacement+=trailing
+    return replacement
 
 
 def plan_keeps(review, selected_ids, speech_cuts=None):

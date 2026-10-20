@@ -15,7 +15,7 @@ class PortableRenderTests(unittest.TestCase):
     def test_cut_restore_captions_and_actual_decoding(self):
         review={'duration':4.,'source_sha256':'a'*64,'words':[
             {'id':0,'text':'不保证','start':.2,'end':.8},
-            {'id':1,'text':'适用全部','start':2.1,'end':3.0}],
+            {'id':1,'text':'适用全部','start':2.1,'end':3.0,'probability':.75}],
             'caption_groups':[[0],[1]],'candidates':[{'id':'gap','start':1.0,'end':1.7}]}
         lengths=[]
         with tempfile.TemporaryDirectory() as directory:
@@ -30,6 +30,9 @@ class PortableRenderTests(unittest.TestCase):
                 subprocess.run(['ffmpeg','-v','error','-i',str(p),'-f','null','-'],check=True,capture_output=True)
                 srt=(out/'reviewed_cut.srt').read_text('utf-8');self.assertIn('不保证',srt)
                 words=json.loads((out/'reviewed_cut.words.json').read_text('utf-8'))
+                self.assertEqual(words[1]['id'],1)
+                self.assertEqual(words[1]['source_start'],2.1)
+                self.assertEqual(words[1]['asr_probability'],.75)
                 self.assertAlmostEqual(words[1]['start'],2.1-(.7 if selected else 0),places=5)
             self.assertLess(lengths[1],lengths[0]-.5);self.assertAlmostEqual(lengths[0],lengths[2],places=2)
 

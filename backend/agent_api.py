@@ -94,7 +94,7 @@ def register(w):
         s = submission.model_dump()
         s['payload'] = payload
         if s['revision'] != state['project']['revision']:
-            error('revision_conflict', 'revision', 'Read current context before resubmitting.')
+            error('revision_conflict', 'revision', f"Expected context.project.revision={state['project']['revision']}, received {s['revision']}; this is not a phase version. Refresh context and reconsider before resubmitting.")
         if s['context_id'] != state['context_id']:
             error('context_conflict', 'context_id', 'Sources, skill, artifacts, media review or jobs changed.')
         sources = {a['id']:a for a in state['sources']}
@@ -215,7 +215,7 @@ def register(w):
                     derived = n/d * (100 if m['unit']=='percent' else 1)
                     if v is not None and not math.isclose(v, derived, rel_tol=1e-6, abs_tol=1e-8):
                         error('metric_mismatch', loc, 'Supplied value disagrees with numerator/denominator.')
-                if payload['observation_type'] != 'planned' and (not m['evidence'] or not m['collected_at']):
+                if payload['observation_type'] != 'planned' and (v is not None or derived is not None) and (not m['evidence'] or not m['collected_at']):
                     error('missing_metric_evidence', loc, 'Observed metrics need source anchors and collection time.')
                 computed['metrics'].append({'name':m['name'], 'derived_value':derived,
                                             'missing':v is None and derived is None})

@@ -129,8 +129,8 @@ def register_tasks(w, context):
         state = context(pid)
         intent = body.intent if body.intent != 'auto' else infer_intent(body.task, bool(state['media']))
         current = {a['stage']:a for a in state['artifacts'] if state['heads'].get(a['stage'])==a['id'] and not a['dependency_stale']}
-        start = next((stage for stage in STAGES if stage not in current),'topics') if intent == 'full' else intent
-        plan = STAGES[STAGES.index(start):] if intent=='full' else [start]
+        start = next((stage for stage in STAGES if stage not in current),None) if intent == 'full' else intent
+        plan = (STAGES[STAGES.index(start):] if start else []) if intent=='full' else [start]
         parent = {'topics':'diagnose','script':'topics','publish':'script','review':'publish'}.get(start)
         with w.LOCK:
             w.write(session_file,{'project_id':pid,'updated_at':w.now()})
@@ -140,10 +140,11 @@ def register_tasks(w, context):
             state = context(pid)
             result = {'task_id':task_id,'task':body.task,'project_id':pid,'project_created':created,
                       'intent':intent,'start_at':start,'plan':plan,'registered':registered,
+                      'workflow_status':'complete' if start is None else 'action_required',
                       'routing_scope':'state-aware routing hint; calling Agent must confirm semantic fit to the user task',
                       'standalone_reason_required':bool(parent and parent not in current),
                       'context_url':f'/api/agent/v1/projects/{pid}/context','context':state,
-                      'instructions':'Read AGENTS.md and the task-specific skill reference. The calling Agent creates and submits artifacts; this response is an intake plan, not generated content. Re-read context after each mutation. For edit, discover media-review/export/job schemas; do not auto-delete candidates.',
+                      'instructions':('All stages have current artifacts. Report the saved state and unresolved limits; do not start another cycle unless the user requests one.' if start is None else 'Read AGENTS.md and the task-specific skill reference. The calling Agent creates and submits artifacts; this response is an intake plan, not generated content. Re-read context after each mutation. For edit, discover media-review/export/job schemas; do not auto-delete candidates.'),
                       'external_publication':False}
             w.write(registry,{'signature':signature,'result':result})
             w.event(path,'task_routed',{'task_id':task_id,'intent':intent,'start':start})

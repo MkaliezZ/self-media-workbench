@@ -111,10 +111,10 @@ class Review(Record):
 
 class Submission(Record):
     request_id: str = Field(pattern=r'^[A-Za-z0-9_-]{1,80}$')
-    revision: int = Field(ge=1)
-    context_id: str
+    revision: int = Field(ge=1, description='Must equal fresh context.project.revision; this is an optimistic project lock, not a phase version number.')
+    context_id: str = Field(description='Use context_id from the same fresh context as project.revision.')
     stage: Literal['diagnose', 'topics', 'script', 'publish', 'review']
-    input_artifact_ids: list[str]
+    input_artifact_ids: list[str] = Field(description='Upstream artifact IDs from context.artifacts, never source IDs. Put source IDs and exact quotes in claims.evidence.')
     standalone_reason: str | None
     payload: dict
     declared_status: Literal['needs_review', 'ready_for_recording', 'ready_to_publish',

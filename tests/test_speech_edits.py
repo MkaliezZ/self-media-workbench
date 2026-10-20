@@ -42,6 +42,16 @@ class SpeechEditTests(unittest.TestCase):
         data.update(changes)
         return self.client.put(self.url+'/review',json=data)
 
+    def test_display_correction_keeps_english_token_separator(self):
+        self.review['words'][0]['text']='A checklist.'
+        self.review['words'][1]['text']=' generated '
+        w.write(self.out/'review.json',self.review)
+        response=self.submit(speech_cuts=[],corrections={'1':'Generated'})
+        self.assertEqual(response.status_code,200,response.text)
+        review=self.client.get(self.url+'/review').json()
+        self.assertIn('checklist. Generated ',review['text'])
+        self.assertEqual(w.read(self.out/'transcript.original.json')['words'][1]['text'],'重复')
+
     def test_initial_review_exposes_revision_for_discovered_write_contract(self):
         original=w.read(self.out/'transcript.original.json')
         current=self.client.get(self.url+'/review').json()

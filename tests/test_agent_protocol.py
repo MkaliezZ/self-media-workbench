@@ -125,6 +125,18 @@ class AgentTests(unittest.TestCase):
             rejected=self.submit(body)
             self.assertIn('missing_metric_evidence',[e['code'] for e in rejected.json()['errors']])
 
+    def test_collection_time_is_real_timestamp_format_with_timezone(self):
+        ids=self.chain()
+        for stamp in ('not-a-time','2026-02-30T10:00:00Z','2026-10-20T10:00:00'):
+            body=self.body('review',ids[3]);body.update(supersedes=ids[4],revision_reason='验证采集时间格式')
+            body['payload']['metrics'][0].update(value=.12,collected_at=stamp,
+                evidence=[{'source_id':self.sid,'quote':'没有真实发布数据'}])
+            self.assertEqual(self.submit(body).status_code,422)
+        body=self.body('review',ids[3]);body.update(supersedes=ids[4],revision_reason='显式时区的模拟采集时间')
+        body['payload']['metrics'][0].update(value=.12,collected_at='2026-10-20T10:00:00+08:00',
+            evidence=[{'source_id':self.sid,'quote':'没有真实发布数据'}])
+        self.assertEqual(self.submit(body).status_code,200)
+
     def test_failure_preserved_repair_and_idempotent_retry(self):
         invalid=self.body('diagnose');invalid['payload']['claims'][0]['evidence'][0]['quote']='不存在的原文'
         rejected=self.submit(invalid)

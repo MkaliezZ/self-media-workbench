@@ -23,4 +23,6 @@ An ordinary continuation with all current phase heads is a no-op (`workflow_stat
 
 Numeric metric evidence/time is enforced in every review type, including standalone/planned reviews. Put future targets in the experiment and stop rule rather than observed metric values. A planned review may include evidenced baseline measurements, or leave its unavailable metrics entirely null.
 
+`collected_at` is null when unknown, otherwise a valid ISO 8601 datetime with timezone (for example `2026-10-20T10:00:00+08:00`). Format checks do not establish that a claimed measurement occurred.
+
 The runtime auto-picks a free loopback port and records its identity per checkout. For integrations requiring a fixed port, run `python workbench.py serve --port 8765` and pass `--base-url http://127.0.0.1:8765` before CLI subcommands. An occupied unrelated service is never terminated.

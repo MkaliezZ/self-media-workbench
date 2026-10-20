@@ -1,6 +1,7 @@
 """Version 1 agent artifacts. Schemas describe structure, not truth."""
 from typing import Literal
-from pydantic import BaseModel, ConfigDict, Field
+from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class Record(BaseModel):
@@ -89,8 +90,20 @@ class Metric(Record):
     value: float | None
     unit: Literal['ratio', 'percent', 'count', 'seconds']
     window: str = Field(min_length=1)
-    collected_at: str | None
+    collected_at: str | None = Field(description='Actual collection timestamp in ISO 8601 with timezone; null when unknown.',json_schema_extra={'format':'date-time'})
     evidence: list[Link]
+
+    @field_validator('collected_at')
+    @classmethod
+    def collection_time(cls,value):
+        if value is None:return None
+        try:
+            stamp=datetime.fromisoformat(value.replace('Z','+00:00'))
+        except ValueError:
+            raise ValueError('collected_at must be an ISO 8601 timestamp with timezone')
+        if stamp.tzinfo is None or stamp.utcoffset() is None:
+            raise ValueError('collected_at must include a timezone')
+        return value
 
 
 class Experiment(Record):

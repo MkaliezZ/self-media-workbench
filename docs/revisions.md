@@ -33,3 +33,7 @@ Post-fix Windows regression: 30 tests passed, including completed resume, unknow
 DSH verified the completed resume fix, schema descriptions, null metrics, original IDs/bounds/probabilities and whitespace with another synthetic 13.46-second herb TTS video (26 actual ASR groups, six caption groups, fully decoded export). It also found a genuine remaining gap: numeric values without evidence/time were accepted when observation_type was planned. Round 2 was therefore still conditional; its accepted negative probe is retained, not rewritten or deleted.
 
 The numeric guard now applies to **all** review types, including standalone/planned; future targets belong in next_experiment/stop_rule rather than observed values. The regression explicitly checks both planned and simulated numeric cases. A final independent focused retest verifies this boundary.
+
+## Independent focused round 3: timestamp syntax
+
+A fresh independent Agent checked 28 actual submissions on new synthetic material. Missing, numeric, derived-ratio, anchor, arithmetic and stale-version boundaries behaved correctly, but `collected_at=not-a-time` was accepted. This newly observed defect is retained in the round-3 report. Collection timestamps now require a valid ISO 8601 datetime with timezone; impossible dates, arbitrary strings and missing timezone are rejected, while unknown time remains null. This verifies syntax only, not that collection actually happened. Regression and independent boundary retest follow.

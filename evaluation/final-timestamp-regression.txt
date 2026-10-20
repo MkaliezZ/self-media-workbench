@@ -1,0 +1,36 @@
+test_collection_time_is_real_timestamp_format_with_timezone (test_agent_protocol.AgentTests.test_collection_time_is_real_timestamp_format_with_timezone) ... ok
+test_complete_continuation_is_noop_but_explicit_new_topic_runs (test_agent_protocol.AgentTests.test_complete_continuation_is_noop_but_explicit_new_topic_runs) ... ok
+test_complete_handoff_and_no_automatic_verification (test_agent_protocol.AgentTests.test_complete_handoff_and_no_automatic_verification) ... ok
+test_context_change_without_project_revision_and_source_integrity (test_agent_protocol.AgentTests.test_context_change_without_project_revision_and_source_integrity) ... ok
+test_failure_preserved_repair_and_idempotent_retry (test_agent_protocol.AgentTests.test_failure_preserved_repair_and_idempotent_retry) ... ok
+test_invalid_root_does_not_poison_later_requests (test_agent_protocol.AgentTests.test_invalid_root_does_not_poison_later_requests) ... ok
+test_missing_metrics_need_no_fake_time_or_evidence_but_numeric_ones_do (test_agent_protocol.AgentTests.test_missing_metrics_need_no_fake_time_or_evidence_but_numeric_ones_do) ... ok
+test_no_fake_real_publication_and_metric_math (test_agent_protocol.AgentTests.test_no_fake_real_publication_and_metric_math) ... ok
+test_recursive_dependency_staleness (test_agent_protocol.AgentTests.test_recursive_dependency_staleness) ... ok
+test_schemas_and_missing_handoff_are_discoverable (test_agent_protocol.AgentTests.test_schemas_and_missing_handoff_are_discoverable) ... ok
+test_topic_and_timeline_binding (test_agent_protocol.AgentTests.test_topic_and_timeline_binding) ... ok
+test_document_versions_and_conflicts (test_local_api.LocalApiTests.test_document_versions_and_conflicts) ... ok
+test_media_declaration_versions_and_task_pack (test_local_api.LocalApiTests.test_media_declaration_versions_and_task_pack) ... ok
+test_original_asr_cannot_be_overwritten (test_local_api.LocalApiTests.test_original_asr_cannot_be_overwritten) ... ok
+test_origins_and_empty_title (test_local_api.LocalApiTests.test_origins_and_empty_title) ... ok
+test_review_correction_does_not_change_alignment (test_local_api.LocalApiTests.test_review_correction_does_not_change_alignment) ... ok
+test_structured_document_keeps_fields_and_original_version (test_local_api.LocalApiTests.test_structured_document_keeps_fields_and_original_version) ... ok
+test_cut_restore_captions_and_actual_decoding (test_portable_render.PortableRenderTests.test_cut_restore_captions_and_actual_decoding) ... ok
+test_caption_groups_preserve_audio_and_require_complete_retained_order (test_speech_edits.SpeechEditTests.test_caption_groups_preserve_audio_and_require_complete_retained_order) ... ok
+test_display_correction_keeps_english_token_separator (test_speech_edits.SpeechEditTests.test_display_correction_keeps_english_token_separator) ... ok
+test_initial_review_exposes_revision_for_discovered_write_contract (test_speech_edits.SpeechEditTests.test_initial_review_exposes_revision_for_discovered_write_contract) ... ok
+test_reject_partial_group_or_unselected_qualifier_and_keep_failures (test_speech_edits.SpeechEditTests.test_reject_partial_group_or_unselected_qualifier_and_keep_failures) ... ok
+test_run_source_and_revision_bindings_reject_stale_edit_and_export (test_speech_edits.SpeechEditTests.test_run_source_and_revision_bindings_reject_stale_edit_and_export) ... ok
+test_schema_discovery_and_correction_alignment (test_speech_edits.SpeechEditTests.test_schema_discovery_and_correction_alignment) ... ok
+test_spoken_cut_omission_and_restore_are_independent_from_pause (test_speech_edits.SpeechEditTests.test_spoken_cut_omission_and_restore_are_independent_from_pause) ... ok
+test_ambiguity_requires_selection_and_no_silent_project (test_task_entry.TaskEntryTests.test_ambiguity_requires_selection_and_no_silent_project) ... ok
+test_focus_negation_and_media_routing (test_task_entry.TaskEntryTests.test_focus_negation_and_media_routing) ... ok
+test_full_workflow_resumes_first_missing_and_stale_stage (test_task_entry.TaskEntryTests.test_full_workflow_resumes_first_missing_and_stale_stage) ... ok
+test_invalid_input_has_no_partial_project (test_task_entry.TaskEntryTests.test_invalid_input_has_no_partial_project) ... ok
+test_resume_session_and_explicit_project_across_sessions (test_task_entry.TaskEntryTests.test_resume_session_and_explicit_project_across_sessions) ... ok
+test_source_dedup_and_task_retry (test_task_entry.TaskEntryTests.test_source_dedup_and_task_retry) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 6.613s
+
+OK

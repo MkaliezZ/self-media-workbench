@@ -119,10 +119,11 @@ class AgentTests(unittest.TestCase):
         accepted=self.submit(body)
         self.assertEqual(accepted.status_code,200,accepted.text)
         head=accepted.json()['artifact']['id']
-        body=self.body('review',ids[3]);body.update(supersedes=head,revision_reason='检查数值仍须证据')
-        body['payload']['observation_type']='simulated';body['payload']['metrics'][0]['value']=.12
-        rejected=self.submit(body)
-        self.assertIn('missing_metric_evidence',[e['code'] for e in rejected.json()['errors']])
+        for kind in ('planned','simulated'):
+            body=self.body('review',ids[3]);body.update(supersedes=head,revision_reason='检查数值仍须证据')
+            body['payload']['observation_type']=kind;body['payload']['metrics'][0]['value']=.12
+            rejected=self.submit(body)
+            self.assertIn('missing_metric_evidence',[e['code'] for e in rejected.json()['errors']])
 
     def test_failure_preserved_repair_and_idempotent_retry(self):
         invalid=self.body('diagnose');invalid['payload']['claims'][0]['evidence'][0]['quote']='不存在的原文'

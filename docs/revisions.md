@@ -27,3 +27,9 @@ Confirmed product findings and fixes:
 - Correcting an English token without its original separator could join adjacent words. Corrections now retain existing edge whitespace.
 
 Post-fix Windows regression: 30 tests passed, including completed resume, unknown-vs-numeric evidence, original/export word identity, explicit FFmpeg cut/restore/decode and correction spacing. DSH's original report was written before its 15-minute harness timeout; the timeout receipt is preserved separately and is not reported as a normal final tool exit. A bounded independent retest follows.
+
+## Independent DSH round 2: remaining planned-metric loophole
+
+DSH verified the completed resume fix, schema descriptions, null metrics, original IDs/bounds/probabilities and whitespace with another synthetic 13.46-second herb TTS video (26 actual ASR groups, six caption groups, fully decoded export). It also found a genuine remaining gap: numeric values without evidence/time were accepted when observation_type was planned. Round 2 was therefore still conditional; its accepted negative probe is retained, not rewritten or deleted.
+
+The numeric guard now applies to **all** review types, including standalone/planned; future targets belong in next_experiment/stop_rule rather than observed values. The regression explicitly checks both planned and simulated numeric cases. A final independent focused retest verifies this boundary.

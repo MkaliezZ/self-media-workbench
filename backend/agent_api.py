@@ -215,7 +215,7 @@ def register(w):
                     derived = n/d * (100 if m['unit']=='percent' else 1)
                     if v is not None and not math.isclose(v, derived, rel_tol=1e-6, abs_tol=1e-8):
                         error('metric_mismatch', loc, 'Supplied value disagrees with numerator/denominator.')
-                if payload['observation_type'] != 'planned' and (v is not None or derived is not None) and (not m['evidence'] or not m['collected_at']):
+                if (v is not None or derived is not None) and (not m['evidence'] or not m['collected_at']):
                     error('missing_metric_evidence', loc, 'Observed metrics need source anchors and collection time.')
                 computed['metrics'].append({'name':m['name'], 'derived_value':derived,
                                             'missing':v is None and derived is None})

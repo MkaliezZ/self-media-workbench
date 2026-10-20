@@ -88,6 +88,12 @@ def faster_infer(audio,model_path,device,language,*,evidence_dir=None):
             raise RuntimeError(f'{exc}; evidence={folder if evidence_dir else "temporary"}') from exc
 
 
+def cuda_compute_type(supported):
+    for value in ('int8_float16','float16','int8_float32','float32','int8'):
+        if value in supported:return value
+    raise RuntimeError('CTranslate2 reports no supported CUDA compute type')
+
+
 def faster_direct(audio, model_path, device, language):
     model_path=Path(model_path).expanduser().resolve()
     if not (model_path/'model.bin').is_file():
@@ -99,19 +105,24 @@ def faster_direct(audio, model_path, device, language):
         from accelerators import inventory
         device='cuda' if sys.platform!='darwin' and any(a['vendor']=='nvidia' for a in inventory()['adapters']) else 'cpu'
     if device not in ('cpu','cuda'):raise ValueError('faster-whisper accepts auto/cpu/cuda, not Metal GPU')
+    if device=='cuda':
+        directories=configure_cuda_dlls()
+        import ctranslate2
+        supported=sorted(ctranslate2.get_supported_compute_types('cuda'))
+        compute_type=cuda_compute_type(supported)
+    else:supported=None;compute_type='int8'
     def run(selected):
         model=WhisperModel(str(model_path),device=selected,
-            compute_type='int8_float16' if selected=='cuda' else 'int8',local_files_only=True)
+            compute_type=compute_type,local_files_only=True)
         segments,info=model.transcribe(audio,language=language or None,beam_size=5,
             word_timestamps=True,vad_filter=False,condition_on_previous_text=False)
         return list(segments),info
-    if device=='cuda':directories=configure_cuda_dlls()
     segments,info=run(device)
     words=[{'word':w.word,'start':w.start,'end':w.end,'probability':w.probability}
         for segment in segments for w in segment.words or []]
     return {'backend':'faster-whisper','device':device,'model':str(model_path),'language':info.language,
         'words':words,'fallback_errors':[],'cuda_dll_dirs':directories,
-        'execution':{'gpu_inference_verified':device=='cuda','compute_type':'int8_float16' if device=='cuda' else 'int8'}}
+        'execution':{'gpu_inference_verified':device=='cuda','compute_type':compute_type,'supported_cuda_compute_types':supported}}
 
 
 def infer(audio, model_path, mlx_model, backend, device, language,*,evidence_dir=None,

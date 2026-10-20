@@ -16,6 +16,12 @@ def hardware(*vendors,system='win32'):
 
 
 class AcceleratorTests(unittest.TestCase):
+    def test_cuda_precision_uses_actual_supported_types(self):
+        self.assertEqual(b.cuda_compute_type({'float32','int8_float16'}),'int8_float16')
+        self.assertEqual(b.cuda_compute_type({'int8_float32','float32'}),'int8_float32')
+        self.assertEqual(b.cuda_compute_type({'float32'}),'float32')
+        with self.assertRaises(RuntimeError):b.cuda_compute_type(set())
+
     def test_display_vendor_not_processor_brand(self):
         self.assertEqual(a.vendor('Display','PCI\\VEN_1002&DEV_1234'),'amd')
         self.assertEqual(a.vendor('NVIDIA GeForce RTX 5060'),'nvidia')

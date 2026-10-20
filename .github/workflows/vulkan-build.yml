@@ -48,14 +48,15 @@ jobs:
         if: always()
         shell: pwsh
         run: |
-          if (Test-Path audit/runtime) {
-            Get-ChildItem audit/runtime -Recurse -File | Where-Object { $_.Name -in @('build.log','commands.json','setup-result.json','model-download.json') } | ForEach-Object {
-              $taskRelative = [IO.Path]::GetRelativePath((Join-Path $pwd 'audit/runtime'), $_.FullName)
+          $taskSetupPath = if (Test-Path audit/setup.stdout.txt) { (Get-Content audit/setup.stdout.txt -Raw | ConvertFrom-Json).workspace } else { Join-Path $pwd 'audit/runtime' }
+          if (Test-Path $taskSetupPath) {
+            Get-ChildItem $taskSetupPath -Recurse -File | Where-Object { $_.Name -in @('build.log','commands.json','setup-result.json','model-download.json','workbench-build-owner.json') } | ForEach-Object {
+              $taskRelative = [IO.Path]::GetRelativePath($taskSetupPath, $_.FullName)
               $taskTarget = Join-Path 'audit/build-evidence' $taskRelative
               New-Item -ItemType Directory -Force (Split-Path $taskTarget) | Out-Null
               Copy-Item -LiteralPath $_.FullName -Destination $taskTarget
             }
-            $taskCli = Get-ChildItem audit/runtime -Recurse -File -Filter whisper-cli.exe | Select-Object -First 1
+            $taskCli = Get-ChildItem $taskSetupPath -Recurse -File -Filter whisper-cli.exe | Select-Object -First 1
             if ($taskCli) {
               New-Item -ItemType Directory -Force audit/native-bin | Out-Null
               Copy-Item -Path (Join-Path $taskCli.DirectoryName '*') -Destination audit/native-bin

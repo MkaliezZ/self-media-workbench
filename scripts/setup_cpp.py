@@ -22,13 +22,23 @@ def main():
     p.add_argument('--download-model',choices=['tiny','base','small','medium'])
     p.add_argument('--model',type=Path)
     p.add_argument('--configure',action='store_true')
-    args=p.parse_args();folder=args.workspace.expanduser().resolve()/(REVISION[:12]+'-'+args.acceleration)
+    args=p.parse_args();requested=args.workspace.expanduser().resolve()
+    folder=requested/(REVISION[:12]+'-'+args.acceleration)
+    # MSBuild's Vulkan shader-generator subproject still hits MAX_PATH even on
+    # a long-path-enabled host. Use a short, uniquely owned drive-local cache.
+    if os.name=='nt' and len(str(folder))>48:
+        key=hashlib.sha256(str(requested).casefold().encode()).hexdigest()[:8]
+        folder=Path(requested.anchor)/'.smw-build'/key/(REVISION[:8]+'-'+args.acceleration)
     folder.mkdir(parents=True,exist_ok=True);env=dict(os.environ);commands=[]
     def run(command):
         commands.append([str(c) for c in command]);(folder/'commands.json').write_text(json.dumps(commands,indent=2),encoding='utf8')
         with (folder/'build.log').open('ab') as stream:
             subprocess.run([str(c) for c in command],stdout=stream,stderr=subprocess.STDOUT,env=env,check=True,timeout=1800)
     try:
+        marker=folder/'workbench-build-owner.json'
+        owner={'requested_workspace':str(requested),'source_revision':REVISION,'acceleration':args.acceleration}
+        if marker.exists() and json.loads(marker.read_text('utf8'))!=owner:raise RuntimeError('Build directory belongs to another configuration; will not overwrite')
+        marker.write_text(json.dumps(owner,indent=2),encoding='utf8')
         if not shutil.which('git') or not shutil.which('cmake'):raise RuntimeError('Setup requires Git, CMake and a C++ toolchain (MSVC on Windows, Xcode command line tools on macOS)')
         if args.acceleration=='vulkan':
             sdk=args.vulkan_sdk or (Path(env['VULKAN_SDK']) if env.get('VULKAN_SDK') else None)
@@ -69,7 +79,7 @@ def main():
             CONFIG_FILE.write_text(json.dumps(config,indent=2,ensure_ascii=False),encoding='utf8')
         result={'built':True,'configured':args.configure,'executable':str(executable),'model':str(model) if model else None,
                 'source_revision':actual,'acceleration':args.acceleration,'gpu_execution_verified':False,
-                'download':download,'workspace':str(folder),'notice':'Run actual ASR and check backend/device/execution; build success is not GPU inference proof'}
+                'download':download,'workspace':str(folder),'requested_workspace':str(requested),'notice':'Run actual ASR and check backend/device/execution; build success is not GPU inference proof'}
         code=0
     except Exception as exc:result={'built':False,'error':str(exc),'workspace':str(folder)};code=1
     (folder/'setup-result.json').write_text(json.dumps(result,indent=2,ensure_ascii=False),encoding='utf8')

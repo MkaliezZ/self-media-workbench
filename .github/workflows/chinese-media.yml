@@ -1,0 +1,84 @@
+name: Chinese speech correction, captions, cut and restore
+on:
+  workflow_dispatch:
+    inputs:
+      targets:
+        description: All three platforms, or alternate Intel capacity
+        type: choice
+        default: all
+        options: [all, intel-backup]
+permissions:
+  contents: read
+jobs:
+  chinese:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ${{ fromJSON(github.event.inputs.targets == 'intel-backup' && '["macos-26-intel"]' || '["windows-latest","macos-15","macos-15-intel"]') }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    env:
+      PYTHONNOUSERSITE: '1'
+      HF_HUB_DISABLE_XET: '1'
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          path: control
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: Actual public clone, isolated venv and dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          {
+            git clone https://github.com/MkaliezZ/self-media-workbench.git product
+            git -C product checkout --detach "$GITHUB_SHA"
+            git -C product rev-parse HEAD
+            python -m venv product/.venv
+            if [ "$RUNNER_OS" = Windows ]; then
+              task_python=product/.venv/Scripts/python.exe
+              if ! command -v ffmpeg >/dev/null; then choco install ffmpeg --no-progress -y; fi
+            else
+              task_python=product/.venv/bin/python
+              if ! command -v ffmpeg >/dev/null || ! command -v ffprobe >/dev/null; then brew install ffmpeg; fi
+            fi
+            "$task_python" -m pip install --no-cache-dir -r product/requirements-zh-test.txt
+            if [ "$(uname -m)" = arm64 ]; then "$task_python" -m pip install --no-cache-dir -r product/requirements-mlx.txt; fi
+            "$task_python" -m pip check
+            "$task_python" -m pip freeze
+          } 2>&1 | tee evidence/install.log
+      - name: Real Chinese initial ASR, corrections, captions, cut and restored exports
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ "$RUNNER_OS" = Windows ]; then
+            task_python=product/.venv/Scripts/python.exe
+            profile=windows
+          elif [ "$(uname -m)" = arm64 ]; then
+            task_python=product/.venv/bin/python
+            profile=arm64
+          else
+            task_python=product/.venv/bin/python
+            profile=intel
+          fi
+          "$task_python" -B -X utf8 control/scripts/chinese_acceptance.py --root "$GITHUB_WORKSPACE/product" --out "$GITHUB_WORKSPACE/evidence" --profile "$profile" 2>&1 | tee evidence/first-use.log
+      - name: Seal the closed evidence envelope
+        if: always()
+        shell: bash
+        run: python -B -X utf8 control/scripts/seal_audit_evidence.py --out "$GITHUB_WORKSPACE/evidence"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: chinese-${{ matrix.os }}
+          path: |
+            evidence/
+            !evidence/hf-home/**
+            !evidence/**/model.bin
+            !evidence/**/*.safetensors
+            !evidence/**/weights.npz
+          if-no-files-found: error
+          retention-days: 14

@@ -1,0 +1,78 @@
+{
+  "nature": "generated synthetic Chinese acceptance fixture",
+  "voice": "Microsoft Huihui Desktop",
+  "phrases": [
+    "这是中文口播合成验收，不是真实客户案例。",
+    "拍摄前，先关闭手机通知，再擦干净镜头。",
+    "先锁定曝光，再检查白平衡。",
+    "不要把提高亮度，理解成修好了画质。",
+    "这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。",
+    "如果画面仍然偏色，先检查光源，不要承诺一次解决。",
+    "下面这段停顿用于展示操作，必须保留。",
+    "最后核对字幕，保留原片，剪掉的停顿也要能恢复。"
+  ],
+  "gaps": [
+    {
+      "after_phrase": 1,
+      "seconds": 2.4,
+      "decision": "remove A then restore",
+      "start": 10.91525,
+      "end": 13.31525
+    },
+    {
+      "after_phrase": 6,
+      "seconds": 1.8,
+      "decision": "preserve B demonstration hold",
+      "start": 40.448875,
+      "end": 42.248875
+    }
+  ],
+  "segments": [
+    {
+      "text": "这是中文口播合成验收，不是真实客户案例。",
+      "start": 0.0,
+      "end": 5.3025
+    },
+    {
+      "text": "拍摄前，先关闭手机通知，再擦干净镜头。",
+      "start": 5.3025,
+      "end": 10.91525
+    },
+    {
+      "text": "先锁定曝光，再检查白平衡。",
+      "start": 13.31525,
+      "end": 17.3736875
+    },
+    {
+      "text": "不要把提高亮度，理解成修好了画质。",
+      "start": 17.3736875,
+      "end": 21.86675
+    },
+    {
+      "text": "这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。",
+      "start": 21.86675,
+      "end": 28.8238125
+    },
+    {
+      "text": "如果画面仍然偏色，先检查光源，不要承诺一次解决。",
+      "start": 28.8238125,
+      "end": 35.4009375
+    },
+    {
+      "text": "下面这段停顿用于展示操作，必须保留。",
+      "start": 35.4009375,
+      "end": 40.448875
+    },
+    {
+      "text": "最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+      "start": 42.248875,
+      "end": 48.5063125
+    }
+  ],
+  "reference_text": "这是中文口播合成验收，不是真实客户案例。拍摄前，先关闭手机通知，再擦干净镜头。先锁定曝光，再检查白平衡。不要把提高亮度，理解成修好了画质。这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。如果画面仍然偏色，先检查光源，不要承诺一次解决。下面这段停顿用于展示操作，必须保留。最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+  "pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+  "pcm_duration": 48.5063125,
+  "audio": "16k mono signed little-endian PCM; identical bytes on every runner",
+  "source": "Repository-authored text, locally generated native speech and generated background; no recorded person or customer"
+}

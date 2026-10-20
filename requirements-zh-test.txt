@@ -1,0 +1,3 @@
+-r requirements-dev.txt
+# Test-only orthography comparison; not used by production ASR.
+opencc-python-reimplemented>=0.1.7,<1

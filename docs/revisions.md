@@ -37,3 +37,11 @@ The numeric guard now applies to **all** review types, including standalone/plan
 ## Independent focused round 3: timestamp syntax
 
 A fresh independent Agent checked 28 actual submissions on new synthetic material. Missing, numeric, derived-ratio, anchor, arithmetic and stale-version boundaries behaved correctly, but `collected_at=not-a-time` was accepted. This newly observed defect is retained in the round-3 report. Collection timestamps now require a valid ISO 8601 datetime with timezone; impossible dates, arbitrary strings and missing timezone are rejected, while unknown time remains null. This verifies syntax only, not that collection actually happened. Regression and independent boundary retest follow.
+
+## Independent boundary round 4
+
+The independent Agent made 28 actual submissions after the timestamp fix: invalid strings/dates/timezones were rejected; valid Z/positive/negative offsets and unknown null succeeded; unanchored direct/derived numeric values were rejected and an evidenced 18/120 derived to 15%. No new defect was found in those tested boundaries. Requests, returned attempts, revisions and source hashes remain in a separate private round; round 3 is intact. Published truth, all ISO variants and real measurements were not established.
+
+## Apple GPU addition requested after CPU compatibility
+
+The user requested Apple GPU acceleration. Added separate local MLX weights/config, native Apple Silicon auto-selection, isolated Metal inference worker, real GPU-kernel check, actual engine/device provenance and recorded CPU fallback. Existing CUDA and shared word/VAD/edit timelines remain. Contract mocks test selection/error cases only; they are not GPU evidence. Windows regression reached 36 tests. Actual Apple GPU capability/ASR/export is measured separately by the ARM CI probe; unavailable hosted Metal must not be rewritten as GPU success.

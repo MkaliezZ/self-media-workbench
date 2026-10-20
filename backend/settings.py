@@ -27,7 +27,9 @@ def setting(env, key, default):
 DATA = Path(setting('SELF_MEDIA_DATA_DIR', 'data_dir', STATE / 'projects')).expanduser().resolve()
 SKILL = Path(setting('SELF_MEDIA_SKILL_ROOT', 'skill_root', ROOT / 'skills/self-media-workflow')).expanduser().resolve()
 MODEL = Path(setting('SELF_MEDIA_MODEL', 'model', STATE / 'models/faster-whisper-medium')).expanduser().resolve()
+MLX_MODEL = Path(setting('SELF_MEDIA_MLX_MODEL', 'mlx_model', STATE / 'models/mlx-whisper-medium')).expanduser().resolve()
+ASR_BACKEND = setting('SELF_MEDIA_ASR_BACKEND', 'asr_backend', 'auto')
 library = setting('SELF_MEDIA_LIBRARY', 'library', '')
 LIBRARY = Path(library).expanduser().resolve() if library else None
-DEVICE = setting('SELF_MEDIA_DEVICE', 'device', 'cpu' if sys.platform == 'darwin' else 'auto')
+DEVICE = setting('SELF_MEDIA_DEVICE', 'device', 'auto')
 LANGUAGE = setting('SELF_MEDIA_LANGUAGE', 'language', 'zh')

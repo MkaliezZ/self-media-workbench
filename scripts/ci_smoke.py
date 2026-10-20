@@ -18,15 +18,24 @@ ROOT=Path(__file__).resolve().parents[1]
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--download-ci-model',action='store_true');parser.add_argument('--model',type=Path)
+    parser.add_argument('--download-ci-mlx-model',action='store_true');parser.add_argument('--mlx-model',type=Path)
+    parser.add_argument('--backend',choices=['auto','faster-whisper','mlx'],default='faster-whisper')
+    parser.add_argument('--require-gpu',action='store_true')
     parser.add_argument('--out',type=Path,default=ROOT/'evaluation/runs/ci-smoke.json');args=parser.parse_args()
     if not args.model and not args.download_ci_model:parser.error('Provide a local --model or explicitly allow the CI model download')
     if args.download_ci_model:
         from huggingface_hub import snapshot_download
         model=Path(snapshot_download('Systran/faster-whisper-tiny',allow_patterns=['config.json','model.bin','tokenizer.json','vocabulary.*','preprocessor_config.json']))
     else:model=args.model.resolve()
+    mlx_model=args.mlx_model
+    if args.download_ci_mlx_model:
+        from huggingface_hub import snapshot_download
+        mlx_model=Path(snapshot_download('mlx-community/whisper-tiny',allow_patterns=['config.json','*.safetensors','weights.npz']))
     with tempfile.TemporaryDirectory(prefix='workbench-real-smoke-') as directory:
         temp=Path(directory);env={**os.environ,'SELF_MEDIA_STATE_DIR':str(temp/'state'),'SELF_MEDIA_MODEL':str(model),
-            'SELF_MEDIA_LANGUAGE':'en','SELF_MEDIA_DEVICE':'cpu','CODEX_HOME':str(temp/'agent-home')}
+            'SELF_MEDIA_LANGUAGE':'en','SELF_MEDIA_DEVICE':'auto' if args.backend!='faster-whisper' else 'cpu',
+            'SELF_MEDIA_ASR_BACKEND':args.backend,'CODEX_HOME':str(temp/'agent-home')}
+        if mlx_model:env['SELF_MEDIA_MLX_MODEL']=str(mlx_model)
         env.pop('SELF_MEDIA_DATA_DIR',None);env.pop('SELF_MEDIA_SKILL_ROOT',None)
         wav=temp/'spoken.wav';text='This is an original local test. Keep every important condition. This is not a promise.'
         if sys.platform=='darwin':
@@ -64,7 +73,8 @@ def main():
                        '--media-nature','generated','--source-note','Explicit CI TTS and color fixture, not a person')
             pid=intake['project_id'];mid=intake['registered'][0]['id'];prefix=f'/api/projects/{pid}/media/{mid}'
             asr=job(pid,cli('call','POST',prefix+'/transcribe')['id']);review=cli('call','GET',prefix+'/review')
-            assert review['device']=='cpu' and review['words'] and 'revision' in review
+            assert review['words'] and 'revision' in review
+            if args.backend=='faster-whisper':assert review['device']=='cpu'
             edited=cli('call','PUT',prefix+'/review','--json',payload('review',{'revision':review['revision'],
                 'asr_run':review['asr_run'],'source_sha256':review['source_sha256'], 'selected_ids':[], 'speech_cuts':[],
                 'caption_groups':[[w['id'] for w in review['words']]]}))
@@ -75,11 +85,15 @@ def main():
             subprocess.run(['ffmpeg','-v','error','-i',str(video),'-f','null','-'],check=True,capture_output=True)
             result={'platform':sys.platform,'machine':platform.machine(),'python':sys.version,'real_asr':True,
                 'actual_device':review['device'],'words':len(review['words']),'asr_job_status':asr['status'],
+                'actual_backend':review['backend'],'execution':review['execution'],
+                'fallback_errors':review['fallback_errors'],
+                'gpu_asr_verified':review['backend']=='mlx' and review['device']=='gpu' and review['execution'].get('gpu_kernel_verified') is True,
                 'installed_agent_entry':True,
                 'export_job_status':export['status'],'decoded':True,'actual_duration':float(metadata['format']['duration']),
                 'model':'faster-whisper-tiny' if args.download_ci_model else 'explicit local model',
                 'scope':'synthetic technical smoke; no human or publication effectiveness claim'}
             args.out.parent.mkdir(parents=True,exist_ok=True);args.out.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8');print(json.dumps(result))
+            if args.require_gpu and not result['gpu_asr_verified']:raise RuntimeError('GPU ASR required but actual result used another device; see saved result')
         finally:
             for info in (temp/'state/services').glob('*.json'):
                 pid=json.loads(info.read_text('utf-8'))['pid']

@@ -52,6 +52,8 @@ def register(w):
                     if review_path.exists():
                         r = w.read(review_path)
                         record['asr'] = {'run_id':run, 'revision':r.get('revision', 0),
+                                         'backend':r.get('backend','faster-whisper'),'device':r.get('device'),
+                                         'execution':r.get('execution',{}),'fallback_errors':r.get('fallback_errors',[]),
                                          'words':len(r['words']), 'sha256':w.file_sha256(review_path),
                                          'review_url':f'/api/projects/{pid}/media/{item["id"]}/review',
                                          'original_transcript_path':str(review_path.with_name('transcript.original.json'))}

@@ -23,7 +23,7 @@ from pydantic import ValidationError
 from local_asr import DEFAULT_MODEL, transcribe
 from review_edits import plan_keeps, corrected_text
 from media_models import MediaImport, ReviewEdit, ExportReview
-from settings import DATA, SKILL, LIBRARY
+from settings import DATA, SKILL, LIBRARY, ASR_BACKEND, DEVICE, MLX_MODEL
 from media_render import render
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -101,6 +101,7 @@ def status():
     progress = LIBRARY/'阅读记录/当前阅读进度.json' if LIBRARY else None
     return {'stage':'development', 'root':str(ROOT), 'model':str(DEFAULT_MODEL),
             'model_present':(DEFAULT_MODEL/'model.bin').is_file(),
+            'asr_configuration':{'backend':ASR_BACKEND,'device':DEVICE,'mlx_model':str(MLX_MODEL)},
             'library_progress':read(progress) if progress and progress.exists() else None,
             'generation':'calling AI agent reasons; local tools persist, validate and execute',
             'agent_capabilities':'/api/agent/v1/capabilities',
@@ -259,7 +260,8 @@ def asr(pid: str, mid: str):
         result = transcribe(path/item['relative_path'], out)
         with LOCK:
             write(path/'media'/mid/'current-asr.json', {'run_id':runid})
-        return {'run_id':runid,'device':result['device'],'words':len(result['words']),
+        return {'run_id':runid,'device':result['device'],'backend':result['backend'],
+                'execution':result['execution'],'words':len(result['words']),
                 'candidates':len(result['candidates']),'fallback_errors':result['fallback_errors']}
     return launch(path,mid,'asr',run)
 

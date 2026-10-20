@@ -1,0 +1,15 @@
+{
+  "platform": "win32",
+  "machine": "AMD64",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "real_asr": true,
+  "actual_device": "cpu",
+  "words": 15,
+  "asr_job_status": "done",
+  "installed_agent_entry": true,
+  "export_job_status": "done",
+  "decoded": true,
+  "actual_duration": 8.703537,
+  "model": "faster-whisper-tiny",
+  "scope": "synthetic technical smoke; no human or publication effectiveness claim"
+}

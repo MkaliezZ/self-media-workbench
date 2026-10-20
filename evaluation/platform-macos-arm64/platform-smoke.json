@@ -1,0 +1,15 @@
+{
+  "platform": "darwin",
+  "machine": "arm64",
+  "python": "3.11.9 (v3.11.9:de54cf5be3, Apr  2 2024, 07:12:50) [Clang 13.0.0 (clang-1300.0.29.30)]",
+  "real_asr": true,
+  "actual_device": "cpu",
+  "words": 15,
+  "asr_job_status": "done",
+  "installed_agent_entry": true,
+  "export_job_status": "done",
+  "decoded": true,
+  "actual_duration": 8.64,
+  "model": "faster-whisper-tiny",
+  "scope": "synthetic technical smoke; no human or publication effectiveness claim"
+}

@@ -14,24 +14,21 @@ from pathlib import Path
 
 import numpy as np
 
-from settings import MODEL as DEFAULT_MODEL, DEVICE, LANGUAGE
+from settings import MODEL as DEFAULT_MODEL, MLX_MODEL, ASR_BACKEND, DEVICE, LANGUAGE
+from asr_backends import infer
 
 
 def write_json(path, value):
     Path(path).write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding='utf-8')
 
 
-def transcribe(source, output, model_path=DEFAULT_MODEL, device=DEVICE, language=LANGUAGE):
+def transcribe(source, output, model_path=DEFAULT_MODEL, device=DEVICE, language=LANGUAGE,
+               backend=ASR_BACKEND, mlx_model=MLX_MODEL):
     source, output = Path(source).resolve(), Path(output).resolve()
     if (output / 'transcript.original.json').exists():
         raise ValueError('该输出目录已有原始转录；请使用新目录，保留旧识别与人工修订')
     if not source.is_file():
         raise ValueError('素材文件不存在')
-    if not (Path(model_path) / 'model.bin').is_file():
-        raise ValueError('本地模型缺少 model.bin；不会自动下载')
-    from gpu_runtime import configure_cuda_dlls
-    cuda_dll_dirs = []
-    from faster_whisper import WhisperModel
     from faster_whisper.vad import VadOptions, get_speech_timestamps
 
     output.mkdir(parents=True, exist_ok=True)
@@ -46,42 +43,13 @@ def transcribe(source, output, model_path=DEFAULT_MODEL, device=DEVICE, language
                            '-show_format', '-show_streams', '-of', 'json', str(source)]))
     # Video may continue after the audio ends. Restore-all must retain that tail.
     duration = max(audio_duration, float(metadata.get('format', {}).get('duration', 0)))
-    errors = []
-    if device == 'auto':
-        device = 'cpu' if sys.platform == 'darwin' else 'cuda'
-    if device not in ('cpu','cuda'):
-        raise ValueError('device must be auto, cpu or cuda; Apple Metal is not a CTranslate2 device')
-    selected = device
-    try:
-        if device == 'cuda':
-            cuda_dll_dirs = configure_cuda_dlls()
-        model = WhisperModel(str(model_path), device=device,
-                             compute_type='int8_float16' if device == 'cuda' else 'int8',
-                             local_files_only=True)
-        segments, info = model.transcribe(audio, language=language or None, beam_size=5,
-                                          word_timestamps=True, vad_filter=False,
-                                          condition_on_previous_text=False)
-        segments = list(segments)  # CUDA errors may only occur during iteration.
-    except Exception as exc:
-        if device != 'cuda':
-            raise
-        errors.append({'device': device, 'error': str(exc)})
-        selected = 'cpu'
-        model = WhisperModel(str(model_path), device='cpu', compute_type='int8',
-                             local_files_only=True)
-        segments, info = model.transcribe(audio, language=language or None, beam_size=5,
-                                          word_timestamps=True, vad_filter=False,
-                                          condition_on_previous_text=False)
-        segments = list(segments)
+    inference = infer(audio, model_path, mlx_model, backend, device, language)
     words = []
-    for segment in segments:
-        for w in segment.words or []:
-            start, end = max(0.0, float(w.start)), min(duration, float(w.end))
-            if end > start:
-                words.append({'id': len(words), 'text': w.word,
-                              'start': start, 'end': end,
-                              'probability': w.probability,
-                              'alignment': 'model_word_group'})
+    for word in inference['words']:
+        start, end = max(0.0, float(word['start'])), min(duration, float(word['end']))
+        if end > start:
+            words.append({'id':len(words),'text':word['word'],'start':start,'end':end,
+                          'probability':word.get('probability'),'alignment':'model_word_group'})
     speech = get_speech_timestamps(audio, VadOptions(min_silence_duration_ms=200,
                                                     speech_pad_ms=100))
     speech = [{'start': s['start'] / 16000, 'end': s['end'] / 16000} for s in speech]
@@ -119,10 +87,11 @@ def transcribe(source, output, model_path=DEFAULT_MODEL, device=DEVICE, language
     with source.open('rb') as stream:
         source_hash = hashlib.file_digest(stream, 'sha256').hexdigest()
     result = {'source': str(source), 'source_sha256': source_hash,
-              'model': str(Path(model_path).resolve()), 'device': selected,
-              'fallback_errors': errors, 'duration': duration, 'audio_duration': audio_duration,
-              'cuda_dll_dirs': cuda_dll_dirs,
-              'language': info.language, 'elapsed_seconds': time.time()-started,
+              'model':inference['model'],'device':inference['device'],'backend':inference['backend'],
+              'requested_backend':backend,'requested_device':device,'execution':inference['execution'],
+              'fallback_errors':inference['fallback_errors'],'duration':duration,'audio_duration':audio_duration,
+              'cuda_dll_dirs':inference.get('cuda_dll_dirs',[]),
+              'language':inference['language'],'elapsed_seconds':time.time()-started,
               'text': ''.join(w['text'] for w in words), 'words': words,
               'vad_speech': speech, 'candidates': candidates,
               'limits': ['ASR识别和对齐可能有误，需要回听', '不自动判断口误或删除任何短句',
@@ -137,7 +106,9 @@ if __name__ == '__main__':
     cli.add_argument('source', type=Path)
     cli.add_argument('output', type=Path)
     cli.add_argument('--model', type=Path, default=DEFAULT_MODEL)
-    cli.add_argument('--device', choices=['cuda', 'cpu'], default='cuda')
+    cli.add_argument('--device', choices=['auto','cuda','cpu','gpu'], default=DEVICE)
+    cli.add_argument('--backend',choices=['auto','faster-whisper','mlx'],default=ASR_BACKEND)
+    cli.add_argument('--mlx-model',type=Path,default=MLX_MODEL)
     args = cli.parse_args()
-    result = transcribe(args.source, args.output, args.model, args.device)
+    result = transcribe(args.source, args.output, args.model, args.device,backend=args.backend,mlx_model=args.mlx_model)
     print(json.dumps({k: result[k] for k in ['device', 'duration', 'elapsed_seconds', 'text', 'candidates', 'fallback_errors']}, ensure_ascii=False, indent=2))

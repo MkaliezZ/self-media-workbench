@@ -38,6 +38,16 @@ python workbench.py doctor
 python workbench.py install-skill
 ```
 
+On native Apple Silicon macOS, the Agent can additionally install `requirements-mlx.txt` and configure an **MLX-format** local model:
+
+```sh
+python -m pip install -r requirements-mlx.txt
+python workbench.py configure --mlx-model /absolute/path/to/mlx-whisper-model --asr-backend auto --device auto
+python workbench.py doctor
+```
+
+With auto selection, Apple Silicon tries MLX/Metal GPU and records any CPU fallback; Windows uses faster-whisper/CUDA with CPU fallback, and Intel Mac uses CPU. Explicit `--device cpu` keeps CPU. MLX needs config.json plus model.safetensors, weights.safetensors or weights.npz; the existing CTranslate2 model.bin cannot be reused as MLX weights. Keep a local CTranslate2 model configured for fallback. Nothing is downloaded by normal transcription. The Agent checks the actual backend/device and execution/fallback fields, rather than inferring GPU use from an installed package. [GPU setup and validation](docs/apple-gpu.md).
+
 `install-skill` installs the `media-workbench` entry into your local Codex skills directory and records this checkout and its Python interpreter privately. The wrapper prefers the checkout's `.venv`, then the recorded interpreter, so an Agent's unrelated Python does not need the same dependencies. Other Agents can simply read [AGENTS.md](AGENTS.md). Keep this checkout available after installing the skill. No machine-specific location record is committed.
 
 ## One Agent entry, multiple tasks
@@ -67,7 +77,7 @@ State defaults to the operating system's private application-data directory. `co
 
 ## Platform and validation scope
 
-Windows supports CPU and NVIDIA CUDA when its optional runtime is available, with explicit CPU fallback. macOS Intel/Apple Silicon uses CTranslate2 **CPU**, not a claimed Metal/CUDA backend. FFmpeg export and state/protocol features use the same Python implementation on both systems.
+Windows supports CPU and NVIDIA CUDA when its optional runtime is available, with explicit CPU fallback. Apple Silicon additionally supports optional **MLX/Metal GPU** with CPU fallback; Intel Mac uses CTranslate2 CPU. FFmpeg export and state/protocol features use the same Python implementation. Actual GPU verification is reported separately from CPU compatibility.
 
 CI targets Windows, macOS ARM64 and macOS Intel. It runs protocol/routing tests, real FFmpeg cut/restore/decode tests and an opt-in tiny-model ASR smoke using native synthetic speech. Actual run results, not this matrix declaration, establish compatibility. [Validation records](docs/validation.md).
 

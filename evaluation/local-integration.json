@@ -1,0 +1,13 @@
+{
+  "date": "2026-10-20",
+  "platform": "win32",
+  "existing_projects_visible": 6,
+  "existing_project_resume": true,
+  "previous_heads_unchanged": true,
+  "previous_artifacts_unchanged": true,
+  "private_method_and_library_retained_locally": true,
+  "installed_entry_from_another_python": true,
+  "actual_local_asr_device": "cuda",
+  "cuda_fallback_errors": [],
+  "scope": "local technical integration; private paths, model, corpus and user records are not distributed"
+}

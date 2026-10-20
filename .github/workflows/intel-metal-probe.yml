@@ -1,0 +1,31 @@
+name: Native Intel Mac Metal prerequisites (standard free runners)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15-intel, macos-26-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: Native hardware and actual Metal compute probe
+        run: python -B -X utf8 scripts/probe_macos_metal.py --out evidence
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: metal-prerequisite-${{ matrix.os }}
+          path: |
+            evidence/
+            !evidence/metal-probe
+          if-no-files-found: error
+          retention-days: 14

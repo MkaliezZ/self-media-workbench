@@ -7,6 +7,10 @@ on:
         type: choice
         default: macos-15
         options: [macos-15, macos-26]
+      intel_only:
+        description: Probe alternate Intel capacity after Apple Silicon completes
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -14,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: ${{ fromJSON(github.event.inputs.runner_set == 'macos-26' && '["macos-26","macos-26-intel"]' || '["macos-15","macos-15-intel"]') }}
+        os: ${{ fromJSON(github.event.inputs.intel_only == 'true' && (github.event.inputs.runner_set == 'macos-26' && '["macos-26-intel"]' || '["macos-15-intel"]') || (github.event.inputs.runner_set == 'macos-26' && '["macos-26","macos-26-intel"]' || '["macos-15","macos-15-intel"]')) }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 40
     env:
@@ -93,6 +97,10 @@ jobs:
             git -C fresh-checkout status --short > audit-evidence/checkout-status.txt
             git -C fresh-checkout rev-parse HEAD > audit-evidence/checkout-sha.txt
           fi
+      - name: Verify and seal evidence after the driver and tee exit
+        if: always()
+        shell: bash
+        run: python -B -X utf8 audit-control/scripts/seal_audit_evidence.py --out "$GITHUB_WORKSPACE/audit-evidence"
       - uses: actions/upload-artifact@v7
         if: always()
         with:

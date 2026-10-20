@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "mismatches": [
+    {
+      "path": "first-use.log",
+      "error": "hash or size changed after driver manifest"
+    },
+    {
+      "path": "state/services/9b6de8b5fc0d8978c6bd.log",
+      "error": "hash or size changed after driver manifest"
+    }
+  ],
+  "entries": 340,
+  "runtime_passed": true
+}

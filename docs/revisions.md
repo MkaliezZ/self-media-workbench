@@ -67,3 +67,9 @@ The original ASR's two recognition errors and English timing-check mismatch rema
 ## Fresh macOS installation preparation — 2026-10-21
 
 Review for the new Apple Silicon/Intel installation audit found that the bundled media reference still described all macOS ASR as CPU. This contradicted the implemented Apple Silicon MLX adapter and the entry instructions. The reference now distinguishes native Apple Silicon MLX/Metal from Intel CPU and requires actual engine/device/execution/fallback evidence. Historical CPU test results are preserved. This is a documentation repair, not a newly observed GPU inference failure; fresh cloud results are recorded separately.
+
+## Fresh macOS first ARM run: post-run review failures
+
+Run 39467127371 on c1197ee completed the ARM job with 151 automated checks and real MLX/GPU inference (73 word groups, Metal kernel and isolated worker, no CPU fallback). Post-run review found two evidence files changed after the driver manifest: the workflow tee log and the service shutdown log. The original job result and downloaded package are retained; its functional success is not a full evidence-integrity pass.
+
+The driver now waits for its own service to exit before snapshots, explicitly excludes the still-open outer tee from its internal manifest, and the workflow verifies/seals the complete envelope after the tee exits. The new verifier reproduced the two mismatches against the untouched first manifest and returned failure. Independent review also found two isolated 0.40/0.44-second word captions. The synthetic fixture's revised grouping uses clause context and avoids these short tails while retaining all source IDs/word bounds. Its one-second check is a fixture choice, not a universal production rule. Original SRT, review and initial English character-budget fit=false remain retained. Engine/rendering code was not changed by these audit repairs; fresh ARM/Intel cloud retests follow.

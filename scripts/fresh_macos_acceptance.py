@@ -9,6 +9,7 @@ import argparse
 import difflib
 import hashlib
 import json
+import math
 import os
 import platform
 import re
@@ -38,6 +39,40 @@ BRIEF = ("SYNTHETIC ACCEPTANCE MATERIAL. Newly authored for this independent run
 def sha(path):
     with Path(path).open("rb") as stream:
         return hashlib.file_digest(stream, "sha256").hexdigest()
+
+
+def fixture_caption_groups(words):
+    """Use this fixture's clause cues, retaining actual IDs and word boundaries."""
+    sentences,current=[],[]
+    clause_starts={"before","put","move","never","now","close","then","and","this","it"}
+    for word in words:
+        tokens=re.findall(r"[a-z]+",word["text"].lower())
+        if len(current)>=3 and tokens and tokens[0] in clause_starts:
+            sentences.append(current);current=[]
+        current.append(word)
+        if len(current)>=3 and word["text"].rstrip().endswith((".","!","?",",")):
+            sentences.append(current);current=[]
+    if current:sentences.append(current)
+    groups=[]
+    for sentence in sentences:
+        count=max(1,math.ceil(len(sentence)/10))
+        size,remainder=divmod(len(sentence),count)
+        offset=0
+        for index in range(count):
+            length=size+(index<remainder)
+            groups.append(sentence[offset:offset+length]);offset+=length
+    index=0
+    while index<len(groups):
+        group=groups[index]
+        if len(groups)>1 and (len(group)<2 or group[-1]["end"]-group[0]["start"]<1.0):
+            if index:
+                groups[index-1].extend(groups.pop(index));index=max(0,index-1)
+            else:
+                groups[1]=groups[0]+groups[1]
+                groups.pop(0)
+            continue
+        index+=1
+    return [[word["id"] for word in group] for group in groups]
 
 
 class Audit:
@@ -255,7 +290,7 @@ raise SystemExit(0 if result['all_hashes_verified'] else 3)
         timing_output = self.out/"script-speaking-budget.json"
         self.run("script-speaking-budget",[self.py,self.root/"skills/self-media-workflow/scripts/script_check.py",timing_input,"--out",timing_output])
         timing = json.loads(timing_output.read_text())
-        self.check("speaking budget measured exact text",timing["total_counted_characters"]>0 and len(timing["segments"])==2,timing)
+        self.check("character budget executed on exact text",timing["total_counted_characters"]>0 and len(timing["segments"])==2,timing)
         self.save("script-production-review.json", {"finding":"The first draft estimates time and mentions desk labels that this generated-background fixture does not implement. Revise the visual promise and explicitly retain the drink safety qualification. The bundled character-budget checker does not establish English pronunciation timing; inspect its fit fields and retain that limitation.","character_budget_fits":timing["all_segments_fit_slow_estimate"],"initial_artifact":initial["id"],"synthetic":True})
         revised = json.loads(json.dumps(payload))
         revised["segments"][0]["visual"]="Generated blue background only; illustrative fixture, no desk labels or recorded footage."
@@ -308,14 +343,9 @@ raise SystemExit(0 if result['all_hashes_verified'] else 3)
         self.check("explicit inserted pause candidate",bool(candidates),{"known_gap":[gap_start,gap_start+2],"candidates":review["candidates"]})
         cut = max(candidates,key=lambda c:c["end"]-c["start"])
         self.check("cut excludes all speech groups",all(w["end"]<=cut["start"] or w["start"]>=cut["end"] for w in words),cut)
-        groups,current = [],[]
-        for word in words:
-            current.append(word["id"])
-            if word["text"].rstrip().endswith((".","!","?",",")) or len(current)>=7:
-                groups.append(current);current=[]
-        if current:groups.append(current)
+        groups=fixture_caption_groups(words)
         edit = {"revision":review.get("revision",0),"asr_run":review["asr_run"],"source_sha256":review["source_sha256"],"corrections":{},"selected_ids":[cut["id"]],"speech_cuts":[],"caption_groups":groups}
-        self.save("review-reason.json",{"pause_id":cut["id"],"reason":"Remove only the deliberately inserted synthetic non-speech blank pause inside the known two-second fixture interval. All speech is retained.","caption_grouping":"Use actual ASR IDs in order, punctuation or at most seven model word groups. Automated structural review, not human player review."})
+        self.save("review-reason.json",{"pause_id":cut["id"],"reason":"Remove only the deliberately inserted synthetic non-speech blank pause inside the known two-second fixture interval. All speech is retained.","caption_grouping":"Balance this English fixture's sentence chunks and merge short or single-group tails. Use actual ASR IDs and retain every group. The one-second target is a fixture acceptance choice, not a universal product caption rule or human player review."})
         edited = self.call("review-save","PUT",prefix+"/review",edit)
         r = edited["review"]
         self.check("ASR word bounds unchanged after review",[(w["id"],w["start"],w["end"],w["text"]) for w in r["words"]]==[(w["id"],w["start"],w["end"],w["text"]) for w in words])
@@ -358,6 +388,7 @@ raise SystemExit(0 if result['all_hashes_verified'] else 3)
         for index,(cue,group) in enumerate(zip(cues,groups),1):
             a,b=cue[1].split(" --> ")
             self.check("SRT group "+str(index),int(cue[0])==index and "\n".join(cue[2:])=="".join(lookup[i]["text"] for i in group) and abs(seconds(a)-lookup[group[0]]["start"])<.0011 and abs(seconds(b)-lookup[group[-1]]["end"])<.0011 and seconds(b)<=output_duration+.05,{"cue":cue,"group":group})
+            self.check("fixture caption avoids short isolated tail "+str(index),len(group)>=2 and seconds(b)-seconds(a)>=.999,{"cue":cue,"groups":len(group)})
         after=self.cli("context-after-export","context",self.pid)
         self.check("actual export context binding",any(e["id"]==eid for e in after["exports"]))
         resumed=json.loads(self.run("foreign-entry-resume",[self.foreign_py,self.wrapper,"run","Continue this project and inspect the existing script for a later review.","--project",self.pid,"--intent","script","--session",self.session],cwd=material))
@@ -387,8 +418,18 @@ raise SystemExit(0 if result['all_hashes_verified'] else 3)
                         raise RuntimeError("process command mismatch; will not terminate")
                     os.kill(info["pid"],signal.SIGTERM)
                     cleanup.update(pid=info["pid"],terminated=True,command=cmd)
+                    deadline=time.monotonic()+10
+                    while time.monotonic()<deadline:
+                        proc=subprocess.run(["ps","-p",str(info["pid"]),"-o","stat="],capture_output=True,text=True)
+                        if proc.returncode or not proc.stdout.strip() or proc.stdout.strip().startswith("Z"):
+                            cleanup["exit_confirmed"]=True
+                            break
+                        time.sleep(.1)
+                    if not cleanup.get("exit_confirmed"):
+                        raise RuntimeError("own service did not exit after SIGTERM; evidence is not frozen")
             except Exception as exc:
                 cleanup["error"]=repr(exc)
+        self.check("own service stopped before evidence snapshot", "error" not in cleanup, cleanup, fatal=False)
         self.save("cleanup.json",cleanup)
         if self.state.exists():
             shutil.copytree(self.state,self.out/"state-snapshot",dirs_exist_ok=True)
@@ -399,10 +440,11 @@ raise SystemExit(0 if result['all_hashes_verified'] else 3)
         summary={"passed":error is None and not failures,"architecture":platform.machine(),"expected_architecture":self.args.expect,"platform":sys.platform,"commit":getattr(self,"commit",None),"design_protocol_public_clone_commit":DESIGN_PUBLIC_COMMIT,"elapsed_seconds":time.time()-self.started_at,"driver_kind":"independent deterministic cloud acceptance orchestration; not a live LLM Agent","synthetic_fixture":True,"checks":len(self.results),"failures":failures,"exception":error,"asr_execution":getattr(self,"asr_execution",None),"limits":["Automated protocol/content/timeline/decode checks do not establish human listening, player subtitle appearance, marketing usefulness, customer validation or readiness for publication.","No external publication performed."]}
         self.save("final-result.json",summary)
         self.save("failure.json",{"failed":not summary["passed"],"exception":error,"checks":failures})
-        excluded={"hf-home","foreign-python",".git"}
+        excluded={"hf-home","foreign-python","pip-cache",".git"}
+        self.save("evidence-manifest-scope.json",{"scope":"driver evidence after its own service exits", "excluded_workflow_envelope":["first-use.log"],"reason":"The enclosing workflow tee appends the driver stdout after this process finishes. The workflow seals and verifies the full artifact afterwards."})
         files=[]
         for path in sorted(self.out.rglob("*")):
-            if path.is_file() and not any(part in excluded for part in path.relative_to(self.out).parts) and path.name!="evidence-manifest.json":
+            if path.is_file() and not any(part in excluded for part in path.relative_to(self.out).parts) and path.name not in {"evidence-manifest.json","first-use.log"}:
                 files.append({"path":path.relative_to(self.out).as_posix(),"bytes":path.stat().st_size,"sha256":sha(path)})
         self.save("evidence-manifest.json",files)
         print(json.dumps(summary,ensure_ascii=False,indent=2))

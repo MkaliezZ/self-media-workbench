@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "architecture": "arm64",
+  "expected_architecture": "arm64",
+  "platform": "darwin",
+  "commit": "c1197ee2d42c9bef7bf5797be15ccb2472ddb096",
+  "design_protocol_public_clone_commit": "85ffa38bcf321694c7a84d94f24a72a9e7c626d7",
+  "elapsed_seconds": 23.181920051574707,
+  "driver_kind": "independent deterministic cloud acceptance orchestration; not a live LLM Agent",
+  "synthetic_fixture": true,
+  "checks": 151,
+  "failures": [],
+  "exception": null,
+  "asr_execution": {
+    "run_id": "756d5225332045cba2ca9303b2ae5308",
+    "device": "gpu",
+    "backend": "mlx",
+    "execution": {
+      "metal_available": true,
+      "gpu_kernel_verified": true,
+      "isolated_worker": true
+    },
+    "words": 73,
+    "candidates": 2,
+    "fallback_errors": []
+  },
+  "limits": [
+    "Automated protocol/content/timeline/decode checks do not establish human listening, player subtitle appearance, marketing usefulness, customer validation or readiness for publication.",
+    "No external publication performed."
+  ]
+}

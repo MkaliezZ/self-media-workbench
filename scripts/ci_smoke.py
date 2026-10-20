@@ -90,7 +90,8 @@ def main():
                 'gpu_asr_verified':review['backend']=='mlx' and review['device']=='gpu' and review['execution'].get('gpu_kernel_verified') is True,
                 'installed_agent_entry':True,
                 'export_job_status':export['status'],'decoded':True,'actual_duration':float(metadata['format']['duration']),
-                'model':'faster-whisper-tiny' if args.download_ci_model else 'explicit local model',
+                'model':('MLX whisper-tiny' if args.download_ci_mlx_model else 'explicit local MLX model') if review['backend']=='mlx' else ('faster-whisper-tiny' if args.download_ci_model else 'explicit local CTranslate2 model'),
+                'model_format':'MLX' if review['backend']=='mlx' else 'CTranslate2',
                 'scope':'synthetic technical smoke; no human or publication effectiveness claim'}
             args.out.parent.mkdir(parents=True,exist_ok=True);args.out.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8');print(json.dumps(result))
             if args.require_gpu and not result['gpu_asr_verified']:raise RuntimeError('GPU ASR required but actual result used another device; see saved result')

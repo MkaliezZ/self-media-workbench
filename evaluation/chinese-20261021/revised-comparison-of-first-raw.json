@@ -1,0 +1,619 @@
+[
+  {
+    "platform": "macos-15",
+    "normalization_agrees": true,
+    "review": {
+      "mode": "Known synthetic reference assisted; not human listening or general automatic proofreading",
+      "typos": [
+        {
+          "recognized": "书",
+          "reference": "数",
+          "word_ids": [
+            68
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "id": 68,
+          "before": "书,",
+          "after": "数,",
+          "source_start": 25.9,
+          "source_end": 26.1,
+          "kind": "reference_assisted_substitution"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "kind": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "kind": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.64,
+          "kind": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "kind": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.86,
+          "source_end": 36.2,
+          "kind": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "kind": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "kind": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "kind": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "kind": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "kind": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "kind": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "kind": "orthography"
+        }
+      ],
+      "unresolved": []
+    },
+    "stats": {
+      "S": 1,
+      "D": 0,
+      "I": 0,
+      "N": 141,
+      "CER": 0.0070921985815602835,
+      "edits": [
+        {
+          "op": "S",
+          "reference": "数",
+          "recognized": "书",
+          "reference_index": 77,
+          "hypothesis_index": 77
+        }
+      ]
+    }
+  },
+  {
+    "platform": "macos-15-intel",
+    "normalization_agrees": true,
+    "review": {
+      "mode": "Known synthetic reference assisted; not human listening or general automatic proofreading",
+      "typos": [
+        {
+          "recognized": "书",
+          "reference": "数",
+          "word_ids": [
+            68
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "id": 68,
+          "before": "书,",
+          "after": "数,",
+          "source_start": 25.92,
+          "source_end": 26.1,
+          "kind": "reference_assisted_substitution"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "kind": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "kind": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.62,
+          "kind": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "kind": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.84,
+          "source_end": 36.2,
+          "kind": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "kind": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "kind": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "kind": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "kind": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "kind": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "kind": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "kind": "orthography"
+        }
+      ],
+      "unresolved": []
+    },
+    "stats": {
+      "S": 1,
+      "D": 0,
+      "I": 0,
+      "N": 141,
+      "CER": 0.0070921985815602835,
+      "edits": [
+        {
+          "op": "S",
+          "reference": "数",
+          "recognized": "书",
+          "reference_index": 77,
+          "hypothesis_index": 77
+        }
+      ]
+    }
+  },
+  {
+    "platform": "windows-latest",
+    "normalization_agrees": true,
+    "review": {
+      "mode": "Known synthetic reference assisted; not human listening or general automatic proofreading",
+      "typos": [
+        {
+          "recognized": "使",
+          "reference": "是",
+          "word_ids": [
+            64
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "id": 0,
+          "before": "這是",
+          "after": "这是",
+          "source_start": 0.0,
+          "source_end": 0.34,
+          "kind": "orthography"
+        },
+        {
+          "id": 7,
+          "before": "驗",
+          "after": "验",
+          "source_start": 1.86,
+          "source_end": 2.12,
+          "kind": "orthography"
+        },
+        {
+          "id": 11,
+          "before": "實",
+          "after": "实",
+          "source_start": 3.36,
+          "source_end": 3.6,
+          "kind": "orthography"
+        },
+        {
+          "id": 13,
+          "before": "戶",
+          "after": "户",
+          "source_start": 3.88,
+          "source_end": 4.1,
+          "kind": "orthography"
+        },
+        {
+          "id": 17,
+          "before": "攝",
+          "after": "摄",
+          "source_start": 5.58,
+          "source_end": 5.76,
+          "kind": "orthography"
+        },
+        {
+          "id": 20,
+          "before": "關",
+          "after": "关",
+          "source_start": 6.82,
+          "source_end": 7.0,
+          "kind": "orthography"
+        },
+        {
+          "id": 21,
+          "before": "閉",
+          "after": "闭",
+          "source_start": 7.0,
+          "source_end": 7.22,
+          "kind": "orthography"
+        },
+        {
+          "id": 23,
+          "before": "機",
+          "after": "机",
+          "source_start": 7.48,
+          "source_end": 7.7,
+          "kind": "orthography"
+        },
+        {
+          "id": 28,
+          "before": "乾",
+          "after": "干",
+          "source_start": 9.06,
+          "source_end": 9.36,
+          "kind": "orthography"
+        },
+        {
+          "id": 29,
+          "before": "淨",
+          "after": "净",
+          "source_start": 9.36,
+          "source_end": 9.56,
+          "kind": "orthography"
+        },
+        {
+          "id": 30,
+          "before": "鏡",
+          "after": "镜",
+          "source_start": 9.56,
+          "source_end": 9.76,
+          "kind": "orthography"
+        },
+        {
+          "id": 31,
+          "before": "頭。",
+          "after": "头。",
+          "source_start": 9.76,
+          "source_end": 10.06,
+          "kind": "orthography"
+        },
+        {
+          "id": 33,
+          "before": "鎖",
+          "after": "锁",
+          "source_start": 13.68,
+          "source_end": 13.9,
+          "kind": "orthography"
+        },
+        {
+          "id": 38,
+          "before": "檢",
+          "after": "检",
+          "source_start": 15.26,
+          "source_end": 15.48,
+          "kind": "orthography"
+        },
+        {
+          "id": 54,
+          "before": "畫",
+          "after": "画",
+          "source_start": 20.58,
+          "source_end": 20.82,
+          "kind": "orthography"
+        },
+        {
+          "id": 55,
+          "before": "質。",
+          "after": "质。",
+          "source_start": 20.82,
+          "source_end": 21.02,
+          "kind": "orthography"
+        },
+        {
+          "id": 56,
+          "before": "這裡",
+          "after": "这里",
+          "source_start": 21.9,
+          "source_end": 22.2,
+          "kind": "orthography"
+        },
+        {
+          "id": 59,
+          "before": "幀",
+          "after": "帧",
+          "source_start": 22.82,
+          "source_end": 23.22,
+          "kind": "orthography"
+        },
+        {
+          "id": 64,
+          "before": "使",
+          "after": "是",
+          "source_start": 25.12,
+          "source_end": 25.32,
+          "kind": "reference_assisted_substitution"
+        },
+        {
+          "id": 65,
+          "before": "測",
+          "after": "测",
+          "source_start": 25.32,
+          "source_end": 25.54,
+          "kind": "orthography"
+        },
+        {
+          "id": 66,
+          "before": "試",
+          "after": "试",
+          "source_start": 25.54,
+          "source_end": 25.74,
+          "kind": "orthography"
+        },
+        {
+          "id": 67,
+          "before": "讀",
+          "after": "读",
+          "source_start": 25.74,
+          "source_end": 25.92,
+          "kind": "orthography"
+        },
+        {
+          "id": 68,
+          "before": "數,",
+          "after": "数,",
+          "source_start": 25.92,
+          "source_end": 26.14,
+          "kind": "orthography"
+        },
+        {
+          "id": 71,
+          "before": "薦",
+          "after": "荐",
+          "source_start": 27.28,
+          "source_end": 27.5,
+          "kind": "orthography"
+        },
+        {
+          "id": 72,
+          "before": "參",
+          "after": "参",
+          "source_start": 27.5,
+          "source_end": 27.74,
+          "kind": "orthography"
+        },
+        {
+          "id": 73,
+          "before": "數。",
+          "after": "数。",
+          "source_start": 27.74,
+          "source_end": 27.96,
+          "kind": "orthography"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "kind": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "kind": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.62,
+          "kind": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "kind": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.86,
+          "source_end": 36.2,
+          "kind": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "kind": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "kind": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "kind": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "kind": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "kind": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "kind": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "kind": "orthography"
+        }
+      ],
+      "unresolved": []
+    },
+    "stats": {
+      "S": 1,
+      "D": 0,
+      "I": 0,
+      "N": 141,
+      "CER": 0.0070921985815602835,
+      "edits": [
+        {
+          "op": "S",
+          "reference": "是",
+          "recognized": "使",
+          "reference_index": 73,
+          "hypothesis_index": 73
+        }
+      ]
+    }
+  }
+]

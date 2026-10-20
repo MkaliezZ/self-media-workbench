@@ -1,0 +1,40 @@
+{
+  "repo": "Systran/faster-whisper-small",
+  "requested_revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "resolved_revision": "536b0662742c02347bc0e980a01041f333bce120",
+  "files": [
+    {
+      "file": "config.json",
+      "sha256": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828",
+      "expected_lfs_sha256": null,
+      "expected_git_blob": "e5047537059bd8f182d9ca64c470201585015187",
+      "actual_git_blob": "e5047537059bd8f182d9ca64c470201585015187",
+      "verified": true
+    },
+    {
+      "file": "model.bin",
+      "sha256": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+      "expected_lfs_sha256": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671",
+      "expected_git_blob": "504a7fe023f19460564a623887a9f77ea53ac708",
+      "actual_git_blob": null,
+      "verified": true
+    },
+    {
+      "file": "tokenizer.json",
+      "sha256": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab",
+      "expected_lfs_sha256": null,
+      "expected_git_blob": "7818adb6de9fa3064d3ff81226fdd675be1f6344",
+      "actual_git_blob": "7818adb6de9fa3064d3ff81226fdd675be1f6344",
+      "verified": true
+    },
+    {
+      "file": "vocabulary.txt",
+      "sha256": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913",
+      "expected_lfs_sha256": null,
+      "expected_git_blob": "c9074644d9d1205686f16d411564729461324b75",
+      "actual_git_blob": "c9074644d9d1205686f16d411564729461324b75",
+      "verified": true
+    }
+  ],
+  "verified": true
+}

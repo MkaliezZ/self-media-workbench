@@ -1,0 +1,22 @@
+{
+  "name": "cut-A-decode",
+  "command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-nostdin",
+    "-i",
+    "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/state/projects/5a4fad373dfc4f4fa074049a095fa2dd/exports/6fbd1901daeb4b1085186e47a4173b29/reviewed_cut.mp4",
+    "-map",
+    "0:v:0",
+    "-map",
+    "0:a:0",
+    "-f",
+    "null",
+    "-"
+  ],
+  "cwd": "/Users/runner/work/self-media-workbench/self-media-workbench/product",
+  "started_at": 1792520589.583276,
+  "returncode": 0,
+  "elapsed_seconds": 0.11702513694763184
+}

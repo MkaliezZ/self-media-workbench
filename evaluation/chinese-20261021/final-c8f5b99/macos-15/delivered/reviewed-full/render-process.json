@@ -1,0 +1,33 @@
+{
+  "command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-v",
+    "error",
+    "-nostdin",
+    "-n",
+    "-i",
+    "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/state/projects/5a4fad373dfc4f4fa074049a095fa2dd/media/495431b3fc7f41a4ba7018de3c9e8a96/original.mkv",
+    "-filter_complex",
+    "[0:v:0]trim=start=0.000000:end=50.200000,setpts=PTS-STARTPTS[v0];[0:a:0]atrim=start=0.000000:end=50.200000,asetpts=PTS-STARTPTS[a0];[v0][a0]concat=n=1:v=1:a=1[vout][aout]",
+    "-map",
+    "[vout]",
+    "-map",
+    "[aout]",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "18",
+    "-pix_fmt",
+    "yuv420p",
+    "-c:a",
+    "aac",
+    "-movflags",
+    "+faststart",
+    "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/state/projects/5a4fad373dfc4f4fa074049a095fa2dd/exports/6eafda4ac988400b83925ab4c69e6d96/reviewed_cut.mp4"
+  ],
+  "returncode": 0,
+  "stderr": ""
+}

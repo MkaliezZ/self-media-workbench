@@ -1,0 +1,22 @@
+{
+  "name": "restored-decode",
+  "command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-nostdin",
+    "-i",
+    "D:\\a\\self-media-workbench\\self-media-workbench\\evidence\\state\\projects\\7530ff2b90ab443dadf812a8058bf0b4\\exports\\f4b6c835f4d443edb77eb28b0aeeac79\\reviewed_cut.mp4",
+    "-map",
+    "0:v:0",
+    "-map",
+    "0:a:0",
+    "-f",
+    "null",
+    "-"
+  ],
+  "cwd": "D:\\a\\self-media-workbench\\self-media-workbench\\product",
+  "started_at": 1792520581.9540238,
+  "returncode": 0,
+  "elapsed_seconds": 0.1663968563079834
+}

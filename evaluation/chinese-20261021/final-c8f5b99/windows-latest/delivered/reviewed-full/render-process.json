@@ -1,0 +1,33 @@
+{
+  "command": [
+    "ffmpeg",
+    "-hide_banner",
+    "-v",
+    "error",
+    "-nostdin",
+    "-n",
+    "-i",
+    "D:\\a\\self-media-workbench\\self-media-workbench\\evidence\\state\\projects\\7530ff2b90ab443dadf812a8058bf0b4\\media\\af38905861e84e39bcbb47e801a85b03\\original.mkv",
+    "-filter_complex",
+    "[0:v:0]trim=start=0.000000:end=50.200000,setpts=PTS-STARTPTS[v0];[0:a:0]atrim=start=0.000000:end=50.200000,asetpts=PTS-STARTPTS[a0];[v0][a0]concat=n=1:v=1:a=1[vout][aout]",
+    "-map",
+    "[vout]",
+    "-map",
+    "[aout]",
+    "-c:v",
+    "libx264",
+    "-preset",
+    "medium",
+    "-crf",
+    "18",
+    "-pix_fmt",
+    "yuv420p",
+    "-c:a",
+    "aac",
+    "-movflags",
+    "+faststart",
+    "D:\\a\\self-media-workbench\\self-media-workbench\\evidence\\state\\projects\\7530ff2b90ab443dadf812a8058bf0b4\\exports\\0c04ff8d2ff24e50b2da7690adb0e8f8\\reviewed_cut.mp4"
+  ],
+  "returncode": 0,
+  "stderr": ""
+}

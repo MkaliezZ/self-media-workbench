@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "profile": "intel",
+  "platform": "darwin",
+  "architecture": "x86_64",
+  "commit": "c8f5b99021c1dfb52f6e133f4647aaf19491607b",
+  "asr_execution": {
+    "run_id": "7b750ed5380c4576b879774abc561816",
+    "device": "cpu",
+    "backend": "faster-whisper",
+    "execution": {},
+    "words": 126,
+    "candidates": 3,
+    "fallback_errors": []
+  },
+  "exception": null,
+  "failures": [],
+  "scope": "Synthetic Chinese reference-assisted review, not human speech accuracy or a live LLM trial"
+}

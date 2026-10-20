@@ -1,0 +1,1964 @@
+{
+  "status": "FIRST ROUND FAILED / NO FINAL PASS",
+  "cloud_run": 39472668879,
+  "commit": "80e5ae54981ffd23d787d27a492e4909db017f00",
+  "reference_from_fixture_spec": "这是中文口播合成验收，不是真实客户案例。拍摄前，先关闭手机通知，再擦干净镜头。先锁定曝光，再检查白平衡。不要把提高亮度，理解成修好了画质。这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。如果画面仍然偏色，先检查光源，不要承诺一次解决。下面这段停顿用于展示操作，必须保留。最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+  "orthography_mapping": [
+    "這这",
+    "驗验",
+    "實实",
+    "戶户",
+    "攝摄",
+    "關关",
+    "閉闭",
+    "機机",
+    "乾干",
+    "淨净",
+    "鏡镜",
+    "頭头",
+    "鎖锁",
+    "檢检",
+    "畫画",
+    "質质",
+    "裡里",
+    "幀帧",
+    "測测",
+    "試试",
+    "讀读",
+    "數数",
+    "薦荐",
+    "參参",
+    "諾诺",
+    "決决",
+    "頓顿",
+    "於于",
+    "須须",
+    "後后",
+    "對对",
+    "復复"
+  ],
+  "numeric_equivalence_rules": [
+    [
+      "48000Hz",
+      "四十八千赫"
+    ],
+    [
+      "24帧",
+      "二十四帧"
+    ],
+    [
+      "48千赫",
+      "四十八千赫"
+    ]
+  ],
+  "master_pcm_duration": 48.5063125,
+  "assembled_phrase_and_gap_duration": 48.5063125,
+  "known_inserted_gaps": [
+    {
+      "start": 10.91525,
+      "end": 13.31525,
+      "decision": "remove A then restore"
+    },
+    {
+      "start": 40.448875,
+      "end": 42.248875,
+      "decision": "preserve B demonstration hold"
+    }
+  ],
+  "phrase_times": [
+    {
+      "phrase": 0,
+      "start": 0.0,
+      "end": 5.3025
+    },
+    {
+      "phrase": 1,
+      "start": 5.3025,
+      "end": 10.91525
+    },
+    {
+      "phrase": 2,
+      "start": 13.31525,
+      "end": 17.373687500000003
+    },
+    {
+      "phrase": 3,
+      "start": 17.373687500000003,
+      "end": 21.866750000000003
+    },
+    {
+      "phrase": 4,
+      "start": 21.866750000000003,
+      "end": 28.823812500000003
+    },
+    {
+      "phrase": 5,
+      "start": 28.823812500000003,
+      "end": 35.400937500000005
+    },
+    {
+      "phrase": 6,
+      "start": 35.400937500000005,
+      "end": 40.448875
+    },
+    {
+      "phrase": 7,
+      "start": 42.248875,
+      "end": 48.5063125
+    }
+  ],
+  "runners": {
+    "macos-15": {
+      "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+      "decoded_pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+      "shared_master_pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+      "audio_matches_master": true,
+      "decoded_audio_duration": 48.5063125,
+      "container_duration": 50.2,
+      "review_duration": 50.2,
+      "review_audio_duration": 48.5063125,
+      "container_tail_after_audio": 1.693687500000003,
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "profile": "High",
+          "codec_type": "video",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "mime_codec_string": "avc1.64001e",
+          "width": 640,
+          "height": 360,
+          "coded_width": 640,
+          "coded_height": 360,
+          "has_b_frames": 2,
+          "sample_aspect_ratio": "1:1",
+          "display_aspect_ratio": "16:9",
+          "pix_fmt": "yuv420p",
+          "level": 30,
+          "color_range": "tv",
+          "chroma_location": "left",
+          "field_order": "progressive",
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "r_frame_rate": "25/1",
+          "avg_frame_rate": "25/1",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "bits_per_raw_sample": "8",
+          "extradata_size": 47,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "ENCODER": "Lavc62.28.101 libx264",
+            "DURATION": "00:00:50.200000000"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "pcm_s16le",
+          "codec_long_name": "PCM signed 16-bit little-endian",
+          "codec_type": "audio",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "sample_fmt": "s16",
+          "sample_rate": "16000",
+          "channels": 1,
+          "bits_per_sample": 16,
+          "initial_padding": 0,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "bit_rate": "256000",
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "ENCODER": "Lavc62.28.101 pcm_s16le",
+            "DURATION": "00:00:48.506000000"
+          }
+        }
+      ],
+      "backend": "mlx",
+      "device": "gpu",
+      "execution": {
+        "metal_available": true,
+        "gpu_kernel_verified": true,
+        "isolated_worker": true
+      },
+      "fallback_errors": [],
+      "original_asr_identity": true,
+      "raw_text": "这是中文口播合成验收,不是真实客户案例。拍摄前,先关闭手机通知,再擦干净镜头。先锁定曝光,再检查白平衡。不要把提高亮度,理解成修好了画质。这里的24帧和48千赫,是测试读书,不是推荐参数。如果畫面仍然偏色,先檢查光源,不要承諾一次解決。下面這段停頓用於展示操作,必須保留。最後核對字幕,保留原片,剪掉的停頓也要能恢復。",
+      "reference": "这是中文口播合成验收，不是真实客户案例。拍摄前，先关闭手机通知，再擦干净镜头。先锁定曝光，再检查白平衡。不要把提高亮度，理解成修好了画质。这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。如果画面仍然偏色，先检查光源，不要承诺一次解决。下面这段停顿用于展示操作，必须保留。最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+      "raw_without_punctuation_whitespace": {
+        "S": 17,
+        "D": 2,
+        "I": 0,
+        "N": 141,
+        "CER": 0.1347517730496454,
+        "edits": [
+          {
+            "op": "D",
+            "reference": "二",
+            "recognized": "",
+            "reference_index": 63,
+            "hypothesis_index": 63
+          },
+          {
+            "op": "S",
+            "reference": "十",
+            "recognized": "2",
+            "reference_index": 64,
+            "hypothesis_index": 63
+          },
+          {
+            "op": "S",
+            "reference": "四",
+            "recognized": "4",
+            "reference_index": 65,
+            "hypothesis_index": 64
+          },
+          {
+            "op": "D",
+            "reference": "四",
+            "recognized": "",
+            "reference_index": 68,
+            "hypothesis_index": 67
+          },
+          {
+            "op": "S",
+            "reference": "十",
+            "recognized": "4",
+            "reference_index": 69,
+            "hypothesis_index": 67
+          },
+          {
+            "op": "S",
+            "reference": "八",
+            "recognized": "8",
+            "reference_index": 70,
+            "hypothesis_index": 68
+          },
+          {
+            "op": "S",
+            "reference": "数",
+            "recognized": "书",
+            "reference_index": 77,
+            "hypothesis_index": 75
+          },
+          {
+            "op": "S",
+            "reference": "画",
+            "recognized": "畫",
+            "reference_index": 86,
+            "hypothesis_index": 84
+          },
+          {
+            "op": "S",
+            "reference": "检",
+            "recognized": "檢",
+            "reference_index": 93,
+            "hypothesis_index": 91
+          },
+          {
+            "op": "S",
+            "reference": "诺",
+            "recognized": "諾",
+            "reference_index": 100,
+            "hypothesis_index": 98
+          },
+          {
+            "op": "S",
+            "reference": "决",
+            "recognized": "決",
+            "reference_index": 104,
+            "hypothesis_index": 102
+          },
+          {
+            "op": "S",
+            "reference": "这",
+            "recognized": "這",
+            "reference_index": 107,
+            "hypothesis_index": 105
+          },
+          {
+            "op": "S",
+            "reference": "顿",
+            "recognized": "頓",
+            "reference_index": 110,
+            "hypothesis_index": 108
+          },
+          {
+            "op": "S",
+            "reference": "于",
+            "recognized": "於",
+            "reference_index": 112,
+            "hypothesis_index": 110
+          },
+          {
+            "op": "S",
+            "reference": "须",
+            "recognized": "須",
+            "reference_index": 118,
+            "hypothesis_index": 116
+          },
+          {
+            "op": "S",
+            "reference": "后",
+            "recognized": "後",
+            "reference_index": 122,
+            "hypothesis_index": 120
+          },
+          {
+            "op": "S",
+            "reference": "对",
+            "recognized": "對",
+            "reference_index": 124,
+            "hypothesis_index": 122
+          },
+          {
+            "op": "S",
+            "reference": "顿",
+            "recognized": "頓",
+            "reference_index": 135,
+            "hypothesis_index": 133
+          },
+          {
+            "op": "S",
+            "reference": "复",
+            "recognized": "復",
+            "reference_index": 140,
+            "hypothesis_index": 138
+          }
+        ]
+      },
+      "orthography_numeric_equivalent": {
+        "S": 1,
+        "D": 0,
+        "I": 0,
+        "N": 141,
+        "CER": 0.0070921985815602835,
+        "edits": [
+          {
+            "op": "S",
+            "reference": "数",
+            "recognized": "书",
+            "reference_index": 77,
+            "hypothesis_index": 77
+          }
+        ]
+      },
+      "numeric_and_typo_word_groups": [
+        {
+          "id": 56,
+          "text": "这里",
+          "start": 21.94,
+          "end": 22.2,
+          "probability": 0.9892578125,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 57,
+          "text": "的",
+          "start": 22.2,
+          "end": 22.44,
+          "probability": 0.9990234375,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 58,
+          "text": "24",
+          "start": 22.44,
+          "end": 22.82,
+          "probability": 0.86962890625,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 59,
+          "text": "帧",
+          "start": 22.82,
+          "end": 23.22,
+          "probability": 0.9140625,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 60,
+          "text": "和",
+          "start": 23.22,
+          "end": 23.54,
+          "probability": 0.97998046875,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 61,
+          "text": "48",
+          "start": 23.54,
+          "end": 23.98,
+          "probability": 0.96337890625,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 62,
+          "text": "千",
+          "start": 23.98,
+          "end": 24.38,
+          "probability": 0.458984375,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 63,
+          "text": "赫,",
+          "start": 24.38,
+          "end": 24.6,
+          "probability": 0.87841796875,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 64,
+          "text": "是",
+          "start": 25.12,
+          "end": 25.3,
+          "probability": 0.35400390625,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 65,
+          "text": "测",
+          "start": 25.3,
+          "end": 25.54,
+          "probability": 0.97802734375,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 66,
+          "text": "试",
+          "start": 25.54,
+          "end": 25.74,
+          "probability": 0.9990234375,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 67,
+          "text": "读",
+          "start": 25.74,
+          "end": 25.9,
+          "probability": 0.95849609375,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 68,
+          "text": "书,",
+          "start": 25.9,
+          "end": 26.1,
+          "probability": 0.74365234375,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 69,
+          "text": "不是",
+          "start": 26.6,
+          "end": 26.88,
+          "probability": 0.99072265625,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 70,
+          "text": "推",
+          "start": 26.88,
+          "end": 27.26,
+          "probability": 0.9990234375,
+          "alignment": "model_word_group"
+        }
+      ],
+      "A_pcm_check": {
+        "candidate": {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        "nonzero_samples": 0,
+        "samples": 40064,
+        "max_abs": 0,
+        "rms": 0.0,
+        "nearest_above_32_before": [
+          10.1423125,
+          43
+        ],
+        "nearest_above_32_after": [
+          13.425875,
+          52
+        ],
+        "word_overlaps": []
+      },
+      "all_pause_candidates": [
+        {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-1",
+          "start": 39.962,
+          "end": 41.97,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-2",
+          "start": 47.994,
+          "end": 50.2,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        }
+      ],
+      "vad_speech": [
+        {
+          "start": 0.06,
+          "end": 2.564
+        },
+        {
+          "start": 2.812,
+          "end": 4.644
+        },
+        {
+          "start": 5.372,
+          "end": 6.308
+        },
+        {
+          "start": 6.524,
+          "end": 8.356
+        },
+        {
+          "start": 8.604,
+          "end": 10.276
+        },
+        {
+          "start": 13.404,
+          "end": 14.788
+        },
+        {
+          "start": 15.036,
+          "end": 16.74
+        },
+        {
+          "start": 17.468,
+          "end": 19.076
+        },
+        {
+          "start": 19.324,
+          "end": 21.22
+        },
+        {
+          "start": 21.948,
+          "end": 24.836
+        },
+        {
+          "start": 25.052,
+          "end": 26.34
+        },
+        {
+          "start": 26.588,
+          "end": 28.164
+        },
+        {
+          "start": 28.892,
+          "end": 30.98
+        },
+        {
+          "start": 31.228,
+          "end": 32.612
+        },
+        {
+          "start": 32.86,
+          "end": 34.788
+        },
+        {
+          "start": 35.452,
+          "end": 38.5
+        },
+        {
+          "start": 38.748,
+          "end": 39.812
+        },
+        {
+          "start": 42.364,
+          "end": 43.844
+        },
+        {
+          "start": 44.092,
+          "end": 45.284
+        },
+        {
+          "start": 45.532,
+          "end": 47.844
+        }
+      ]
+    },
+    "macos-15-intel": {
+      "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+      "decoded_pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+      "shared_master_pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+      "audio_matches_master": true,
+      "decoded_audio_duration": 48.5063125,
+      "container_duration": 50.2,
+      "review_duration": 50.2,
+      "review_audio_duration": 48.5063125,
+      "container_tail_after_audio": 1.693687500000003,
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "profile": "High",
+          "codec_type": "video",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "mime_codec_string": "avc1.64001e",
+          "width": 640,
+          "height": 360,
+          "coded_width": 640,
+          "coded_height": 360,
+          "has_b_frames": 2,
+          "sample_aspect_ratio": "1:1",
+          "display_aspect_ratio": "16:9",
+          "pix_fmt": "yuv420p",
+          "level": 30,
+          "color_range": "tv",
+          "chroma_location": "left",
+          "field_order": "progressive",
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "r_frame_rate": "25/1",
+          "avg_frame_rate": "25/1",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "bits_per_raw_sample": "8",
+          "extradata_size": 47,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "ENCODER": "Lavc62.28.101 libx264",
+            "DURATION": "00:00:50.200000000"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "pcm_s16le",
+          "codec_long_name": "PCM signed 16-bit little-endian",
+          "codec_type": "audio",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "sample_fmt": "s16",
+          "sample_rate": "16000",
+          "channels": 1,
+          "bits_per_sample": 16,
+          "initial_padding": 0,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "bit_rate": "256000",
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "ENCODER": "Lavc62.28.101 pcm_s16le",
+            "DURATION": "00:00:48.506000000"
+          }
+        }
+      ],
+      "backend": "faster-whisper",
+      "device": "cpu",
+      "execution": {},
+      "fallback_errors": [],
+      "original_asr_identity": true,
+      "raw_text": "这是中文口播合成验收,不是真实客户案例。拍摄前,先关闭手机通知,再擦干净镜头。先锁定曝光,再检查白平衡。不要把提高亮度,理解成修好了画质。这里的24帧和48千赫是测试读书,不是推荐参数。如果畫面仍然偏色,先檢查光源,不要承諾一次解決。下面這段停頓用於展示操作,必須保留。最後核對字幕,保留原片,剪掉的停頓也要能恢復。",
+      "reference": "这是中文口播合成验收，不是真实客户案例。拍摄前，先关闭手机通知，再擦干净镜头。先锁定曝光，再检查白平衡。不要把提高亮度，理解成修好了画质。这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。如果画面仍然偏色，先检查光源，不要承诺一次解决。下面这段停顿用于展示操作，必须保留。最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+      "raw_without_punctuation_whitespace": {
+        "S": 17,
+        "D": 2,
+        "I": 0,
+        "N": 141,
+        "CER": 0.1347517730496454,
+        "edits": [
+          {
+            "op": "D",
+            "reference": "二",
+            "recognized": "",
+            "reference_index": 63,
+            "hypothesis_index": 63
+          },
+          {
+            "op": "S",
+            "reference": "十",
+            "recognized": "2",
+            "reference_index": 64,
+            "hypothesis_index": 63
+          },
+          {
+            "op": "S",
+            "reference": "四",
+            "recognized": "4",
+            "reference_index": 65,
+            "hypothesis_index": 64
+          },
+          {
+            "op": "D",
+            "reference": "四",
+            "recognized": "",
+            "reference_index": 68,
+            "hypothesis_index": 67
+          },
+          {
+            "op": "S",
+            "reference": "十",
+            "recognized": "4",
+            "reference_index": 69,
+            "hypothesis_index": 67
+          },
+          {
+            "op": "S",
+            "reference": "八",
+            "recognized": "8",
+            "reference_index": 70,
+            "hypothesis_index": 68
+          },
+          {
+            "op": "S",
+            "reference": "数",
+            "recognized": "书",
+            "reference_index": 77,
+            "hypothesis_index": 75
+          },
+          {
+            "op": "S",
+            "reference": "画",
+            "recognized": "畫",
+            "reference_index": 86,
+            "hypothesis_index": 84
+          },
+          {
+            "op": "S",
+            "reference": "检",
+            "recognized": "檢",
+            "reference_index": 93,
+            "hypothesis_index": 91
+          },
+          {
+            "op": "S",
+            "reference": "诺",
+            "recognized": "諾",
+            "reference_index": 100,
+            "hypothesis_index": 98
+          },
+          {
+            "op": "S",
+            "reference": "决",
+            "recognized": "決",
+            "reference_index": 104,
+            "hypothesis_index": 102
+          },
+          {
+            "op": "S",
+            "reference": "这",
+            "recognized": "這",
+            "reference_index": 107,
+            "hypothesis_index": 105
+          },
+          {
+            "op": "S",
+            "reference": "顿",
+            "recognized": "頓",
+            "reference_index": 110,
+            "hypothesis_index": 108
+          },
+          {
+            "op": "S",
+            "reference": "于",
+            "recognized": "於",
+            "reference_index": 112,
+            "hypothesis_index": 110
+          },
+          {
+            "op": "S",
+            "reference": "须",
+            "recognized": "須",
+            "reference_index": 118,
+            "hypothesis_index": 116
+          },
+          {
+            "op": "S",
+            "reference": "后",
+            "recognized": "後",
+            "reference_index": 122,
+            "hypothesis_index": 120
+          },
+          {
+            "op": "S",
+            "reference": "对",
+            "recognized": "對",
+            "reference_index": 124,
+            "hypothesis_index": 122
+          },
+          {
+            "op": "S",
+            "reference": "顿",
+            "recognized": "頓",
+            "reference_index": 135,
+            "hypothesis_index": 133
+          },
+          {
+            "op": "S",
+            "reference": "复",
+            "recognized": "復",
+            "reference_index": 140,
+            "hypothesis_index": 138
+          }
+        ]
+      },
+      "orthography_numeric_equivalent": {
+        "S": 1,
+        "D": 0,
+        "I": 0,
+        "N": 141,
+        "CER": 0.0070921985815602835,
+        "edits": [
+          {
+            "op": "S",
+            "reference": "数",
+            "recognized": "书",
+            "reference_index": 77,
+            "hypothesis_index": 77
+          }
+        ]
+      },
+      "numeric_and_typo_word_groups": [
+        {
+          "id": 56,
+          "text": "这里",
+          "start": 21.94,
+          "end": 22.2,
+          "probability": 0.9895921945571899,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 57,
+          "text": "的",
+          "start": 22.2,
+          "end": 22.44,
+          "probability": 0.9989848732948303,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 58,
+          "text": "24",
+          "start": 22.44,
+          "end": 22.84,
+          "probability": 0.89344322681427,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 59,
+          "text": "帧",
+          "start": 22.84,
+          "end": 23.22,
+          "probability": 0.9089510142803192,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 60,
+          "text": "和",
+          "start": 23.22,
+          "end": 23.54,
+          "probability": 0.9831417798995972,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 61,
+          "text": "48",
+          "start": 23.54,
+          "end": 24.0,
+          "probability": 0.9648630619049072,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 62,
+          "text": "千",
+          "start": 24.0,
+          "end": 24.38,
+          "probability": 0.508979856967926,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 63,
+          "text": "赫",
+          "start": 24.38,
+          "end": 24.6,
+          "probability": 0.8870633840560913,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 64,
+          "text": "是",
+          "start": 24.6,
+          "end": 25.3,
+          "probability": 0.3612019419670105,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 65,
+          "text": "测",
+          "start": 25.3,
+          "end": 25.54,
+          "probability": 0.9732087254524231,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 66,
+          "text": "试",
+          "start": 25.54,
+          "end": 25.74,
+          "probability": 0.9989363253116608,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 67,
+          "text": "读",
+          "start": 25.74,
+          "end": 25.92,
+          "probability": 0.9557256996631622,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 68,
+          "text": "书,",
+          "start": 25.92,
+          "end": 26.1,
+          "probability": 0.7752879858016968,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 69,
+          "text": "不是",
+          "start": 26.6,
+          "end": 26.88,
+          "probability": 0.9904317259788513,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 70,
+          "text": "推",
+          "start": 26.88,
+          "end": 27.28,
+          "probability": 0.9989427924156189,
+          "alignment": "model_word_group"
+        }
+      ],
+      "A_pcm_check": {
+        "candidate": {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        "nonzero_samples": 0,
+        "samples": 40064,
+        "max_abs": 0,
+        "rms": 0.0,
+        "nearest_above_32_before": [
+          10.1423125,
+          43
+        ],
+        "nearest_above_32_after": [
+          13.425875,
+          52
+        ],
+        "word_overlaps": []
+      },
+      "all_pause_candidates": [
+        {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-1",
+          "start": 39.962,
+          "end": 41.97,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-2",
+          "start": 47.994,
+          "end": 50.2,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        }
+      ],
+      "vad_speech": [
+        {
+          "start": 0.06,
+          "end": 2.564
+        },
+        {
+          "start": 2.812,
+          "end": 4.644
+        },
+        {
+          "start": 5.372,
+          "end": 6.308
+        },
+        {
+          "start": 6.524,
+          "end": 8.356
+        },
+        {
+          "start": 8.604,
+          "end": 10.276
+        },
+        {
+          "start": 13.404,
+          "end": 14.788
+        },
+        {
+          "start": 15.036,
+          "end": 16.74
+        },
+        {
+          "start": 17.468,
+          "end": 19.076
+        },
+        {
+          "start": 19.324,
+          "end": 21.22
+        },
+        {
+          "start": 21.948,
+          "end": 24.836
+        },
+        {
+          "start": 25.052,
+          "end": 26.34
+        },
+        {
+          "start": 26.588,
+          "end": 28.164
+        },
+        {
+          "start": 28.892,
+          "end": 30.98
+        },
+        {
+          "start": 31.228,
+          "end": 32.612
+        },
+        {
+          "start": 32.86,
+          "end": 34.788
+        },
+        {
+          "start": 35.452,
+          "end": 38.5
+        },
+        {
+          "start": 38.748,
+          "end": 39.812
+        },
+        {
+          "start": 42.364,
+          "end": 43.844
+        },
+        {
+          "start": 44.092,
+          "end": 45.284
+        },
+        {
+          "start": 45.532,
+          "end": 47.844
+        }
+      ]
+    },
+    "windows-latest": {
+      "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+      "decoded_pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+      "shared_master_pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+      "audio_matches_master": true,
+      "decoded_audio_duration": 48.5063125,
+      "container_duration": 50.2,
+      "review_duration": 50.2,
+      "review_audio_duration": 48.5063125,
+      "container_tail_after_audio": 1.693687500000003,
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_long_name": "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10",
+          "profile": "High",
+          "codec_type": "video",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "mime_codec_string": "avc1.64001e",
+          "width": 640,
+          "height": 360,
+          "coded_width": 640,
+          "coded_height": 360,
+          "has_b_frames": 2,
+          "sample_aspect_ratio": "1:1",
+          "display_aspect_ratio": "16:9",
+          "pix_fmt": "yuv420p",
+          "level": 30,
+          "color_range": "tv",
+          "chroma_location": "left",
+          "field_order": "progressive",
+          "is_avc": "true",
+          "nal_length_size": "4",
+          "r_frame_rate": "25/1",
+          "avg_frame_rate": "25/1",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "bits_per_raw_sample": "8",
+          "extradata_size": 47,
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "ENCODER": "Lavc62.28.101 libx264",
+            "DURATION": "00:00:50.200000000"
+          }
+        },
+        {
+          "index": 1,
+          "codec_name": "pcm_s16le",
+          "codec_long_name": "PCM signed 16-bit little-endian",
+          "codec_type": "audio",
+          "codec_tag_string": "[0][0][0][0]",
+          "codec_tag": "0x0000",
+          "sample_fmt": "s16",
+          "sample_rate": "16000",
+          "channels": 1,
+          "bits_per_sample": 16,
+          "initial_padding": 0,
+          "r_frame_rate": "0/0",
+          "avg_frame_rate": "0/0",
+          "time_base": "1/1000",
+          "start_pts": 0,
+          "start_time": "0.000000",
+          "bit_rate": "256000",
+          "disposition": {
+            "default": 0,
+            "dub": 0,
+            "original": 0,
+            "comment": 0,
+            "lyrics": 0,
+            "karaoke": 0,
+            "forced": 0,
+            "hearing_impaired": 0,
+            "visual_impaired": 0,
+            "clean_effects": 0,
+            "attached_pic": 0,
+            "timed_thumbnails": 0,
+            "non_diegetic": 0,
+            "captions": 0,
+            "descriptions": 0,
+            "metadata": 0,
+            "dependent": 0,
+            "still_image": 0,
+            "multilayer": 0
+          },
+          "tags": {
+            "ENCODER": "Lavc62.28.101 pcm_s16le",
+            "DURATION": "00:00:48.506000000"
+          }
+        }
+      ],
+      "backend": "faster-whisper",
+      "device": "cpu",
+      "execution": {},
+      "fallback_errors": [],
+      "original_asr_identity": true,
+      "raw_text": "這是中文口播合成驗收,不是真實客戶案例。拍攝前,先關閉手機通知,再擦乾淨鏡頭。先鎖定曝光,再檢查白平衡。不要把提高亮度,理解成修好了畫質。這裡的24幀和48000Hz,使測試讀數,不是推薦參數。如果畫面仍然偏色,先檢查光源,不要承諾一次解決。下面這段停頓用於展示操作,必須保留。最後核對字幕,保留原片,剪掉的停頓也要能恢復。",
+      "reference": "这是中文口播合成验收，不是真实客户案例。拍摄前，先关闭手机通知，再擦干净镜头。先锁定曝光，再检查白平衡。不要把提高亮度，理解成修好了画质。这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。如果画面仍然偏色，先检查光源，不要承诺一次解决。下面这段停顿用于展示操作，必须保留。最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+      "raw_without_punctuation_whitespace": {
+        "S": 48,
+        "D": 0,
+        "I": 1,
+        "N": 141,
+        "CER": 0.3475177304964539,
+        "edits": [
+          {
+            "op": "S",
+            "reference": "这",
+            "recognized": "這",
+            "reference_index": 0,
+            "hypothesis_index": 0
+          },
+          {
+            "op": "S",
+            "reference": "验",
+            "recognized": "驗",
+            "reference_index": 8,
+            "hypothesis_index": 8
+          },
+          {
+            "op": "S",
+            "reference": "实",
+            "recognized": "實",
+            "reference_index": 13,
+            "hypothesis_index": 13
+          },
+          {
+            "op": "S",
+            "reference": "户",
+            "recognized": "戶",
+            "reference_index": 15,
+            "hypothesis_index": 15
+          },
+          {
+            "op": "S",
+            "reference": "摄",
+            "recognized": "攝",
+            "reference_index": 19,
+            "hypothesis_index": 19
+          },
+          {
+            "op": "S",
+            "reference": "关",
+            "recognized": "關",
+            "reference_index": 22,
+            "hypothesis_index": 22
+          },
+          {
+            "op": "S",
+            "reference": "闭",
+            "recognized": "閉",
+            "reference_index": 23,
+            "hypothesis_index": 23
+          },
+          {
+            "op": "S",
+            "reference": "机",
+            "recognized": "機",
+            "reference_index": 25,
+            "hypothesis_index": 25
+          },
+          {
+            "op": "S",
+            "reference": "干",
+            "recognized": "乾",
+            "reference_index": 30,
+            "hypothesis_index": 30
+          },
+          {
+            "op": "S",
+            "reference": "净",
+            "recognized": "淨",
+            "reference_index": 31,
+            "hypothesis_index": 31
+          },
+          {
+            "op": "S",
+            "reference": "镜",
+            "recognized": "鏡",
+            "reference_index": 32,
+            "hypothesis_index": 32
+          },
+          {
+            "op": "S",
+            "reference": "头",
+            "recognized": "頭",
+            "reference_index": 33,
+            "hypothesis_index": 33
+          },
+          {
+            "op": "S",
+            "reference": "锁",
+            "recognized": "鎖",
+            "reference_index": 35,
+            "hypothesis_index": 35
+          },
+          {
+            "op": "S",
+            "reference": "检",
+            "recognized": "檢",
+            "reference_index": 40,
+            "hypothesis_index": 40
+          },
+          {
+            "op": "S",
+            "reference": "画",
+            "recognized": "畫",
+            "reference_index": 58,
+            "hypothesis_index": 58
+          },
+          {
+            "op": "S",
+            "reference": "质",
+            "recognized": "質",
+            "reference_index": 59,
+            "hypothesis_index": 59
+          },
+          {
+            "op": "S",
+            "reference": "这",
+            "recognized": "這",
+            "reference_index": 60,
+            "hypothesis_index": 60
+          },
+          {
+            "op": "S",
+            "reference": "里",
+            "recognized": "裡",
+            "reference_index": 61,
+            "hypothesis_index": 61
+          },
+          {
+            "op": "I",
+            "reference": "",
+            "recognized": "2",
+            "reference_index": 63,
+            "hypothesis_index": 63
+          },
+          {
+            "op": "S",
+            "reference": "二",
+            "recognized": "4",
+            "reference_index": 63,
+            "hypothesis_index": 64
+          },
+          {
+            "op": "S",
+            "reference": "十",
+            "recognized": "幀",
+            "reference_index": 64,
+            "hypothesis_index": 65
+          },
+          {
+            "op": "S",
+            "reference": "四",
+            "recognized": "和",
+            "reference_index": 65,
+            "hypothesis_index": 66
+          },
+          {
+            "op": "S",
+            "reference": "帧",
+            "recognized": "4",
+            "reference_index": 66,
+            "hypothesis_index": 67
+          },
+          {
+            "op": "S",
+            "reference": "和",
+            "recognized": "8",
+            "reference_index": 67,
+            "hypothesis_index": 68
+          },
+          {
+            "op": "S",
+            "reference": "四",
+            "recognized": "0",
+            "reference_index": 68,
+            "hypothesis_index": 69
+          },
+          {
+            "op": "S",
+            "reference": "十",
+            "recognized": "0",
+            "reference_index": 69,
+            "hypothesis_index": 70
+          },
+          {
+            "op": "S",
+            "reference": "八",
+            "recognized": "0",
+            "reference_index": 70,
+            "hypothesis_index": 71
+          },
+          {
+            "op": "S",
+            "reference": "千",
+            "recognized": "H",
+            "reference_index": 71,
+            "hypothesis_index": 72
+          },
+          {
+            "op": "S",
+            "reference": "赫",
+            "recognized": "z",
+            "reference_index": 72,
+            "hypothesis_index": 73
+          },
+          {
+            "op": "S",
+            "reference": "是",
+            "recognized": "使",
+            "reference_index": 73,
+            "hypothesis_index": 74
+          },
+          {
+            "op": "S",
+            "reference": "测",
+            "recognized": "測",
+            "reference_index": 74,
+            "hypothesis_index": 75
+          },
+          {
+            "op": "S",
+            "reference": "试",
+            "recognized": "試",
+            "reference_index": 75,
+            "hypothesis_index": 76
+          },
+          {
+            "op": "S",
+            "reference": "读",
+            "recognized": "讀",
+            "reference_index": 76,
+            "hypothesis_index": 77
+          },
+          {
+            "op": "S",
+            "reference": "数",
+            "recognized": "數",
+            "reference_index": 77,
+            "hypothesis_index": 78
+          },
+          {
+            "op": "S",
+            "reference": "荐",
+            "recognized": "薦",
+            "reference_index": 81,
+            "hypothesis_index": 82
+          },
+          {
+            "op": "S",
+            "reference": "参",
+            "recognized": "參",
+            "reference_index": 82,
+            "hypothesis_index": 83
+          },
+          {
+            "op": "S",
+            "reference": "数",
+            "recognized": "數",
+            "reference_index": 83,
+            "hypothesis_index": 84
+          },
+          {
+            "op": "S",
+            "reference": "画",
+            "recognized": "畫",
+            "reference_index": 86,
+            "hypothesis_index": 87
+          },
+          {
+            "op": "S",
+            "reference": "检",
+            "recognized": "檢",
+            "reference_index": 93,
+            "hypothesis_index": 94
+          },
+          {
+            "op": "S",
+            "reference": "诺",
+            "recognized": "諾",
+            "reference_index": 100,
+            "hypothesis_index": 101
+          },
+          {
+            "op": "S",
+            "reference": "决",
+            "recognized": "決",
+            "reference_index": 104,
+            "hypothesis_index": 105
+          },
+          {
+            "op": "S",
+            "reference": "这",
+            "recognized": "這",
+            "reference_index": 107,
+            "hypothesis_index": 108
+          },
+          {
+            "op": "S",
+            "reference": "顿",
+            "recognized": "頓",
+            "reference_index": 110,
+            "hypothesis_index": 111
+          },
+          {
+            "op": "S",
+            "reference": "于",
+            "recognized": "於",
+            "reference_index": 112,
+            "hypothesis_index": 113
+          },
+          {
+            "op": "S",
+            "reference": "须",
+            "recognized": "須",
+            "reference_index": 118,
+            "hypothesis_index": 119
+          },
+          {
+            "op": "S",
+            "reference": "后",
+            "recognized": "後",
+            "reference_index": 122,
+            "hypothesis_index": 123
+          },
+          {
+            "op": "S",
+            "reference": "对",
+            "recognized": "對",
+            "reference_index": 124,
+            "hypothesis_index": 125
+          },
+          {
+            "op": "S",
+            "reference": "顿",
+            "recognized": "頓",
+            "reference_index": 135,
+            "hypothesis_index": 136
+          },
+          {
+            "op": "S",
+            "reference": "复",
+            "recognized": "復",
+            "reference_index": 140,
+            "hypothesis_index": 141
+          }
+        ]
+      },
+      "orthography_numeric_equivalent": {
+        "S": 1,
+        "D": 0,
+        "I": 0,
+        "N": 141,
+        "CER": 0.0070921985815602835,
+        "edits": [
+          {
+            "op": "S",
+            "reference": "是",
+            "recognized": "使",
+            "reference_index": 73,
+            "hypothesis_index": 73
+          }
+        ]
+      },
+      "numeric_and_typo_word_groups": [
+        {
+          "id": 56,
+          "text": "這裡",
+          "start": 21.9,
+          "end": 22.2,
+          "probability": 0.9010935425758362,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 57,
+          "text": "的",
+          "start": 22.2,
+          "end": 22.44,
+          "probability": 0.9984525442123413,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 58,
+          "text": "24",
+          "start": 22.44,
+          "end": 22.82,
+          "probability": 0.7704062461853027,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 59,
+          "text": "幀",
+          "start": 22.82,
+          "end": 23.22,
+          "probability": 0.8756838738918304,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 60,
+          "text": "和",
+          "start": 23.22,
+          "end": 23.54,
+          "probability": 0.985873818397522,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 61,
+          "text": "48",
+          "start": 23.54,
+          "end": 24.04,
+          "probability": 0.9402459263801575,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 62,
+          "text": "000",
+          "start": 24.04,
+          "end": 24.4,
+          "probability": 0.5639867186546326,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 63,
+          "text": "Hz,",
+          "start": 24.4,
+          "end": 24.62,
+          "probability": 0.27579382061958313,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 64,
+          "text": "使",
+          "start": 25.12,
+          "end": 25.32,
+          "probability": 0.7473661303520203,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 65,
+          "text": "測",
+          "start": 25.32,
+          "end": 25.54,
+          "probability": 0.9936655163764954,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 66,
+          "text": "試",
+          "start": 25.54,
+          "end": 25.74,
+          "probability": 0.9887191653251648,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 67,
+          "text": "讀",
+          "start": 25.74,
+          "end": 25.92,
+          "probability": 0.956118106842041,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 68,
+          "text": "數,",
+          "start": 25.92,
+          "end": 26.14,
+          "probability": 0.9570236206054688,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 69,
+          "text": "不是",
+          "start": 26.58,
+          "end": 26.88,
+          "probability": 0.9870337247848511,
+          "alignment": "model_word_group"
+        },
+        {
+          "id": 70,
+          "text": "推",
+          "start": 26.88,
+          "end": 27.28,
+          "probability": 0.9990234375,
+          "alignment": "model_word_group"
+        }
+      ],
+      "A_pcm_check": {
+        "candidate": {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        "nonzero_samples": 0,
+        "samples": 40064,
+        "max_abs": 0,
+        "rms": 0.0,
+        "nearest_above_32_before": [
+          10.1423125,
+          43
+        ],
+        "nearest_above_32_after": [
+          13.425875,
+          52
+        ],
+        "word_overlaps": []
+      },
+      "all_pause_candidates": [
+        {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-1",
+          "start": 39.962,
+          "end": 41.97,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-2",
+          "start": 47.994,
+          "end": 50.2,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        }
+      ],
+      "vad_speech": [
+        {
+          "start": 0.06,
+          "end": 2.564
+        },
+        {
+          "start": 2.812,
+          "end": 4.644
+        },
+        {
+          "start": 5.372,
+          "end": 6.308
+        },
+        {
+          "start": 6.524,
+          "end": 8.356
+        },
+        {
+          "start": 8.604,
+          "end": 10.276
+        },
+        {
+          "start": 13.404,
+          "end": 14.788
+        },
+        {
+          "start": 15.036,
+          "end": 16.74
+        },
+        {
+          "start": 17.468,
+          "end": 19.076
+        },
+        {
+          "start": 19.324,
+          "end": 21.22
+        },
+        {
+          "start": 21.948,
+          "end": 24.836
+        },
+        {
+          "start": 25.052,
+          "end": 26.34
+        },
+        {
+          "start": 26.588,
+          "end": 28.164
+        },
+        {
+          "start": 28.892,
+          "end": 30.98
+        },
+        {
+          "start": 31.228,
+          "end": 32.612
+        },
+        {
+          "start": 32.86,
+          "end": 34.788
+        },
+        {
+          "start": 35.452,
+          "end": 38.5
+        },
+        {
+          "start": 38.748,
+          "end": 39.812
+        },
+        {
+          "start": 42.364,
+          "end": 43.844
+        },
+        {
+          "start": 44.092,
+          "end": 45.284
+        },
+        {
+          "start": 45.532,
+          "end": 47.844
+        }
+      ]
+    }
+  },
+  "normalization_review": [
+    "24帧 / 二十四帧, 48千赫 / 四十八千赫, and 48000Hz / 四十八千赫 are equivalent only as the complete explicitly matched number-plus-unit spans.",
+    "Do not map isolated 000 or Hz to empty text. Do not normalize 使 to 是 or 书 to 数; these must remain genuine contextual orthographic substitutions.",
+    "Raw ASR CER must remain based on untouched output. Normalization affects only scoring copies. Reference-assisted corrected output cannot be reported as raw recognition accuracy.",
+    "A PCM silence test establishes absence of substantial energy in the exact selected interval, not general semantic permission to remove arbitrary low-energy audio. This fixture independently authorizes only A; B must remain.",
+    "Restore-video length must match the original full source container timeline, including its video tail after PCM audio; comparing only to master.wav duration would under-restore the source."
+  ],
+  "limits": [
+    "This review compared the declared synthetic reference and PCM; it did not perform independent human listening or claim to resolve acoustically indistinguishable homophones from audio alone.",
+    "First-round runs failed before accepting correction and trim/restore operations. This round does not validate recovery exports."
+  ],
+  "caption_review_note": {
+    "status": "Parent-reported preflight risk, independently validated from original word bounds; not a completed first-round review export",
+    "short_complete_phrase": {
+      "text": "必须保留。",
+      "word_ids": [
+        103,
+        104,
+        105,
+        106
+      ],
+      "source_start": 38.8,
+      "source_end": 39.58,
+      "duration": 0.78
+    },
+    "next_sentence_start": 42.24,
+    "intervening_word_gap": 2.66,
+    "bad_merge": "Merging the short complete phrase forward into the next sentence crosses a meaningful demonstration pause. Do not pass by cue count or a universal minimum-duration threshold.",
+    "preferred_revision": "Merge backward within the same sentence into 用于展示操作，必须保留。 or permit an explicitly justified short complete phrase; never cross sentence/long-pause boundaries merely to satisfy a duration floor."
+  },
+  "boundary_revision_note": {
+    "original_inserted_A": {
+      "start": 10.91525,
+      "end": 13.31525,
+      "decision": "remove A then restore"
+    },
+    "actual_candidate_A": {
+      "start": 10.426,
+      "end": 12.93,
+      "duration": 2.504
+    },
+    "candidate_padding_extension_before_inserted_A": 0.48925,
+    "candidate_still_retains_end_of_inserted_A": 0.38525,
+    "required_disclosure": "Preserve original fixture bounds. Record derived candidate plus independently measured adjacent zero-valued synthesized padding, rather than silently redefine the original inserted gap."
+  }
+}

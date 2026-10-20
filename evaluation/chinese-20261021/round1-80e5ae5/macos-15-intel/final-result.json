@@ -1,0 +1,160 @@
+{
+  "passed": false,
+  "profile": "intel",
+  "platform": "darwin",
+  "architecture": "x86_64",
+  "commit": "80e5ae54981ffd23d787d27a492e4909db017f00",
+  "asr_execution": {
+    "run_id": "c1bd68ac76d745ed8bf953ff13ee3eda",
+    "device": "cpu",
+    "backend": "faster-whisper",
+    "execution": {},
+    "words": 126,
+    "candidates": 3,
+    "fallback_errors": []
+  },
+  "exception": {
+    "type": "AssertionError",
+    "message": "no unsupported reference insertion or deletion: {'mode': 'Known synthetic reference assisted; not human listening or general automatic proofreading', 'typos': [{'recognized': '书', 'reference': '数', 'word_ids': [68]}], 'decisions': [{'id': 68, 'before': '书,', 'after': '数,', 'source_start': 25.92, 'source_end': 26.1, 'kind': 'reference_assisted_substitution'}, {'id': 75, 'before': '畫', 'after': '画', 'source_start': 29.16, 'source_end': 29.6, 'kind': 'orthography'}, {'id': 82, 'before': '檢', 'after': '检', 'source_start': 31.48, 'source_end': 31.68, 'kind': 'orthography'}, {'id': 88, 'before': '諾', 'after': '诺', 'source_start': 33.44, 'source_end': 33.62, 'kind': 'orthography'}, {'id': 91, 'before': '決。', 'after': '决。', 'source_start': 34.3, 'source_end': 34.54, 'kind': 'orthography'}, {'id': 93, 'before': '這', 'after': '这', 'source_start': 35.84, 'source_end': 36.2, 'kind': 'orthography'}, {'id': 96, 'before': '頓', 'after': '顿', 'source_start': 36.7, 'source_end': 36.88, 'kind': 'orthography'}, {'id': 98, 'before': '於', 'after': '于', 'source_start': 37.14, 'source_end': 37.36, 'kind': 'orthography'}, {'id': 104, 'before': '須', 'after': '须', 'source_start': 38.98, 'source_end': 39.16, 'kind': 'orthography'}, {'id': 107, 'before': '最後', 'after': '最后', 'source_start': 42.24, 'source_end': 42.72, 'kind': 'orthography'}, {'id': 109, 'before': '對', 'after': '对', 'source_start': 43.06, 'source_end': 43.26, 'kind': 'orthography'}, {'id': 120, 'before': '頓', 'after': '顿', 'source_start': 46.32, 'source_end': 46.52, 'kind': 'orthography'}, {'id': 125, 'before': '復。', 'after': '复。', 'source_start': 47.44, 'source_end': 47.62, 'kind': 'orthography'}], 'unresolved': [{'kind': 'replace', 'recognized': '24', 'reference': '二十四', 'reason': 'No fabricated timestamps or reference-only insertion/deletion'}, {'kind': 'replace', 'recognized': '48', 'reference': '四十八', 'reason': 'No fabricated timestamps or reference-only insertion/deletion'}]}",
+    "traceback": "Traceback (most recent call last):\n  File \"/Users/runner/work/self-media-workbench/self-media-workbench/control/scripts/chinese_acceptance.py\", line 256, in main\n    try:audit.setup();audit.exercise()\n                      ^^^^^^^^^^^^^^^^\n  File \"/Users/runner/work/self-media-workbench/self-media-workbench/control/scripts/chinese_acceptance.py\", line 186, in exercise\n    self.check('no unsupported reference insertion or deletion',not reason['unresolved'],reason)\n  File \"/Users/runner/work/self-media-workbench/self-media-workbench/control/scripts/fresh_macos_acceptance.py\", line 106, in check\n    raise AssertionError(name + \": \" + str(detail))\nAssertionError: no unsupported reference insertion or deletion: {'mode': 'Known synthetic reference assisted; not human listening or general automatic proofreading', 'typos': [{'recognized': '书', 'reference': '数', 'word_ids': [68]}], 'decisions': [{'id': 68, 'before': '书,', 'after': '数,', 'source_start': 25.92, 'source_end': 26.1, 'kind': 'reference_assisted_substitution'}, {'id': 75, 'before': '畫', 'after': '画', 'source_start': 29.16, 'source_end': 29.6, 'kind': 'orthography'}, {'id': 82, 'before': '檢', 'after': '检', 'source_start': 31.48, 'source_end': 31.68, 'kind': 'orthography'}, {'id': 88, 'before': '諾', 'after': '诺', 'source_start': 33.44, 'source_end': 33.62, 'kind': 'orthography'}, {'id': 91, 'before': '決。', 'after': '决。', 'source_start': 34.3, 'source_end': 34.54, 'kind': 'orthography'}, {'id': 93, 'before': '這', 'after': '这', 'source_start': 35.84, 'source_end': 36.2, 'kind': 'orthography'}, {'id': 96, 'before': '頓', 'after': '顿', 'source_start': 36.7, 'source_end': 36.88, 'kind': 'orthography'}, {'id': 98, 'before': '於', 'after': '于', 'source_start': 37.14, 'source_end': 37.36, 'kind': 'orthography'}, {'id': 104, 'before': '須', 'after': '须', 'source_start': 38.98, 'source_end': 39.16, 'kind': 'orthography'}, {'id': 107, 'before': '最後', 'after': '最后', 'source_start': 42.24, 'source_end': 42.72, 'kind': 'orthography'}, {'id': 109, 'before': '對', 'after': '对', 'source_start': 43.06, 'source_end': 43.26, 'kind': 'orthography'}, {'id': 120, 'before': '頓', 'after': '顿', 'source_start': 46.32, 'source_end': 46.52, 'kind': 'orthography'}, {'id': 125, 'before': '復。', 'after': '复。', 'source_start': 47.44, 'source_end': 47.62, 'kind': 'orthography'}], 'unresolved': [{'kind': 'replace', 'recognized': '24', 'reference': '二十四', 'reason': 'No fabricated timestamps or reference-only insertion/deletion'}, {'kind': 'replace', 'recognized': '48', 'reference': '四十八', 'reason': 'No fabricated timestamps or reference-only insertion/deletion'}]}\n"
+  },
+  "failures": [
+    {
+      "check": "no unsupported reference insertion or deletion",
+      "passed": false,
+      "detail": {
+        "mode": "Known synthetic reference assisted; not human listening or general automatic proofreading",
+        "typos": [
+          {
+            "recognized": "书",
+            "reference": "数",
+            "word_ids": [
+              68
+            ]
+          }
+        ],
+        "decisions": [
+          {
+            "id": 68,
+            "before": "书,",
+            "after": "数,",
+            "source_start": 25.92,
+            "source_end": 26.1,
+            "kind": "reference_assisted_substitution"
+          },
+          {
+            "id": 75,
+            "before": "畫",
+            "after": "画",
+            "source_start": 29.16,
+            "source_end": 29.6,
+            "kind": "orthography"
+          },
+          {
+            "id": 82,
+            "before": "檢",
+            "after": "检",
+            "source_start": 31.48,
+            "source_end": 31.68,
+            "kind": "orthography"
+          },
+          {
+            "id": 88,
+            "before": "諾",
+            "after": "诺",
+            "source_start": 33.44,
+            "source_end": 33.62,
+            "kind": "orthography"
+          },
+          {
+            "id": 91,
+            "before": "決。",
+            "after": "决。",
+            "source_start": 34.3,
+            "source_end": 34.54,
+            "kind": "orthography"
+          },
+          {
+            "id": 93,
+            "before": "這",
+            "after": "这",
+            "source_start": 35.84,
+            "source_end": 36.2,
+            "kind": "orthography"
+          },
+          {
+            "id": 96,
+            "before": "頓",
+            "after": "顿",
+            "source_start": 36.7,
+            "source_end": 36.88,
+            "kind": "orthography"
+          },
+          {
+            "id": 98,
+            "before": "於",
+            "after": "于",
+            "source_start": 37.14,
+            "source_end": 37.36,
+            "kind": "orthography"
+          },
+          {
+            "id": 104,
+            "before": "須",
+            "after": "须",
+            "source_start": 38.98,
+            "source_end": 39.16,
+            "kind": "orthography"
+          },
+          {
+            "id": 107,
+            "before": "最後",
+            "after": "最后",
+            "source_start": 42.24,
+            "source_end": 42.72,
+            "kind": "orthography"
+          },
+          {
+            "id": 109,
+            "before": "對",
+            "after": "对",
+            "source_start": 43.06,
+            "source_end": 43.26,
+            "kind": "orthography"
+          },
+          {
+            "id": 120,
+            "before": "頓",
+            "after": "顿",
+            "source_start": 46.32,
+            "source_end": 46.52,
+            "kind": "orthography"
+          },
+          {
+            "id": 125,
+            "before": "復。",
+            "after": "复。",
+            "source_start": 47.44,
+            "source_end": 47.62,
+            "kind": "orthography"
+          }
+        ],
+        "unresolved": [
+          {
+            "kind": "replace",
+            "recognized": "24",
+            "reference": "二十四",
+            "reason": "No fabricated timestamps or reference-only insertion/deletion"
+          },
+          {
+            "kind": "replace",
+            "recognized": "48",
+            "reference": "四十八",
+            "reason": "No fabricated timestamps or reference-only insertion/deletion"
+          }
+        ]
+      }
+    }
+  ],
+  "scope": "Synthetic Chinese reference-assisted review, not human speech accuracy or a live LLM trial"
+}

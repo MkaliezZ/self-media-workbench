@@ -1,0 +1,1141 @@
+{
+  "source": "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/state/projects/e5ed1e047d2d4fe09f655edddb367369/media/922b2829f2824736bee2db78f812a104/original.mkv",
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+  "model": "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/hf-home/models/ct2",
+  "device": "cpu",
+  "backend": "faster-whisper",
+  "requested_backend": "auto",
+  "requested_device": "cpu",
+  "execution": {},
+  "fallback_errors": [],
+  "duration": 50.2,
+  "audio_duration": 48.5063125,
+  "cuda_dll_dirs": [],
+  "language": "zh",
+  "elapsed_seconds": 44.3916916847229,
+  "text": "这是中文口播合成验收,不是真实客户案例。拍摄前,先关闭手机通知,再擦干净镜头。先锁定曝光,再检查白平衡。不要把提高亮度,理解成修好了画质。这里的24帧和48千赫是测试读书,不是推荐参数。如果畫面仍然偏色,先檢查光源,不要承諾一次解決。下面這段停頓用於展示操作,必須保留。最後核對字幕,保留原片,剪掉的停頓也要能恢復。",
+  "words": [
+    {
+      "id": 0,
+      "text": "这是",
+      "start": 0.0,
+      "end": 0.34,
+      "probability": 0.36930903792381287,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 1,
+      "text": "中",
+      "start": 0.34,
+      "end": 0.72,
+      "probability": 0.9906409382820129,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 2,
+      "text": "文",
+      "start": 0.72,
+      "end": 0.92,
+      "probability": 0.9981966614723206,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 3,
+      "text": "口",
+      "start": 0.92,
+      "end": 1.14,
+      "probability": 0.9829379916191101,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 4,
+      "text": "播",
+      "start": 1.14,
+      "end": 1.38,
+      "probability": 0.7871711254119873,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 5,
+      "text": "合",
+      "start": 1.38,
+      "end": 1.64,
+      "probability": 0.8922634124755859,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 6,
+      "text": "成",
+      "start": 1.64,
+      "end": 1.86,
+      "probability": 0.8452008366584778,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 7,
+      "text": "验",
+      "start": 1.86,
+      "end": 2.1,
+      "probability": 0.9558969140052795,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 8,
+      "text": "收,",
+      "start": 2.1,
+      "end": 2.34,
+      "probability": 0.8152055144309998,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 9,
+      "text": "不是",
+      "start": 2.82,
+      "end": 3.06,
+      "probability": 0.8664155602455139,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 10,
+      "text": "真",
+      "start": 3.06,
+      "end": 3.36,
+      "probability": 0.960968554019928,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 11,
+      "text": "实",
+      "start": 3.36,
+      "end": 3.58,
+      "probability": 0.989504337310791,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 12,
+      "text": "客",
+      "start": 3.58,
+      "end": 3.88,
+      "probability": 0.9921767115592957,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 13,
+      "text": "户",
+      "start": 3.88,
+      "end": 4.1,
+      "probability": 0.9997735619544983,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 14,
+      "text": "案",
+      "start": 4.1,
+      "end": 4.3,
+      "probability": 0.9734715819358826,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 15,
+      "text": "例。",
+      "start": 4.3,
+      "end": 4.48,
+      "probability": 0.9996825456619263,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 16,
+      "text": "拍",
+      "start": 5.24,
+      "end": 5.58,
+      "probability": 0.982654869556427,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 17,
+      "text": "摄",
+      "start": 5.58,
+      "end": 5.76,
+      "probability": 0.9974773824214935,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 18,
+      "text": "前,",
+      "start": 5.76,
+      "end": 6.1,
+      "probability": 0.9972065091133118,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 19,
+      "text": "先",
+      "start": 6.64,
+      "end": 6.82,
+      "probability": 0.9734521508216858,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 20,
+      "text": "关",
+      "start": 6.82,
+      "end": 7.0,
+      "probability": 0.9861065149307251,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 21,
+      "text": "闭",
+      "start": 7.0,
+      "end": 7.2,
+      "probability": 0.9863551557064056,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 22,
+      "text": "手",
+      "start": 7.2,
+      "end": 7.48,
+      "probability": 0.9891096353530884,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 23,
+      "text": "机",
+      "start": 7.48,
+      "end": 7.7,
+      "probability": 0.9994125366210938,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 24,
+      "text": "通",
+      "start": 7.7,
+      "end": 7.92,
+      "probability": 0.9930239915847778,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 25,
+      "text": "知,",
+      "start": 7.92,
+      "end": 8.14,
+      "probability": 0.999196469783783,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 26,
+      "text": "再",
+      "start": 8.64,
+      "end": 8.82,
+      "probability": 0.986790120601654,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 27,
+      "text": "擦",
+      "start": 8.82,
+      "end": 9.06,
+      "probability": 0.9509561657905579,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 28,
+      "text": "干",
+      "start": 9.06,
+      "end": 9.36,
+      "probability": 0.9786785244941711,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 29,
+      "text": "净",
+      "start": 9.36,
+      "end": 9.56,
+      "probability": 0.9956794381141663,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 30,
+      "text": "镜",
+      "start": 9.56,
+      "end": 9.74,
+      "probability": 0.9836582839488983,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 31,
+      "text": "头。",
+      "start": 9.74,
+      "end": 10.08,
+      "probability": 0.9996812343597412,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 32,
+      "text": "先",
+      "start": 13.2,
+      "end": 13.68,
+      "probability": 0.9567010998725891,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 33,
+      "text": "锁",
+      "start": 13.68,
+      "end": 13.92,
+      "probability": 0.9954542517662048,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 34,
+      "text": "定",
+      "start": 13.92,
+      "end": 14.1,
+      "probability": 0.9971223473548889,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 35,
+      "text": "曝",
+      "start": 14.1,
+      "end": 14.3,
+      "probability": 0.9780628085136414,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 36,
+      "text": "光,",
+      "start": 14.3,
+      "end": 14.58,
+      "probability": 0.9997634291648865,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 37,
+      "text": "再",
+      "start": 15.12,
+      "end": 15.26,
+      "probability": 0.9891003966331482,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 38,
+      "text": "检",
+      "start": 15.26,
+      "end": 15.48,
+      "probability": 0.9991067349910736,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 39,
+      "text": "查",
+      "start": 15.48,
+      "end": 15.72,
+      "probability": 0.9957672357559204,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 40,
+      "text": "白",
+      "start": 15.72,
+      "end": 16.0,
+      "probability": 0.9331484436988831,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 41,
+      "text": "平",
+      "start": 16.0,
+      "end": 16.22,
+      "probability": 0.9668803811073303,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 42,
+      "text": "衡。",
+      "start": 16.22,
+      "end": 16.5,
+      "probability": 0.9793978035449982,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 43,
+      "text": "不要",
+      "start": 17.48,
+      "end": 17.74,
+      "probability": 0.9948935508728027,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 44,
+      "text": "把",
+      "start": 17.74,
+      "end": 18.0,
+      "probability": 0.9964694976806641,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 45,
+      "text": "提",
+      "start": 18.0,
+      "end": 18.28,
+      "probability": 0.991442859172821,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 46,
+      "text": "高",
+      "start": 18.28,
+      "end": 18.46,
+      "probability": 0.999702513217926,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 47,
+      "text": "亮",
+      "start": 18.46,
+      "end": 18.66,
+      "probability": 0.9821517467498779,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 48,
+      "text": "度,",
+      "start": 18.66,
+      "end": 18.88,
+      "probability": 0.9997729659080505,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 49,
+      "text": "理",
+      "start": 19.34,
+      "end": 19.54,
+      "probability": 0.9644511342048645,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 50,
+      "text": "解",
+      "start": 19.54,
+      "end": 19.74,
+      "probability": 0.999923825263977,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 51,
+      "text": "成",
+      "start": 19.74,
+      "end": 19.96,
+      "probability": 0.9957541227340698,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 52,
+      "text": "修",
+      "start": 19.96,
+      "end": 20.24,
+      "probability": 0.9959970414638519,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 53,
+      "text": "好了",
+      "start": 20.24,
+      "end": 20.58,
+      "probability": 0.9789654612541199,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 54,
+      "text": "画",
+      "start": 20.58,
+      "end": 20.82,
+      "probability": 0.9771237969398499,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 55,
+      "text": "质。",
+      "start": 20.82,
+      "end": 21.02,
+      "probability": 0.9990582764148712,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 56,
+      "text": "这里",
+      "start": 21.94,
+      "end": 22.2,
+      "probability": 0.9895921945571899,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 57,
+      "text": "的",
+      "start": 22.2,
+      "end": 22.44,
+      "probability": 0.9989848732948303,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 58,
+      "text": "24",
+      "start": 22.44,
+      "end": 22.84,
+      "probability": 0.89344322681427,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 59,
+      "text": "帧",
+      "start": 22.84,
+      "end": 23.22,
+      "probability": 0.9089510142803192,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 60,
+      "text": "和",
+      "start": 23.22,
+      "end": 23.54,
+      "probability": 0.9831417798995972,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 61,
+      "text": "48",
+      "start": 23.54,
+      "end": 24.0,
+      "probability": 0.9648630619049072,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 62,
+      "text": "千",
+      "start": 24.0,
+      "end": 24.38,
+      "probability": 0.508979856967926,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 63,
+      "text": "赫",
+      "start": 24.38,
+      "end": 24.6,
+      "probability": 0.8870633840560913,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 64,
+      "text": "是",
+      "start": 24.6,
+      "end": 25.3,
+      "probability": 0.3612019419670105,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 65,
+      "text": "测",
+      "start": 25.3,
+      "end": 25.54,
+      "probability": 0.9732087254524231,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 66,
+      "text": "试",
+      "start": 25.54,
+      "end": 25.74,
+      "probability": 0.9989363253116608,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 67,
+      "text": "读",
+      "start": 25.74,
+      "end": 25.92,
+      "probability": 0.9557256996631622,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 68,
+      "text": "书,",
+      "start": 25.92,
+      "end": 26.1,
+      "probability": 0.7752879858016968,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 69,
+      "text": "不是",
+      "start": 26.6,
+      "end": 26.88,
+      "probability": 0.9904317259788513,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 70,
+      "text": "推",
+      "start": 26.88,
+      "end": 27.28,
+      "probability": 0.9989427924156189,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 71,
+      "text": "荐",
+      "start": 27.28,
+      "end": 27.48,
+      "probability": 0.9885156154632568,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 72,
+      "text": "参",
+      "start": 27.48,
+      "end": 27.74,
+      "probability": 0.994980663061142,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 73,
+      "text": "数。",
+      "start": 27.74,
+      "end": 27.96,
+      "probability": 0.9776715040206909,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 74,
+      "text": "如果",
+      "start": 28.68,
+      "end": 29.16,
+      "probability": 0.7236645221710205,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 75,
+      "text": "畫",
+      "start": 29.16,
+      "end": 29.6,
+      "probability": 0.6120954155921936,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 76,
+      "text": "面",
+      "start": 29.6,
+      "end": 29.86,
+      "probability": 0.9999256134033203,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 77,
+      "text": "仍",
+      "start": 29.86,
+      "end": 30.08,
+      "probability": 0.9994048178195953,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 78,
+      "text": "然",
+      "start": 30.08,
+      "end": 30.28,
+      "probability": 0.9990383386611938,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 79,
+      "text": "偏",
+      "start": 30.28,
+      "end": 30.52,
+      "probability": 0.9950134754180908,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 80,
+      "text": "色,",
+      "start": 30.52,
+      "end": 30.78,
+      "probability": 0.9912443161010742,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 81,
+      "text": "先",
+      "start": 31.22,
+      "end": 31.48,
+      "probability": 0.9038918614387512,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 82,
+      "text": "檢",
+      "start": 31.48,
+      "end": 31.68,
+      "probability": 0.97846519947052,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 83,
+      "text": "查",
+      "start": 31.68,
+      "end": 31.92,
+      "probability": 0.9842013716697693,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 84,
+      "text": "光",
+      "start": 31.92,
+      "end": 32.1,
+      "probability": 0.9938228130340576,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 85,
+      "text": "源,",
+      "start": 32.1,
+      "end": 32.36,
+      "probability": 0.9946466088294983,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 86,
+      "text": "不要",
+      "start": 32.9,
+      "end": 33.16,
+      "probability": 0.9337260723114014,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 87,
+      "text": "承",
+      "start": 33.16,
+      "end": 33.44,
+      "probability": 0.9626876413822174,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 88,
+      "text": "諾",
+      "start": 33.44,
+      "end": 33.62,
+      "probability": 0.9718542695045471,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 89,
+      "text": "一次",
+      "start": 33.62,
+      "end": 33.96,
+      "probability": 0.9816532731056213,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 90,
+      "text": "解",
+      "start": 33.96,
+      "end": 34.3,
+      "probability": 0.9979878664016724,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 91,
+      "text": "決。",
+      "start": 34.3,
+      "end": 34.54,
+      "probability": 0.9879544973373413,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 92,
+      "text": "下面",
+      "start": 35.38,
+      "end": 35.84,
+      "probability": 0.9557662010192871,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 93,
+      "text": "這",
+      "start": 35.84,
+      "end": 36.2,
+      "probability": 0.990266740322113,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 94,
+      "text": "段",
+      "start": 36.2,
+      "end": 36.46,
+      "probability": 0.9982201457023621,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 95,
+      "text": "停",
+      "start": 36.46,
+      "end": 36.7,
+      "probability": 0.8581505417823792,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 96,
+      "text": "頓",
+      "start": 36.7,
+      "end": 36.88,
+      "probability": 0.9850924611091614,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 97,
+      "text": "用",
+      "start": 36.88,
+      "end": 37.14,
+      "probability": 0.9961631298065186,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 98,
+      "text": "於",
+      "start": 37.14,
+      "end": 37.36,
+      "probability": 0.9417665004730225,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 99,
+      "text": "展",
+      "start": 37.36,
+      "end": 37.6,
+      "probability": 0.9945506453514099,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 100,
+      "text": "示",
+      "start": 37.6,
+      "end": 37.82,
+      "probability": 0.9983722567558289,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 101,
+      "text": "操",
+      "start": 37.82,
+      "end": 38.04,
+      "probability": 0.9986035525798798,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 102,
+      "text": "作,",
+      "start": 38.04,
+      "end": 38.32,
+      "probability": 0.9990195035934448,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 103,
+      "text": "必",
+      "start": 38.78,
+      "end": 38.98,
+      "probability": 0.9944570064544678,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 104,
+      "text": "須",
+      "start": 38.98,
+      "end": 39.16,
+      "probability": 0.9916939735412598,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 105,
+      "text": "保",
+      "start": 39.16,
+      "end": 39.36,
+      "probability": 0.9912980794906616,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 106,
+      "text": "留。",
+      "start": 39.36,
+      "end": 39.58,
+      "probability": 0.9997122883796692,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 107,
+      "text": "最後",
+      "start": 42.24,
+      "end": 42.72,
+      "probability": 0.9836519956588745,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 108,
+      "text": "核",
+      "start": 42.72,
+      "end": 43.06,
+      "probability": 0.7781567573547363,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 109,
+      "text": "對",
+      "start": 43.06,
+      "end": 43.26,
+      "probability": 0.9811640381813049,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 110,
+      "text": "字",
+      "start": 43.26,
+      "end": 43.46,
+      "probability": 0.996891438961029,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 111,
+      "text": "幕,",
+      "start": 43.46,
+      "end": 43.64,
+      "probability": 0.9665056467056274,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 112,
+      "text": "保",
+      "start": 44.08,
+      "end": 44.3,
+      "probability": 0.9830465912818909,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 113,
+      "text": "留",
+      "start": 44.3,
+      "end": 44.52,
+      "probability": 0.9997120499610901,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 114,
+      "text": "原",
+      "start": 44.52,
+      "end": 44.78,
+      "probability": 0.7354891896247864,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 115,
+      "text": "片,",
+      "start": 44.78,
+      "end": 45.0,
+      "probability": 0.757881224155426,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 116,
+      "text": "剪",
+      "start": 45.58,
+      "end": 45.76,
+      "probability": 0.9278508424758911,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 117,
+      "text": "掉",
+      "start": 45.76,
+      "end": 45.96,
+      "probability": 0.9953877329826355,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 118,
+      "text": "的",
+      "start": 45.96,
+      "end": 46.1,
+      "probability": 0.9983454942703247,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 119,
+      "text": "停",
+      "start": 46.1,
+      "end": 46.32,
+      "probability": 0.9958122372627258,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 120,
+      "text": "頓",
+      "start": 46.32,
+      "end": 46.52,
+      "probability": 0.9998475015163422,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 121,
+      "text": "也",
+      "start": 46.52,
+      "end": 46.76,
+      "probability": 0.9953704476356506,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 122,
+      "text": "要",
+      "start": 46.76,
+      "end": 46.98,
+      "probability": 0.9979038238525391,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 123,
+      "text": "能",
+      "start": 46.98,
+      "end": 47.2,
+      "probability": 0.9912315011024475,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 124,
+      "text": "恢",
+      "start": 47.2,
+      "end": 47.44,
+      "probability": 0.9937847852706909,
+      "alignment": "model_word_group"
+    },
+    {
+      "id": 125,
+      "text": "復。",
+      "start": 47.44,
+      "end": 47.62,
+      "probability": 0.9977385103702545,
+      "alignment": "model_word_group"
+    }
+  ],
+  "vad_speech": [
+    {
+      "start": 0.06,
+      "end": 2.564
+    },
+    {
+      "start": 2.812,
+      "end": 4.644
+    },
+    {
+      "start": 5.372,
+      "end": 6.308
+    },
+    {
+      "start": 6.524,
+      "end": 8.356
+    },
+    {
+      "start": 8.604,
+      "end": 10.276
+    },
+    {
+      "start": 13.404,
+      "end": 14.788
+    },
+    {
+      "start": 15.036,
+      "end": 16.74
+    },
+    {
+      "start": 17.468,
+      "end": 19.076
+    },
+    {
+      "start": 19.324,
+      "end": 21.22
+    },
+    {
+      "start": 21.948,
+      "end": 24.836
+    },
+    {
+      "start": 25.052,
+      "end": 26.34
+    },
+    {
+      "start": 26.588,
+      "end": 28.164
+    },
+    {
+      "start": 28.892,
+      "end": 30.98
+    },
+    {
+      "start": 31.228,
+      "end": 32.612
+    },
+    {
+      "start": 32.86,
+      "end": 34.788
+    },
+    {
+      "start": 35.452,
+      "end": 38.5
+    },
+    {
+      "start": 38.748,
+      "end": 39.812
+    },
+    {
+      "start": 42.364,
+      "end": 43.844
+    },
+    {
+      "start": 44.092,
+      "end": 45.284
+    },
+    {
+      "start": 45.532,
+      "end": 47.844
+    }
+  ],
+  "candidates": [
+    {
+      "id": "pause-0",
+      "start": 10.426,
+      "end": 12.93,
+      "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+      "selected": false,
+      "kind": "pause_candidate"
+    },
+    {
+      "id": "pause-1",
+      "start": 39.962,
+      "end": 41.97,
+      "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+      "selected": false,
+      "kind": "pause_candidate"
+    },
+    {
+      "id": "pause-2",
+      "start": 47.994,
+      "end": 50.2,
+      "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+      "selected": false,
+      "kind": "pause_candidate"
+    }
+  ],
+  "limits": [
+    "ASR识别和对齐可能有误，需要回听",
+    "不自动判断口误或删除任何短句",
+    "非语音不等于可删气口；默认全部保留",
+    "修改文字不会改变原词组时间戳"
+  ]
+}

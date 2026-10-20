@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "profile": "windows",
+  "platform": "win32",
+  "architecture": "AMD64",
+  "commit": "c8f5b99021c1dfb52f6e133f4647aaf19491607b",
+  "asr_execution": {
+    "run_id": "ef2d3fe1af524e3ebd851c76a9d2fd5b",
+    "device": "cpu",
+    "backend": "faster-whisper",
+    "execution": {},
+    "words": 126,
+    "candidates": 3,
+    "fallback_errors": []
+  },
+  "exception": null,
+  "failures": [],
+  "scope": "Synthetic Chinese reference-assisted review, not human speech accuracy or a live LLM trial"
+}

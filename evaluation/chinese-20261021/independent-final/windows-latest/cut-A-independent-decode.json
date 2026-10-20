@@ -1,0 +1,21 @@
+{
+  "command": [
+    "C:\\ProgramData\\chocolatey\\bin\\ffmpeg.EXE",
+    "-hide_banner",
+    "-v",
+    "error",
+    "-nostdin",
+    "-i",
+    "F:\\Codex Workspace\\Studio\\chinese-media-audit-20261021\\run-39473993837\\windows-latest\\delivered\\cut-A\\reviewed_cut.mp4",
+    "-map",
+    "0:v:0",
+    "-map",
+    "0:a:0",
+    "-f",
+    "null",
+    "-"
+  ],
+  "returncode": 0,
+  "stdout": "",
+  "stderr": ""
+}

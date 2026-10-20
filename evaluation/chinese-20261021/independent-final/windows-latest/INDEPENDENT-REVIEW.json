@@ -1,0 +1,1675 @@
+{
+  "cloud_run": 39473993837,
+  "runner": "windows-latest",
+  "technical_checks_pass": true,
+  "semantic_caption_pass": true,
+  "overall_pass": true,
+  "checks": [
+    {
+      "check": "evidence-manifest.json recomputed",
+      "passed": true,
+      "detail": {
+        "entries": 285,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "artifact-manifest.json recomputed",
+      "passed": true,
+      "detail": {
+        "entries": 288,
+        "mismatches": []
+      }
+    },
+    {
+      "check": "same immutable cross-platform source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "126 actual original ASR groups",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "real CPU",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "four immutable native export IDs retained",
+      "passed": true,
+      "detail": 4
+    },
+    {
+      "check": "raw exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw native immutable export preserved",
+      "passed": true,
+      "detail": [
+        "4fadd832e87143a98f076f78b3206a0d"
+      ]
+    },
+    {
+      "check": "raw source/run binding",
+      "passed": true,
+      "detail": {
+        "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+        "source_media_id": "af38905861e84e39bcbb47e801a85b03",
+        "source_media_metadata": {
+          "media_nature": "generated",
+          "source_note": "Same newly authored synthetic Chinese PCM fixture, no recorded person",
+          "usage_scope": "",
+          "declaration_only": true
+        },
+        "project_revision_at_export": 2,
+        "asr_run": "ef2d3fe1af524e3ebd851c76a9d2fd5b",
+        "review_revision": 0,
+        "created_at": "2026-10-20T18:22:47.681022+00:00",
+        "external_publication": false
+      }
+    },
+    {
+      "check": "raw unchanged IDs source bounds probabilities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw retains all spoken IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw export preserves raw text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw full video-source extent",
+      "passed": true,
+      "detail": {
+        "duration": 50.2,
+        "cuts": [],
+        "keeps": [
+          {
+            "start": 0.0,
+            "end": 50.2,
+            "outputOffset": 0.0
+          }
+        ],
+        "output_duration": 50.2,
+        "selected_ids": [],
+        "deleted_word_ids": [],
+        "decisions": [],
+        "policy": "Only explicit selected pauses/spoken groups; no hidden silence cutting or boundary snapping."
+      }
+    },
+    {
+      "check": "raw retains all B source duration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw word projection arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "raw aggregate SRT keeps all word text",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw SRT IDs text and time arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "raw independent complete-file decode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "raw actual duration vs explicit keeps",
+      "passed": true,
+      "detail": {
+        "actual": 50.2,
+        "expected": 50.2
+      }
+    },
+    {
+      "check": "raw actual decoded B hold interior remains silent and full duration",
+      "passed": true,
+      "detail": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 40.448875,
+        "output_end": 42.248875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    {
+      "check": "reviewed-full exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full native immutable export preserved",
+      "passed": true,
+      "detail": [
+        "0c04ff8d2ff24e50b2da7690adb0e8f8"
+      ]
+    },
+    {
+      "check": "reviewed-full source/run binding",
+      "passed": true,
+      "detail": {
+        "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+        "source_media_id": "af38905861e84e39bcbb47e801a85b03",
+        "source_media_metadata": {
+          "media_nature": "generated",
+          "source_note": "Same newly authored synthetic Chinese PCM fixture, no recorded person",
+          "usage_scope": "",
+          "declaration_only": true
+        },
+        "project_revision_at_export": 2,
+        "asr_run": "ef2d3fe1af524e3ebd851c76a9d2fd5b",
+        "review_revision": 2,
+        "created_at": "2026-10-20T18:22:51.560928+00:00",
+        "external_publication": false
+      }
+    },
+    {
+      "check": "reviewed-full unchanged IDs source bounds probabilities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full retains all spoken IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full corrected copy matches synthetic reference after only declared format equivalences",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full full video-source extent",
+      "passed": true,
+      "detail": {
+        "duration": 50.2,
+        "cuts": [],
+        "keeps": [
+          {
+            "start": 0.0,
+            "end": 50.2,
+            "outputOffset": 0.0
+          }
+        ],
+        "output_duration": 50.2,
+        "selected_ids": [],
+        "deleted_word_ids": [],
+        "decisions": [],
+        "policy": "Only explicit selected pauses/spoken groups; no hidden silence cutting or boundary snapping."
+      }
+    },
+    {
+      "check": "reviewed-full retains all B source duration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full word projection arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "reviewed-full each caption ID once in order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full SRT IDs text and time arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "reviewed-full independent complete-file decode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "reviewed-full actual duration vs explicit keeps",
+      "passed": true,
+      "detail": {
+        "actual": 50.2,
+        "expected": 50.2
+      }
+    },
+    {
+      "check": "reviewed-full actual decoded B hold interior remains silent and full duration",
+      "passed": true,
+      "detail": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 40.448875,
+        "output_end": 42.248875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    {
+      "check": "cut-A exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cut-A native immutable export preserved",
+      "passed": true,
+      "detail": [
+        "1b305cb6973444058064bc34cd05ec5f"
+      ]
+    },
+    {
+      "check": "cut-A source/run binding",
+      "passed": true,
+      "detail": {
+        "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+        "source_media_id": "af38905861e84e39bcbb47e801a85b03",
+        "source_media_metadata": {
+          "media_nature": "generated",
+          "source_note": "Same newly authored synthetic Chinese PCM fixture, no recorded person",
+          "usage_scope": "",
+          "declaration_only": true
+        },
+        "project_revision_at_export": 2,
+        "asr_run": "ef2d3fe1af524e3ebd851c76a9d2fd5b",
+        "review_revision": 3,
+        "created_at": "2026-10-20T18:22:55.491238+00:00",
+        "external_publication": false
+      }
+    },
+    {
+      "check": "cut-A unchanged IDs source bounds probabilities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cut-A retains all spoken IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cut-A corrected copy matches synthetic reference after only declared format equivalences",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "only A explicit cut",
+      "passed": true,
+      "detail": [
+        {
+          "start": 10.426,
+          "end": 12.93
+        }
+      ]
+    },
+    {
+      "check": "cut-A retains all B source duration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cut-A word projection arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "cut-A each caption ID once in order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cut-A SRT IDs text and time arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "cut-A independent complete-file decode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "cut-A actual duration vs explicit keeps",
+      "passed": true,
+      "detail": {
+        "actual": 47.68,
+        "expected": 47.696000000000005
+      }
+    },
+    {
+      "check": "cut-A actual decoded B hold interior remains silent and full duration",
+      "passed": true,
+      "detail": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 37.944875,
+        "output_end": 39.744875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    {
+      "check": "restored exists",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored native immutable export preserved",
+      "passed": true,
+      "detail": [
+        "f4b6c835f4d443edb77eb28b0aeeac79"
+      ]
+    },
+    {
+      "check": "restored source/run binding",
+      "passed": true,
+      "detail": {
+        "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+        "source_media_id": "af38905861e84e39bcbb47e801a85b03",
+        "source_media_metadata": {
+          "media_nature": "generated",
+          "source_note": "Same newly authored synthetic Chinese PCM fixture, no recorded person",
+          "usage_scope": "",
+          "declaration_only": true
+        },
+        "project_revision_at_export": 2,
+        "asr_run": "ef2d3fe1af524e3ebd851c76a9d2fd5b",
+        "review_revision": 4,
+        "created_at": "2026-10-20T18:22:59.727332+00:00",
+        "external_publication": false
+      }
+    },
+    {
+      "check": "restored unchanged IDs source bounds probabilities",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored retains all spoken IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored corrected copy matches synthetic reference after only declared format equivalences",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored full video-source extent",
+      "passed": true,
+      "detail": {
+        "duration": 50.2,
+        "cuts": [],
+        "keeps": [
+          {
+            "start": 0.0,
+            "end": 50.2,
+            "outputOffset": 0.0
+          }
+        ],
+        "output_duration": 50.2,
+        "selected_ids": [],
+        "deleted_word_ids": [],
+        "decisions": [],
+        "policy": "Only explicit selected pauses/spoken groups; no hidden silence cutting or boundary snapping."
+      }
+    },
+    {
+      "check": "restored retains all B source duration",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored word projection arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "restored each caption ID once in order",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored SRT IDs text and time arithmetic",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "check": "restored independent complete-file decode",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "restored actual duration vs explicit keeps",
+      "passed": true,
+      "detail": {
+        "actual": 50.2,
+        "expected": 50.2
+      }
+    },
+    {
+      "check": "restored actual decoded B hold interior remains silent and full duration",
+      "passed": true,
+      "detail": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 40.448875,
+        "output_end": 42.248875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    {
+      "check": "restored audio equals raw full-length export actual decoded PCM",
+      "passed": true,
+      "detail": {
+        "raw": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+        "restored": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33"
+      }
+    },
+    {
+      "check": "restoration retains all actual corrections and caption decisions",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "original ASR immutable after all exports",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "all saved jobs terminal done",
+      "passed": true,
+      "detail": {
+        "jobs": 5
+      }
+    },
+    {
+      "check": "own service exit confirmed",
+      "passed": true,
+      "detail": {
+        "only_own_service": true,
+        "exit_confirmed": true
+      }
+    }
+  ],
+  "semantic_failures": [],
+  "exports": {
+    "raw": {
+      "duration": 50.2,
+      "expected_keep_duration": 50.2,
+      "review_revision": 0,
+      "export_id": "raw",
+      "cues": [],
+      "word_groups": 126,
+      "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+      "B_decoded_hold": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 40.448875,
+        "output_end": 42.248875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    "reviewed-full": {
+      "duration": 50.2,
+      "expected_keep_duration": 50.2,
+      "review_revision": 2,
+      "export_id": "reviewed-full",
+      "cues": [
+        {
+          "cue": 1,
+          "text": "这是中文口播合成验收,",
+          "start": 0.0,
+          "end": 2.34,
+          "duration": 2.34,
+          "word_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_start": 0.0,
+          "source_end": 2.34,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 2,
+          "text": "不是真实客户案例。",
+          "start": 2.8,
+          "end": 4.5,
+          "duration": 1.7,
+          "word_ids": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "source_start": 2.8,
+          "source_end": 4.5,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 3,
+          "text": "拍摄前,先关闭手机通知,",
+          "start": 5.2,
+          "end": 8.14,
+          "duration": 2.94,
+          "word_ids": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "source_start": 5.2,
+          "source_end": 8.14,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 4,
+          "text": "再擦干净镜头。",
+          "start": 8.64,
+          "end": 10.06,
+          "duration": 1.42,
+          "word_ids": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "source_start": 8.64,
+          "source_end": 10.06,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 5,
+          "text": "先锁定曝光,",
+          "start": 13.2,
+          "end": 14.58,
+          "duration": 1.38,
+          "word_ids": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "source_start": 13.2,
+          "source_end": 14.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 6,
+          "text": "再检查白平衡。",
+          "start": 15.12,
+          "end": 16.5,
+          "duration": 1.38,
+          "word_ids": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "source_start": 15.12,
+          "source_end": 16.5,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 7,
+          "text": "不要把提高亮度,",
+          "start": 17.46,
+          "end": 18.88,
+          "duration": 1.42,
+          "word_ids": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "source_start": 17.46,
+          "source_end": 18.88,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 8,
+          "text": "理解成修好了画质。",
+          "start": 19.34,
+          "end": 21.02,
+          "duration": 1.68,
+          "word_ids": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "source_start": 19.34,
+          "source_end": 21.02,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 9,
+          "text": "这里的24帧和48000Hz,",
+          "start": 21.9,
+          "end": 24.62,
+          "duration": 2.72,
+          "word_ids": [
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ],
+          "source_start": 21.9,
+          "source_end": 24.62,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 10,
+          "text": "是测试读数,",
+          "start": 25.12,
+          "end": 26.14,
+          "duration": 1.02,
+          "word_ids": [
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "source_start": 25.12,
+          "source_end": 26.14,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 11,
+          "text": "不是推荐参数。",
+          "start": 26.58,
+          "end": 27.96,
+          "duration": 1.38,
+          "word_ids": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ],
+          "source_start": 26.58,
+          "source_end": 27.96,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 12,
+          "text": "如果画面仍然偏色,",
+          "start": 28.68,
+          "end": 30.78,
+          "duration": 2.1,
+          "word_ids": [
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "source_start": 28.68,
+          "source_end": 30.78,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 13,
+          "text": "先检查光源,",
+          "start": 31.24,
+          "end": 32.36,
+          "duration": 1.12,
+          "word_ids": [
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "source_start": 31.24,
+          "source_end": 32.36,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 14,
+          "text": "不要承诺一次解决。",
+          "start": 32.9,
+          "end": 34.54,
+          "duration": 1.64,
+          "word_ids": [
+            86,
+            87,
+            88,
+            89,
+            90,
+            91
+          ],
+          "source_start": 32.9,
+          "source_end": 34.54,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 15,
+          "text": "下面这段停顿用于展示操作,必须保留。",
+          "start": 35.38,
+          "end": 39.58,
+          "duration": 4.2,
+          "word_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "source_start": 35.38,
+          "source_end": 39.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 16,
+          "text": "最后核对字幕,",
+          "start": 42.24,
+          "end": 43.64,
+          "duration": 1.4,
+          "word_ids": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "source_start": 42.24,
+          "source_end": 43.64,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 17,
+          "text": "保留原片,",
+          "start": 44.08,
+          "end": 45.0,
+          "duration": 0.92,
+          "word_ids": [
+            112,
+            113,
+            114,
+            115
+          ],
+          "source_start": 44.08,
+          "source_end": 45.0,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 18,
+          "text": "剪掉的停顿也要能恢复。",
+          "start": 45.56,
+          "end": 47.62,
+          "duration": 2.06,
+          "word_ids": [
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125
+          ],
+          "source_start": 45.56,
+          "source_end": 47.62,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        }
+      ],
+      "word_groups": 126,
+      "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+      "B_decoded_hold": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 40.448875,
+        "output_end": 42.248875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    "cut-A": {
+      "duration": 47.68,
+      "expected_keep_duration": 47.696000000000005,
+      "review_revision": 3,
+      "export_id": "cut-A",
+      "cues": [
+        {
+          "cue": 1,
+          "text": "这是中文口播合成验收,",
+          "start": 0.0,
+          "end": 2.34,
+          "duration": 2.34,
+          "word_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_start": 0.0,
+          "source_end": 2.34,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 2,
+          "text": "不是真实客户案例。",
+          "start": 2.8,
+          "end": 4.5,
+          "duration": 1.7,
+          "word_ids": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "source_start": 2.8,
+          "source_end": 4.5,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 3,
+          "text": "拍摄前,先关闭手机通知,",
+          "start": 5.2,
+          "end": 8.14,
+          "duration": 2.94,
+          "word_ids": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "source_start": 5.2,
+          "source_end": 8.14,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 4,
+          "text": "再擦干净镜头。",
+          "start": 8.64,
+          "end": 10.06,
+          "duration": 1.42,
+          "word_ids": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "source_start": 8.64,
+          "source_end": 10.06,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 5,
+          "text": "先锁定曝光,",
+          "start": 10.696,
+          "end": 12.076,
+          "duration": 1.38,
+          "word_ids": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "source_start": 13.2,
+          "source_end": 14.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 6,
+          "text": "再检查白平衡。",
+          "start": 12.616,
+          "end": 13.996,
+          "duration": 1.38,
+          "word_ids": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "source_start": 15.12,
+          "source_end": 16.5,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 7,
+          "text": "不要把提高亮度,",
+          "start": 14.956,
+          "end": 16.376,
+          "duration": 1.42,
+          "word_ids": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "source_start": 17.46,
+          "source_end": 18.88,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 8,
+          "text": "理解成修好了画质。",
+          "start": 16.836,
+          "end": 18.516,
+          "duration": 1.68,
+          "word_ids": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "source_start": 19.34,
+          "source_end": 21.02,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 9,
+          "text": "这里的24帧和48000Hz,",
+          "start": 19.396,
+          "end": 22.116,
+          "duration": 2.72,
+          "word_ids": [
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ],
+          "source_start": 21.9,
+          "source_end": 24.62,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 10,
+          "text": "是测试读数,",
+          "start": 22.616,
+          "end": 23.636,
+          "duration": 1.02,
+          "word_ids": [
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "source_start": 25.12,
+          "source_end": 26.14,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 11,
+          "text": "不是推荐参数。",
+          "start": 24.076,
+          "end": 25.456,
+          "duration": 1.38,
+          "word_ids": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ],
+          "source_start": 26.58,
+          "source_end": 27.96,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 12,
+          "text": "如果画面仍然偏色,",
+          "start": 26.176,
+          "end": 28.276,
+          "duration": 2.1,
+          "word_ids": [
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "source_start": 28.68,
+          "source_end": 30.78,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 13,
+          "text": "先检查光源,",
+          "start": 28.736,
+          "end": 29.856,
+          "duration": 1.12,
+          "word_ids": [
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "source_start": 31.24,
+          "source_end": 32.36,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 14,
+          "text": "不要承诺一次解决。",
+          "start": 30.396,
+          "end": 32.036,
+          "duration": 1.64,
+          "word_ids": [
+            86,
+            87,
+            88,
+            89,
+            90,
+            91
+          ],
+          "source_start": 32.9,
+          "source_end": 34.54,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 15,
+          "text": "下面这段停顿用于展示操作,必须保留。",
+          "start": 32.876,
+          "end": 37.076,
+          "duration": 4.2,
+          "word_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "source_start": 35.38,
+          "source_end": 39.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 16,
+          "text": "最后核对字幕,",
+          "start": 39.736,
+          "end": 41.136,
+          "duration": 1.4,
+          "word_ids": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "source_start": 42.24,
+          "source_end": 43.64,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 17,
+          "text": "保留原片,",
+          "start": 41.576,
+          "end": 42.496,
+          "duration": 0.92,
+          "word_ids": [
+            112,
+            113,
+            114,
+            115
+          ],
+          "source_start": 44.08,
+          "source_end": 45.0,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 18,
+          "text": "剪掉的停顿也要能恢复。",
+          "start": 43.056,
+          "end": 45.116,
+          "duration": 2.06,
+          "word_ids": [
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125
+          ],
+          "source_start": 45.56,
+          "source_end": 47.62,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        }
+      ],
+      "word_groups": 126,
+      "decoded_pcm_sha256": "df594a151fc4100a373a3651b9431a8dc070fe1725eb5d9c0e72eb4e1acdaec9",
+      "B_decoded_hold": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 37.944875,
+        "output_end": 39.744875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    },
+    "restored": {
+      "duration": 50.2,
+      "expected_keep_duration": 50.2,
+      "review_revision": 4,
+      "export_id": "restored",
+      "cues": [
+        {
+          "cue": 1,
+          "text": "这是中文口播合成验收,",
+          "start": 0.0,
+          "end": 2.34,
+          "duration": 2.34,
+          "word_ids": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "source_start": 0.0,
+          "source_end": 2.34,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 2,
+          "text": "不是真实客户案例。",
+          "start": 2.8,
+          "end": 4.5,
+          "duration": 1.7,
+          "word_ids": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "source_start": 2.8,
+          "source_end": 4.5,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 3,
+          "text": "拍摄前,先关闭手机通知,",
+          "start": 5.2,
+          "end": 8.14,
+          "duration": 2.94,
+          "word_ids": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "source_start": 5.2,
+          "source_end": 8.14,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 4,
+          "text": "再擦干净镜头。",
+          "start": 8.64,
+          "end": 10.06,
+          "duration": 1.42,
+          "word_ids": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "source_start": 8.64,
+          "source_end": 10.06,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 5,
+          "text": "先锁定曝光,",
+          "start": 13.2,
+          "end": 14.58,
+          "duration": 1.38,
+          "word_ids": [
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "source_start": 13.2,
+          "source_end": 14.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 6,
+          "text": "再检查白平衡。",
+          "start": 15.12,
+          "end": 16.5,
+          "duration": 1.38,
+          "word_ids": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "source_start": 15.12,
+          "source_end": 16.5,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 7,
+          "text": "不要把提高亮度,",
+          "start": 17.46,
+          "end": 18.88,
+          "duration": 1.42,
+          "word_ids": [
+            43,
+            44,
+            45,
+            46,
+            47,
+            48
+          ],
+          "source_start": 17.46,
+          "source_end": 18.88,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 8,
+          "text": "理解成修好了画质。",
+          "start": 19.34,
+          "end": 21.02,
+          "duration": 1.68,
+          "word_ids": [
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55
+          ],
+          "source_start": 19.34,
+          "source_end": 21.02,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 9,
+          "text": "这里的24帧和48000Hz,",
+          "start": 21.9,
+          "end": 24.62,
+          "duration": 2.72,
+          "word_ids": [
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63
+          ],
+          "source_start": 21.9,
+          "source_end": 24.62,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 10,
+          "text": "是测试读数,",
+          "start": 25.12,
+          "end": 26.14,
+          "duration": 1.02,
+          "word_ids": [
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "source_start": 25.12,
+          "source_end": 26.14,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 11,
+          "text": "不是推荐参数。",
+          "start": 26.58,
+          "end": 27.96,
+          "duration": 1.38,
+          "word_ids": [
+            69,
+            70,
+            71,
+            72,
+            73
+          ],
+          "source_start": 26.58,
+          "source_end": 27.96,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 12,
+          "text": "如果画面仍然偏色,",
+          "start": 28.68,
+          "end": 30.78,
+          "duration": 2.1,
+          "word_ids": [
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "source_start": 28.68,
+          "source_end": 30.78,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 13,
+          "text": "先检查光源,",
+          "start": 31.24,
+          "end": 32.36,
+          "duration": 1.12,
+          "word_ids": [
+            81,
+            82,
+            83,
+            84,
+            85
+          ],
+          "source_start": 31.24,
+          "source_end": 32.36,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 14,
+          "text": "不要承诺一次解决。",
+          "start": 32.9,
+          "end": 34.54,
+          "duration": 1.64,
+          "word_ids": [
+            86,
+            87,
+            88,
+            89,
+            90,
+            91
+          ],
+          "source_start": 32.9,
+          "source_end": 34.54,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 15,
+          "text": "下面这段停顿用于展示操作,必须保留。",
+          "start": 35.38,
+          "end": 39.58,
+          "duration": 4.2,
+          "word_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "source_start": 35.38,
+          "source_end": 39.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 16,
+          "text": "最后核对字幕,",
+          "start": 42.24,
+          "end": 43.64,
+          "duration": 1.4,
+          "word_ids": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "source_start": 42.24,
+          "source_end": 43.64,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 17,
+          "text": "保留原片,",
+          "start": 44.08,
+          "end": 45.0,
+          "duration": 0.92,
+          "word_ids": [
+            112,
+            113,
+            114,
+            115
+          ],
+          "source_start": 44.08,
+          "source_end": 45.0,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 18,
+          "text": "剪掉的停顿也要能恢复。",
+          "start": 45.56,
+          "end": 47.62,
+          "duration": 2.06,
+          "word_ids": [
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125
+          ],
+          "source_start": 45.56,
+          "source_end": 47.62,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        }
+      ],
+      "word_groups": 126,
+      "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+      "B_decoded_hold": {
+        "source_start": 40.448875,
+        "source_end": 42.248875,
+        "output_start": 40.448875,
+        "output_end": 42.248875,
+        "interior_samples": 27200,
+        "interior_max_abs": 0,
+        "interior_rms": 0.0
+      }
+    }
+  },
+  "scope": "Synthetic reference-assisted local media acceptance, not independent human listening or general recognition-quality validation"
+}

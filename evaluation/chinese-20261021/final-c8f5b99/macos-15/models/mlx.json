@@ -1,0 +1,24 @@
+{
+  "repo": "mlx-community/whisper-small-mlx",
+  "requested_revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+  "resolved_revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+  "files": [
+    {
+      "file": "config.json",
+      "sha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+      "expected_lfs_sha256": null,
+      "expected_git_blob": "df4c65c442a30e50034ee63422b31bde60c3d407",
+      "actual_git_blob": "df4c65c442a30e50034ee63422b31bde60c3d407",
+      "verified": true
+    },
+    {
+      "file": "weights.npz",
+      "sha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+      "expected_lfs_sha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+      "expected_git_blob": "c1f9e8aff52b130ba385bca87165a4948012648c",
+      "actual_git_blob": null,
+      "verified": true
+    }
+  ],
+  "verified": true
+}

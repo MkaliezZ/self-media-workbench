@@ -1,0 +1,44 @@
+{
+  "policy": "Only A-overlapping candidate whose union with A is silent in every decoded source sample; B remains excluded",
+  "candidates": [
+    {
+      "candidate": {
+        "id": "pause-0",
+        "start": 10.426,
+        "end": 12.93,
+        "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+        "selected": false,
+        "kind": "pause_candidate"
+      },
+      "overlap_with_inserted_A": 2.0147499999999994,
+      "union_source_peak": 0.0,
+      "allowed": true
+    },
+    {
+      "candidate": {
+        "id": "pause-1",
+        "start": 39.962,
+        "end": 41.97,
+        "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+        "selected": false,
+        "kind": "pause_candidate"
+      },
+      "overlap_with_inserted_A": -26.646750000000004,
+      "union_source_peak": null,
+      "allowed": false
+    },
+    {
+      "candidate": {
+        "id": "pause-2",
+        "start": 47.994,
+        "end": 50.2,
+        "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+        "selected": false,
+        "kind": "pause_candidate"
+      },
+      "overlap_with_inserted_A": -34.67875,
+      "union_source_peak": null,
+      "allowed": false
+    }
+  ]
+}

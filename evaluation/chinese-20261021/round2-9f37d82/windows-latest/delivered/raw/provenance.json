@@ -1,0 +1,15 @@
+{
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+  "source_media_id": "5199d6a89449401480579da0f8e563a6",
+  "source_media_metadata": {
+    "media_nature": "generated",
+    "source_note": "Same newly authored synthetic Chinese PCM fixture, no recorded person",
+    "usage_scope": "",
+    "declaration_only": true
+  },
+  "project_revision_at_export": 2,
+  "asr_run": "5bf7791fbeb4492e9f11a6c2e2e6a4fd",
+  "review_revision": 0,
+  "created_at": "2026-10-20T18:20:28.669085+00:00",
+  "external_publication": false
+}

@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "profile": "arm64",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "commit": "9f37d82705bbb2e1b58320efd6ff49d9940552e6",
+  "asr_execution": {
+    "run_id": "d9b70a41910c49689a1f858f3840ab8d",
+    "device": "gpu",
+    "backend": "mlx",
+    "execution": {
+      "metal_available": true,
+      "gpu_kernel_verified": true,
+      "isolated_worker": true
+    },
+    "words": 126,
+    "candidates": 3,
+    "fallback_errors": []
+  },
+  "exception": null,
+  "failures": [],
+  "scope": "Synthetic Chinese reference-assisted review, not human speech accuracy or a live LLM trial"
+}

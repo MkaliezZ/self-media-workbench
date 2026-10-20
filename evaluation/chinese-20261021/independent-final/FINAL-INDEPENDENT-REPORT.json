@@ -1,0 +1,1950 @@
+{
+  "decision": "PASS for the defined same-synthetic-Chinese-fixture technical and caption-boundary acceptance",
+  "three_platforms_pass": true,
+  "final_run": 39473993837,
+  "commit": "c8f5b99021c1dfb52f6e133f4647aaf19491607b",
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+  "source_audio_duration_seconds": 48.5063125,
+  "source_full_video_duration_seconds": 50.2,
+  "A_selected_interval": [
+    10.426,
+    12.93
+  ],
+  "A_selected_duration_seconds": 2.504,
+  "A_silence_pcm_samples": 40064,
+  "A_nonzero_samples": 0,
+  "B_source_interval": [
+    40.448875,
+    42.248875
+  ],
+  "normalization": {
+    "orthography_map": [
+      "這这",
+      "驗验",
+      "實实",
+      "戶户",
+      "攝摄",
+      "關关",
+      "閉闭",
+      "機机",
+      "乾干",
+      "淨净",
+      "鏡镜",
+      "頭头",
+      "鎖锁",
+      "檢检",
+      "畫画",
+      "質质",
+      "裡里",
+      "幀帧",
+      "測测",
+      "試试",
+      "讀读",
+      "數数",
+      "薦荐",
+      "參参",
+      "諾诺",
+      "決决",
+      "頓顿",
+      "於于",
+      "須须",
+      "後后",
+      "對对",
+      "復复"
+    ],
+    "exact_whole_number_unit_equivalences": [
+      [
+        "48000Hz",
+        "四十八千赫"
+      ],
+      [
+        "24帧",
+        "二十四帧"
+      ],
+      [
+        "48千赫",
+        "四十八千赫"
+      ]
+    ],
+    "raw_asr_is_never_replaced_by_reference": "All metrics above raw_* are computed from unchanged original ASR; corrected_* is separately labeled. Genuine 书/数 and 使/是 substitutions remain errors after formatting normalization."
+  },
+  "round_history": [
+    {
+      "run": 39472668879,
+      "commit": "80e5ae54981ffd23d787d27a492e4909db017f00",
+      "decision": "FAILED before correction/trim/restore completion",
+      "reason": "Numeric formatting across model token groups was incorrectly treated as unsupported reference insertion/deletion. Untouched raw ASR and failed attempts remain retained.",
+      "report": "../independent-round1-39472668879/ROUND1-INDEPENDENT-REVIEW.json"
+    },
+    {
+      "run": 39473665015,
+      "commit": "9f37d82705bbb2e1b58320efd6ff49d9940552e6",
+      "driver_auto_pass": true,
+      "independent_overall_pass": false,
+      "reason": "All three actual reviewed/cut/restored SRTs merged 必须保留。 with 最后核对字幕 across the demonstration hold B and sentence boundary. 18 groups alone did not establish quality.",
+      "semantic_failures": {
+        "macos-15": [
+          {
+            "phase": "reviewed-full",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 38.8,
+            "end": 43.64,
+            "duration": 4.84,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.8,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          },
+          {
+            "phase": "cut-A",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 36.296,
+            "end": 41.136,
+            "duration": 4.84,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.8,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          },
+          {
+            "phase": "restored",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 38.8,
+            "end": 43.64,
+            "duration": 4.84,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.8,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          }
+        ],
+        "macos-15-intel": [
+          {
+            "phase": "reviewed-full",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 38.78,
+            "end": 43.64,
+            "duration": 4.86,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.78,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          },
+          {
+            "phase": "cut-A",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 36.276,
+            "end": 41.136,
+            "duration": 4.86,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.78,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          },
+          {
+            "phase": "restored",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 38.78,
+            "end": 43.64,
+            "duration": 4.86,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.78,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          }
+        ],
+        "windows-latest": [
+          {
+            "phase": "reviewed-full",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 38.8,
+            "end": 43.64,
+            "duration": 4.84,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.8,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          },
+          {
+            "phase": "cut-A",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 36.296,
+            "end": 41.136,
+            "duration": 4.84,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.8,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          },
+          {
+            "phase": "restored",
+            "cue": 16,
+            "text": "必须保留。最后核对字幕,",
+            "start": 38.8,
+            "end": 43.64,
+            "duration": 4.84,
+            "word_ids": [
+              103,
+              104,
+              105,
+              106,
+              107,
+              108,
+              109,
+              110,
+              111
+            ],
+            "source_start": 38.8,
+            "source_end": 43.64,
+            "crosses_sentence_terminal": true,
+            "spans_B": true
+          }
+        ]
+      },
+      "report": "../independent-round2-39473665015/ROUND-SUMMARY.json"
+    },
+    {
+      "run": 39473993837,
+      "decision": "PASS within fixture scope",
+      "reason": "Short tail merged backward within its own sentence; next sentence starts after B. Manifest, actual original data, applied local edits, four immutable outputs, all source/output word maps and SRT maps, decoded B hold and restoration were independently checked."
+    }
+  ],
+  "runners": {
+    "macos-15": {
+      "independent_pass": true,
+      "independent_checks": 67,
+      "backend": "mlx",
+      "device": "gpu",
+      "execution": {
+        "metal_available": true,
+        "gpu_kernel_verified": true,
+        "isolated_worker": true
+      },
+      "fallback_errors": [],
+      "original_word_groups": 126,
+      "original_asr_sha256": "406addc2558a8506f8ae929ebb5d0926e42666e9956486379a5710f36ef30b17",
+      "metrics": {
+        "raw_surface_excluding_punctuation_whitespace": {
+          "S": 17,
+          "D": 2,
+          "I": 0,
+          "N": 141,
+          "CER": 0.1347517730496454,
+          "edits": [
+            {
+              "op": "D",
+              "reference": "二",
+              "recognized": "",
+              "reference_index": 63,
+              "hypothesis_index": 63
+            },
+            {
+              "op": "S",
+              "reference": "十",
+              "recognized": "2",
+              "reference_index": 64,
+              "hypothesis_index": 63
+            },
+            {
+              "op": "S",
+              "reference": "四",
+              "recognized": "4",
+              "reference_index": 65,
+              "hypothesis_index": 64
+            },
+            {
+              "op": "D",
+              "reference": "四",
+              "recognized": "",
+              "reference_index": 68,
+              "hypothesis_index": 67
+            },
+            {
+              "op": "S",
+              "reference": "十",
+              "recognized": "4",
+              "reference_index": 69,
+              "hypothesis_index": 67
+            },
+            {
+              "op": "S",
+              "reference": "八",
+              "recognized": "8",
+              "reference_index": 70,
+              "hypothesis_index": 68
+            },
+            {
+              "op": "S",
+              "reference": "数",
+              "recognized": "书",
+              "reference_index": 77,
+              "hypothesis_index": 75
+            },
+            {
+              "op": "S",
+              "reference": "画",
+              "recognized": "畫",
+              "reference_index": 86,
+              "hypothesis_index": 84
+            },
+            {
+              "op": "S",
+              "reference": "检",
+              "recognized": "檢",
+              "reference_index": 93,
+              "hypothesis_index": 91
+            },
+            {
+              "op": "S",
+              "reference": "诺",
+              "recognized": "諾",
+              "reference_index": 100,
+              "hypothesis_index": 98
+            },
+            {
+              "op": "S",
+              "reference": "决",
+              "recognized": "決",
+              "reference_index": 104,
+              "hypothesis_index": 102
+            },
+            {
+              "op": "S",
+              "reference": "这",
+              "recognized": "這",
+              "reference_index": 107,
+              "hypothesis_index": 105
+            },
+            {
+              "op": "S",
+              "reference": "顿",
+              "recognized": "頓",
+              "reference_index": 110,
+              "hypothesis_index": 108
+            },
+            {
+              "op": "S",
+              "reference": "于",
+              "recognized": "於",
+              "reference_index": 112,
+              "hypothesis_index": 110
+            },
+            {
+              "op": "S",
+              "reference": "须",
+              "recognized": "須",
+              "reference_index": 118,
+              "hypothesis_index": 116
+            },
+            {
+              "op": "S",
+              "reference": "后",
+              "recognized": "後",
+              "reference_index": 122,
+              "hypothesis_index": 120
+            },
+            {
+              "op": "S",
+              "reference": "对",
+              "recognized": "對",
+              "reference_index": 124,
+              "hypothesis_index": 122
+            },
+            {
+              "op": "S",
+              "reference": "顿",
+              "recognized": "頓",
+              "reference_index": 135,
+              "hypothesis_index": 133
+            },
+            {
+              "op": "S",
+              "reference": "复",
+              "recognized": "復",
+              "reference_index": 140,
+              "hypothesis_index": 138
+            }
+          ]
+        },
+        "raw_after_explicit_orthography_numeric_equivalence": {
+          "S": 1,
+          "D": 0,
+          "I": 0,
+          "N": 141,
+          "CER": 0.0070921985815602835,
+          "edits": [
+            {
+              "op": "S",
+              "reference": "数",
+              "recognized": "书",
+              "reference_index": 77,
+              "hypothesis_index": 77
+            }
+          ]
+        },
+        "corrected_after_same_equivalence": {
+          "S": 0,
+          "D": 0,
+          "I": 0,
+          "N": 141,
+          "CER": 0.0,
+          "edits": []
+        }
+      },
+      "applied_changes": [
+        {
+          "id": 68,
+          "before": "书,",
+          "after": "数,",
+          "source_start": 25.9,
+          "source_end": 26.1,
+          "classification": "actual reference-assisted lexical correction"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "classification": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "classification": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.64,
+          "classification": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "classification": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.86,
+          "source_end": 36.2,
+          "classification": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "classification": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "classification": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "classification": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "classification": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "classification": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "classification": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "classification": "orthography"
+        }
+      ],
+      "semantic_cues_15_16": [
+        {
+          "cue": 15,
+          "text": "下面这段停顿用于展示操作,必须保留。",
+          "start": 35.38,
+          "end": 39.58,
+          "duration": 4.2,
+          "word_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "source_start": 35.38,
+          "source_end": 39.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 16,
+          "text": "最后核对字幕,",
+          "start": 42.24,
+          "end": 43.64,
+          "duration": 1.4,
+          "word_ids": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "source_start": 42.24,
+          "source_end": 43.64,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        }
+      ],
+      "minimum_reviewed_cue_seconds": 0.92,
+      "exports": {
+        "raw": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 0,
+          "decoded_pcm_sha256": "92480e7f20ab11ca3741672df1e03bf54c976d00dead598bf2267356cc511f82",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "reviewed-full": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 2,
+          "decoded_pcm_sha256": "92480e7f20ab11ca3741672df1e03bf54c976d00dead598bf2267356cc511f82",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "cut-A": {
+          "duration": 47.68,
+          "expected_keep_duration": 47.696000000000005,
+          "review_revision": 3,
+          "decoded_pcm_sha256": "e397c4641558dc2b59b42a9647dac5fad05df9f11fa9f16990c1a7449600ae5a",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 37.944875,
+            "output_end": 39.744875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "restored": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 4,
+          "decoded_pcm_sha256": "92480e7f20ab11ca3741672df1e03bf54c976d00dead598bf2267356cc511f82",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        }
+      },
+      "manifests": [
+        {
+          "entries": 293,
+          "mismatches": []
+        },
+        {
+          "entries": 296,
+          "mismatches": []
+        }
+      ],
+      "detail_report": "macos-15/INDEPENDENT-REVIEW.json"
+    },
+    "macos-15-intel": {
+      "independent_pass": true,
+      "independent_checks": 67,
+      "backend": "faster-whisper",
+      "device": "cpu",
+      "execution": {},
+      "fallback_errors": [],
+      "original_word_groups": 126,
+      "original_asr_sha256": "77d5308f0f46129b1ade2fe5f33c9c653a922194f15aa799b8647c5c9d871396",
+      "metrics": {
+        "raw_surface_excluding_punctuation_whitespace": {
+          "S": 17,
+          "D": 2,
+          "I": 0,
+          "N": 141,
+          "CER": 0.1347517730496454,
+          "edits": [
+            {
+              "op": "D",
+              "reference": "二",
+              "recognized": "",
+              "reference_index": 63,
+              "hypothesis_index": 63
+            },
+            {
+              "op": "S",
+              "reference": "十",
+              "recognized": "2",
+              "reference_index": 64,
+              "hypothesis_index": 63
+            },
+            {
+              "op": "S",
+              "reference": "四",
+              "recognized": "4",
+              "reference_index": 65,
+              "hypothesis_index": 64
+            },
+            {
+              "op": "D",
+              "reference": "四",
+              "recognized": "",
+              "reference_index": 68,
+              "hypothesis_index": 67
+            },
+            {
+              "op": "S",
+              "reference": "十",
+              "recognized": "4",
+              "reference_index": 69,
+              "hypothesis_index": 67
+            },
+            {
+              "op": "S",
+              "reference": "八",
+              "recognized": "8",
+              "reference_index": 70,
+              "hypothesis_index": 68
+            },
+            {
+              "op": "S",
+              "reference": "数",
+              "recognized": "书",
+              "reference_index": 77,
+              "hypothesis_index": 75
+            },
+            {
+              "op": "S",
+              "reference": "画",
+              "recognized": "畫",
+              "reference_index": 86,
+              "hypothesis_index": 84
+            },
+            {
+              "op": "S",
+              "reference": "检",
+              "recognized": "檢",
+              "reference_index": 93,
+              "hypothesis_index": 91
+            },
+            {
+              "op": "S",
+              "reference": "诺",
+              "recognized": "諾",
+              "reference_index": 100,
+              "hypothesis_index": 98
+            },
+            {
+              "op": "S",
+              "reference": "决",
+              "recognized": "決",
+              "reference_index": 104,
+              "hypothesis_index": 102
+            },
+            {
+              "op": "S",
+              "reference": "这",
+              "recognized": "這",
+              "reference_index": 107,
+              "hypothesis_index": 105
+            },
+            {
+              "op": "S",
+              "reference": "顿",
+              "recognized": "頓",
+              "reference_index": 110,
+              "hypothesis_index": 108
+            },
+            {
+              "op": "S",
+              "reference": "于",
+              "recognized": "於",
+              "reference_index": 112,
+              "hypothesis_index": 110
+            },
+            {
+              "op": "S",
+              "reference": "须",
+              "recognized": "須",
+              "reference_index": 118,
+              "hypothesis_index": 116
+            },
+            {
+              "op": "S",
+              "reference": "后",
+              "recognized": "後",
+              "reference_index": 122,
+              "hypothesis_index": 120
+            },
+            {
+              "op": "S",
+              "reference": "对",
+              "recognized": "對",
+              "reference_index": 124,
+              "hypothesis_index": 122
+            },
+            {
+              "op": "S",
+              "reference": "顿",
+              "recognized": "頓",
+              "reference_index": 135,
+              "hypothesis_index": 133
+            },
+            {
+              "op": "S",
+              "reference": "复",
+              "recognized": "復",
+              "reference_index": 140,
+              "hypothesis_index": 138
+            }
+          ]
+        },
+        "raw_after_explicit_orthography_numeric_equivalence": {
+          "S": 1,
+          "D": 0,
+          "I": 0,
+          "N": 141,
+          "CER": 0.0070921985815602835,
+          "edits": [
+            {
+              "op": "S",
+              "reference": "数",
+              "recognized": "书",
+              "reference_index": 77,
+              "hypothesis_index": 77
+            }
+          ]
+        },
+        "corrected_after_same_equivalence": {
+          "S": 0,
+          "D": 0,
+          "I": 0,
+          "N": 141,
+          "CER": 0.0,
+          "edits": []
+        }
+      },
+      "applied_changes": [
+        {
+          "id": 68,
+          "before": "书,",
+          "after": "数,",
+          "source_start": 25.92,
+          "source_end": 26.1,
+          "classification": "actual reference-assisted lexical correction"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "classification": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "classification": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.62,
+          "classification": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "classification": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.84,
+          "source_end": 36.2,
+          "classification": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "classification": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "classification": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "classification": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "classification": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "classification": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "classification": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "classification": "orthography"
+        }
+      ],
+      "semantic_cues_15_16": [
+        {
+          "cue": 15,
+          "text": "下面这段停顿用于展示操作,必须保留。",
+          "start": 35.38,
+          "end": 39.58,
+          "duration": 4.2,
+          "word_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "source_start": 35.38,
+          "source_end": 39.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 16,
+          "text": "最后核对字幕,",
+          "start": 42.24,
+          "end": 43.64,
+          "duration": 1.4,
+          "word_ids": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "source_start": 42.24,
+          "source_end": 43.64,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        }
+      ],
+      "minimum_reviewed_cue_seconds": 0.92,
+      "exports": {
+        "raw": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 0,
+          "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "reviewed-full": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 2,
+          "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "cut-A": {
+          "duration": 47.68,
+          "expected_keep_duration": 47.696000000000005,
+          "review_revision": 3,
+          "decoded_pcm_sha256": "df594a151fc4100a373a3651b9431a8dc070fe1725eb5d9c0e72eb4e1acdaec9",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 37.944875,
+            "output_end": 39.744875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "restored": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 4,
+          "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        }
+      },
+      "manifests": [
+        {
+          "entries": 325,
+          "mismatches": []
+        },
+        {
+          "entries": 328,
+          "mismatches": []
+        }
+      ],
+      "detail_report": "macos-15-intel/INDEPENDENT-REVIEW.json"
+    },
+    "windows-latest": {
+      "independent_pass": true,
+      "independent_checks": 67,
+      "backend": "faster-whisper",
+      "device": "cpu",
+      "execution": {},
+      "fallback_errors": [],
+      "original_word_groups": 126,
+      "original_asr_sha256": "6d053ef30be6a35a934503c6d9f46745d279ddd9c5a8dacc780df5e24cd3b3fc",
+      "metrics": {
+        "raw_surface_excluding_punctuation_whitespace": {
+          "S": 48,
+          "D": 0,
+          "I": 1,
+          "N": 141,
+          "CER": 0.3475177304964539,
+          "edits": [
+            {
+              "op": "S",
+              "reference": "这",
+              "recognized": "這",
+              "reference_index": 0,
+              "hypothesis_index": 0
+            },
+            {
+              "op": "S",
+              "reference": "验",
+              "recognized": "驗",
+              "reference_index": 8,
+              "hypothesis_index": 8
+            },
+            {
+              "op": "S",
+              "reference": "实",
+              "recognized": "實",
+              "reference_index": 13,
+              "hypothesis_index": 13
+            },
+            {
+              "op": "S",
+              "reference": "户",
+              "recognized": "戶",
+              "reference_index": 15,
+              "hypothesis_index": 15
+            },
+            {
+              "op": "S",
+              "reference": "摄",
+              "recognized": "攝",
+              "reference_index": 19,
+              "hypothesis_index": 19
+            },
+            {
+              "op": "S",
+              "reference": "关",
+              "recognized": "關",
+              "reference_index": 22,
+              "hypothesis_index": 22
+            },
+            {
+              "op": "S",
+              "reference": "闭",
+              "recognized": "閉",
+              "reference_index": 23,
+              "hypothesis_index": 23
+            },
+            {
+              "op": "S",
+              "reference": "机",
+              "recognized": "機",
+              "reference_index": 25,
+              "hypothesis_index": 25
+            },
+            {
+              "op": "S",
+              "reference": "干",
+              "recognized": "乾",
+              "reference_index": 30,
+              "hypothesis_index": 30
+            },
+            {
+              "op": "S",
+              "reference": "净",
+              "recognized": "淨",
+              "reference_index": 31,
+              "hypothesis_index": 31
+            },
+            {
+              "op": "S",
+              "reference": "镜",
+              "recognized": "鏡",
+              "reference_index": 32,
+              "hypothesis_index": 32
+            },
+            {
+              "op": "S",
+              "reference": "头",
+              "recognized": "頭",
+              "reference_index": 33,
+              "hypothesis_index": 33
+            },
+            {
+              "op": "S",
+              "reference": "锁",
+              "recognized": "鎖",
+              "reference_index": 35,
+              "hypothesis_index": 35
+            },
+            {
+              "op": "S",
+              "reference": "检",
+              "recognized": "檢",
+              "reference_index": 40,
+              "hypothesis_index": 40
+            },
+            {
+              "op": "S",
+              "reference": "画",
+              "recognized": "畫",
+              "reference_index": 58,
+              "hypothesis_index": 58
+            },
+            {
+              "op": "S",
+              "reference": "质",
+              "recognized": "質",
+              "reference_index": 59,
+              "hypothesis_index": 59
+            },
+            {
+              "op": "S",
+              "reference": "这",
+              "recognized": "這",
+              "reference_index": 60,
+              "hypothesis_index": 60
+            },
+            {
+              "op": "S",
+              "reference": "里",
+              "recognized": "裡",
+              "reference_index": 61,
+              "hypothesis_index": 61
+            },
+            {
+              "op": "I",
+              "reference": "",
+              "recognized": "2",
+              "reference_index": 63,
+              "hypothesis_index": 63
+            },
+            {
+              "op": "S",
+              "reference": "二",
+              "recognized": "4",
+              "reference_index": 63,
+              "hypothesis_index": 64
+            },
+            {
+              "op": "S",
+              "reference": "十",
+              "recognized": "幀",
+              "reference_index": 64,
+              "hypothesis_index": 65
+            },
+            {
+              "op": "S",
+              "reference": "四",
+              "recognized": "和",
+              "reference_index": 65,
+              "hypothesis_index": 66
+            },
+            {
+              "op": "S",
+              "reference": "帧",
+              "recognized": "4",
+              "reference_index": 66,
+              "hypothesis_index": 67
+            },
+            {
+              "op": "S",
+              "reference": "和",
+              "recognized": "8",
+              "reference_index": 67,
+              "hypothesis_index": 68
+            },
+            {
+              "op": "S",
+              "reference": "四",
+              "recognized": "0",
+              "reference_index": 68,
+              "hypothesis_index": 69
+            },
+            {
+              "op": "S",
+              "reference": "十",
+              "recognized": "0",
+              "reference_index": 69,
+              "hypothesis_index": 70
+            },
+            {
+              "op": "S",
+              "reference": "八",
+              "recognized": "0",
+              "reference_index": 70,
+              "hypothesis_index": 71
+            },
+            {
+              "op": "S",
+              "reference": "千",
+              "recognized": "H",
+              "reference_index": 71,
+              "hypothesis_index": 72
+            },
+            {
+              "op": "S",
+              "reference": "赫",
+              "recognized": "z",
+              "reference_index": 72,
+              "hypothesis_index": 73
+            },
+            {
+              "op": "S",
+              "reference": "是",
+              "recognized": "使",
+              "reference_index": 73,
+              "hypothesis_index": 74
+            },
+            {
+              "op": "S",
+              "reference": "测",
+              "recognized": "測",
+              "reference_index": 74,
+              "hypothesis_index": 75
+            },
+            {
+              "op": "S",
+              "reference": "试",
+              "recognized": "試",
+              "reference_index": 75,
+              "hypothesis_index": 76
+            },
+            {
+              "op": "S",
+              "reference": "读",
+              "recognized": "讀",
+              "reference_index": 76,
+              "hypothesis_index": 77
+            },
+            {
+              "op": "S",
+              "reference": "数",
+              "recognized": "數",
+              "reference_index": 77,
+              "hypothesis_index": 78
+            },
+            {
+              "op": "S",
+              "reference": "荐",
+              "recognized": "薦",
+              "reference_index": 81,
+              "hypothesis_index": 82
+            },
+            {
+              "op": "S",
+              "reference": "参",
+              "recognized": "參",
+              "reference_index": 82,
+              "hypothesis_index": 83
+            },
+            {
+              "op": "S",
+              "reference": "数",
+              "recognized": "數",
+              "reference_index": 83,
+              "hypothesis_index": 84
+            },
+            {
+              "op": "S",
+              "reference": "画",
+              "recognized": "畫",
+              "reference_index": 86,
+              "hypothesis_index": 87
+            },
+            {
+              "op": "S",
+              "reference": "检",
+              "recognized": "檢",
+              "reference_index": 93,
+              "hypothesis_index": 94
+            },
+            {
+              "op": "S",
+              "reference": "诺",
+              "recognized": "諾",
+              "reference_index": 100,
+              "hypothesis_index": 101
+            },
+            {
+              "op": "S",
+              "reference": "决",
+              "recognized": "決",
+              "reference_index": 104,
+              "hypothesis_index": 105
+            },
+            {
+              "op": "S",
+              "reference": "这",
+              "recognized": "這",
+              "reference_index": 107,
+              "hypothesis_index": 108
+            },
+            {
+              "op": "S",
+              "reference": "顿",
+              "recognized": "頓",
+              "reference_index": 110,
+              "hypothesis_index": 111
+            },
+            {
+              "op": "S",
+              "reference": "于",
+              "recognized": "於",
+              "reference_index": 112,
+              "hypothesis_index": 113
+            },
+            {
+              "op": "S",
+              "reference": "须",
+              "recognized": "須",
+              "reference_index": 118,
+              "hypothesis_index": 119
+            },
+            {
+              "op": "S",
+              "reference": "后",
+              "recognized": "後",
+              "reference_index": 122,
+              "hypothesis_index": 123
+            },
+            {
+              "op": "S",
+              "reference": "对",
+              "recognized": "對",
+              "reference_index": 124,
+              "hypothesis_index": 125
+            },
+            {
+              "op": "S",
+              "reference": "顿",
+              "recognized": "頓",
+              "reference_index": 135,
+              "hypothesis_index": 136
+            },
+            {
+              "op": "S",
+              "reference": "复",
+              "recognized": "復",
+              "reference_index": 140,
+              "hypothesis_index": 141
+            }
+          ]
+        },
+        "raw_after_explicit_orthography_numeric_equivalence": {
+          "S": 1,
+          "D": 0,
+          "I": 0,
+          "N": 141,
+          "CER": 0.0070921985815602835,
+          "edits": [
+            {
+              "op": "S",
+              "reference": "是",
+              "recognized": "使",
+              "reference_index": 73,
+              "hypothesis_index": 73
+            }
+          ]
+        },
+        "corrected_after_same_equivalence": {
+          "S": 0,
+          "D": 0,
+          "I": 0,
+          "N": 141,
+          "CER": 0.0,
+          "edits": []
+        }
+      },
+      "applied_changes": [
+        {
+          "id": 0,
+          "before": "這是",
+          "after": "这是",
+          "source_start": 0.0,
+          "source_end": 0.34,
+          "classification": "orthography"
+        },
+        {
+          "id": 7,
+          "before": "驗",
+          "after": "验",
+          "source_start": 1.86,
+          "source_end": 2.12,
+          "classification": "orthography"
+        },
+        {
+          "id": 11,
+          "before": "實",
+          "after": "实",
+          "source_start": 3.36,
+          "source_end": 3.6,
+          "classification": "orthography"
+        },
+        {
+          "id": 13,
+          "before": "戶",
+          "after": "户",
+          "source_start": 3.88,
+          "source_end": 4.1,
+          "classification": "orthography"
+        },
+        {
+          "id": 17,
+          "before": "攝",
+          "after": "摄",
+          "source_start": 5.58,
+          "source_end": 5.76,
+          "classification": "orthography"
+        },
+        {
+          "id": 20,
+          "before": "關",
+          "after": "关",
+          "source_start": 6.82,
+          "source_end": 7.0,
+          "classification": "orthography"
+        },
+        {
+          "id": 21,
+          "before": "閉",
+          "after": "闭",
+          "source_start": 7.0,
+          "source_end": 7.22,
+          "classification": "orthography"
+        },
+        {
+          "id": 23,
+          "before": "機",
+          "after": "机",
+          "source_start": 7.48,
+          "source_end": 7.7,
+          "classification": "orthography"
+        },
+        {
+          "id": 28,
+          "before": "乾",
+          "after": "干",
+          "source_start": 9.06,
+          "source_end": 9.36,
+          "classification": "orthography"
+        },
+        {
+          "id": 29,
+          "before": "淨",
+          "after": "净",
+          "source_start": 9.36,
+          "source_end": 9.56,
+          "classification": "orthography"
+        },
+        {
+          "id": 30,
+          "before": "鏡",
+          "after": "镜",
+          "source_start": 9.56,
+          "source_end": 9.76,
+          "classification": "orthography"
+        },
+        {
+          "id": 31,
+          "before": "頭。",
+          "after": "头。",
+          "source_start": 9.76,
+          "source_end": 10.06,
+          "classification": "orthography"
+        },
+        {
+          "id": 33,
+          "before": "鎖",
+          "after": "锁",
+          "source_start": 13.68,
+          "source_end": 13.9,
+          "classification": "orthography"
+        },
+        {
+          "id": 38,
+          "before": "檢",
+          "after": "检",
+          "source_start": 15.26,
+          "source_end": 15.48,
+          "classification": "orthography"
+        },
+        {
+          "id": 54,
+          "before": "畫",
+          "after": "画",
+          "source_start": 20.58,
+          "source_end": 20.82,
+          "classification": "orthography"
+        },
+        {
+          "id": 55,
+          "before": "質。",
+          "after": "质。",
+          "source_start": 20.82,
+          "source_end": 21.02,
+          "classification": "orthography"
+        },
+        {
+          "id": 56,
+          "before": "這裡",
+          "after": "这里",
+          "source_start": 21.9,
+          "source_end": 22.2,
+          "classification": "orthography"
+        },
+        {
+          "id": 59,
+          "before": "幀",
+          "after": "帧",
+          "source_start": 22.82,
+          "source_end": 23.22,
+          "classification": "orthography"
+        },
+        {
+          "id": 64,
+          "before": "使",
+          "after": "是",
+          "source_start": 25.12,
+          "source_end": 25.32,
+          "classification": "actual reference-assisted lexical correction"
+        },
+        {
+          "id": 65,
+          "before": "測",
+          "after": "测",
+          "source_start": 25.32,
+          "source_end": 25.54,
+          "classification": "orthography"
+        },
+        {
+          "id": 66,
+          "before": "試",
+          "after": "试",
+          "source_start": 25.54,
+          "source_end": 25.74,
+          "classification": "orthography"
+        },
+        {
+          "id": 67,
+          "before": "讀",
+          "after": "读",
+          "source_start": 25.74,
+          "source_end": 25.92,
+          "classification": "orthography"
+        },
+        {
+          "id": 68,
+          "before": "數,",
+          "after": "数,",
+          "source_start": 25.92,
+          "source_end": 26.14,
+          "classification": "orthography"
+        },
+        {
+          "id": 71,
+          "before": "薦",
+          "after": "荐",
+          "source_start": 27.28,
+          "source_end": 27.5,
+          "classification": "orthography"
+        },
+        {
+          "id": 72,
+          "before": "參",
+          "after": "参",
+          "source_start": 27.5,
+          "source_end": 27.74,
+          "classification": "orthography"
+        },
+        {
+          "id": 73,
+          "before": "數。",
+          "after": "数。",
+          "source_start": 27.74,
+          "source_end": 27.96,
+          "classification": "orthography"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "classification": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "classification": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.62,
+          "classification": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "classification": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.86,
+          "source_end": 36.2,
+          "classification": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "classification": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "classification": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "classification": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "classification": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "classification": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "classification": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "classification": "orthography"
+        }
+      ],
+      "semantic_cues_15_16": [
+        {
+          "cue": 15,
+          "text": "下面这段停顿用于展示操作,必须保留。",
+          "start": 35.38,
+          "end": 39.58,
+          "duration": 4.2,
+          "word_ids": [
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            106
+          ],
+          "source_start": 35.38,
+          "source_end": 39.58,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        },
+        {
+          "cue": 16,
+          "text": "最后核对字幕,",
+          "start": 42.24,
+          "end": 43.64,
+          "duration": 1.4,
+          "word_ids": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "source_start": 42.24,
+          "source_end": 43.64,
+          "crosses_sentence_terminal": false,
+          "spans_B": false
+        }
+      ],
+      "minimum_reviewed_cue_seconds": 0.92,
+      "exports": {
+        "raw": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 0,
+          "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "reviewed-full": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 2,
+          "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "cut-A": {
+          "duration": 47.68,
+          "expected_keep_duration": 47.696000000000005,
+          "review_revision": 3,
+          "decoded_pcm_sha256": "df594a151fc4100a373a3651b9431a8dc070fe1725eb5d9c0e72eb4e1acdaec9",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 37.944875,
+            "output_end": 39.744875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        },
+        "restored": {
+          "duration": 50.2,
+          "expected_keep_duration": 50.2,
+          "review_revision": 4,
+          "decoded_pcm_sha256": "abe5631fccbddd5795edbc20cc1b20f23fc29f3b2836d41dcbfff1462c806f33",
+          "B_decoded_hold": {
+            "source_start": 40.448875,
+            "source_end": 42.248875,
+            "output_start": 40.448875,
+            "output_end": 42.248875,
+            "interior_samples": 27200,
+            "interior_max_abs": 0,
+            "interior_rms": 0.0
+          }
+        }
+      },
+      "manifests": [
+        {
+          "entries": 285,
+          "mismatches": []
+        },
+        {
+          "entries": 288,
+          "mismatches": []
+        }
+      ],
+      "detail_report": "windows-latest/INDEPENDENT-REVIEW.json"
+    }
+  },
+  "limits": [
+    "Synthetic Mandarin produced by Microsoft Huihui Desktop; no independent human listening, real-recorded or noisy/accent/long-form Chinese quality trial, or live cloud LLM Agent trial. Reference-assisted homophone/context correction is not an acoustic accuracy claim.",
+    "Raw surface CER includes traditional/simplified and numeric formatting differences; it is not the genuine typo rate. On this short fixture, normalized untouched raw ASR still has one real contextual character substitution per runner; corrected normalized CER=0 does not mean the ASR model was originally perfect.",
+    "The minimum reviewed cue is 0.92 seconds for the intact phrase 保留原片. This is explicitly accepted here as a short complete phrase and does not establish a universal subtitle duration rule or target-player display approval.",
+    "B source-to-output full 1.8-second extent was checked; decoded interior 1.7-second samples were verified silent after excluding 50 ms at each end to avoid lossy-codec boundary effects. No semantic permission for arbitrary VAD silence removal is inferred.",
+    "Restored video is 50.2 seconds, preserving the actual 1.6936875-second video tail after PCM audio. Cut-A export is 47.68 seconds versus explicit keep sum 47.696 seconds, a 16 ms encoding/frame difference; restore is not byte-identical MP4, but its decoded audio equals the raw full-length export.",
+    "No Windows CUDA pass is claimed. Actual devices here are Windows CPU, Apple MLX/Metal GPU, Intel CPU. No GPU/CPU controlled performance benchmark, external publication, subtitle burn-in, arbitrary editing quality, forced failure recovery, concurrency, upgrade or broad hardware matrix was established."
+  ]
+}

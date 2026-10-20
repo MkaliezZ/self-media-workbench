@@ -1,5 +1,11 @@
 # Revision and failure history
 
+## Chinese speech, three native platforms — 2026-10-21
+
+The common synthetic Chinese fixture exposed a comparison bug: first run 39472668879 (`80e5ae5`) stopped after raw ASR/export because numeric spelling differed across whole text and word groups. `9f37d82` repaired fixture-scoped numeric normalization and verified A's adjacent TTS padding with decoded PCM. Run 39473665015 then passed automated correction/cut/restore checks on all three platforms, but independent semantic review rejected the actual caption joining “必须保留。” to the next sentence across demonstration hold B. Both real original failures and the technically passed/quality-failed second SRT remain retained.
+
+`c8f5b99` repairs the Agent grouping method and media reference, keeping short tails within the same sentence and asserting that captions cannot span B or a sentence ending. Final run 39473993837 completed Windows CPU, Apple Silicon actual MLX/Metal GPU and Intel CPU with the same fixture, local reference-assisted correction, 18 captions and decoded cut/restore exports. Raw ASR still has one genuine character substitution per platform; no zero-error recognition claim. Source/container tail and prior exports remain unchanged. [Detailed evidence and scope](../evaluation/chinese-acceptance-20261021.md).
+
 ## Initial MIT implementation
 
 New unified task API/CLI and an independently authored Python/FFmpeg renderer. The AGPL prototype renderer, private course corpus and user projects are excluded. Windows regression: 27 tests passed. Real local CPU ASR and HTTP export/decode also passed; these do not transfer the prototype's independent acceptance to this implementation.

@@ -1,5 +1,9 @@
 # Validation record
 
+## Chinese speech correction, captions, pause cut and restore
+
+[2026-10-21 Chinese acceptance](../evaluation/chinese-acceptance-20261021.md), code `c8f5b99`, run 39473993837: native Windows faster-whisper/CPU, macOS 15 Intel faster-whisper/CPU and macOS 15 Apple Silicon MLX/GPU all executed identical Chinese PCM, real source-bound correction, semantic caption grouping, A-only silence deletion, full 50.2-second restore and complete MP4 decode. GPU evidence includes actual Metal kernel/isolated worker and no fallback. Each original transcript retains one real typo (1/141 normalized CER); known-reference correction is separate. Initial numeric-comparison failure and the second run's automatically passed but semantically wrong captions are retained. This is a short synthetic fixture, not human/noisy/long-form accuracy or a live cloud LLM test.
+
 This MIT implementation has its own evidence; private-prototype passes do not automatically transfer. Initial regression: 27 tests; after independent findings: 30, then 31; after MLX integration: 36 Windows tests. Original logs and revisions remain in evaluation/ and [failure history](revisions.md). These tests include actual FFmpeg cut/restore/decode, not a mocked renderer.
 
 ## Actual operating-system runs

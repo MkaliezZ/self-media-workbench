@@ -1,0 +1,22 @@
+{
+  "name": "reviewed-full-decode",
+  "command": [
+    "ffmpeg",
+    "-v",
+    "error",
+    "-nostdin",
+    "-i",
+    "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/state/projects/5a4fad373dfc4f4fa074049a095fa2dd/exports/6eafda4ac988400b83925ab4c69e6d96/reviewed_cut.mp4",
+    "-map",
+    "0:v:0",
+    "-map",
+    "0:a:0",
+    "-f",
+    "null",
+    "-"
+  ],
+  "cwd": "/Users/runner/work/self-media-workbench/self-media-workbench/product",
+  "started_at": 1792520585.43998,
+  "returncode": 0,
+  "elapsed_seconds": 0.1930067539215088
+}

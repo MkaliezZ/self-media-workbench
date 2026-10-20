@@ -1,0 +1,16 @@
+{
+  "duration": 50.2,
+  "cuts": [],
+  "keeps": [
+    {
+      "start": 0.0,
+      "end": 50.2,
+      "outputOffset": 0.0
+    }
+  ],
+  "output_duration": 50.2,
+  "selected_ids": [],
+  "deleted_word_ids": [],
+  "decisions": [],
+  "policy": "Only explicit selected pauses/spoken groups; no hidden silence cutting or boundary snapping."
+}

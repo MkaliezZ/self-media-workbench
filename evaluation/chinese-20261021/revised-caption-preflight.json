@@ -1,0 +1,233 @@
+[
+  {
+    "platform": "macos-15",
+    "captions": [
+      {
+        "duration": 2.34,
+        "text": "这是中文口播合成验收,"
+      },
+      {
+        "duration": 1.68,
+        "text": "不是真实客户案例。"
+      },
+      {
+        "duration": 2.94,
+        "text": "拍摄前,先关闭手机通知,"
+      },
+      {
+        "duration": 1.44,
+        "text": "再擦干净镜头。"
+      },
+      {
+        "duration": 1.38,
+        "text": "先锁定曝光,"
+      },
+      {
+        "duration": 1.36,
+        "text": "再检查白平衡。"
+      },
+      {
+        "duration": 1.4,
+        "text": "不要把提高亮度,"
+      },
+      {
+        "duration": 1.68,
+        "text": "理解成修好了画质。"
+      },
+      {
+        "duration": 2.66,
+        "text": "这里的24帧和48千赫,"
+      },
+      {
+        "duration": 0.98,
+        "text": "是测试读数,"
+      },
+      {
+        "duration": 1.36,
+        "text": "不是推荐参数。"
+      },
+      {
+        "duration": 2.12,
+        "text": "如果画面仍然偏色,"
+      },
+      {
+        "duration": 1.12,
+        "text": "先检查光源,"
+      },
+      {
+        "duration": 1.64,
+        "text": "不要承诺一次解决。"
+      },
+      {
+        "duration": 4.2,
+        "text": "下面这段停顿用于展示操作,必须保留。"
+      },
+      {
+        "duration": 1.4,
+        "text": "最后核对字幕,"
+      },
+      {
+        "duration": 0.92,
+        "text": "保留原片,"
+      },
+      {
+        "duration": 2.04,
+        "text": "剪掉的停顿也要能恢复。"
+      }
+    ]
+  },
+  {
+    "platform": "macos-15-intel",
+    "captions": [
+      {
+        "duration": 2.34,
+        "text": "这是中文口播合成验收,"
+      },
+      {
+        "duration": 1.66,
+        "text": "不是真实客户案例。"
+      },
+      {
+        "duration": 2.9,
+        "text": "拍摄前,先关闭手机通知,"
+      },
+      {
+        "duration": 1.44,
+        "text": "再擦干净镜头。"
+      },
+      {
+        "duration": 1.38,
+        "text": "先锁定曝光,"
+      },
+      {
+        "duration": 1.38,
+        "text": "再检查白平衡。"
+      },
+      {
+        "duration": 1.4,
+        "text": "不要把提高亮度,"
+      },
+      {
+        "duration": 1.68,
+        "text": "理解成修好了画质。"
+      },
+      {
+        "duration": 2.66,
+        "text": "这里的24帧和48千赫"
+      },
+      {
+        "duration": 1.5,
+        "text": "是测试读数,"
+      },
+      {
+        "duration": 1.36,
+        "text": "不是推荐参数。"
+      },
+      {
+        "duration": 2.1,
+        "text": "如果画面仍然偏色,"
+      },
+      {
+        "duration": 1.14,
+        "text": "先检查光源,"
+      },
+      {
+        "duration": 1.64,
+        "text": "不要承诺一次解决。"
+      },
+      {
+        "duration": 4.2,
+        "text": "下面这段停顿用于展示操作,必须保留。"
+      },
+      {
+        "duration": 1.4,
+        "text": "最后核对字幕,"
+      },
+      {
+        "duration": 0.92,
+        "text": "保留原片,"
+      },
+      {
+        "duration": 2.04,
+        "text": "剪掉的停顿也要能恢复。"
+      }
+    ]
+  },
+  {
+    "platform": "windows-latest",
+    "captions": [
+      {
+        "duration": 2.34,
+        "text": "这是中文口播合成验收,"
+      },
+      {
+        "duration": 1.7,
+        "text": "不是真实客户案例。"
+      },
+      {
+        "duration": 2.94,
+        "text": "拍摄前,先关闭手机通知,"
+      },
+      {
+        "duration": 1.42,
+        "text": "再擦干净镜头。"
+      },
+      {
+        "duration": 1.38,
+        "text": "先锁定曝光,"
+      },
+      {
+        "duration": 1.38,
+        "text": "再检查白平衡。"
+      },
+      {
+        "duration": 1.42,
+        "text": "不要把提高亮度,"
+      },
+      {
+        "duration": 1.68,
+        "text": "理解成修好了画质。"
+      },
+      {
+        "duration": 2.72,
+        "text": "这里的24帧和48000Hz,"
+      },
+      {
+        "duration": 1.02,
+        "text": "是测试读数,"
+      },
+      {
+        "duration": 1.38,
+        "text": "不是推荐参数。"
+      },
+      {
+        "duration": 2.1,
+        "text": "如果画面仍然偏色,"
+      },
+      {
+        "duration": 1.12,
+        "text": "先检查光源,"
+      },
+      {
+        "duration": 1.64,
+        "text": "不要承诺一次解决。"
+      },
+      {
+        "duration": 4.2,
+        "text": "下面这段停顿用于展示操作,必须保留。"
+      },
+      {
+        "duration": 1.4,
+        "text": "最后核对字幕,"
+      },
+      {
+        "duration": 0.92,
+        "text": "保留原片,"
+      },
+      {
+        "duration": 2.06,
+        "text": "剪掉的停顿也要能恢复。"
+      }
+    ]
+  }
+]

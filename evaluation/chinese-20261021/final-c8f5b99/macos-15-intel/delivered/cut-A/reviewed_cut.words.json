@@ -1,0 +1,1136 @@
+[
+  {
+    "id": 0,
+    "text": "这是",
+    "source_start": 0.0,
+    "source_end": 0.34,
+    "asr_probability": 0.36930903792381287,
+    "start": 0.0,
+    "end": 0.34
+  },
+  {
+    "id": 1,
+    "text": "中",
+    "source_start": 0.34,
+    "source_end": 0.72,
+    "asr_probability": 0.9906409382820129,
+    "start": 0.34,
+    "end": 0.72
+  },
+  {
+    "id": 2,
+    "text": "文",
+    "source_start": 0.72,
+    "source_end": 0.92,
+    "asr_probability": 0.9981966614723206,
+    "start": 0.72,
+    "end": 0.92
+  },
+  {
+    "id": 3,
+    "text": "口",
+    "source_start": 0.92,
+    "source_end": 1.14,
+    "asr_probability": 0.9829379916191101,
+    "start": 0.92,
+    "end": 1.14
+  },
+  {
+    "id": 4,
+    "text": "播",
+    "source_start": 1.14,
+    "source_end": 1.38,
+    "asr_probability": 0.7871711254119873,
+    "start": 1.14,
+    "end": 1.38
+  },
+  {
+    "id": 5,
+    "text": "合",
+    "source_start": 1.38,
+    "source_end": 1.64,
+    "asr_probability": 0.8922634124755859,
+    "start": 1.38,
+    "end": 1.64
+  },
+  {
+    "id": 6,
+    "text": "成",
+    "source_start": 1.64,
+    "source_end": 1.86,
+    "asr_probability": 0.8452008366584778,
+    "start": 1.64,
+    "end": 1.86
+  },
+  {
+    "id": 7,
+    "text": "验",
+    "source_start": 1.86,
+    "source_end": 2.1,
+    "asr_probability": 0.9558969140052795,
+    "start": 1.86,
+    "end": 2.1
+  },
+  {
+    "id": 8,
+    "text": "收,",
+    "source_start": 2.1,
+    "source_end": 2.34,
+    "asr_probability": 0.8152055144309998,
+    "start": 2.1,
+    "end": 2.34
+  },
+  {
+    "id": 9,
+    "text": "不是",
+    "source_start": 2.82,
+    "source_end": 3.06,
+    "asr_probability": 0.8664155602455139,
+    "start": 2.82,
+    "end": 3.06
+  },
+  {
+    "id": 10,
+    "text": "真",
+    "source_start": 3.06,
+    "source_end": 3.36,
+    "asr_probability": 0.960968554019928,
+    "start": 3.06,
+    "end": 3.36
+  },
+  {
+    "id": 11,
+    "text": "实",
+    "source_start": 3.36,
+    "source_end": 3.58,
+    "asr_probability": 0.989504337310791,
+    "start": 3.36,
+    "end": 3.58
+  },
+  {
+    "id": 12,
+    "text": "客",
+    "source_start": 3.58,
+    "source_end": 3.88,
+    "asr_probability": 0.9921767115592957,
+    "start": 3.58,
+    "end": 3.88
+  },
+  {
+    "id": 13,
+    "text": "户",
+    "source_start": 3.88,
+    "source_end": 4.1,
+    "asr_probability": 0.9997735619544983,
+    "start": 3.88,
+    "end": 4.1
+  },
+  {
+    "id": 14,
+    "text": "案",
+    "source_start": 4.1,
+    "source_end": 4.3,
+    "asr_probability": 0.9734715819358826,
+    "start": 4.1,
+    "end": 4.3
+  },
+  {
+    "id": 15,
+    "text": "例。",
+    "source_start": 4.3,
+    "source_end": 4.48,
+    "asr_probability": 0.9996825456619263,
+    "start": 4.3,
+    "end": 4.48
+  },
+  {
+    "id": 16,
+    "text": "拍",
+    "source_start": 5.24,
+    "source_end": 5.58,
+    "asr_probability": 0.982654869556427,
+    "start": 5.24,
+    "end": 5.58
+  },
+  {
+    "id": 17,
+    "text": "摄",
+    "source_start": 5.58,
+    "source_end": 5.76,
+    "asr_probability": 0.9974773824214935,
+    "start": 5.58,
+    "end": 5.76
+  },
+  {
+    "id": 18,
+    "text": "前,",
+    "source_start": 5.76,
+    "source_end": 6.1,
+    "asr_probability": 0.9972065091133118,
+    "start": 5.76,
+    "end": 6.1
+  },
+  {
+    "id": 19,
+    "text": "先",
+    "source_start": 6.64,
+    "source_end": 6.82,
+    "asr_probability": 0.9734521508216858,
+    "start": 6.64,
+    "end": 6.82
+  },
+  {
+    "id": 20,
+    "text": "关",
+    "source_start": 6.82,
+    "source_end": 7.0,
+    "asr_probability": 0.9861065149307251,
+    "start": 6.82,
+    "end": 7.0
+  },
+  {
+    "id": 21,
+    "text": "闭",
+    "source_start": 7.0,
+    "source_end": 7.2,
+    "asr_probability": 0.9863551557064056,
+    "start": 7.0,
+    "end": 7.2
+  },
+  {
+    "id": 22,
+    "text": "手",
+    "source_start": 7.2,
+    "source_end": 7.48,
+    "asr_probability": 0.9891096353530884,
+    "start": 7.2,
+    "end": 7.48
+  },
+  {
+    "id": 23,
+    "text": "机",
+    "source_start": 7.48,
+    "source_end": 7.7,
+    "asr_probability": 0.9994125366210938,
+    "start": 7.48,
+    "end": 7.7
+  },
+  {
+    "id": 24,
+    "text": "通",
+    "source_start": 7.7,
+    "source_end": 7.92,
+    "asr_probability": 0.9930239915847778,
+    "start": 7.7,
+    "end": 7.92
+  },
+  {
+    "id": 25,
+    "text": "知,",
+    "source_start": 7.92,
+    "source_end": 8.14,
+    "asr_probability": 0.999196469783783,
+    "start": 7.92,
+    "end": 8.14
+  },
+  {
+    "id": 26,
+    "text": "再",
+    "source_start": 8.64,
+    "source_end": 8.82,
+    "asr_probability": 0.986790120601654,
+    "start": 8.64,
+    "end": 8.82
+  },
+  {
+    "id": 27,
+    "text": "擦",
+    "source_start": 8.82,
+    "source_end": 9.06,
+    "asr_probability": 0.9509561657905579,
+    "start": 8.82,
+    "end": 9.06
+  },
+  {
+    "id": 28,
+    "text": "干",
+    "source_start": 9.06,
+    "source_end": 9.36,
+    "asr_probability": 0.9786785244941711,
+    "start": 9.06,
+    "end": 9.36
+  },
+  {
+    "id": 29,
+    "text": "净",
+    "source_start": 9.36,
+    "source_end": 9.56,
+    "asr_probability": 0.9956794381141663,
+    "start": 9.36,
+    "end": 9.56
+  },
+  {
+    "id": 30,
+    "text": "镜",
+    "source_start": 9.56,
+    "source_end": 9.74,
+    "asr_probability": 0.9836582839488983,
+    "start": 9.56,
+    "end": 9.74
+  },
+  {
+    "id": 31,
+    "text": "头。",
+    "source_start": 9.74,
+    "source_end": 10.08,
+    "asr_probability": 0.9996812343597412,
+    "start": 9.74,
+    "end": 10.08
+  },
+  {
+    "id": 32,
+    "text": "先",
+    "source_start": 13.2,
+    "source_end": 13.68,
+    "asr_probability": 0.9567010998725891,
+    "start": 10.696,
+    "end": 11.176
+  },
+  {
+    "id": 33,
+    "text": "锁",
+    "source_start": 13.68,
+    "source_end": 13.92,
+    "asr_probability": 0.9954542517662048,
+    "start": 11.176,
+    "end": 11.416
+  },
+  {
+    "id": 34,
+    "text": "定",
+    "source_start": 13.92,
+    "source_end": 14.1,
+    "asr_probability": 0.9971223473548889,
+    "start": 11.416,
+    "end": 11.596
+  },
+  {
+    "id": 35,
+    "text": "曝",
+    "source_start": 14.1,
+    "source_end": 14.3,
+    "asr_probability": 0.9780628085136414,
+    "start": 11.596,
+    "end": 11.796
+  },
+  {
+    "id": 36,
+    "text": "光,",
+    "source_start": 14.3,
+    "source_end": 14.58,
+    "asr_probability": 0.9997634291648865,
+    "start": 11.796,
+    "end": 12.076
+  },
+  {
+    "id": 37,
+    "text": "再",
+    "source_start": 15.12,
+    "source_end": 15.26,
+    "asr_probability": 0.9891003966331482,
+    "start": 12.616,
+    "end": 12.756
+  },
+  {
+    "id": 38,
+    "text": "检",
+    "source_start": 15.26,
+    "source_end": 15.48,
+    "asr_probability": 0.9991067349910736,
+    "start": 12.756,
+    "end": 12.976
+  },
+  {
+    "id": 39,
+    "text": "查",
+    "source_start": 15.48,
+    "source_end": 15.72,
+    "asr_probability": 0.9957672357559204,
+    "start": 12.976,
+    "end": 13.216
+  },
+  {
+    "id": 40,
+    "text": "白",
+    "source_start": 15.72,
+    "source_end": 16.0,
+    "asr_probability": 0.9331484436988831,
+    "start": 13.216,
+    "end": 13.496
+  },
+  {
+    "id": 41,
+    "text": "平",
+    "source_start": 16.0,
+    "source_end": 16.22,
+    "asr_probability": 0.9668803811073303,
+    "start": 13.496,
+    "end": 13.716
+  },
+  {
+    "id": 42,
+    "text": "衡。",
+    "source_start": 16.22,
+    "source_end": 16.5,
+    "asr_probability": 0.9793978035449982,
+    "start": 13.716,
+    "end": 13.996
+  },
+  {
+    "id": 43,
+    "text": "不要",
+    "source_start": 17.48,
+    "source_end": 17.74,
+    "asr_probability": 0.9948935508728027,
+    "start": 14.976,
+    "end": 15.236
+  },
+  {
+    "id": 44,
+    "text": "把",
+    "source_start": 17.74,
+    "source_end": 18.0,
+    "asr_probability": 0.9964694976806641,
+    "start": 15.236,
+    "end": 15.496
+  },
+  {
+    "id": 45,
+    "text": "提",
+    "source_start": 18.0,
+    "source_end": 18.28,
+    "asr_probability": 0.991442859172821,
+    "start": 15.496,
+    "end": 15.776
+  },
+  {
+    "id": 46,
+    "text": "高",
+    "source_start": 18.28,
+    "source_end": 18.46,
+    "asr_probability": 0.999702513217926,
+    "start": 15.776,
+    "end": 15.956
+  },
+  {
+    "id": 47,
+    "text": "亮",
+    "source_start": 18.46,
+    "source_end": 18.66,
+    "asr_probability": 0.9821517467498779,
+    "start": 15.956,
+    "end": 16.156
+  },
+  {
+    "id": 48,
+    "text": "度,",
+    "source_start": 18.66,
+    "source_end": 18.88,
+    "asr_probability": 0.9997729659080505,
+    "start": 16.156,
+    "end": 16.376
+  },
+  {
+    "id": 49,
+    "text": "理",
+    "source_start": 19.34,
+    "source_end": 19.54,
+    "asr_probability": 0.9644511342048645,
+    "start": 16.836,
+    "end": 17.036
+  },
+  {
+    "id": 50,
+    "text": "解",
+    "source_start": 19.54,
+    "source_end": 19.74,
+    "asr_probability": 0.999923825263977,
+    "start": 17.036,
+    "end": 17.236
+  },
+  {
+    "id": 51,
+    "text": "成",
+    "source_start": 19.74,
+    "source_end": 19.96,
+    "asr_probability": 0.9957541227340698,
+    "start": 17.236,
+    "end": 17.456
+  },
+  {
+    "id": 52,
+    "text": "修",
+    "source_start": 19.96,
+    "source_end": 20.24,
+    "asr_probability": 0.9959970414638519,
+    "start": 17.456,
+    "end": 17.736
+  },
+  {
+    "id": 53,
+    "text": "好了",
+    "source_start": 20.24,
+    "source_end": 20.58,
+    "asr_probability": 0.9789654612541199,
+    "start": 17.736,
+    "end": 18.076
+  },
+  {
+    "id": 54,
+    "text": "画",
+    "source_start": 20.58,
+    "source_end": 20.82,
+    "asr_probability": 0.9771237969398499,
+    "start": 18.076,
+    "end": 18.316
+  },
+  {
+    "id": 55,
+    "text": "质。",
+    "source_start": 20.82,
+    "source_end": 21.02,
+    "asr_probability": 0.9990582764148712,
+    "start": 18.316,
+    "end": 18.516
+  },
+  {
+    "id": 56,
+    "text": "这里",
+    "source_start": 21.94,
+    "source_end": 22.2,
+    "asr_probability": 0.9895921945571899,
+    "start": 19.436,
+    "end": 19.696
+  },
+  {
+    "id": 57,
+    "text": "的",
+    "source_start": 22.2,
+    "source_end": 22.44,
+    "asr_probability": 0.9989848732948303,
+    "start": 19.696,
+    "end": 19.936
+  },
+  {
+    "id": 58,
+    "text": "24",
+    "source_start": 22.44,
+    "source_end": 22.84,
+    "asr_probability": 0.89344322681427,
+    "start": 19.936,
+    "end": 20.336
+  },
+  {
+    "id": 59,
+    "text": "帧",
+    "source_start": 22.84,
+    "source_end": 23.22,
+    "asr_probability": 0.9089510142803192,
+    "start": 20.336,
+    "end": 20.716
+  },
+  {
+    "id": 60,
+    "text": "和",
+    "source_start": 23.22,
+    "source_end": 23.54,
+    "asr_probability": 0.9831417798995972,
+    "start": 20.716,
+    "end": 21.036
+  },
+  {
+    "id": 61,
+    "text": "48",
+    "source_start": 23.54,
+    "source_end": 24.0,
+    "asr_probability": 0.9648630619049072,
+    "start": 21.036,
+    "end": 21.496
+  },
+  {
+    "id": 62,
+    "text": "千",
+    "source_start": 24.0,
+    "source_end": 24.38,
+    "asr_probability": 0.508979856967926,
+    "start": 21.496,
+    "end": 21.876
+  },
+  {
+    "id": 63,
+    "text": "赫",
+    "source_start": 24.38,
+    "source_end": 24.6,
+    "asr_probability": 0.8870633840560913,
+    "start": 21.876,
+    "end": 22.096
+  },
+  {
+    "id": 64,
+    "text": "是",
+    "source_start": 24.6,
+    "source_end": 25.3,
+    "asr_probability": 0.3612019419670105,
+    "start": 22.096,
+    "end": 22.796
+  },
+  {
+    "id": 65,
+    "text": "测",
+    "source_start": 25.3,
+    "source_end": 25.54,
+    "asr_probability": 0.9732087254524231,
+    "start": 22.796,
+    "end": 23.036
+  },
+  {
+    "id": 66,
+    "text": "试",
+    "source_start": 25.54,
+    "source_end": 25.74,
+    "asr_probability": 0.9989363253116608,
+    "start": 23.036,
+    "end": 23.236
+  },
+  {
+    "id": 67,
+    "text": "读",
+    "source_start": 25.74,
+    "source_end": 25.92,
+    "asr_probability": 0.9557256996631622,
+    "start": 23.236,
+    "end": 23.416
+  },
+  {
+    "id": 68,
+    "text": "数,",
+    "source_start": 25.92,
+    "source_end": 26.1,
+    "asr_probability": 0.7752879858016968,
+    "start": 23.416,
+    "end": 23.596
+  },
+  {
+    "id": 69,
+    "text": "不是",
+    "source_start": 26.6,
+    "source_end": 26.88,
+    "asr_probability": 0.9904317259788513,
+    "start": 24.096,
+    "end": 24.376
+  },
+  {
+    "id": 70,
+    "text": "推",
+    "source_start": 26.88,
+    "source_end": 27.28,
+    "asr_probability": 0.9989427924156189,
+    "start": 24.376,
+    "end": 24.776
+  },
+  {
+    "id": 71,
+    "text": "荐",
+    "source_start": 27.28,
+    "source_end": 27.48,
+    "asr_probability": 0.9885156154632568,
+    "start": 24.776,
+    "end": 24.976
+  },
+  {
+    "id": 72,
+    "text": "参",
+    "source_start": 27.48,
+    "source_end": 27.74,
+    "asr_probability": 0.994980663061142,
+    "start": 24.976,
+    "end": 25.236
+  },
+  {
+    "id": 73,
+    "text": "数。",
+    "source_start": 27.74,
+    "source_end": 27.96,
+    "asr_probability": 0.9776715040206909,
+    "start": 25.236,
+    "end": 25.456
+  },
+  {
+    "id": 74,
+    "text": "如果",
+    "source_start": 28.68,
+    "source_end": 29.16,
+    "asr_probability": 0.7236645221710205,
+    "start": 26.176,
+    "end": 26.656
+  },
+  {
+    "id": 75,
+    "text": "画",
+    "source_start": 29.16,
+    "source_end": 29.6,
+    "asr_probability": 0.6120954155921936,
+    "start": 26.656,
+    "end": 27.096
+  },
+  {
+    "id": 76,
+    "text": "面",
+    "source_start": 29.6,
+    "source_end": 29.86,
+    "asr_probability": 0.9999256134033203,
+    "start": 27.096,
+    "end": 27.356
+  },
+  {
+    "id": 77,
+    "text": "仍",
+    "source_start": 29.86,
+    "source_end": 30.08,
+    "asr_probability": 0.9994048178195953,
+    "start": 27.356,
+    "end": 27.576
+  },
+  {
+    "id": 78,
+    "text": "然",
+    "source_start": 30.08,
+    "source_end": 30.28,
+    "asr_probability": 0.9990383386611938,
+    "start": 27.576,
+    "end": 27.776
+  },
+  {
+    "id": 79,
+    "text": "偏",
+    "source_start": 30.28,
+    "source_end": 30.52,
+    "asr_probability": 0.9950134754180908,
+    "start": 27.776,
+    "end": 28.016
+  },
+  {
+    "id": 80,
+    "text": "色,",
+    "source_start": 30.52,
+    "source_end": 30.78,
+    "asr_probability": 0.9912443161010742,
+    "start": 28.016,
+    "end": 28.276
+  },
+  {
+    "id": 81,
+    "text": "先",
+    "source_start": 31.22,
+    "source_end": 31.48,
+    "asr_probability": 0.9038918614387512,
+    "start": 28.716,
+    "end": 28.976
+  },
+  {
+    "id": 82,
+    "text": "检",
+    "source_start": 31.48,
+    "source_end": 31.68,
+    "asr_probability": 0.97846519947052,
+    "start": 28.976,
+    "end": 29.176
+  },
+  {
+    "id": 83,
+    "text": "查",
+    "source_start": 31.68,
+    "source_end": 31.92,
+    "asr_probability": 0.9842013716697693,
+    "start": 29.176,
+    "end": 29.416
+  },
+  {
+    "id": 84,
+    "text": "光",
+    "source_start": 31.92,
+    "source_end": 32.1,
+    "asr_probability": 0.9938228130340576,
+    "start": 29.416,
+    "end": 29.596
+  },
+  {
+    "id": 85,
+    "text": "源,",
+    "source_start": 32.1,
+    "source_end": 32.36,
+    "asr_probability": 0.9946466088294983,
+    "start": 29.596,
+    "end": 29.856
+  },
+  {
+    "id": 86,
+    "text": "不要",
+    "source_start": 32.9,
+    "source_end": 33.16,
+    "asr_probability": 0.9337260723114014,
+    "start": 30.396,
+    "end": 30.656
+  },
+  {
+    "id": 87,
+    "text": "承",
+    "source_start": 33.16,
+    "source_end": 33.44,
+    "asr_probability": 0.9626876413822174,
+    "start": 30.656,
+    "end": 30.936
+  },
+  {
+    "id": 88,
+    "text": "诺",
+    "source_start": 33.44,
+    "source_end": 33.62,
+    "asr_probability": 0.9718542695045471,
+    "start": 30.936,
+    "end": 31.116
+  },
+  {
+    "id": 89,
+    "text": "一次",
+    "source_start": 33.62,
+    "source_end": 33.96,
+    "asr_probability": 0.9816532731056213,
+    "start": 31.116,
+    "end": 31.456
+  },
+  {
+    "id": 90,
+    "text": "解",
+    "source_start": 33.96,
+    "source_end": 34.3,
+    "asr_probability": 0.9979878664016724,
+    "start": 31.456,
+    "end": 31.796
+  },
+  {
+    "id": 91,
+    "text": "决。",
+    "source_start": 34.3,
+    "source_end": 34.54,
+    "asr_probability": 0.9879544973373413,
+    "start": 31.796,
+    "end": 32.036
+  },
+  {
+    "id": 92,
+    "text": "下面",
+    "source_start": 35.38,
+    "source_end": 35.84,
+    "asr_probability": 0.9557662010192871,
+    "start": 32.876,
+    "end": 33.336
+  },
+  {
+    "id": 93,
+    "text": "这",
+    "source_start": 35.84,
+    "source_end": 36.2,
+    "asr_probability": 0.990266740322113,
+    "start": 33.336,
+    "end": 33.696
+  },
+  {
+    "id": 94,
+    "text": "段",
+    "source_start": 36.2,
+    "source_end": 36.46,
+    "asr_probability": 0.9982201457023621,
+    "start": 33.696,
+    "end": 33.956
+  },
+  {
+    "id": 95,
+    "text": "停",
+    "source_start": 36.46,
+    "source_end": 36.7,
+    "asr_probability": 0.8581505417823792,
+    "start": 33.956,
+    "end": 34.196
+  },
+  {
+    "id": 96,
+    "text": "顿",
+    "source_start": 36.7,
+    "source_end": 36.88,
+    "asr_probability": 0.9850924611091614,
+    "start": 34.196,
+    "end": 34.376
+  },
+  {
+    "id": 97,
+    "text": "用",
+    "source_start": 36.88,
+    "source_end": 37.14,
+    "asr_probability": 0.9961631298065186,
+    "start": 34.376,
+    "end": 34.636
+  },
+  {
+    "id": 98,
+    "text": "于",
+    "source_start": 37.14,
+    "source_end": 37.36,
+    "asr_probability": 0.9417665004730225,
+    "start": 34.636,
+    "end": 34.856
+  },
+  {
+    "id": 99,
+    "text": "展",
+    "source_start": 37.36,
+    "source_end": 37.6,
+    "asr_probability": 0.9945506453514099,
+    "start": 34.856,
+    "end": 35.096
+  },
+  {
+    "id": 100,
+    "text": "示",
+    "source_start": 37.6,
+    "source_end": 37.82,
+    "asr_probability": 0.9983722567558289,
+    "start": 35.096,
+    "end": 35.316
+  },
+  {
+    "id": 101,
+    "text": "操",
+    "source_start": 37.82,
+    "source_end": 38.04,
+    "asr_probability": 0.9986035525798798,
+    "start": 35.316,
+    "end": 35.536
+  },
+  {
+    "id": 102,
+    "text": "作,",
+    "source_start": 38.04,
+    "source_end": 38.32,
+    "asr_probability": 0.9990195035934448,
+    "start": 35.536,
+    "end": 35.816
+  },
+  {
+    "id": 103,
+    "text": "必",
+    "source_start": 38.78,
+    "source_end": 38.98,
+    "asr_probability": 0.9944570064544678,
+    "start": 36.276,
+    "end": 36.476
+  },
+  {
+    "id": 104,
+    "text": "须",
+    "source_start": 38.98,
+    "source_end": 39.16,
+    "asr_probability": 0.9916939735412598,
+    "start": 36.476,
+    "end": 36.656
+  },
+  {
+    "id": 105,
+    "text": "保",
+    "source_start": 39.16,
+    "source_end": 39.36,
+    "asr_probability": 0.9912980794906616,
+    "start": 36.656,
+    "end": 36.856
+  },
+  {
+    "id": 106,
+    "text": "留。",
+    "source_start": 39.36,
+    "source_end": 39.58,
+    "asr_probability": 0.9997122883796692,
+    "start": 36.856,
+    "end": 37.076
+  },
+  {
+    "id": 107,
+    "text": "最后",
+    "source_start": 42.24,
+    "source_end": 42.72,
+    "asr_probability": 0.9836519956588745,
+    "start": 39.736,
+    "end": 40.216
+  },
+  {
+    "id": 108,
+    "text": "核",
+    "source_start": 42.72,
+    "source_end": 43.06,
+    "asr_probability": 0.7781567573547363,
+    "start": 40.216,
+    "end": 40.556
+  },
+  {
+    "id": 109,
+    "text": "对",
+    "source_start": 43.06,
+    "source_end": 43.26,
+    "asr_probability": 0.9811640381813049,
+    "start": 40.556,
+    "end": 40.756
+  },
+  {
+    "id": 110,
+    "text": "字",
+    "source_start": 43.26,
+    "source_end": 43.46,
+    "asr_probability": 0.996891438961029,
+    "start": 40.756,
+    "end": 40.956
+  },
+  {
+    "id": 111,
+    "text": "幕,",
+    "source_start": 43.46,
+    "source_end": 43.64,
+    "asr_probability": 0.9665056467056274,
+    "start": 40.956,
+    "end": 41.136
+  },
+  {
+    "id": 112,
+    "text": "保",
+    "source_start": 44.08,
+    "source_end": 44.3,
+    "asr_probability": 0.9830465912818909,
+    "start": 41.576,
+    "end": 41.796
+  },
+  {
+    "id": 113,
+    "text": "留",
+    "source_start": 44.3,
+    "source_end": 44.52,
+    "asr_probability": 0.9997120499610901,
+    "start": 41.796,
+    "end": 42.016
+  },
+  {
+    "id": 114,
+    "text": "原",
+    "source_start": 44.52,
+    "source_end": 44.78,
+    "asr_probability": 0.7354891896247864,
+    "start": 42.016,
+    "end": 42.276
+  },
+  {
+    "id": 115,
+    "text": "片,",
+    "source_start": 44.78,
+    "source_end": 45.0,
+    "asr_probability": 0.757881224155426,
+    "start": 42.276,
+    "end": 42.496
+  },
+  {
+    "id": 116,
+    "text": "剪",
+    "source_start": 45.58,
+    "source_end": 45.76,
+    "asr_probability": 0.9278508424758911,
+    "start": 43.076,
+    "end": 43.256
+  },
+  {
+    "id": 117,
+    "text": "掉",
+    "source_start": 45.76,
+    "source_end": 45.96,
+    "asr_probability": 0.9953877329826355,
+    "start": 43.256,
+    "end": 43.456
+  },
+  {
+    "id": 118,
+    "text": "的",
+    "source_start": 45.96,
+    "source_end": 46.1,
+    "asr_probability": 0.9983454942703247,
+    "start": 43.456,
+    "end": 43.596
+  },
+  {
+    "id": 119,
+    "text": "停",
+    "source_start": 46.1,
+    "source_end": 46.32,
+    "asr_probability": 0.9958122372627258,
+    "start": 43.596,
+    "end": 43.816
+  },
+  {
+    "id": 120,
+    "text": "顿",
+    "source_start": 46.32,
+    "source_end": 46.52,
+    "asr_probability": 0.9998475015163422,
+    "start": 43.816,
+    "end": 44.016
+  },
+  {
+    "id": 121,
+    "text": "也",
+    "source_start": 46.52,
+    "source_end": 46.76,
+    "asr_probability": 0.9953704476356506,
+    "start": 44.016,
+    "end": 44.256
+  },
+  {
+    "id": 122,
+    "text": "要",
+    "source_start": 46.76,
+    "source_end": 46.98,
+    "asr_probability": 0.9979038238525391,
+    "start": 44.256,
+    "end": 44.476
+  },
+  {
+    "id": 123,
+    "text": "能",
+    "source_start": 46.98,
+    "source_end": 47.2,
+    "asr_probability": 0.9912315011024475,
+    "start": 44.476,
+    "end": 44.696
+  },
+  {
+    "id": 124,
+    "text": "恢",
+    "source_start": 47.2,
+    "source_end": 47.44,
+    "asr_probability": 0.9937847852706909,
+    "start": 44.696,
+    "end": 44.936
+  },
+  {
+    "id": 125,
+    "text": "复。",
+    "source_start": 47.44,
+    "source_end": 47.62,
+    "asr_probability": 0.9977385103702545,
+    "start": 44.936,
+    "end": 45.116
+  }
+]

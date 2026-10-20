@@ -1,0 +1,21 @@
+{
+    "format": {
+        "filename": "D:\\a\\self-media-workbench\\self-media-workbench\\evidence\\state\\projects\\7530ff2b90ab443dadf812a8058bf0b4\\exports\\0c04ff8d2ff24e50b2da7690adb0e8f8\\reviewed_cut.mp4",
+        "nb_streams": 2,
+        "nb_programs": 0,
+        "nb_stream_groups": 0,
+        "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+        "format_long_name": "QuickTime / MOV",
+        "start_time": "0.000000",
+        "duration": "50.200000",
+        "size": "418237",
+        "bit_rate": "66651",
+        "probe_score": 100,
+        "tags": {
+            "major_brand": "isom",
+            "minor_version": "512",
+            "compatible_brands": "isomiso2avc1mp41",
+            "encoder": "Lavf63.1.102"
+        }
+    }
+}

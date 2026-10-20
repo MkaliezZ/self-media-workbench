@@ -1,0 +1,16 @@
+{
+  "name": "raw-probe",
+  "command": [
+    "ffprobe",
+    "-v",
+    "error",
+    "-show_format",
+    "-of",
+    "json",
+    "D:\\a\\self-media-workbench\\self-media-workbench\\evidence\\state\\projects\\7530ff2b90ab443dadf812a8058bf0b4\\exports\\4fadd832e87143a98f076f78b3206a0d\\reviewed_cut.mp4"
+  ],
+  "cwd": "D:\\a\\self-media-workbench\\self-media-workbench\\product",
+  "started_at": 1792520569.9692864,
+  "returncode": 0,
+  "elapsed_seconds": 0.05315589904785156
+}

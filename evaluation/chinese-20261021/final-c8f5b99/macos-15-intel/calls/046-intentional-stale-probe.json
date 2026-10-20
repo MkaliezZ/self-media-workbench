@@ -1,0 +1,16 @@
+{
+  "name": "intentional-stale-probe",
+  "command": [
+    "/Users/runner/work/self-media-workbench/self-media-workbench/product/.venv/bin/python",
+    "/Users/runner/work/self-media-workbench/self-media-workbench/product/workbench.py",
+    "call",
+    "PUT",
+    "/api/projects/e5ed1e047d2d4fe09f655edddb367369/media/922b2829f2824736bee2db78f812a104/review",
+    "--json",
+    "/Users/runner/work/self-media-workbench/self-media-workbench/evidence/requests/stale-negative-probe.json"
+  ],
+  "cwd": "/Users/runner/work/self-media-workbench/self-media-workbench/product",
+  "started_at": 1792520616.50282,
+  "returncode": 2,
+  "elapsed_seconds": 0.1720750331878662
+}

@@ -1,0 +1,374 @@
+{
+  "raw": {
+    "S": 48,
+    "D": 0,
+    "I": 1,
+    "N": 141,
+    "CER": 0.3475177304964539,
+    "edits": [
+      {
+        "op": "S",
+        "reference": "这",
+        "recognized": "這",
+        "reference_index": 0,
+        "hypothesis_index": 0
+      },
+      {
+        "op": "S",
+        "reference": "验",
+        "recognized": "驗",
+        "reference_index": 8,
+        "hypothesis_index": 8
+      },
+      {
+        "op": "S",
+        "reference": "实",
+        "recognized": "實",
+        "reference_index": 13,
+        "hypothesis_index": 13
+      },
+      {
+        "op": "S",
+        "reference": "户",
+        "recognized": "戶",
+        "reference_index": 15,
+        "hypothesis_index": 15
+      },
+      {
+        "op": "S",
+        "reference": "摄",
+        "recognized": "攝",
+        "reference_index": 19,
+        "hypothesis_index": 19
+      },
+      {
+        "op": "S",
+        "reference": "关",
+        "recognized": "關",
+        "reference_index": 22,
+        "hypothesis_index": 22
+      },
+      {
+        "op": "S",
+        "reference": "闭",
+        "recognized": "閉",
+        "reference_index": 23,
+        "hypothesis_index": 23
+      },
+      {
+        "op": "S",
+        "reference": "机",
+        "recognized": "機",
+        "reference_index": 25,
+        "hypothesis_index": 25
+      },
+      {
+        "op": "S",
+        "reference": "干",
+        "recognized": "乾",
+        "reference_index": 30,
+        "hypothesis_index": 30
+      },
+      {
+        "op": "S",
+        "reference": "净",
+        "recognized": "淨",
+        "reference_index": 31,
+        "hypothesis_index": 31
+      },
+      {
+        "op": "S",
+        "reference": "镜",
+        "recognized": "鏡",
+        "reference_index": 32,
+        "hypothesis_index": 32
+      },
+      {
+        "op": "S",
+        "reference": "头",
+        "recognized": "頭",
+        "reference_index": 33,
+        "hypothesis_index": 33
+      },
+      {
+        "op": "S",
+        "reference": "锁",
+        "recognized": "鎖",
+        "reference_index": 35,
+        "hypothesis_index": 35
+      },
+      {
+        "op": "S",
+        "reference": "检",
+        "recognized": "檢",
+        "reference_index": 40,
+        "hypothesis_index": 40
+      },
+      {
+        "op": "S",
+        "reference": "画",
+        "recognized": "畫",
+        "reference_index": 58,
+        "hypothesis_index": 58
+      },
+      {
+        "op": "S",
+        "reference": "质",
+        "recognized": "質",
+        "reference_index": 59,
+        "hypothesis_index": 59
+      },
+      {
+        "op": "S",
+        "reference": "这",
+        "recognized": "這",
+        "reference_index": 60,
+        "hypothesis_index": 60
+      },
+      {
+        "op": "S",
+        "reference": "里",
+        "recognized": "裡",
+        "reference_index": 61,
+        "hypothesis_index": 61
+      },
+      {
+        "op": "I",
+        "reference": "",
+        "recognized": "2",
+        "reference_index": 63,
+        "hypothesis_index": 63
+      },
+      {
+        "op": "S",
+        "reference": "二",
+        "recognized": "4",
+        "reference_index": 63,
+        "hypothesis_index": 64
+      },
+      {
+        "op": "S",
+        "reference": "十",
+        "recognized": "幀",
+        "reference_index": 64,
+        "hypothesis_index": 65
+      },
+      {
+        "op": "S",
+        "reference": "四",
+        "recognized": "和",
+        "reference_index": 65,
+        "hypothesis_index": 66
+      },
+      {
+        "op": "S",
+        "reference": "帧",
+        "recognized": "4",
+        "reference_index": 66,
+        "hypothesis_index": 67
+      },
+      {
+        "op": "S",
+        "reference": "和",
+        "recognized": "8",
+        "reference_index": 67,
+        "hypothesis_index": 68
+      },
+      {
+        "op": "S",
+        "reference": "四",
+        "recognized": "0",
+        "reference_index": 68,
+        "hypothesis_index": 69
+      },
+      {
+        "op": "S",
+        "reference": "十",
+        "recognized": "0",
+        "reference_index": 69,
+        "hypothesis_index": 70
+      },
+      {
+        "op": "S",
+        "reference": "八",
+        "recognized": "0",
+        "reference_index": 70,
+        "hypothesis_index": 71
+      },
+      {
+        "op": "S",
+        "reference": "千",
+        "recognized": "H",
+        "reference_index": 71,
+        "hypothesis_index": 72
+      },
+      {
+        "op": "S",
+        "reference": "赫",
+        "recognized": "z",
+        "reference_index": 72,
+        "hypothesis_index": 73
+      },
+      {
+        "op": "S",
+        "reference": "是",
+        "recognized": "使",
+        "reference_index": 73,
+        "hypothesis_index": 74
+      },
+      {
+        "op": "S",
+        "reference": "测",
+        "recognized": "測",
+        "reference_index": 74,
+        "hypothesis_index": 75
+      },
+      {
+        "op": "S",
+        "reference": "试",
+        "recognized": "試",
+        "reference_index": 75,
+        "hypothesis_index": 76
+      },
+      {
+        "op": "S",
+        "reference": "读",
+        "recognized": "讀",
+        "reference_index": 76,
+        "hypothesis_index": 77
+      },
+      {
+        "op": "S",
+        "reference": "数",
+        "recognized": "數",
+        "reference_index": 77,
+        "hypothesis_index": 78
+      },
+      {
+        "op": "S",
+        "reference": "荐",
+        "recognized": "薦",
+        "reference_index": 81,
+        "hypothesis_index": 82
+      },
+      {
+        "op": "S",
+        "reference": "参",
+        "recognized": "參",
+        "reference_index": 82,
+        "hypothesis_index": 83
+      },
+      {
+        "op": "S",
+        "reference": "数",
+        "recognized": "數",
+        "reference_index": 83,
+        "hypothesis_index": 84
+      },
+      {
+        "op": "S",
+        "reference": "画",
+        "recognized": "畫",
+        "reference_index": 86,
+        "hypothesis_index": 87
+      },
+      {
+        "op": "S",
+        "reference": "检",
+        "recognized": "檢",
+        "reference_index": 93,
+        "hypothesis_index": 94
+      },
+      {
+        "op": "S",
+        "reference": "诺",
+        "recognized": "諾",
+        "reference_index": 100,
+        "hypothesis_index": 101
+      },
+      {
+        "op": "S",
+        "reference": "决",
+        "recognized": "決",
+        "reference_index": 104,
+        "hypothesis_index": 105
+      },
+      {
+        "op": "S",
+        "reference": "这",
+        "recognized": "這",
+        "reference_index": 107,
+        "hypothesis_index": 108
+      },
+      {
+        "op": "S",
+        "reference": "顿",
+        "recognized": "頓",
+        "reference_index": 110,
+        "hypothesis_index": 111
+      },
+      {
+        "op": "S",
+        "reference": "于",
+        "recognized": "於",
+        "reference_index": 112,
+        "hypothesis_index": 113
+      },
+      {
+        "op": "S",
+        "reference": "须",
+        "recognized": "須",
+        "reference_index": 118,
+        "hypothesis_index": 119
+      },
+      {
+        "op": "S",
+        "reference": "后",
+        "recognized": "後",
+        "reference_index": 122,
+        "hypothesis_index": 123
+      },
+      {
+        "op": "S",
+        "reference": "对",
+        "recognized": "對",
+        "reference_index": 124,
+        "hypothesis_index": 125
+      },
+      {
+        "op": "S",
+        "reference": "顿",
+        "recognized": "頓",
+        "reference_index": 135,
+        "hypothesis_index": 136
+      },
+      {
+        "op": "S",
+        "reference": "复",
+        "recognized": "復",
+        "reference_index": 140,
+        "hypothesis_index": 141
+      }
+    ]
+  },
+  "orthography_and_numeric_normalized": {
+    "S": 1,
+    "D": 0,
+    "I": 0,
+    "N": 141,
+    "CER": 0.0070921985815602835,
+    "edits": [
+      {
+        "op": "S",
+        "reference": "是",
+        "recognized": "使",
+        "reference_index": 73,
+        "hypothesis_index": 73
+      }
+    ]
+  },
+  "raw_text": "這是中文口播合成驗收,不是真實客戶案例。拍攝前,先關閉手機通知,再擦乾淨鏡頭。先鎖定曝光,再檢查白平衡。不要把提高亮度,理解成修好了畫質。這裡的24幀和48000Hz,使測試讀數,不是推薦參數。如果畫面仍然偏色,先檢查光源,不要承諾一次解決。下面這段停頓用於展示操作,必須保留。最後核對字幕,保留原片,剪掉的停頓也要能恢復。",
+  "reference": "这是中文口播合成验收，不是真实客户案例。拍摄前，先关闭手机通知，再擦干净镜头。先锁定曝光，再检查白平衡。不要把提高亮度，理解成修好了画质。这里的二十四帧和四十八千赫，是测试读数，不是推荐参数。如果画面仍然偏色，先检查光源，不要承诺一次解决。下面这段停顿用于展示操作，必须保留。最后核对字幕，保留原片，剪掉的停顿也要能恢复。",
+  "normalization": "OpenCC t2s; fixture-only 24=二十四,48=四十八,000=千,48000=四十八千,Hz/赫兹=赫; punctuation/whitespace excluded",
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a"
+}

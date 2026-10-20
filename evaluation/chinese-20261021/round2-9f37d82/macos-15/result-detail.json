@@ -1,0 +1,144 @@
+{
+  "source_sha256": "e0deca3bc5570b27f771b8b00efa038ad0a20812e3c12a822f5e3277698f855a",
+  "pcm_sha256": "00861022ed1a610c6d09f09d61f6f40dd251f6d81452b9d1b0e379d5542e33c0",
+  "original_asr_sha256": "4ec829124a10a20f6fbe0b62772a0cca95b34522e9c99a252900c73d2e72710d",
+  "word_groups": 126,
+  "caption_groups": 18,
+  "actual_backend": "mlx",
+  "actual_device": "gpu",
+  "reference_assisted_corrections": {
+    "mode": "Known synthetic reference assisted; not human listening or general automatic proofreading",
+    "typos": [
+      {
+        "recognized": "书",
+        "reference": "数",
+        "word_ids": [
+          68
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": 68,
+        "before": "书,",
+        "after": "数,",
+        "source_start": 25.9,
+        "source_end": 26.1,
+        "kind": "reference_assisted_substitution"
+      },
+      {
+        "id": 75,
+        "before": "畫",
+        "after": "画",
+        "source_start": 29.16,
+        "source_end": 29.6,
+        "kind": "orthography"
+      },
+      {
+        "id": 82,
+        "before": "檢",
+        "after": "检",
+        "source_start": 31.48,
+        "source_end": 31.68,
+        "kind": "orthography"
+      },
+      {
+        "id": 88,
+        "before": "諾",
+        "after": "诺",
+        "source_start": 33.44,
+        "source_end": 33.64,
+        "kind": "orthography"
+      },
+      {
+        "id": 91,
+        "before": "決。",
+        "after": "决。",
+        "source_start": 34.3,
+        "source_end": 34.54,
+        "kind": "orthography"
+      },
+      {
+        "id": 93,
+        "before": "這",
+        "after": "这",
+        "source_start": 35.86,
+        "source_end": 36.2,
+        "kind": "orthography"
+      },
+      {
+        "id": 96,
+        "before": "頓",
+        "after": "顿",
+        "source_start": 36.7,
+        "source_end": 36.88,
+        "kind": "orthography"
+      },
+      {
+        "id": 98,
+        "before": "於",
+        "after": "于",
+        "source_start": 37.14,
+        "source_end": 37.36,
+        "kind": "orthography"
+      },
+      {
+        "id": 104,
+        "before": "須",
+        "after": "须",
+        "source_start": 38.98,
+        "source_end": 39.16,
+        "kind": "orthography"
+      },
+      {
+        "id": 107,
+        "before": "最後",
+        "after": "最后",
+        "source_start": 42.24,
+        "source_end": 42.72,
+        "kind": "orthography"
+      },
+      {
+        "id": 109,
+        "before": "對",
+        "after": "对",
+        "source_start": 43.06,
+        "source_end": 43.26,
+        "kind": "orthography"
+      },
+      {
+        "id": 120,
+        "before": "頓",
+        "after": "顿",
+        "source_start": 46.32,
+        "source_end": 46.52,
+        "kind": "orthography"
+      },
+      {
+        "id": 125,
+        "before": "復。",
+        "after": "复。",
+        "source_start": 47.44,
+        "source_end": 47.62,
+        "kind": "orthography"
+      }
+    ],
+    "unresolved": []
+  },
+  "cut": {
+    "id": "pause-0",
+    "start": 10.426,
+    "end": 12.93,
+    "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+    "selected": false,
+    "kind": "pause_candidate"
+  },
+  "restored_source_duration": 50.2,
+  "restored_silence_rms": 0.0,
+  "unverified": [
+    "human listening",
+    "general ASR accuracy or automatic proofreading",
+    "target player typography",
+    "noisy/long/human speech"
+  ]
+}

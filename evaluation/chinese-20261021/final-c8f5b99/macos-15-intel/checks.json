@@ -1,0 +1,3242 @@
+[
+  {
+    "check": "native platform",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "clean public clone",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "fresh application state",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "no configuration bypass",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "identical fixture SHA256",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "service actual checkout",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "asr terminal done",
+    "passed": true,
+    "detail": {
+      "id": "6150d5d3b34f4af58ed40ac4bd201cc7",
+      "media_id": "922b2829f2824736bee2db78f812a104",
+      "kind": "asr",
+      "status": "done",
+      "created_at": "2026-10-20T18:22:37.395468+00:00",
+      "started_at": "2026-10-20T18:22:37.396284+00:00",
+      "result": {
+        "run_id": "7b750ed5380c4576b879774abc561816",
+        "device": "cpu",
+        "backend": "faster-whisper",
+        "execution": {},
+        "words": 126,
+        "candidates": 3,
+        "fallback_errors": []
+      },
+      "finished_at": "2026-10-20T18:23:22.165528+00:00",
+      "service_url": "http://127.0.0.1:49223"
+    }
+  },
+  {
+    "check": "actual requested backend",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw terminal done",
+    "passed": true,
+    "detail": {
+      "id": "a0e4f0e1038c4f8f86067a1886da6933",
+      "media_id": "922b2829f2824736bee2db78f812a104",
+      "kind": "export",
+      "status": "done",
+      "created_at": "2026-10-20T18:23:23.338149+00:00",
+      "started_at": "2026-10-20T18:23:23.338658+00:00",
+      "result": {
+        "export_id": "8d76605f109f4ae8afc6454944fe29c8",
+        "files": [
+          "reviewed_cut.mp4",
+          "reviewed_cut.srt",
+          "reviewed_cut.words.json",
+          "edit-decision.json",
+          "provenance.json"
+        ]
+      },
+      "finished_at": "2026-10-20T18:23:24.739501+00:00",
+      "service_url": "http://127.0.0.1:49223"
+    }
+  },
+  {
+    "check": "raw retains every word ID",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw duration matches actual plan",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 19",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 20",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 21",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 22",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 23",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 24",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 25",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 26",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 27",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 28",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 29",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 30",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 31",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 32",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 33",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 34",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 35",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 36",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 37",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 38",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 39",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 40",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 41",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 42",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 43",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 44",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 45",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 46",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 47",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 48",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 49",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 50",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 51",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 52",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 53",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 54",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 55",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 56",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 57",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 58",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 59",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 60",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 61",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 62",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 63",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 64",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 65",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 66",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 67",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 68",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 69",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 70",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 71",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 72",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 73",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 74",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 75",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 76",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 77",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 78",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 79",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 80",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 81",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 82",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 83",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 84",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 85",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 86",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 87",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 88",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 89",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 90",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 91",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 92",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 93",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 94",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 95",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 96",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 97",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 98",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 99",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 100",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 101",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 102",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 103",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 104",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 105",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 106",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 107",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 108",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 109",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 110",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 111",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 112",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 113",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 114",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 115",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 116",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 117",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 118",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 119",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 120",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 121",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 122",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 123",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 124",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "raw word 125",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "whole text and group normalization agree",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "no unsupported reference insertion or deletion",
+    "passed": true,
+    "detail": {
+      "mode": "Known synthetic reference assisted; not human listening or general automatic proofreading",
+      "typos": [
+        {
+          "recognized": "书",
+          "reference": "数",
+          "word_ids": [
+            68
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "id": 68,
+          "before": "书,",
+          "after": "数,",
+          "source_start": 25.92,
+          "source_end": 26.1,
+          "kind": "reference_assisted_substitution"
+        },
+        {
+          "id": 75,
+          "before": "畫",
+          "after": "画",
+          "source_start": 29.16,
+          "source_end": 29.6,
+          "kind": "orthography"
+        },
+        {
+          "id": 82,
+          "before": "檢",
+          "after": "检",
+          "source_start": 31.48,
+          "source_end": 31.68,
+          "kind": "orthography"
+        },
+        {
+          "id": 88,
+          "before": "諾",
+          "after": "诺",
+          "source_start": 33.44,
+          "source_end": 33.62,
+          "kind": "orthography"
+        },
+        {
+          "id": 91,
+          "before": "決。",
+          "after": "决。",
+          "source_start": 34.3,
+          "source_end": 34.54,
+          "kind": "orthography"
+        },
+        {
+          "id": 93,
+          "before": "這",
+          "after": "这",
+          "source_start": 35.84,
+          "source_end": 36.2,
+          "kind": "orthography"
+        },
+        {
+          "id": 96,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 36.7,
+          "source_end": 36.88,
+          "kind": "orthography"
+        },
+        {
+          "id": 98,
+          "before": "於",
+          "after": "于",
+          "source_start": 37.14,
+          "source_end": 37.36,
+          "kind": "orthography"
+        },
+        {
+          "id": 104,
+          "before": "須",
+          "after": "须",
+          "source_start": 38.98,
+          "source_end": 39.16,
+          "kind": "orthography"
+        },
+        {
+          "id": 107,
+          "before": "最後",
+          "after": "最后",
+          "source_start": 42.24,
+          "source_end": 42.72,
+          "kind": "orthography"
+        },
+        {
+          "id": 109,
+          "before": "對",
+          "after": "对",
+          "source_start": 43.06,
+          "source_end": 43.26,
+          "kind": "orthography"
+        },
+        {
+          "id": 120,
+          "before": "頓",
+          "after": "顿",
+          "source_start": 46.32,
+          "source_end": 46.52,
+          "kind": "orthography"
+        },
+        {
+          "id": 125,
+          "before": "復。",
+          "after": "复。",
+          "source_start": 47.44,
+          "source_end": 47.62,
+          "kind": "orthography"
+        }
+      ],
+      "unresolved": []
+    }
+  },
+  {
+    "check": "reference assisted display text matches",
+    "passed": true,
+    "detail": "This does not change original ASR accuracy"
+  },
+  {
+    "check": "captions never bridge demonstration hold",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "captions never bridge sentence ending",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full terminal done",
+    "passed": true,
+    "detail": {
+      "id": "e76e125fbaba420bbc4dc3490e262d8f",
+      "media_id": "922b2829f2824736bee2db78f812a104",
+      "kind": "export",
+      "status": "done",
+      "created_at": "2026-10-20T18:23:27.864386+00:00",
+      "started_at": "2026-10-20T18:23:27.865187+00:00",
+      "result": {
+        "export_id": "d61e2aca89d84879a7eacef196a1c474",
+        "files": [
+          "reviewed_cut.mp4",
+          "reviewed_cut.srt",
+          "reviewed_cut.words.json",
+          "edit-decision.json",
+          "provenance.json"
+        ]
+      },
+      "finished_at": "2026-10-20T18:23:29.393545+00:00",
+      "service_url": "http://127.0.0.1:49223"
+    }
+  },
+  {
+    "check": "reviewed-full retains every word ID",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full duration matches actual plan",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 19",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 20",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 21",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 22",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 23",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 24",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 25",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 26",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 27",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 28",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 29",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 30",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 31",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 32",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 33",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 34",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 35",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 36",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 37",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 38",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 39",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 40",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 41",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 42",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 43",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 44",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 45",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 46",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 47",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 48",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 49",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 50",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 51",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 52",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 53",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 54",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 55",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 56",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 57",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 58",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 59",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 60",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 61",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 62",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 63",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 64",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 65",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 66",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 67",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 68",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 69",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 70",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 71",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 72",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 73",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 74",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 75",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 76",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 77",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 78",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 79",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 80",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 81",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 82",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 83",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 84",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 85",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 86",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 87",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 88",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 89",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 90",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 91",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 92",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 93",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 94",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 95",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 96",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 97",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 98",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 99",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 100",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 101",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 102",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 103",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 104",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 105",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 106",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 107",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 108",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 109",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 110",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 111",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 112",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 113",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 114",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 115",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 116",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 117",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 118",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 119",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 120",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 121",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 122",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 123",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 124",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full word 125",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue count",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "reviewed-full cue 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "authorized pause A has safe candidate",
+    "passed": true,
+    "detail": {
+      "A": {
+        "after_phrase": 1,
+        "seconds": 2.4,
+        "decision": "remove A then restore",
+        "start": 10.91525,
+        "end": 13.31525
+      },
+      "candidates": [
+        {
+          "id": "pause-0",
+          "start": 10.426,
+          "end": 12.93,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-1",
+          "start": 39.962,
+          "end": 41.97,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        },
+        {
+          "id": "pause-2",
+          "start": 47.994,
+          "end": 50.2,
+          "reason": "VAD非语音，且避开ASR词组及边缘；需要回听",
+          "selected": false,
+          "kind": "pause_candidate"
+        }
+      ]
+    }
+  },
+  {
+    "check": "cut-A terminal done",
+    "passed": true,
+    "detail": {
+      "id": "6c7782eef90c40719232a4c7161b83d0",
+      "media_id": "922b2829f2824736bee2db78f812a104",
+      "kind": "export",
+      "status": "done",
+      "created_at": "2026-10-20T18:23:32.337757+00:00",
+      "started_at": "2026-10-20T18:23:32.338367+00:00",
+      "result": {
+        "export_id": "76ba0bac9d3d4c03b047d42c22419895",
+        "files": [
+          "reviewed_cut.mp4",
+          "reviewed_cut.srt",
+          "reviewed_cut.words.json",
+          "edit-decision.json",
+          "provenance.json"
+        ]
+      },
+      "finished_at": "2026-10-20T18:23:33.461854+00:00",
+      "service_url": "http://127.0.0.1:49223"
+    }
+  },
+  {
+    "check": "cut-A retains every word ID",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A duration matches actual plan",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 19",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 20",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 21",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 22",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 23",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 24",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 25",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 26",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 27",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 28",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 29",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 30",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 31",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 32",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 33",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 34",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 35",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 36",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 37",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 38",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 39",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 40",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 41",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 42",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 43",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 44",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 45",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 46",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 47",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 48",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 49",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 50",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 51",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 52",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 53",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 54",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 55",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 56",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 57",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 58",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 59",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 60",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 61",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 62",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 63",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 64",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 65",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 66",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 67",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 68",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 69",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 70",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 71",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 72",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 73",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 74",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 75",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 76",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 77",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 78",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 79",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 80",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 81",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 82",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 83",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 84",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 85",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 86",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 87",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 88",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 89",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 90",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 91",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 92",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 93",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 94",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 95",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 96",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 97",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 98",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 99",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 100",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 101",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 102",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 103",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 104",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 105",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 106",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 107",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 108",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 109",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 110",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 111",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 112",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 113",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 114",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 115",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 116",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 117",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 118",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 119",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 120",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 121",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 122",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 123",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 124",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A word 125",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue count",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "cut-A cue 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "only authorized silent A interval removed",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "demonstration hold B fully kept",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "real stale rejection retained",
+    "passed": true,
+    "detail": {
+      "ok": false,
+      "http_status": 409,
+      "detail": {
+        "detail": "转录审阅已更新，请重新载入"
+      }
+    }
+  },
+  {
+    "check": "restored terminal done",
+    "passed": true,
+    "detail": {
+      "id": "204afd9ee4ee45e3a95fb2d474a39c43",
+      "media_id": "922b2829f2824736bee2db78f812a104",
+      "kind": "export",
+      "status": "done",
+      "created_at": "2026-10-20T18:23:37.187260+00:00",
+      "started_at": "2026-10-20T18:23:37.188132+00:00",
+      "result": {
+        "export_id": "77bf21d2d81e4ec3a460ed1fb2160e13",
+        "files": [
+          "reviewed_cut.mp4",
+          "reviewed_cut.srt",
+          "reviewed_cut.words.json",
+          "edit-decision.json",
+          "provenance.json"
+        ]
+      },
+      "finished_at": "2026-10-20T18:23:38.814863+00:00",
+      "service_url": "http://127.0.0.1:49223"
+    }
+  },
+  {
+    "check": "restored retains every word ID",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored duration matches actual plan",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 0",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 19",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 20",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 21",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 22",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 23",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 24",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 25",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 26",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 27",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 28",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 29",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 30",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 31",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 32",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 33",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 34",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 35",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 36",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 37",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 38",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 39",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 40",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 41",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 42",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 43",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 44",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 45",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 46",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 47",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 48",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 49",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 50",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 51",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 52",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 53",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 54",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 55",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 56",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 57",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 58",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 59",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 60",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 61",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 62",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 63",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 64",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 65",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 66",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 67",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 68",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 69",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 70",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 71",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 72",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 73",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 74",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 75",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 76",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 77",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 78",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 79",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 80",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 81",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 82",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 83",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 84",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 85",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 86",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 87",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 88",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 89",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 90",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 91",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 92",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 93",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 94",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 95",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 96",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 97",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 98",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 99",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 100",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 101",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 102",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 103",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 104",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 105",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 106",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 107",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 108",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 109",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 110",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 111",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 112",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 113",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 114",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 115",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 116",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 117",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 118",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 119",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 120",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 121",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 122",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 123",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 124",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored word 125",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue count",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 1",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 2",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 3",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 4",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 5",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 6",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 7",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 8",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 9",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 10",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 11",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 12",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 13",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 14",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 15",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 16",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 17",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored cue 18",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored complete source plan",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restoration keeps corrections and caption decisions",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "source and original ASR immutable",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "previous cut export immutable",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "restored actual silent interval A",
+    "passed": true,
+    "detail": 0.0
+  },
+  {
+    "check": "actual display hold B remains in cut",
+    "passed": true,
+    "detail": null
+  },
+  {
+    "check": "own service exit before sealing",
+    "passed": true,
+    "detail": {
+      "only_own_service": true,
+      "exit_confirmed": true
+    }
+  }
+]

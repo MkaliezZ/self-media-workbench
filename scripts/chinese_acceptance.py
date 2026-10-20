@@ -28,9 +28,11 @@ def bare(text):return ''.join(re.findall(r'[\u4e00-\u9fffA-Za-z0-9]',text))
 
 
 def norm(text):
-    value=CC.convert(text)
-    for a,b in [('48000赫兹','四十八千赫'),('48千赫','四十八千赫'),('24帧','二十四帧')]:value=value.replace(a,b)
-    return bare(value)
+    # Exact equivalents in this fixture only. ASR may split 48000 into 48/000.
+    # Apply the same mapping to whole text and existing word groups.
+    value=bare(CC.convert(text))
+    for a,b in [('48000','四十八千'),('24','二十四'),('48','四十八'),('000','千'),('赫兹','赫')]:value=value.replace(a,b)
+    return re.sub('hz','赫',value,flags=re.I)
 
 
 def error_stats(reference,hypothesis):
@@ -181,7 +183,8 @@ Path(output).parent.mkdir(parents=True,exist_ok=True);Path(output).write_text(js
         rawfile=Path(original['source']).parent/'asr'/original['asr_run']/'transcript.original.json';original_hash=sha(rawfile)
         rawdir,_,_=self.export('raw',original)
         reference=self.fixture['reference_text'];rawtext=''.join(w['text'] for w in original['words'])
-        self.save('asr-error-analysis.json',{'raw':error_stats(bare(reference),bare(rawtext)),'orthography_and_numeric_normalized':error_stats(norm(reference),norm(rawtext)),'raw_text':rawtext,'reference':reference,'normalization':'OpenCC t2s; fixture-equivalent 24帧,48千赫,48000赫兹; punctuation/whitespace excluded','source_sha256':original['source_sha256']})
+        self.save('asr-error-analysis.json',{'raw':error_stats(bare(reference),bare(rawtext)),'orthography_and_numeric_normalized':error_stats(norm(reference),norm(rawtext)),'raw_text':rawtext,'reference':reference,'normalization':'OpenCC t2s; fixture-only 24=二十四,48=四十八,000=千,48000=四十八千,Hz/赫兹=赫; punctuation/whitespace excluded','source_sha256':original['source_sha256']})
+        self.check('whole text and group normalization agree',norm(rawtext)==''.join(norm(w['text']) for w in original['words']))
         corrections,reason=reference_review(original['words'],reference);self.save('reference-assisted-review.json',reason)
         self.check('no unsupported reference insertion or deletion',not reason['unresolved'],reason)
         fixed=self.edit('proofread',original,corrections=corrections)['review']
@@ -191,12 +194,27 @@ Path(output).parent.mkdir(parents=True,exist_ok=True);Path(output).write_text(js
         fixed=self.edit('group-captions',fixed,caption_groups=groups)['review']
         full,_,_=self.export('reviewed-full',fixed)
         A,B=self.fixture['gaps']
-        candidates=[c for c in fixed['candidates'] if c['start']>=A['start']-.05 and c['end']<=A['end']+.05 and c['end']-c['start']>=.4]
+        # Native TTS includes silent padding before the inserted gap. Accept a
+        # candidate in that same contiguous silent interval only after examining
+        # every decoded source sample, rather than assuming inserted gap bounds.
+        import array,math
+        pcm=subprocess.check_output(['ffmpeg','-v','error','-i',str(self.source),'-ar','16000','-ac','1','-f','f32le','-'])
+        samples=array.array('f');samples.frombytes(pcm)
+        def peak(a,b):return max((abs(x) for x in samples[round(a*16000):round(b*16000)]),default=1)
+        inspected=[];candidates=[]
+        for c in fixed['candidates']:
+            overlap=min(c['end'],A['end'])-max(c['start'],A['start'])
+            lo,hi=min(c['start'],A['start']),max(c['end'],A['end'])
+            p=peak(lo,hi) if overlap>0 else None
+            allowed=overlap>=.4 and p is not None and p<.005
+            inspected.append({'candidate':c,'overlap_with_inserted_A':overlap,'union_source_peak':p,'allowed':allowed})
+            if allowed:candidates.append(c)
+        self.save('pause-source-inspection.json',{'policy':'Only A-overlapping candidate whose union with A is silent in every decoded source sample; B remains excluded','candidates':inspected})
         self.check('authorized pause A has safe candidate',bool(candidates),{'A':A,'candidates':fixed['candidates']})
         cut=max(candidates,key=lambda c:c['end']-c['start'])
         result=self.edit('cut-A',fixed,selected_ids=[cut['id']]);review=result['review']
         cutdir,plan,cutwords=self.export('cut-A',review)
-        self.check('only authorized A removed',len(plan['cuts'])==1 and plan['cuts'][0]['start']>=A['start']-.05 and plan['cuts'][0]['end']<=A['end']+.05)
+        self.check('only authorized silent A interval removed',len(plan['cuts'])==1 and plan['cuts'][0]['start']==cut['start'] and plan['cuts'][0]['end']==cut['end'])
         self.check('demonstration hold B fully kept',any(k['start']<=B['start'] and k['end']>=B['end'] for k in plan['keeps']))
         cut_hashes={f.name:sha(f) for f in cutdir.iterdir() if f.is_file()}
         failure=self.save('requests/stale-negative-probe.json',{'revision':fixed['revision'],'asr_run':fixed['asr_run'],'source_sha256':fixed['source_sha256'],'selected_ids':[]})
@@ -210,7 +228,6 @@ Path(output).parent.mkdir(parents=True,exist_ok=True);Path(output).write_text(js
         self.check('source and original ASR immutable',sha(self.source)==self.fixture['source_sha256'] and sha(rawfile)==original_hash)
         self.check('previous cut export immutable',all(sha(cutdir/name)==value for name,value in cut_hashes.items()))
         # Binary PCM is captured separately, not decoded as text.
-        import array,math
         def rms(path,a,b):
             pcm=subprocess.check_output(['ffmpeg','-v','error','-i',str(path),'-ar','16000','-ac','1','-f','f32le','-'])
             x=array.array('f');x.frombytes(pcm);v=x[round(a*16000):round(b*16000)];return math.sqrt(sum(t*t for t in v)/max(1,len(v)))

@@ -33,6 +33,10 @@ The [macOS 26 ARM/Intel run 39439555962](https://github.com/MkaliezZ/self-media-
 
 scripts/ci_smoke.py records actual platform, architecture, backend/device, kernel execution, fallback reason, job terminal states and decoded output. gpu_asr_verified can only be true for actual MLX GPU transcription. A CPU fallback or unavailable hosted Metal must remain labelled as such. Explicit --require-gpu fails on CPU results. See [Apple GPU contract](apple-gpu.md).
 
+## Independent fresh public clone
+
+The [2026-10-21 installation audit](../evaluation/fresh-clone-20261021.md) used a real GitHub clone, fresh Windows venv, separate state/Agent home/cache and newly downloaded tiny model. The independent Agent requested no human commands or model paths, installed dependencies, configured the model, started the service and saved a new synthetic script. Actual CPU ASR produced 63 groups; two recognition errors were corrected while retaining original bounds, twelve subtitle groups were exported, and the 26.72-second video decoded successfully. The installed entry was invoked from another Python and selected the correct venv/project. Standard package downloads stalled and required substantial autonomous network recovery; the original failures remain. This is not a virgin-OS, clean-macOS or uninterrupted one-command installer test. No runtime defect was confirmed in this round.
+
 ## Limits
 
 CI explicitly opts into downloading small public test models; production never downloads models automatically. GPU execution is separate from GPU performance; no fixed speed-up is promised. Timestamp/anchor/structure checks do not establish measurement truth or source entailment. TTS is not human listening, estimated script duration is not a human recording, separate SRT is not burned subtitles, and local export is not external publication or evidence of marketing effectiveness.

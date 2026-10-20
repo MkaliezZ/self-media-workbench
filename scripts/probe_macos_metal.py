@@ -28,6 +28,9 @@ def main():
     result = {'platform': sys.platform, 'machine': platform.machine(), 'asr_tested': False,
               'status': 'environment_unavailable', 'metal_compute_available': False}
     try:
+        result['commit'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=root, text=True).strip()
+        result['probe_sources_sha256'] = {name: hashlib.sha256((root / 'scripts' / name).read_bytes()).hexdigest()
+                                          for name in ['metal_probe.swift', 'probe_macos_metal.py']}
         if sys.platform != 'darwin':
             raise RuntimeError('Requires an actual macOS host')
         for label, command in [
@@ -41,6 +44,7 @@ def main():
                                   '-framework', 'Metal', '-o', str(out / 'metal-probe')])
         if compiled.returncode:
             raise RuntimeError('Native Metal probe did not compile; see retained diagnostics')
+        result['probe_binary_sha256'] = hashlib.sha256((out / 'metal-probe').read_bytes()).hexdigest()
         executed = run('metal', [str(out / 'metal-probe')])
         if executed.returncode:
             raise RuntimeError('Native Metal probe process failed')
@@ -56,10 +60,11 @@ def main():
     except Exception as exc:
         result.update(error=str(exc), traceback=traceback.format_exc())
     (out / 'commands.json').write_text(json.dumps(commands, indent=2), encoding='utf8')
+    result['manifest_scope'] = 'All retained artifact files except manifest.json; compiled probe binary excluded, its SHA256 recorded here'
     (out / 'result.json').write_text(json.dumps(result, indent=2), encoding='utf8')
     rows = [{'path': f.relative_to(out).as_posix(), 'bytes': f.stat().st_size,
              'sha256': hashlib.sha256(f.read_bytes()).hexdigest()}
-            for f in sorted(out.rglob('*')) if f.is_file()]
+            for f in sorted(out.rglob('*')) if f.is_file() and f.name != 'metal-probe']
     (out / 'manifest.json').write_text(json.dumps(rows, indent=2), encoding='utf8')
     print(json.dumps(result))
     # An unavailable device is a recorded prerequisite result, never ASR success.

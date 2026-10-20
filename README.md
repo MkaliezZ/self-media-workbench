@@ -1,10 +1,18 @@
 # Self Media Workbench · 自媒体 Agent 工作台
 
-An MIT-licensed local workbench for AI Agents on Windows and macOS. Your Agent chooses the relevant feature, resumes the right project, creates content, reviews edits and delivers versioned results. No browser form, Node runtime or model API key is required.
+[中文](#中文) · [English](#english)
 
-**对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不冒充完成了内容创作。
+面向 AI Agent 的 Windows / macOS 本地自媒体工作台，采用 MIT 协议。
 
-## 给其他 Agent 的快速开始
+An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
+
+## 中文
+
+由调用工作台的 AI Agent 选择功能、续做项目、创作内容、审阅剪辑并交付有版本记录的结果。工作台无需浏览器表单、Node 运行时或模型 API 密钥。
+
+**对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不代表已完成内容创作。
+
+### 给其他 Agent 的快速开始
 
 把仓库链接和任务发给具备文件读写、终端执行能力的 Agent 即可，无需让使用者记安装或启动命令：
 
@@ -28,7 +36,126 @@ https://github.com/MkaliezZ/self-media-workbench
 
 安装阶段由 Agent 显式下载和配置任务所需的兼容模型；正常转写不会自行下载模型。续做依赖本机已有的项目数据，换机器时需要先提供原项目数据目录或备份。下方命令供 Agent 执行和排错参考。
 
-## Install
+### 安装
+
+完整音视频流程需要 Python 3.11+、FFmpeg 和 ffprobe。纯文本任务不需要 FFmpeg 或 ASR 模型。
+
+```sh
+git clone https://github.com/MkaliezZ/self-media-workbench.git
+cd self-media-workbench
+python -m venv .venv
+```
+
+Windows PowerShell：
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements-dev.txt
+choco install ffmpeg
+```
+
+macOS 终端（如果没有 `python`，创建虚拟环境时使用 `python3`）：
+
+```sh
+source .venv/bin/activate
+python -m pip install -r requirements-dev.txt
+brew install ffmpeg
+```
+
+仅运行文本功能可安装 `requirements.txt`；转写另加 `requirements-asr.txt`。`requirements-dev.txt` 包含这两者及测试依赖。安装依赖不会下载 ASR 模型。配置已有的本地 CTranslate2 faster-whisper 模型：
+
+```sh
+python workbench.py configure --model /absolute/path/to/faster-whisper-model
+python workbench.py doctor
+python workbench.py install-skill
+```
+
+在原生 Apple Silicon macOS 上，Agent 还可以安装 `requirements-mlx.txt`，并配置 **MLX 格式**的本地模型：
+
+```sh
+python -m pip install -r requirements-mlx.txt
+python workbench.py configure --mlx-model /absolute/path/to/mlx-whisper-model --asr-backend auto --device auto
+python workbench.py doctor
+```
+
+自动选择依据实际显示 GPU：NVIDIA 优先使用 faster-whisper/CUDA；Windows AMD/Intel GPU 使用另行安装的 whisper.cpp/Vulkan；Apple Silicon 使用 MLX/Metal；Intel Mac 可使用另行配置的 whisper.cpp/Metal。缺少组件或加速失败时，记录原因再回退 CPU。显式选择 CPU 就使用 CPU；`require_gpu` 禁止 CPU 回退。CT2、MLX、GGML 权重格式不能混用，正常转写不下载模型。Agent 应读取 `doctor` 的策略和安装指南，并核对任务终态中的后端、设备及执行证据，不能把硬件检测当作 GPU 推理成功。[显卡策略与 Agent 配置](docs/accelerators.md) · [Apple MLX 验证](docs/apple-gpu.md)。
+
+`install-skill` 将 `media-workbench` 入口安装到本机 Codex skills 目录，并在本机记录此仓库和 Python 解释器的位置。包装入口优先使用仓库的 `.venv`，其次使用记录的解释器，Agent 自身的其他 Python 不必重复安装相同依赖。其他 Agent 可直接阅读 [AGENTS.md](AGENTS.md)。安装 skill 后请保留此仓库目录；机器专属的位置记录不会提交到仓库。
+
+### 一个 Agent 入口，多种任务
+
+以下命令由 Agent 自行调用，使用者无需记忆：
+
+```sh
+python workbench.py run "只写这份素材的口播稿，不剪辑" --input /absolute/path/source.txt
+python workbench.py run "继续这个项目做选题"
+python workbench.py run "复盘我的项目" --project "project name" --input /absolute/path/metrics.json
+```
+
+入口自动启动或复用已核验身份的本地回环服务、登记输入，并返回项目、上下文、当前或过期的产物以及建议阶段。它不会自行调用外部大模型。调用它的 Agent 读取对应方法、创作产物并执行发现的工具。Codex、DSH 或其他具备工具执行能力的 Agent 均可使用。
+
+| 功能 | 产物 |
+|---|---|
+| 账号诊断／可选对标 | 证据、优先问题、下一步行动 |
+| 选题 | 有素材支撑的备选题与选定问题 |
+| 脚本 | 口播词、镜头、时长估算与行动引导 |
+| 本地剪辑 | 实际 ASR、明确的剪除与恢复、审阅后的字幕分组、MP4/SRT/JSON |
+| 发布准备 | 标题、配文、披露说明及真实素材绑定 |
+| 复盘 | 有定义的指标或采集计划、假设与下一次实验 |
+
+单项任务可直接进入脚本、剪辑或复盘；完整流程从最早缺失或过期的阶段续做。同一会话中说“继续”会续做当前项目；多个项目匹配时先确认选择。`--session` 用于隔离并行的独立会话。未知事实和缺失指标保持未知，旧稿、被拒请求与修订记录均保留。
+
+项目状态默认保存在操作系统的私有应用数据目录。`configure --data-dir ...` 可复用已有项目库，无需移动或删除数据。`--skill-root` 和 `--library` 可选接入私有方法及知识目录。配置改变后需要重启运行中的服务。[配置与协议](docs/configuration.md)。
+
+### 平台支持与验证范围
+
+Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确记录 CPU 回退；AMD/Intel GPU 的可选 whisper.cpp Vulkan 路径尚待实机验收。Apple Silicon 另支持可选 **MLX/Metal GPU** 和 CPU 回退；Intel Mac 默认使用 CTranslate2 CPU，可选 whisper.cpp Metal 路径尚未实机验证。FFmpeg 导出、状态及协议功能采用同一套 Python 实现。GPU 验证与 CPU 兼容性分别报告。
+
+[当前显卡策略验收](evaluation/gpu-strategies-20261021.md)在 Windows、macOS 15 ARM64 和 Intel 上通过了 46 项测试及实际媒体检查。本地 NVIDIA CUDA、Vulkan 的实际执行与云端 Windows CPU 基线分别记录；ARM 也运行了实际 MLX/Metal GPU 推理。Windows AMD/Intel GPU 和 Intel Mac 可选 Metal 路径仍未完成对应硬件验收。早期 36 项测试的时间轴检查及 macOS 26 结果保留在[验证历史](docs/validation.md)。合成素材技术检查不能证明通用识别质量或加速比。
+
+欢迎社区补充 AMD/Intel Vulkan 和原生 Intel Mac Metal 的实机测试。请按[同素材硬件验收与报告指南](docs/cloud-gpu-acceptance.md)保留原生日志、失败记录，并注明实际操作系统、显卡与模型。[免费环境调查](evaluation/vendor-cloud-20261021.md)未找到可立即使用的目标 GPU，排队中的云端探测已按维护者要求停止。这些路径继续标注为尚未实机验证。
+
+独立的 [macOS 全新安装验收](evaluation/fresh-macos-20261021.md)在 Apple Silicon 和 Intel 上完成了 GitHub 全新克隆、隔离虚拟环境及模型缓存、模型配置持久化、Agent 入口安装、服务自动启动、首次脚本任务、实际 GPU/CPU 转写、审阅导出及项目续做。早期证据打包和过短字幕问题与修订后的复测结果同时保留。这是由 Agent 独立设计和审阅的确定性云端执行，并非云端实时大模型会话。
+
+[中文口播验收](evaluation/chinese-acceptance-20261021.md)在 Windows、Apple Silicon GPU 和 Intel CPU 上使用同一份中文合成素材，保留原始识别错误、基于已知原稿的辅助纠错、字幕修订及实际停顿剪除／恢复导出。首次比较失败，以及后来自动检查通过但语义断句错误的字幕结果，均与最终三端复测结果一起保留。
+
+MP4 和 SRT 分别输出。当前没有自动对外发布、字幕烧录或合成功能，也不保证内容或营销效果。模型识别、字幕、具有语义的停顿、生产可用性及平台要求仍需 Agent 审阅，必要时由人确认。
+
+### 协议与私有材料
+
+仓库自身代码和文档采用 MIT 协议。此前私有原型使用过 AGPL 渲染器；本开源版本已使用自有 Python/FFmpeg 实现替换，未包含该供应商代码。依赖、另行安装的 FFmpeg 和模型二进制文件保留各自协议，详见 [THIRD_PARTY.md](THIRD_PARTY.md)。
+
+## English
+
+Your AI Agent chooses the relevant feature, resumes the right project, creates content, reviews edits and delivers versioned results. No browser form, Node runtime or model API key is required by the workbench.
+
+**Just tell the Agent your task:** “Diagnose this account and select topics,” “Revise this talking-head script,” “Edit this video and check the captions,” or “Continue the previous project with a performance review.” The unified entry prepares the project, inputs, state and starting phase; the calling Agent then reasons and executes. An intake plan is not completed content.
+
+### Quick start for other Agents
+
+Send the repository link and a task to an Agent that can read/write files and execute terminal commands. The user does not need to remember installation or startup commands:
+
+```text
+https://github.com/MkaliezZ/self-media-workbench
+My task: [Describe the task; include the project name or ID when resuming, and attach relevant inputs.]
+```
+
+**Agent receiving this link and task:** read this README, [AGENTS.md](AGENTS.md) and the relevant entry instructions, then handle setup, configuration, startup and project resumption under the following instructions. You can also forward this complete prompt to another Agent:
+
+```text
+Use this Agent self-media workbench to complete my task:
+https://github.com/MkaliezZ/self-media-workbench
+
+Read the repository README, AGENTS.md and relevant entry instructions before executing. Reuse an existing installation when available; otherwise clone the repository. Check Windows/macOS, Python, dependencies, FFmpeg and any ASR/GPU components required for this task. Follow the repository documentation to install missing components, configure compatible models and verify the actual backend. Install audio/video dependencies only when needed. If GPU acceleration is unavailable, record the reason and any CPU fallback honestly; do not label untested capabilities as passed.
+
+Manage commands, configuration, service startup and project state yourself. Do not require me to remember commands, fill in JSON or supply model paths. Use the unified Agent entry to select the feature and starting phase. For an existing project, read its actual progress before resuming, preserving original inputs, previous results and failures. Ask only when multiple project matches cannot be resolved. An intake plan does not complete the task: execute the work, save results and check the outputs. Finally report what was completed, where outputs were saved and what remains unresolved. Obtain explicit authorization before incurring costs, overwriting existing data or publishing externally.
+
+My task: [Describe the task; include the project name or ID when resuming, and attach relevant inputs.]
+```
+
+During setup, the Agent explicitly downloads and configures compatible models required for the task; normal transcription never downloads models automatically. Resuming requires the existing local project data. On another machine, provide the original project data directory or a backup first. The commands below are references for the Agent to execute and troubleshoot.
+
+### Install
 
 Python 3.11+ and FFmpeg/ffprobe are required for the complete media workflow. Text workflows do not need FFmpeg or an ASR model.
 
@@ -54,7 +181,7 @@ python -m pip install -r requirements-dev.txt
 brew install ffmpeg
 ```
 
-For runtime only, install requirements.txt; add requirements-asr.txt for transcription. requirements-dev.txt includes both plus test dependencies. Installation does not download an ASR model. Configure an existing local CTranslate2 faster-whisper model:
+For text runtime only, install `requirements.txt`; add `requirements-asr.txt` for transcription. `requirements-dev.txt` includes both plus test dependencies. Installation does not download an ASR model. Configure an existing local CTranslate2 faster-whisper model:
 
 ```sh
 python workbench.py configure --model /absolute/path/to/faster-whisper-model
@@ -74,14 +201,14 @@ Auto selection uses the actual display GPU: NVIDIA prefers faster-whisper/CUDA; 
 
 `install-skill` installs the `media-workbench` entry into your local Codex skills directory and records this checkout and its Python interpreter privately. The wrapper prefers the checkout's `.venv`, then the recorded interpreter, so an Agent's unrelated Python does not need the same dependencies. Other Agents can simply read [AGENTS.md](AGENTS.md). Keep this checkout available after installing the skill. No machine-specific location record is committed.
 
-## One Agent entry, multiple tasks
+### One Agent entry, multiple tasks
 
 The Agent calls these itself; the human does not have to remember commands:
 
 ```sh
-python workbench.py run "只写这份素材的口播稿，不剪辑" --input /absolute/path/source.txt
-python workbench.py run "继续这个项目做选题"
-python workbench.py run "复盘我的项目" --project "project name" --input /absolute/path/metrics.json
+python workbench.py run "Write a talking-head script from this material" --input /absolute/path/source.txt
+python workbench.py run "Continue topic selection for this project"
+python workbench.py run "Review my project" --project "project name" --input /absolute/path/metrics.json
 ```
 
 The entry automatically starts/reuses an identified loopback service, registers inputs and returns the project, context, current/stale artifacts and recommended phase. It does **not** silently call an external LLM. The calling Agent reads the task-specific method, creates artifacts and executes the discovered tools. This works with Codex, DSH or another tool-capable Agent.
@@ -99,7 +226,7 @@ A focused task can enter script/edit/review directly. Complete workflows resume 
 
 State defaults to the operating system's private application-data directory. `configure --data-dir ...` can reuse an existing project store without moving or deleting it. `--skill-root` and `--library` optionally use private method/knowledge directories. Restart a running service after changing configuration. [Configuration and protocol](docs/configuration.md).
 
-## Platform and validation scope
+### Platform and validation scope
 
 Windows supports CPU and NVIDIA CUDA when its optional runtime is available, with explicit CPU fallback; AMD/Intel GPU routes use optional whisper.cpp Vulkan and await hardware acceptance. Apple Silicon additionally supports optional **MLX/Metal GPU** with CPU fallback; Intel Mac defaults to CTranslate2 CPU with an optional, hardware-unverified whisper.cpp Metal route. FFmpeg export and state/protocol features use the same Python implementation. Actual GPU verification is reported separately from CPU compatibility.
 
@@ -113,7 +240,6 @@ The [Chinese speech audit](evaluation/chinese-acceptance-20261021.md) uses ident
 
 MP4 and SRT are separate outputs. There is no automatic external publishing, burned-caption/compositing feature or guarantee of content/marketing effectiveness. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
 
-## License and private materials
+### License and private materials
 
 MIT applies to this repository's own code and documentation. The previous private prototype used an AGPL renderer; this public version replaces that path with its own Python/FFmpeg implementation and includes none of that vendor code. Dependencies and separately installed FFmpeg/model binaries retain their own licenses; see [THIRD_PARTY.md](THIRD_PARTY.md).
-

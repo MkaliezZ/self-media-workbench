@@ -1,0 +1,73 @@
+name: Pinned Vulkan adapter build and native CPU contract
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    env:
+      SELF_MEDIA_STATE_DIR: ${{ github.workspace }}/audit/setup-state
+      HF_HUB_DISABLE_XET: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: Dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Official Vulkan SDK copy-only setup
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force audit | Out-Null
+          $taskVersion = '1.4.363.0'
+          $taskInstaller = Join-Path $env:RUNNER_TEMP 'vulkan-sdk.exe'
+          $taskSdk = Join-Path $env:RUNNER_TEMP 'workbench-vulkan-sdk'
+          $taskUrl = "https://sdk.lunarg.com/sdk/download/$taskVersion/windows/vulkansdk-windows-X64-$taskVersion.exe"
+          Invoke-WebRequest -Uri $taskUrl -OutFile $taskInstaller
+          $taskSignature = Get-AuthenticodeSignature -FilePath $taskInstaller
+          @{ url=$taskUrl; sha256=(Get-FileHash $taskInstaller -Algorithm SHA256).Hash; signature_status=[string]$taskSignature.Status; publisher=$taskSignature.SignerCertificate.Subject } | ConvertTo-Json | Set-Content audit/sdk-download.json -Encoding utf8
+          if ($taskSignature.Status -ne 'Valid') { throw 'SDK Authenticode validation failed' }
+          $taskProcess = Start-Process -FilePath $taskInstaller -ArgumentList @('--root',$taskSdk,'--accept-licenses','--default-answer','--confirm-command','install','copy_only=1') -WindowStyle Hidden -Wait -PassThru
+          if ($taskProcess.ExitCode -ne 0) { throw "SDK setup exit $($taskProcess.ExitCode)" }
+          "VULKAN_SDK=$taskSdk" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+      - name: Build pinned upstream and explicitly provision test model
+        shell: pwsh
+        run: |
+          python -B -X utf8 scripts/setup_cpp.py --workspace audit/runtime --vulkan-sdk "$env:VULKAN_SDK" --download-model tiny --configure | Tee-Object audit/setup.stdout.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Real CLI JSON timing and export contract on CPU
+        shell: pwsh
+        run: |
+          $taskSetup = Get-Content audit/setup.stdout.txt -Raw | ConvertFrom-Json
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) { choco install ffmpeg --no-progress -y }
+          python -B -X utf8 scripts/gpu_strategy_smoke.py --out audit/cpu-contract --backend whisper.cpp --device cpu --model audit/unused-ct2 --cpp-executable $taskSetup.executable --cpp-model $taskSetup.model | Tee-Object audit/cpu-contract.stdout.txt
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Preserve setup logs and compiled binary even after contract failure
+        if: always()
+        shell: pwsh
+        run: |
+          if (Test-Path audit/runtime) {
+            Get-ChildItem audit/runtime -Recurse -File | Where-Object { $_.Name -in @('build.log','commands.json','setup-result.json','model-download.json') } | ForEach-Object {
+              $taskRelative = [IO.Path]::GetRelativePath((Join-Path $pwd 'audit/runtime'), $_.FullName)
+              $taskTarget = Join-Path 'audit/build-evidence' $taskRelative
+              New-Item -ItemType Directory -Force (Split-Path $taskTarget) | Out-Null
+              Copy-Item -LiteralPath $_.FullName -Destination $taskTarget
+            }
+            $taskCli = Get-ChildItem audit/runtime -Recurse -File -Filter whisper-cli.exe | Select-Object -First 1
+            if ($taskCli) {
+              New-Item -ItemType Directory -Force audit/native-bin | Out-Null
+              Copy-Item -Path (Join-Path $taskCli.DirectoryName '*') -Destination audit/native-bin
+              Get-ChildItem audit/native-bin -File | ForEach-Object { @{file=$_.Name;sha256=(Get-FileHash $_.FullName -Algorithm SHA256).Hash} } | ConvertTo-Json | Set-Content audit/native-bin-sha256.json -Encoding utf8
+            }
+          }
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: vulkan-build-and-cpu-contract
+          path: |
+            audit/
+            !audit/runtime/**
+            !audit/setup-state/**
+          retention-days: 14

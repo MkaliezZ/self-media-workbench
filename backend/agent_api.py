@@ -273,7 +273,7 @@ def register(w):
             return w.MediaImport.model_json_schema()
         if name == 'media-transcribe':
             return {'title':'Local transcription: no request body', 'type':'null',
-                    'description':'POST without a request body. Uses the server local model; prefers CUDA with explicit CPU fallback. Response is an asynchronous job; read job.result for actual device, run and fallback errors.'}
+                    'description':'POST without a request body. Uses persisted local GPU strategy: NVIDIA CUDA, Windows AMD/Intel whisper.cpp Vulkan, Apple Silicon MLX, Intel Mac optional whisper.cpp Metal. CPU fallback is recorded or rejected by require_gpu. Read the terminal job.result for actual backend/device/execution/fallback errors.'}
         if name == 'media-review':
             return w.ReviewEdit.model_json_schema()
         if name == 'media-export':

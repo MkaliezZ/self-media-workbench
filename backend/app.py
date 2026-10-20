@@ -23,7 +23,7 @@ from pydantic import ValidationError
 from local_asr import DEFAULT_MODEL, transcribe
 from review_edits import plan_keeps, corrected_text
 from media_models import MediaImport, ReviewEdit, ExportReview
-from settings import DATA, SKILL, LIBRARY, ASR_BACKEND, DEVICE, MLX_MODEL
+from settings import DATA, SKILL, LIBRARY, ASR_BACKEND, DEVICE, MLX_MODEL,CPP_EXECUTABLE,CPP_MODEL,CPP_GPU_INDEX,REQUIRE_GPU
 from media_render import render
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -101,7 +101,8 @@ def status():
     progress = LIBRARY/'阅读记录/当前阅读进度.json' if LIBRARY else None
     return {'stage':'development', 'root':str(ROOT), 'model':str(DEFAULT_MODEL),
             'model_present':(DEFAULT_MODEL/'model.bin').is_file(),
-            'asr_configuration':{'backend':ASR_BACKEND,'device':DEVICE,'mlx_model':str(MLX_MODEL)},
+            'asr_configuration':{'backend':ASR_BACKEND,'device':DEVICE,'mlx_model':str(MLX_MODEL),
+                'cpp_executable':str(CPP_EXECUTABLE),'cpp_model':str(CPP_MODEL),'cpp_gpu_index':CPP_GPU_INDEX,'require_gpu':REQUIRE_GPU},
             'library_progress':read(progress) if progress and progress.exists() else None,
             'generation':'calling AI agent reasons; local tools persist, validate and execute',
             'agent_capabilities':'/api/agent/v1/capabilities',

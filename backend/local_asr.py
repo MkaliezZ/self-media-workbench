@@ -43,13 +43,13 @@ def transcribe(source, output, model_path=DEFAULT_MODEL, device=DEVICE, language
                            '-show_format', '-show_streams', '-of', 'json', str(source)]))
     # Video may continue after the audio ends. Restore-all must retain that tail.
     duration = max(audio_duration, float(metadata.get('format', {}).get('duration', 0)))
-    inference = infer(audio, model_path, mlx_model, backend, device, language)
+    inference = infer(audio, model_path, mlx_model, backend, device, language,evidence_dir=output/'engine')
     words = []
     for word in inference['words']:
         start, end = max(0.0, float(word['start'])), min(duration, float(word['end']))
         if end > start:
             words.append({'id':len(words),'text':word['word'],'start':start,'end':end,
-                          'probability':word.get('probability'),'alignment':'model_word_group'})
+                          'probability':word.get('probability'),'alignment':word.get('alignment','model_word_group')})
     speech = get_speech_timestamps(audio, VadOptions(min_silence_duration_ms=200,
                                                     speech_pad_ms=100))
     speech = [{'start': s['start'] / 16000, 'end': s['end'] / 16000} for s in speech]
@@ -89,6 +89,7 @@ def transcribe(source, output, model_path=DEFAULT_MODEL, device=DEVICE, language
     result = {'source': str(source), 'source_sha256': source_hash,
               'model':inference['model'],'device':inference['device'],'backend':inference['backend'],
               'requested_backend':backend,'requested_device':device,'execution':inference['execution'],
+              'routing':inference.get('routing'),
               'fallback_errors':inference['fallback_errors'],'duration':duration,'audio_duration':audio_duration,
               'cuda_dll_dirs':inference.get('cuda_dll_dirs',[]),
               'language':inference['language'],'elapsed_seconds':time.time()-started,
@@ -106,8 +107,8 @@ if __name__ == '__main__':
     cli.add_argument('source', type=Path)
     cli.add_argument('output', type=Path)
     cli.add_argument('--model', type=Path, default=DEFAULT_MODEL)
-    cli.add_argument('--device', choices=['auto','cuda','cpu','gpu'], default=DEVICE)
-    cli.add_argument('--backend',choices=['auto','faster-whisper','mlx'],default=ASR_BACKEND)
+    cli.add_argument('--device', choices=['auto','cuda','cpu','gpu','vulkan','metal'], default=DEVICE)
+    cli.add_argument('--backend',choices=['auto','faster-whisper','mlx','whisper.cpp'],default=ASR_BACKEND)
     cli.add_argument('--mlx-model',type=Path,default=MLX_MODEL)
     args = cli.parse_args()
     result = transcribe(args.source, args.output, args.model, args.device,backend=args.backend,mlx_model=args.mlx_model)

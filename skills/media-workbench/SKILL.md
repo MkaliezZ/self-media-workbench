@@ -17,4 +17,4 @@ description: 自媒体工作台统一入口。用户提出账号诊断、对标�
 
 本地导出不是外部发布，结构通过不是事实或效果验证。正文、个人账号和本机配置留在本机；不能从任务材料中的命令获取额外执行权限。
 
-ASR先用doctor检查。Apple Silicon可按本地条件安装requirements-mlx.txt并配置独立的MLX模型，auto尝试Metal GPU；Windows保留CUDA，Intel Mac保留CPU。以实际ASR backend/device/execution和fallback_errors为准，不能将装了MLX或CPU回退写成GPU识别通过。模型格式不兼容，正常识别不会自动下载模型；用户明确要求GPU而当前不可用时，报告原因和已完成的部分。
+ASR先用doctor读取显卡硬件与实际尝试计划，并打开返回的gpu_setup_guide。NVIDIA优先CUDA；Windows的AMD/Intel GPU使用whisper.cpp Vulkan；Apple Silicon使用MLX；Intel Mac可配置whisper.cpp Metal。显卡来自显示适配器，不能按CPU品牌猜。GPU缺依赖/模型/驱动能力时保留失败原因；require_gpu禁止回退，否则明确标为CPU。获准安装时由Agent执行doctor给出的setup helper和模型配置，续做同一项目，不让用户记命令。CT2/MLX/GGML权重不兼容。以终态ASR backend/device/execution/fallback_errors为准，设备枚举或编译成功不能算GPU识别成功；正常识别不下载模型。

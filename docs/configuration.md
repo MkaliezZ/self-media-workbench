@@ -8,8 +8,12 @@ All configuration is local. `workbench.py configure` writes the operating system
 | SELF_MEDIA_DATA_DIR | --data-dir | Existing or new project store |
 | SELF_MEDIA_MODEL | --model | Local faster-whisper/CTranslate2 model directory containing model.bin |
 | SELF_MEDIA_MLX_MODEL | --mlx-model | Separate local MLX config.json plus MLX weights directory |
-| SELF_MEDIA_ASR_BACKEND | --asr-backend | auto, faster-whisper, mlx |
-| SELF_MEDIA_DEVICE | --device | auto, cpu, cuda, gpu; Apple Silicon auto tries MLX GPU, Intel Mac CPU |
+| SELF_MEDIA_ASR_BACKEND | --asr-backend | auto, faster-whisper, mlx, whisper.cpp |
+| SELF_MEDIA_DEVICE | --device | auto, cpu, cuda, gpu, vulkan, metal; vendor-aware strategy from doctor |
+| SELF_MEDIA_CPP_EXECUTABLE | --cpp-executable | Local Vulkan/Metal whisper.cpp CLI; no runtime auto-download |
+| SELF_MEDIA_CPP_MODEL | --cpp-model | Separate local GGML file, not a CT2/MLX model directory |
+| SELF_MEDIA_CPP_GPU_INDEX | --cpp-gpu-index | Nonnegative native CLI GPU index, default 0; distinct from WMI/CUDA indices |
+| SELF_MEDIA_REQUIRE_GPU | --require-gpu / --no-require-gpu | Reject CPU fallback when true; default false preserves labelled fallback |
 | SELF_MEDIA_LANGUAGE | --language | ASR language (default zh; empty enables detection) |
 | SELF_MEDIA_CUDA_DLL_DIRS | --cuda-dll-dir (repeatable) | Optional Windows NVIDIA DLL directories; process-local, never a global PATH change |
 | SELF_MEDIA_SKILL_ROOT | --skill-root | Optional private skill; default public bundled methods |

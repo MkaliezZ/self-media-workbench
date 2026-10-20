@@ -63,8 +63,10 @@ def faster_infer(audio, model_path, device, language):
         raise ValueError('Local CTranslate2 model needs model.bin; no automatic model download')
     from faster_whisper import WhisperModel
     from gpu_runtime import configure_cuda_dlls
-    errors=[];directories=[]
-    if device=='auto':device='cpu' if sys.platform=='darwin' else 'cuda'
+    directories=[]
+    if device=='auto':
+        from accelerators import inventory
+        device='cuda' if sys.platform!='darwin' and any(a['vendor']=='nvidia' for a in inventory()['adapters']) else 'cpu'
     if device not in ('cpu','cuda'):raise ValueError('faster-whisper accepts auto/cpu/cuda, not Metal GPU')
     def run(selected):
         model=WhisperModel(str(model_path),device=selected,
@@ -72,32 +74,38 @@ def faster_infer(audio, model_path, device, language):
         segments,info=model.transcribe(audio,language=language or None,beam_size=5,
             word_timestamps=True,vad_filter=False,condition_on_previous_text=False)
         return list(segments),info
-    try:
-        if device=='cuda':directories=configure_cuda_dlls()
-        segments,info=run(device)
-    except Exception as exc:
-        if device!='cuda':raise
-        errors.append({'backend':'faster-whisper','device':device,'error':str(exc)})
-        device='cpu';segments,info=run(device)
+    if device=='cuda':directories=configure_cuda_dlls()
+    segments,info=run(device)
     words=[{'word':w.word,'start':w.start,'end':w.end,'probability':w.probability}
         for segment in segments for w in segment.words or []]
     return {'backend':'faster-whisper','device':device,'model':str(model_path),'language':info.language,
-        'words':words,'fallback_errors':errors,'cuda_dll_dirs':directories,'execution':{}}
+        'words':words,'fallback_errors':[],'cuda_dll_dirs':directories,
+        'execution':{'gpu_inference_verified':device=='cuda','compute_type':'int8_float16' if device=='cuda' else 'int8'}}
 
 
-def infer(audio, model_path, mlx_model, backend, device, language):
-    if backend not in ('auto','faster-whisper','mlx'):raise ValueError('Unknown ASR backend')
-    if device not in ('auto','cpu','cuda','gpu'):raise ValueError('Unknown ASR device')
-    if backend=='mlx' and device in ('cpu','cuda'):
-        raise ValueError('MLX GPU backend accepts auto/gpu; use faster-whisper with cpu/cuda')
-    if backend=='faster-whisper' and device=='gpu':raise ValueError('Use mlx/auto for Apple GPU, or cuda for NVIDIA')
-    wants_mlx=backend=='mlx' or (backend=='auto' and (device=='gpu' or (apple_silicon() and device=='auto')))
-    if wants_mlx:
-        try:return mlx_infer(audio,mlx_model,language)
-        except Exception as exc:
-            try:result=faster_infer(audio,model_path,'cpu',language)
-            except Exception as cpu_error:
-                raise RuntimeError(f'MLX failed: {exc}; CPU fallback failed: {cpu_error}') from cpu_error
-            result['fallback_errors'].insert(0,{'backend':'mlx','device':'gpu','error':str(exc)})
+def infer(audio, model_path, mlx_model, backend, device, language,*,evidence_dir=None,
+          cpp_executable=None,cpp_model=None,cpp_gpu_index=None,require_gpu=None):
+    from settings import CPP_EXECUTABLE,CPP_MODEL,CPP_GPU_INDEX,REQUIRE_GPU
+    from accelerators import inventory,plan
+    from cpp_asr import cpp_infer,local_files
+    cpp_executable=CPP_EXECUTABLE if cpp_executable is None else cpp_executable
+    cpp_model=CPP_MODEL if cpp_model is None else cpp_model
+    cpp_gpu_index=CPP_GPU_INDEX if cpp_gpu_index is None else cpp_gpu_index
+    require_gpu=REQUIRE_GPU if require_gpu is None else require_gpu
+    hardware=inventory()
+    try:local_files(cpp_executable,cpp_model);ready=True
+    except (OSError,ValueError):ready=False
+    attempts=plan(backend,device,hardware,apple_silicon(),ready,require_gpu)
+    errors=[]
+    for engine,selected in attempts:
+        try:
+            if engine=='mlx':result=mlx_infer(audio,mlx_model,language)
+            elif engine=='whisper.cpp':result=cpp_infer(audio,cpp_executable,cpp_model,selected,language,evidence_dir,cpp_gpu_index)
+            else:result=faster_infer(audio,model_path,selected,language)
+            if require_gpu and result.get('device')=='cpu':raise RuntimeError('GPU required; CPU result rejected')
+            result.setdefault('fallback_errors',[])[:0]=errors
+            result['routing']={'hardware':hardware,'attempts':[{'backend':b,'device':d} for b,d in attempts],
+                               'require_gpu':require_gpu,'selection_is_execution_proof':False}
             return result
-    return faster_infer(audio,model_path,device,language)
+        except Exception as exc:errors.append({'backend':engine,'device':selected,'error':str(exc)})
+    raise RuntimeError('All ASR attempts failed: '+json.dumps(errors,ensure_ascii=False))

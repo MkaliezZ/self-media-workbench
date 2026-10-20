@@ -17,7 +17,8 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT/'backend'))
-from settings import STATE, CONFIG_FILE, CONFIG, DATA, MODEL, MLX_MODEL, ASR_BACKEND, DEVICE, SKILL
+from settings import (STATE, CONFIG_FILE, CONFIG, DATA, MODEL, MLX_MODEL, ASR_BACKEND, DEVICE, SKILL,
+                      CPP_EXECUTABLE,CPP_MODEL,CPP_GPU_INDEX,REQUIRE_GPU)
 
 
 def request(base, method, path, payload=None):
@@ -67,6 +68,16 @@ def ensure_service(explicit=None):
 
 def doctor():
     from asr_backends import mlx_probe,mlx_local_model
+    from accelerators import inventory,plan
+    from cpp_asr import local_files
+    hardware=inventory()
+    try:local_files(CPP_EXECUTABLE,CPP_MODEL);cpp_ready=True;cpp_reason=None
+    except (OSError,ValueError) as exc:cpp_ready=False;cpp_reason=str(exc)
+    try:
+        from asr_backends import apple_silicon
+        routing=[{'backend':b,'device':d} for b,d in plan(ASR_BACKEND,DEVICE,hardware,apple_silicon(),cpp_ready,REQUIRE_GPU)]
+        routing_error=None
+    except ValueError as exc:routing=[];routing_error=str(exc)
     try:mlx_local_model(MLX_MODEL);mlx_present=True
     except ValueError:mlx_present=False
     return {'platform':sys.platform,'python':sys.version,'python_executable':sys.executable,'root':str(ROOT),
@@ -74,9 +85,13 @@ def doctor():
         'model':str(MODEL),'model_present':(MODEL/'model.bin').is_file(),
         'asr_backend':ASR_BACKEND,'requested_device':DEVICE,'mlx_model':str(MLX_MODEL),
         'mlx_model_present':mlx_present,'mlx':mlx_probe(),
+        'gpu_hardware':hardware,'asr_attempt_plan':routing,'asr_plan_error':routing_error,'require_gpu':REQUIRE_GPU,
+        'gpu_setup_guide':str(ROOT/'docs/accelerators.md'),'gpu_setup_helper':str(ROOT/'scripts/setup_cpp.py'),
+        'whisper_cpp':{'executable':str(CPP_EXECUTABLE),'model':str(CPP_MODEL),'files_ready':cpp_ready,
+                       'reason':cpp_reason,'gpu_index':CPP_GPU_INDEX,'gpu_execution_verified':False},
         'dependencies':{k:importlib.util.find_spec(k) is not None for k in ['fastapi','pydantic','uvicorn','numpy','faster_whisper']},
         'executables':{k:shutil.which(k) for k in ['ffmpeg','ffprobe']},
-        'macos_asr':'Apple Silicon auto: optional MLX Metal GPU, explicit faster-whisper CPU fallback; Intel: CPU' if sys.platform=='darwin' else None,
+        'macos_asr':'Apple Silicon: MLX; Intel GPU: optional whisper.cpp Metal; recorded CPU fallback' if sys.platform=='darwin' else None,
         'network_upload':False,'model_auto_download':False}
 
 
@@ -90,9 +105,11 @@ def main(argv=None):
     sub.add_parser('doctor')
     serve=sub.add_parser('serve');serve.add_argument('--port',type=int,default=8765)
     config=sub.add_parser('configure')
-    for key in ('data-dir','model','mlx-model','skill-root','library'):config.add_argument('--'+key,type=Path)
-    config.add_argument('--device',choices=['auto','cpu','cuda','gpu']);config.add_argument('--language')
-    config.add_argument('--asr-backend',choices=['auto','faster-whisper','mlx'])
+    for key in ('data-dir','model','mlx-model','cpp-executable','cpp-model','skill-root','library'):config.add_argument('--'+key,type=Path)
+    config.add_argument('--device',choices=['auto','cpu','cuda','gpu','vulkan','metal']);config.add_argument('--language')
+    config.add_argument('--asr-backend',choices=['auto','faster-whisper','mlx','whisper.cpp'])
+    config.add_argument('--cpp-gpu-index',type=int)
+    config.add_argument('--require-gpu',action=argparse.BooleanOptionalAction,default=None)
     config.add_argument('--cuda-dll-dir',action='append',type=Path)
     sub.add_parser('install-skill')
     run=sub.add_parser('run');run.add_argument('task');run.add_argument('--input',action='append',default=[])
@@ -116,9 +133,11 @@ def main(argv=None):
     if args.command=='doctor':result=doctor()
     elif args.command=='configure':
         config=dict(CONFIG)
-        for key in ('data_dir','model','mlx_model','asr_backend','skill_root','library','device','language'):
+        for key in ('data_dir','model','mlx_model','cpp_executable','cpp_model','cpp_gpu_index','require_gpu','asr_backend','skill_root','library','device','language'):
             value=getattr(args,key,None)
-            if value is not None:config[key]=str(value.expanduser().resolve()) if isinstance(value,Path) else value
+            if value is not None:
+                if key=='cpp_gpu_index' and value<0:raise ValueError('GPU index must be nonnegative')
+                config[key]=str(value.expanduser().resolve()) if isinstance(value,Path) else value
         if args.cuda_dll_dir is not None:config['cuda_dll_dirs']=[str(p.expanduser().resolve()) for p in args.cuda_dll_dir]
         STATE.mkdir(parents=True,exist_ok=True);CONFIG_FILE.write_text(json.dumps(config,ensure_ascii=False,indent=2),encoding='utf-8')
         result={'configured':True,'config_file':str(CONFIG_FILE),'settings':config,'notice':'Restart an existing service to apply settings; existing projects are not moved or deleted.'}

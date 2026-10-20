@@ -79,7 +79,7 @@ State defaults to the operating system's private application-data directory. `co
 
 Windows supports CPU and NVIDIA CUDA when its optional runtime is available, with explicit CPU fallback. Apple Silicon additionally supports optional **MLX/Metal GPU** with CPU fallback; Intel Mac uses CTranslate2 CPU. FFmpeg export and state/protocol features use the same Python implementation. Actual GPU verification is reported separately from CPU compatibility.
 
-CI targets Windows, macOS ARM64 and macOS Intel. It runs protocol/routing tests, real FFmpeg cut/restore/decode tests and an opt-in tiny-model ASR smoke using native synthetic speech. Actual run results, not this matrix declaration, establish compatibility. [Validation records](docs/validation.md).
+Windows, macOS 15 ARM64 and macOS 15 Intel have each passed 36 tests plus real ASR/HTTP export/decode and source/output timeline checks in [final CI](https://github.com/MkaliezZ/self-media-workbench/actions/runs/39441097022). ARM64 also completed real **MLX GPU** transcription with a Metal kernel, isolated worker and no CPU fallback. macOS 26 ARM/Intel and local Windows CUDA were separately exercised. CI uses explicitly downloaded tiny test models and native synthetic speech. [Validation records and limits](docs/validation.md).
 
 MP4 and SRT are separate outputs. There is no automatic external publishing, burned-caption/compositing feature or guarantee of content/marketing effectiveness. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
 

@@ -45,3 +45,15 @@ The independent Agent made 28 actual submissions after the timestamp fix: invali
 ## Apple GPU addition requested after CPU compatibility
 
 The user requested Apple GPU acceleration. Added separate local MLX weights/config, native Apple Silicon auto-selection, isolated Metal inference worker, real GPU-kernel check, actual engine/device provenance and recorded CPU fallback. Existing CUDA and shared word/VAD/edit timelines remain. Contract mocks test selection/error cases only; they are not GPU evidence. Windows regression reached 36 tests. Actual Apple GPU capability/ASR/export is measured separately by the ARM CI probe; unavailable hosted Metal must not be rewritten as GPU success.
+
+## Independent MLX-integration round 5 on Windows
+
+The independent Agent chose another synthetic cable-wrap subject and actually ran auto/CUDA, explicit CPU and requested-MLX/CPU-fallback ASR (24 groups). It grouped subtitles, exported generated video and decoded it, verified the original hash and retained all attempts. Pure-WAV MP4 export was explicitly rejected; the evaluator retained that input and labelled its new color-video wrapper as generated. Its unrelated Python PATH mistake was corrected explicitly. No product defect was observed in these exercised paths; this Windows round cannot validate Apple Metal or the MLX worker. ARM CI remains the separate GPU evidence source.
+
+## Actual Apple GPU and cross-platform results
+
+Run 39439000073 on 289dc3f passed Windows, macOS 15 Intel and macOS 15 ARM, each with 36 regression tests and actual local ASR/HTTP export/decode. ARM also ran native MLX GPU transcription: real Metal kernel verified, isolated worker, no CPU fallback, actual 15 word groups and decoded export. The first e8fd5d9 smoke had an outdated constant model label; 289dc3f corrected model/model_format while retaining the first artifact and its genuine GPU execution fields. No speed-up ratio is inferred from independently generated TTS clips.
+
+The subsequent smoke additionally records source/plan/output durations and verifies unchanged word IDs/bounds on its keep-all export, to make timeline acceptance directly auditable. It does not alter runtime inference/rendering behavior.
+
+Final run 39441097022 on 3cbf396 passed all three platforms (36 tests each), including actual ARM MLX GPU inference and every source/plan/output timing check. Additional run 39439555962 passed macOS 26 ARM/Intel with actual ARM GPU ASR/export/decode. Final source durations, hashes and actual device fields are retained verbatim in evaluation/verified-3cbf396 and verified-289dc3f. Later commits only finalize documentation/evidence, without changing the tested runtime.

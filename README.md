@@ -4,6 +4,30 @@ An MIT-licensed local workbench for AI Agents on Windows and macOS. Your Agent c
 
 **对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不冒充完成了内容创作。
 
+## 给其他 Agent 的快速开始
+
+把仓库链接和任务发给具备文件读写、终端执行能力的 Agent 即可，无需让使用者记安装或启动命令：
+
+```text
+https://github.com/MkaliezZ/self-media-workbench
+我的任务：[填写要完成的事；续做时注明项目名称或ID，附上相关素材]
+```
+
+**收到链接和任务的 Agent：**先阅读本 README、[AGENTS.md](AGENTS.md) 和相关入口说明，按下面的执行约定自行完成安装、配置、启动和续做。也可以将这段完整说明直接转发给其他 Agent：
+
+```text
+请使用这个 Agent 自媒体工作台完成我的任务：
+https://github.com/MkaliezZ/self-media-workbench
+
+先阅读仓库 README、AGENTS.md 和相关入口说明，再自行执行。优先复用已有安装；没有则克隆仓库。检查当前 Windows/macOS、Python、依赖、FFmpeg及任务所需的 ASR/GPU 环境，按仓库文档安装缺项、配置兼容模型并验证实际后端。仅在任务需要时安装音视频依赖；GPU不可用时如实记录原因和CPU回退，不得把未实测能力说成通过。
+
+由你管理命令、配置、服务启动和项目状态，不要求我记命令、填写JSON或提供模型路径。通过统一 Agent 入口判断功能和起点：已有项目读取实际进度后续做，保留原始素材、历史结果和失败记录；多个项目无法确定时才询问。入口返回的计划不算完成，请实际执行、保存结果并检查产物，最后说明完成内容、产物位置和未解决事项。涉及付费、覆盖已有数据或对外发布时先取得明确授权。
+
+我的任务：[填写要完成的事；续做时注明项目名称或ID，附上相关素材]
+```
+
+安装阶段由 Agent 显式下载和配置任务所需的兼容模型；正常转写不会自行下载模型。续做依赖本机已有的项目数据，换机器时需要先提供原项目数据目录或备份。下方命令供 Agent 执行和排错参考。
+
 ## Install
 
 Python 3.11+ and FFmpeg/ffprobe are required for the complete media workflow. Text workflows do not need FFmpeg or an ASR model.

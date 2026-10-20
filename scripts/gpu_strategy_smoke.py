@@ -19,6 +19,10 @@ def main():
     root=Path(__file__).resolve().parents[1];out=args.out.resolve()
     if out.exists():raise ValueError('Use a fresh output directory; preserve earlier attempts')
     out.mkdir(parents=True);os.environ['SELF_MEDIA_STATE_DIR']=str(out/'state')
+    snapshot={'commit':subprocess.check_output(['git','rev-parse','HEAD'],cwd=root,text=True).strip(),
+              'working_changes':subprocess.check_output(['git','status','--porcelain'],cwd=root,text=True).splitlines(),
+              'runtime_sha256':{str(f.relative_to(root)):hashlib.sha256(f.read_bytes()).hexdigest() for f in sorted((root/'backend').glob('*.py'))}}
+    (out/'source-snapshot.json').write_text(json.dumps(snapshot,indent=2),encoding='utf8')
     config={'model':str(args.model.resolve()),'device':args.device,'asr_backend':args.backend,
             'require_gpu':args.require_gpu,'language':'zh'}
     for key in ['cpp_executable','cpp_model']:

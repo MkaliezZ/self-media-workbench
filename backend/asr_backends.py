@@ -6,6 +6,7 @@ import os
 import subprocess
 import sys
 import tempfile
+import uuid
 from pathlib import Path
 
 
@@ -57,7 +58,37 @@ def mlx_worker(command,*args,timeout=30):
     return json.loads(proc.stdout)
 
 
-def faster_infer(audio, model_path, device, language):
+def faster_infer(audio,model_path,device,language,*,evidence_dir=None):
+    if device=='auto':
+        from accelerators import inventory
+        device='cuda' if sys.platform!='darwin' and any(a['vendor']=='nvidia' for a in inventory()['adapters']) else 'cpu'
+    if device!='cuda':return faster_direct(audio,model_path,device,language)
+    # CUDA DLL/driver failures can terminate native code instead of raising a
+    # Python exception. Isolate them just like Metal/Vulkan and retain logs.
+    import numpy as np
+    with tempfile.TemporaryDirectory(prefix='workbench-cuda-') as directory:
+        audio_file=Path(directory)/'audio.npy';np.save(audio_file,audio)
+        folder=Path(evidence_dir)/('cuda-'+uuid.uuid4().hex) if evidence_dir else Path(directory)/'evidence'
+        folder.mkdir(parents=True,exist_ok=False)
+        command=[sys.executable,'-B','-X','utf8',str(Path(__file__).with_name('ct2_worker.py')),
+                 '--audio',str(audio_file),'--model',str(Path(model_path).resolve()),'--language',language or '']
+        (folder/'command.json').write_text(json.dumps(command,indent=2),encoding='utf8')
+        try:
+            options={'creationflags':subprocess.CREATE_NO_WINDOW} if os.name=='nt' else {}
+            with (folder/'stdout.json').open('wb') as stdout,(folder/'stderr.txt').open('wb') as stderr:
+                proc=subprocess.run(command,stdout=stdout,stderr=stderr,timeout=3600,
+                    env={**os.environ,'HF_HUB_OFFLINE':'1','TRANSFORMERS_OFFLINE':'1'},**options)
+            if proc.returncode:raise RuntimeError('CUDA worker exited '+str(proc.returncode))
+            result=json.loads((folder/'stdout.json').read_text('utf8'))
+            if result.get('backend')!='faster-whisper' or result.get('device')!='cuda':raise RuntimeError('CUDA worker did not return CUDA inference')
+            result['execution'].update(isolated_worker=True,evidence_dir=str(folder) if evidence_dir else None)
+            return result
+        except Exception as exc:
+            (folder/'failure.json').write_text(json.dumps({'error':str(exc)}),encoding='utf8')
+            raise RuntimeError(f'{exc}; evidence={folder if evidence_dir else "temporary"}') from exc
+
+
+def faster_direct(audio, model_path, device, language):
     model_path=Path(model_path).expanduser().resolve()
     if not (model_path/'model.bin').is_file():
         raise ValueError('Local CTranslate2 model needs model.bin; no automatic model download')
@@ -101,7 +132,7 @@ def infer(audio, model_path, mlx_model, backend, device, language,*,evidence_dir
         try:
             if engine=='mlx':result=mlx_infer(audio,mlx_model,language)
             elif engine=='whisper.cpp':result=cpp_infer(audio,cpp_executable,cpp_model,selected,language,evidence_dir,cpp_gpu_index)
-            else:result=faster_infer(audio,model_path,selected,language)
+            else:result=faster_infer(audio,model_path,selected,language,evidence_dir=evidence_dir)
             if require_gpu and result.get('device')=='cpu':raise RuntimeError('GPU required; CPU result rejected')
             result.setdefault('fallback_errors',[])[:0]=errors
             result['routing']={'hardware':hardware,'attempts':[{'backend':b,'device':d} for b,d in attempts],

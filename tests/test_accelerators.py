@@ -1,5 +1,6 @@
 """Vendor routing and proof boundaries; mocks do not establish real GPU support."""
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -38,12 +39,12 @@ class AcceleratorTests(unittest.TestCase):
     def test_require_gpu_never_returns_cpu(self):
         self.assertEqual(a.plan('auto','auto',hardware('amd'),require_gpu=True),[('whisper.cpp','vulkan')])
         with self.assertRaises(ValueError):a.plan('auto','cpu',hardware('nvidia'),require_gpu=True)
-        with patch.object(a,'inventory',return_value=hardware('nvidia')),patch.object(b,'faster_infer',side_effect=RuntimeError('missing cuDNN')) as call:
+        with patch.object(b,'apple_silicon',return_value=False),patch.object(a,'inventory',return_value=hardware('nvidia')),patch.object(b,'faster_infer',side_effect=RuntimeError('missing cuDNN')) as call:
             with self.assertRaisesRegex(RuntimeError,'missing cuDNN'):b.infer(np.zeros(1),'ct2','mlx','auto','auto','zh',require_gpu=True)
             self.assertEqual(call.call_count,1)
 
     def test_vulkan_failure_preserved_before_cpu_fallback(self):
-        with patch.object(a,'inventory',return_value=hardware('amd')),patch('cpp_asr.cpp_infer',side_effect=RuntimeError('driver unavailable')),patch.object(b,'faster_infer',return_value={'device':'cpu','fallback_errors':[]}) as cpu:
+        with patch.object(b,'apple_silicon',return_value=False),patch.object(a,'inventory',return_value=hardware('amd')),patch('cpp_asr.cpp_infer',side_effect=RuntimeError('driver unavailable')),patch.object(b,'faster_infer',return_value={'device':'cpu','fallback_errors':[]}) as cpu:
             result=b.infer(np.zeros(1),'ct2','mlx','auto','auto','zh')
             self.assertEqual(cpu.call_args.args[2],'cpu')
             self.assertEqual(result['fallback_errors'][0]['device'],'vulkan')
@@ -56,6 +57,15 @@ class AcceleratorTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):gpu_evidence(log,'vulkan')
         proof=gpu_evidence('whisper_backend_init_gpu: using Vulkan0 backend\nwhisper_model_load: Vulkan0 total size = 74.1 MB','vulkan')
         self.assertEqual(proof['selected_native_backend'],'Vulkan0')
+
+    def test_cuda_native_exit_is_contained_with_log_and_reason(self):
+        from types import SimpleNamespace
+        with tempfile.TemporaryDirectory() as directory,patch.object(b,'apple_silicon',return_value=False),patch.object(a,'inventory',return_value=hardware('nvidia')),patch.object(b.subprocess,'run',return_value=SimpleNamespace(returncode=9)),patch.object(b,'faster_direct',return_value={'backend':'faster-whisper','device':'cpu','fallback_errors':[]}):
+            result=b.infer(np.zeros(10),'ct2','mlx','auto','auto','zh',evidence_dir=Path(directory))
+            self.assertEqual(result['device'],'cpu')
+            self.assertIn('CUDA worker exited 9',result['fallback_errors'][0]['error'])
+            self.assertTrue(list(Path(directory).glob('cuda-*/failure.json')))
+            self.assertTrue(list(Path(directory).glob('cuda-*/stderr.txt')))
 
     def test_real_offsets_preserved_and_missing_alignment_is_coarse(self):
         segment={'text':'不要删','offsets':{'from':100,'to':900},'tokens':[

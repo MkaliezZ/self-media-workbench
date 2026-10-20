@@ -119,7 +119,7 @@ def main(argv=None):
     elif args.command=='install-skill':
         target=Path(os.environ.get('CODEX_HOME',str(Path.home()/'.codex')))/'skills/media-workbench'
         shutil.copytree(ROOT/'skills/media-workbench',target,dirs_exist_ok=True)
-        (target/'location.json').write_text(json.dumps({'root':str(ROOT)}),encoding='utf-8')
+        (target/'location.json').write_text(json.dumps({'root':str(ROOT),'python':sys.executable}),encoding='utf-8')
         result={'installed':str(target),'entry':str(target/'SKILL.md'),'root':str(ROOT)}
     else:
         base=ensure_service(args.base_url)

@@ -38,7 +38,7 @@ python workbench.py doctor
 python workbench.py install-skill
 ```
 
-`install-skill` installs the `media-workbench` entry into your local Codex skills directory and records this checkout privately. Other Agents can simply read [AGENTS.md](AGENTS.md). Keep this checkout available after installing the skill. No machine-specific location record is committed.
+`install-skill` installs the `media-workbench` entry into your local Codex skills directory and records this checkout and its Python interpreter privately. The wrapper prefers the checkout's `.venv`, then the recorded interpreter, so an Agent's unrelated Python does not need the same dependencies. Other Agents can simply read [AGENTS.md](AGENTS.md). Keep this checkout available after installing the skill. No machine-specific location record is committed.
 
 ## One Agent entry, multiple tasks
 

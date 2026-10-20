@@ -26,7 +26,7 @@ def main():
     else:model=args.model.resolve()
     with tempfile.TemporaryDirectory(prefix='workbench-real-smoke-') as directory:
         temp=Path(directory);env={**os.environ,'SELF_MEDIA_STATE_DIR':str(temp/'state'),'SELF_MEDIA_MODEL':str(model),
-            'SELF_MEDIA_LANGUAGE':'en','SELF_MEDIA_DEVICE':'cpu'}
+            'SELF_MEDIA_LANGUAGE':'en','SELF_MEDIA_DEVICE':'cpu','CODEX_HOME':str(temp/'agent-home')}
         env.pop('SELF_MEDIA_DATA_DIR',None);env.pop('SELF_MEDIA_SKILL_ROOT',None)
         wav=temp/'spoken.wav';text='This is an original local test. Keep every important condition. This is not a promise.'
         if sys.platform=='darwin':
@@ -56,6 +56,10 @@ def main():
                 time.sleep(.5)
             raise RuntimeError('Job did not finish within smoke deadline')
         try:
+            cli('install-skill')
+            wrapper=temp/'agent-home/skills/media-workbench/scripts/run.py'
+            installed=json.loads(subprocess.check_output([sys.executable,str(wrapper),'doctor'],env=env,encoding='utf-8'))
+            assert Path(installed['root']).resolve()==ROOT and installed['dependencies']['faster_whisper']
             intake=cli('run','Transcribe and edit this original test','--intent','edit','--simulation','--input',source,
                        '--media-nature','generated','--source-note','Explicit CI TTS and color fixture, not a person')
             pid=intake['project_id'];mid=intake['registered'][0]['id'];prefix=f'/api/projects/{pid}/media/{mid}'
@@ -71,6 +75,7 @@ def main():
             subprocess.run(['ffmpeg','-v','error','-i',str(video),'-f','null','-'],check=True,capture_output=True)
             result={'platform':sys.platform,'machine':platform.machine(),'python':sys.version,'real_asr':True,
                 'actual_device':review['device'],'words':len(review['words']),'asr_job_status':asr['status'],
+                'installed_agent_entry':True,
                 'export_job_status':export['status'],'decoded':True,'actual_duration':float(metadata['format']['duration']),
                 'model':'faster-whisper-tiny' if args.download_ci_model else 'explicit local model',
                 'scope':'synthetic technical smoke; no human or publication effectiveness claim'}

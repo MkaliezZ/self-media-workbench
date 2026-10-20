@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+data/
+runtime/
+models/
+evaluation/runs/
+*.mp4
+*.wav
+*.mp3
+*.aiff
+*.log
+.DS_Store
+skills/media-workbench/location.json

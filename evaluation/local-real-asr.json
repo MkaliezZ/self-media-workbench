@@ -1,0 +1,14 @@
+{
+  "platform": "win32",
+  "machine": "AMD64",
+  "python": "3.11.15 (main, Jun 23 2026, 15:20:37) [MSC v.1944 64 bit (AMD64)]",
+  "real_asr": true,
+  "actual_device": "cpu",
+  "words": 15,
+  "asr_job_status": "done",
+  "export_job_status": "done",
+  "decoded": true,
+  "actual_duration": 9.984989,
+  "model": "explicit local model",
+  "scope": "synthetic technical smoke; no human or publication effectiveness claim"
+}

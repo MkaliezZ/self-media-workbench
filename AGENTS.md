@@ -1,0 +1,19 @@
+# Unified entry for AI Agents
+
+This is an Agent workbench. You, the calling Agent, reason, choose topics and write content; the local service records evidence/state, validates submissions and executes media tools. No model API key or browser form is required.
+
+For any user task, use `python workbench.py run "<user task>"` (or `python3` on macOS). Pass explicitly provided files with repeated `--input` options. The entry starts a loopback service automatically, registers supported files and selects a project/start phase from actual state. You may pass `--intent` after interpreting the whole task; otherwise auto routing is a conservative hint. Do not tell the user to remember commands or provide JSON.
+
+The returned JSON is an intake plan, **not finished generated content**. Read its context and `skill.entry`, then the reference for the selected phase. Discover submission and phase schemas via `python workbench.py schema submission` and `schema <phase>`; perform the work and submit with `python workbench.py submit <project_id> --json <your file>`. Every successful mutation requires fresh context before the next submission.
+
+Resume with the user's project name/ID (`--project`); ordinary follow-ups saying continue use the current session's project. If several projects match, return the candidates and request the missing choice. Never silently choose a different account. A new task can use `--new`. Session defaults to current working directory; use a stable `--session` identifier for concurrent independent chats. Current project data are outside this public checkout by default.
+
+Inspect `start_at`, current heads, missing/stale upstreams and media jobs. A complete workflow starts at the first missing/stale phase; a focused task may start directly at script/edit/review, with an honest `standalone_reason` when required. Do not fabricate upstream artifacts just to satisfy a chain. A published-data review may remain a collection plan when data are missing. Empty metrics are null, not zero.
+
+Media uses the actual schemas `media-import`, `media-transcribe`, `media-review`, `media-export` and routes from `call GET /api/agent/v1/capabilities`. Tasks run asynchronously; query jobs to a terminal state, preserve failed jobs, and do not say a submitted job finished. Keep original files/transcripts. Listen/inspect context before selecting pauses or full speech groups; no automatic removal of every silence/repeated token. Caption groups use the actual ASR IDs and unchanged word bounds. Export returns separate MP4/SRT/word JSON plus edit plan and provenance; no burned-subtitle or external publishing claim.
+
+`doctor` reports actual Python, executables, model and optional ASR dependency. Text workflows work without a model. Media requires FFmpeg/ffprobe; ASR additionally requires requirements-asr.txt and a local model directory. No implicit model/media upload or model download. macOS uses CPU CTranslate2, not CUDA/Metal. User-authorized local configuration is set by `configure`; do not change global system PATH or overwrite unrelated services.
+
+Read `/api/status` and `context.skill` for actual runtime paths/hashes. Local library support is optional; no course corpus is distributed here. If a private configured ledger has `review.source_supplement`, read both the original and supplement and verify the hashes before claiming complete reading.
+
+Keep real initial drafts, errors and revisions; use supersedes/revision_reason. 409 means refresh state and reconsider, not merely replace revision numbers. Structure-only validation is never independent truth, permission, content or market validation. Mark synthetic inputs clearly and keep unresolved production requirements as needs_review. Do not publish externally or message others without the user's actual authorization.

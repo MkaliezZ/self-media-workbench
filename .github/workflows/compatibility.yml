@@ -1,0 +1,47 @@
+name: Windows and macOS compatibility
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  platform:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install FFmpeg on Windows if absent
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg --no-progress -y
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: Install FFmpeg on macOS if absent
+        if: runner.os == 'macOS'
+        run: command -v ffmpeg >/dev/null || brew install ffmpeg
+      - name: Protocol, routing and actual FFmpeg tests
+        run: python -B -X utf8 -m unittest discover -s tests -v
+      - name: Actual native speech, local CPU ASR and HTTP export
+        env:
+          HF_HUB_DISABLE_XET: '1'
+        run: python -B -X utf8 scripts/ci_smoke.py --download-ci-model --out evaluation/runs/platform-smoke.json
+      - name: Upload actual platform result
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: result-${{ matrix.os }}
+          path: evaluation/runs/
+          if-no-files-found: warn

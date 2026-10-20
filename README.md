@@ -87,4 +87,3 @@ MP4 and SRT are separate outputs. There is no automatic external publishing, bur
 
 MIT applies to this repository's own code and documentation. The previous private prototype used an AGPL renderer; this public version replaces that path with its own Python/FFmpeg implementation and includes none of that vendor code. Dependencies and separately installed FFmpeg/model binaries retain their own licenses; see [THIRD_PARTY.md](THIRD_PARTY.md).
 
-No Feishu course bodies, private reading ledger, user media, model weights, CUDA DLLs, credentials or machine-specific config are included. The optional private-library adapter does not publish its input corpus.

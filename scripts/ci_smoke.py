@@ -83,17 +83,30 @@ def main():
             context=cli('context',pid);eid=export['result']['export_id'];video=temp/'state/projects'/pid/'exports'/eid/'reviewed_cut.mp4'
             metadata=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-of','json',str(video)]))
             subprocess.run(['ffmpeg','-v','error','-i',str(video),'-f','null','-'],check=True,capture_output=True)
+            actual_duration=float(metadata['format']['duration'])
+            exported_words=json.loads(video.with_name('reviewed_cut.words.json').read_text('utf-8'))
+            timing_checks={
+                'duration_matches_source':abs(actual_duration-review['duration'])<.15,
+                'duration_matches_plan':abs(actual_duration-edited['plan']['output_duration'])<.15,
+                'word_ids_unchanged':[w['id'] for w in exported_words]==[w['id'] for w in review['words']],
+                'uncut_word_bounds_unchanged':len(exported_words)==len(review['words']) and all(
+                    abs(a['start']-b['start'])<1e-5 and abs(a['end']-b['end'])<1e-5 for a,b in zip(exported_words,review['words'])),
+                'last_word_within_output':max((w['end'] for w in exported_words),default=0)<=actual_duration+.1}
             result={'platform':sys.platform,'machine':platform.machine(),'python':sys.version,'real_asr':True,
                 'actual_device':review['device'],'words':len(review['words']),'asr_job_status':asr['status'],
                 'actual_backend':review['backend'],'execution':review['execution'],
                 'fallback_errors':review['fallback_errors'],
                 'gpu_asr_verified':review['backend']=='mlx' and review['device']=='gpu' and review['execution'].get('gpu_kernel_verified') is True,
                 'installed_agent_entry':True,
-                'export_job_status':export['status'],'decoded':True,'actual_duration':float(metadata['format']['duration']),
+                'export_job_status':export['status'],'decoded':True,'actual_duration':actual_duration,
+                'source_duration':review['duration'],'source_sha256':review['source_sha256'],
+                'planned_duration':edited['plan']['output_duration'],'timing_checks':timing_checks,
+                'timing_verified':all(timing_checks.values()),
                 'model':('MLX whisper-tiny' if args.download_ci_mlx_model else 'explicit local MLX model') if review['backend']=='mlx' else ('faster-whisper-tiny' if args.download_ci_model else 'explicit local CTranslate2 model'),
                 'model_format':'MLX' if review['backend']=='mlx' else 'CTranslate2',
                 'scope':'synthetic technical smoke; no human or publication effectiveness claim'}
             args.out.parent.mkdir(parents=True,exist_ok=True);args.out.write_text(json.dumps(result,indent=2)+'\n',encoding='utf-8');print(json.dumps(result))
+            if not result['timing_verified']:raise RuntimeError('Actual source/plan/export timing mismatch; see saved result')
             if args.require_gpu and not result['gpu_asr_verified']:raise RuntimeError('GPU ASR required but actual result used another device; see saved result')
         finally:
             for info in (temp/'state/services').glob('*.json'):

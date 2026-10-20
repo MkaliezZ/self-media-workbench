@@ -1,0 +1,31 @@
+{
+  "platform": "win32",
+  "machine": "AMD64",
+  "python": "3.11.15 (main, Jun 23 2026, 15:20:37) [MSC v.1944 64 bit (AMD64)]",
+  "real_asr": true,
+  "actual_device": "cpu",
+  "words": 15,
+  "asr_job_status": "done",
+  "actual_backend": "faster-whisper",
+  "execution": {},
+  "fallback_errors": [],
+  "gpu_asr_verified": false,
+  "installed_agent_entry": true,
+  "export_job_status": "done",
+  "decoded": true,
+  "actual_duration": 9.984989,
+  "source_duration": 9.984625,
+  "source_sha256": "888be7cf100ba3c12db36961689ca4afd80953c09e97c87948ff36a55b230911",
+  "planned_duration": 9.984625,
+  "timing_checks": {
+    "duration_matches_source": true,
+    "duration_matches_plan": true,
+    "word_ids_unchanged": true,
+    "uncut_word_bounds_unchanged": true,
+    "last_word_within_output": true
+  },
+  "timing_verified": true,
+  "model": "explicit local CTranslate2 model",
+  "model_format": "CTranslate2",
+  "scope": "synthetic technical smoke; no human or publication effectiveness claim"
+}

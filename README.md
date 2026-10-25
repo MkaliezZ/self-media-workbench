@@ -126,6 +126,8 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 
 ### 平台支持与验证范围
 
+**2026-10-25 本轮：**Windows、Apple Silicon（ARM64）、Intel Mac（x86_64）的兼容性、高级口播、独立蒙版三组 CI 共 **9 个原生任务全部通过**。每端高级口播回归 78 项、独立媒体检查 27 项、扫描／蒙版补充检查 49 项；包含实际导出、声音整理、恢复与后台重启。Apple Silicon 另确认实际 MLX GPU 转写与导出，无 CPU 回退。云端 Windows／Intel Mac 的 ASR 为 CPU 基线，不能当作对应 GPU 实测。[本轮完整记录](evaluation/advanced-talking-20261025.md) · [CI 结果索引](evaluation/advanced-ci-20261025.json)。
+
 Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确记录 CPU 回退；AMD/Intel GPU 的可选 whisper.cpp Vulkan 路径尚待实机验收。Apple Silicon 另支持可选 **MLX/Metal GPU** 和 CPU 回退；Intel Mac 默认使用 CTranslate2 CPU，可选 whisper.cpp Metal 路径尚未实机验证。FFmpeg 导出、状态及协议功能采用同一套 Python 实现。GPU 验证与 CPU 兼容性分别报告。
 
 [当前显卡策略验收](evaluation/gpu-strategies-20261021.md)在 Windows、macOS 15 ARM64 和 Intel 上通过了 46 项测试及实际媒体检查。本地 NVIDIA CUDA、Vulkan 的实际执行与云端 Windows CPU 基线分别记录；ARM 也运行了实际 MLX/Metal GPU 推理。Windows AMD/Intel GPU 和 Intel Mac 可选 Metal 路径仍未完成对应硬件验收。早期 36 项测试的时间轴检查及 macOS 26 结果保留在[验证历史](docs/validation.md)。合成素材技术检查不能证明通用识别质量或加速比。
@@ -257,6 +259,7 @@ The entry automatically starts/reuses an identified loopback service, registers 
 | Topic selection | Material-backed alternatives and chosen problem |
 | Script | Spoken text, shots, timing estimates and action |
 | Local editing | Actual ASR, explicit cuts/restoration, reviewed SRT grouping, MP4/SRT/JSON |
+| Advanced talking head | Semantic scenes, frozen production profile, planar keyframes, original-pixel highlight/invert scans, foreground occlusion, audio arrangement and actual exports |
 | Visual editing | Complete-cue emphasis, local images, static region highlights, saved plans/timeline |
 | Industry/form recipes | Twelve presets; Agent-generated story/shot/pacing/audio logic, compiled within actual component limits |
 | Publication preparation | Title/caption/disclosure and real asset bindings |
@@ -268,6 +271,8 @@ A focused task can enter script/edit/review directly. Complete workflows resume 
 State defaults to the operating system's private application-data directory. `configure --data-dir ...` can reuse an existing project store without moving or deleting it. `--skill-root` and `--library` optionally use private method/knowledge directories. Restart a running service after changing configuration. [Configuration and protocol](docs/configuration.md).
 
 ### Platform and validation scope
+
+**2026-10-25 revision:** all **9 native jobs** passed across compatibility, advanced-production and independent-matte workflows on Windows, Apple Silicon (ARM64) and Intel Mac (x86_64). Each host passed 78 advanced regression tests, 27 independent media checks and 49 scan/mask supplement checks, with actual exports, mastering, restoration and service restart. Apple Silicon additionally verified actual MLX GPU ASR/export without CPU fallback. Hosted Windows/Intel Mac ASR is a CPU baseline, not vendor GPU acceptance. [Full evidence](evaluation/advanced-talking-20261025.md) · [CI index](evaluation/advanced-ci-20261025.json).
 
 Windows supports CPU and NVIDIA CUDA when its optional runtime is available, with explicit CPU fallback; AMD/Intel GPU routes use optional whisper.cpp Vulkan and await hardware acceptance. Apple Silicon additionally supports optional **MLX/Metal GPU** with CPU fallback; Intel Mac defaults to CTranslate2 CPU with an optional, hardware-unverified whisper.cpp Metal route. FFmpeg export and state/protocol features use the same Python implementation. Actual GPU verification is reported separately from CPU compatibility.
 
@@ -293,7 +298,7 @@ Source-bound [motion effects](docs/motion-effects.md) also execute article highl
 Native `track_matte` renders video-in-text, alpha/luma/inverted mattes and feathering, combined with endpoint motion, split reveals, foreground alpha holes and transitions. The [mask showcase](scripts/mask_showcase.py) uses the same native API. Frozen-font text layout is preflighted before save/head mutation and export-job creation. Automatic segmentation and tracking remain unsupported.
 
 
-This revision passed71 checks and actual technical-film exports on each native Windows, Apple Silicon and Intel Mac host. The same independently sealed changed-material case separately passed25 media checks and11 rejected requests per native host. Original failures and untested combinations remain explicit in the [independent native acceptance](evaluation/independent-matte-20261025.md).
+The previous matte revision passed 71 checks and actual technical-film exports on each native Windows, Apple Silicon and Intel Mac host. The same independently sealed changed-material case separately passed 25 media checks and 11 rejected requests per native host. Original failures and untested combinations remain explicit in the [independent native acceptance](evaluation/independent-matte-20261025.md). New advanced-production checks are tracked separately in the [current acceptance record](evaluation/advanced-talking-20261025.md).
 
 Advanced production adds bounded multi-stage planar keyframes, sequential held source-pixel highlighting/inversion, and per-layer blur, vignette, grain and halftone finish. The Agent authors material selection and timing; automatic OCR, tracking, matting and true 3D are not provided. [Advanced production evidence and retained failures](evaluation/advanced-talking-20261025.md).
 

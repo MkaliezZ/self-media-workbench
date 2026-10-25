@@ -1,0 +1,206 @@
+{
+  "tested_runtime_commit": "79ac8a03b10e6d618f4b8948cceb3b95c26c166c",
+  "workflow_runs": [
+    {
+      "id": 40222396994,
+      "name": "Advanced talking head native acceptance",
+      "head_sha": "79ac8a03b10e6d618f4b8948cceb3b95c26c166c",
+      "conclusion": "success",
+      "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396994",
+      "jobs": [
+        {
+          "name": "native (windows-latest)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396994/job/121256585777"
+        },
+        {
+          "name": "native (macos-15)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396994/job/121256585974"
+        },
+        {
+          "name": "native (macos-15-intel)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396994/job/121256586022"
+        }
+      ]
+    },
+    {
+      "id": 40222396997,
+      "name": "Windows and macOS compatibility",
+      "head_sha": "79ac8a03b10e6d618f4b8948cceb3b95c26c166c",
+      "conclusion": "success",
+      "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396997",
+      "jobs": [
+        {
+          "name": "platform (windows-latest)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396997/job/121256585677"
+        },
+        {
+          "name": "platform (macos-15)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396997/job/121256585732"
+        },
+        {
+          "name": "platform (macos-15-intel)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396997/job/121256585829"
+        }
+      ]
+    },
+    {
+      "id": 40222396993,
+      "name": "Independent native matte acceptance",
+      "head_sha": "79ac8a03b10e6d618f4b8948cceb3b95c26c166c",
+      "conclusion": "success",
+      "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396993",
+      "jobs": [
+        {
+          "name": "sealed-case (macos-15-intel)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396993/job/121256585665"
+        },
+        {
+          "name": "sealed-case (macos-15)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396993/job/121256585850"
+        },
+        {
+          "name": "sealed-case (windows-latest)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40222396993/job/121256585871"
+        }
+      ]
+    }
+  ],
+  "total_jobs": 9,
+  "all_jobs_passed": true,
+  "decoded_artifact_checks": [
+    {
+      "host": "advanced-windows-latest",
+      "platform": "Windows-10-10.0.26100-SP0",
+      "machine": "AMD64",
+      "native_execution": true,
+      "regression_tests": 78,
+      "media_checks": 27,
+      "rejected_invalid_requests": 23,
+      "restore_restart_pass": true,
+      "supplement_checks": 49,
+      "supplement_rejections": 5,
+      "master_video_bytes_preserved": true,
+      "master_frames": [
+        540,
+        540
+      ],
+      "master_lufs": "-17.02",
+      "master_dbtp": "-1.79"
+    },
+    {
+      "host": "advanced-macos-15",
+      "platform": "macOS-15.7.9-arm64-arm-64bit",
+      "machine": "arm64",
+      "native_execution": true,
+      "regression_tests": 78,
+      "media_checks": 27,
+      "rejected_invalid_requests": 23,
+      "restore_restart_pass": true,
+      "supplement_checks": 49,
+      "supplement_rejections": 5,
+      "master_video_bytes_preserved": true,
+      "master_frames": [
+        540,
+        540
+      ],
+      "master_lufs": "-17.06",
+      "master_dbtp": "-1.78"
+    },
+    {
+      "host": "advanced-macos-15-intel",
+      "platform": "macOS-15.7.9-x86_64-i386-64bit",
+      "machine": "x86_64",
+      "native_execution": true,
+      "regression_tests": 78,
+      "media_checks": 27,
+      "rejected_invalid_requests": 23,
+      "restore_restart_pass": true,
+      "supplement_checks": 49,
+      "supplement_rejections": 5,
+      "master_video_bytes_preserved": true,
+      "master_frames": [
+        540,
+        540
+      ],
+      "master_lufs": "-17.07",
+      "master_dbtp": "-1.79"
+    }
+  ],
+  "actual_asr": [
+    {
+      "platform": "win32",
+      "machine": "AMD64",
+      "actual_backend": "faster-whisper",
+      "actual_device": "cpu",
+      "gpu_asr_verified": false,
+      "execution": {
+        "gpu_inference_verified": false,
+        "compute_type": "int8",
+        "supported_cuda_compute_types": null,
+        "inference_vad": true,
+        "timestamp_scope": "aligner word groups restored to original-source seconds; media stays uncut"
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    },
+    {
+      "platform": "darwin",
+      "machine": "arm64",
+      "actual_backend": "faster-whisper",
+      "actual_device": "cpu",
+      "gpu_asr_verified": false,
+      "execution": {
+        "gpu_inference_verified": false,
+        "compute_type": "int8",
+        "supported_cuda_compute_types": null,
+        "inference_vad": true,
+        "timestamp_scope": "aligner word groups restored to original-source seconds; media stays uncut"
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    },
+    {
+      "platform": "darwin",
+      "machine": "arm64",
+      "actual_backend": "mlx",
+      "actual_device": "gpu",
+      "gpu_asr_verified": true,
+      "execution": {
+        "metal_available": true,
+        "gpu_kernel_verified": true,
+        "isolated_worker": true
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    },
+    {
+      "platform": "darwin",
+      "machine": "x86_64",
+      "actual_backend": "faster-whisper",
+      "actual_device": "cpu",
+      "gpu_asr_verified": false,
+      "execution": {
+        "gpu_inference_verified": false,
+        "compute_type": "int8",
+        "supported_cuda_compute_types": null,
+        "inference_vad": true,
+        "timestamp_scope": "aligner word groups restored to original-source seconds; media stays uncut"
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    }
+  ]
+}

@@ -17,8 +17,8 @@ source pixels, alpha holes, independent vignette/grain controls, actual PCM,
 immutable state, restoration and a real owned-service restart, plus23 rejections.
 No mocked render or prior-platform result is counted as a native pass.
 
-Windows passed locally. Apple Silicon and Intel Mac remain unverified for this
-revision until the user accepts the main sample and the release CI runs. The
+Windows passed locally. Native release CI subsequently passed on Windows,
+Apple Silicon and Intel Mac; see the [release record](../../advanced-talking-20261025.md). The
 18-second case is not the main sample, human listening, aesthetic acceptance,
 real-person footage, ASR alignment or a publication outcome.
 
@@ -28,4 +28,4 @@ with a cropped genuine alpha hole, actual PCM and five rejections. It is not a
 retroactive expansion of the original case. SHA256:
 `47a9355e729c97695fd1155ed6288870e83a8c3724635a5e30ec73143f8594da`.
 Its README describes the two native execution/measurement entrypoints. Windows
-passed; each Mac architecture still needs its own run.
+passed; each Mac architecture subsequently passed its own native cloud run.

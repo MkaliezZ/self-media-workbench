@@ -24,6 +24,7 @@ class NativeTimelineTests(unittest.TestCase):
         root=os.environ.get('TIMELINE_EVIDENCE_ROOT')
         if root:Path(root).mkdir(parents=True,exist_ok=True)
         self.temp=tempfile.TemporaryDirectory(prefix='native-',dir=root);self.folder=Path(self.temp.name).resolve()
+        if root:self.temp._finalizer.detach()  # Retain failures even when setUp cannot finish.
         self.data=self.folder/'state/projects';self.data.mkdir(parents=True)
         self.patch=patch.object(w,'DATA',self.data);self.patch.start()
         self.client=TestClient(w.app,base_url='http://localhost')

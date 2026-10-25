@@ -52,8 +52,10 @@ jobs:
           TIMELINE_EVIDENCE_ROOT: evaluation/runs/timeline
         run: python -B -X utf8 -m unittest discover -s tests -v
       - name: Actual native timeline HTTP, music alignment and restart
+        if: always()
         run: python -B -X utf8 scripts/timeline_http_acceptance.py --out evaluation/runs/timeline-http
       - name: Independent changed-material travel timeline
+        if: always()
         run: python -B -X utf8 scripts/independent_timeline_acceptance.py --output evaluation/runs/independent-travel
       - name: Actual native speech, local CPU ASR and HTTP export
         env:

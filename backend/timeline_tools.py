@@ -192,7 +192,7 @@ def render(record,plan_dir,dest):
     if (verification['actual_frames']!=mapping['frames'] or video['width']!=width or video['height']!=height
         or abs(verification['actual_video_duration']-mapping['duration'])>1/fps+.001
         or abs(verification['actual_audio_duration']-mapping['duration'])>1/fps+.025):
-        raise RuntimeError('Actual timeline frames/duration differ from the saved map; see timeline-verification.json')
+        raise RuntimeError('Actual timeline frames/duration differ from the saved map: '+json.dumps(verification))
     return {'primary_video':'timeline.mp4','files':['timeline.mp4','timeline-plan.json','timeline-map.json','timeline-verification.json','provenance.json']}
 
 

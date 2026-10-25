@@ -248,11 +248,14 @@ def register(w):
     def capabilities():
         return {'protocol_version':1, 'primary_client':'ai_agent',
                 'reasoning_executor':'calling agent using the skill; server stores, validates and runs local media tools',
-                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan']},
+                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe']},
                 'media_editing':{'spoken_cuts':'explicit contiguous ASR word groups with reason and source/run binding',
                                  'restore':'speech_cuts=[] restores spoken groups; omitted preserves decisions',
                                  'review_attempts':'project media/<mid>/review-attempts records accepted/rejected writes'},
                 'actions':{
+                    'editing_templates':{'method':'GET','path':'/api/visual/templates'},
+                    'validate_editing_recipe':{'method':'POST','path':'/api/visual/recipes/validate','schema':PREFIX+'/schemas/editing-recipe'},
+                    'compile_editing_template':{'method':'POST','path':'/api/projects/{pid}/media/{mid}/visual-template/compile','schema':PREFIX+'/schemas/editing-template'},
                     'visual_status':{'method':'GET','path':'/api/visual/status'},
                     'visual_plans':{'method':'GET','path':'/api/projects/{pid}/media/{mid}/visual-plans'},
                     'visual_plan_save':{'method':'POST','path':'/api/projects/{pid}/media/{mid}/visual-plans','schema':PREFIX+'/schemas/visual-plan'},
@@ -276,6 +279,12 @@ def register(w):
 
     @app.get(PREFIX+'/schemas/{name}')
     def schema(name:str):
+        if name == 'editing-recipe':
+            from editing_templates import RecipeDefinition
+            return RecipeDefinition.model_json_schema()
+        if name == 'editing-template':
+            from editing_templates import CompileTemplate
+            return CompileTemplate.model_json_schema()
         if name == 'visual-plan':
             from visual_models import VisualPlan
             return VisualPlan.model_json_schema()

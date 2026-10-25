@@ -33,10 +33,10 @@ class TaskRequest(BaseModel):
 def infer_intent(task, has_media=False):
     text = task.casefold()
     # Explicit exclusions are removed from this routing hint, never from source materials.
-    hint = re.sub(r'(?:不要|不用|不做|无需|不需要|不|no |do not )(?:再)?(?:剪辑|剪视频|配图|画面高亮|重点文案|字幕|visual edit|edit|复盘|发布|诊断|选题)', '', text)
+    hint = re.sub(r'(?:不要|不用|不做|无需|不需要|不|no |do not )(?:再)?(?:剪辑|行业模板|剪视频|配图|画面高亮|重点文案|字幕|visual edit|edit|复盘|发布|诊断|选题)', '', text)
     if any(k in hint for k in ['完整流程','全流程','从头到尾','full workflow','end to end']):return 'full'
     pairs = [('review',['复盘','发布数据','数据分析','review performance']),
-             ('edit',['剪辑','剪口播','剪气口','转录','字幕','配图','画面高亮','重点文案','edit video','transcribe','visual edit']),
+             ('edit',['剪辑','行业模板','剪口播','剪气口','转录','字幕','配图','画面高亮','重点文案','edit video','transcribe','visual edit']),
              ('publish',['发布准备','发布包','准备发布','publish preparation']),
              ('script',['脚本','逐字稿','口播稿','改稿','script']),
              ('topics',['选题','选个题','想几个题','topic']),
@@ -164,6 +164,9 @@ def register_tasks(w, context):
                       'context_url':f'/api/agent/v1/projects/{pid}/context','context':state,
                       'instructions':('All stages have current artifacts. Report the saved state and unresolved limits; do not start another cycle unless the user requests one.' if start is None else 'Read AGENTS.md and the task-specific skill reference. The calling Agent creates and submits artifacts; this response is an intake plan, not generated content. Re-read context after each mutation. For edit, discover media-review/export/job schemas; do not auto-delete candidates.'),
                       'external_publication':False}
+            if intent=='edit':
+                from editing_templates import hints
+                result['editing_templates']=hints(body.task)
             w.write(registry,{'signature':signature,'result':result})
             w.event(path,'task_routed',{'task_id':task_id,'intent':intent,'start':start})
         return result

@@ -52,6 +52,18 @@ class CaptionStyle(Strict):
     font_path: str | None = None
 
 
+class TemplateBinding(Strict):
+    id: str = Field(pattern=r'^[a-z_]{1,60}$')
+    version: str
+    definition_sha256: str = Field(pattern=r'^[a-f0-9]{64}$')
+    compiler_version: str
+    selection_reason: str = Field(min_length=1,max_length=2000)
+    beats: list[dict] = Field(min_length=1,max_length=32)
+    frame_inspection_note: str = Field(min_length=1,max_length=2000)
+    protected_regions: list[Rect] = Field(default_factory=list,max_length=32)
+    custom_definition: dict | None = None
+
+
 class VisualPlan(Strict):
     request_id: str = Field(pattern=r'^[A-Za-z0-9_-]{1,80}$')
     project_revision: int = Field(ge=1)
@@ -59,6 +71,7 @@ class VisualPlan(Strict):
     asr_run: str = Field(min_length=1, max_length=80)
     source_sha256: str = Field(pattern=r'^[a-f0-9]{64}$')
     reason: str = Field(min_length=1, max_length=2000)
+    template: TemplateBinding | None = None
     captions: CaptionStyle = Field(default_factory=CaptionStyle)
     emphasis: list[Mark] = Field(default_factory=list, max_length=64,
         description='Each selection must equal one reviewed caption group. Highlights that complete cue, not invented character timing.')

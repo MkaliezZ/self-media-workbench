@@ -28,6 +28,8 @@ Raw local evidence is kept outside the public checkout: initial logs, isolated r
 
 ## Remaining boundaries
 
+Follow-up: the initial cloud run failed on all three systems due to relative test evidence paths; both Macs also rejected copying system-font metadata. The failures and fixes are preserved in the [industry/form follow-up](industry-templates-20261025.md). The earlier 53-test result remains a Windows local result.
+
 No new macOS run or independent Agent blind test was performed for this addition. Historical macOS ASR results do not cover this visual path. The existing Windows/Apple Silicon/Intel compatibility workflow now runs these tests, retains visual test evidence and provisions text-capable FFmpeg on macOS when needed; it runs on push, and no new macOS result is available at the time of this record. Font/filter availability and real frames must be checked on both Mac architectures before a cross-platform pass is claimed.
 
 Online image search, automatic tracking/matting, complex animation, voice/music generation and external publishing are not implemented. CPU composition is separate from GPU ASR. Asset declarations do not prove factual suitability or usage rights.

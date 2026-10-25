@@ -475,6 +475,8 @@ from agent_api import register as register_agent_api
 register_agent_api(sys.modules[__name__])
 from visual_tools import register as register_visual_tools
 register_visual_tools(sys.modules[__name__])
+from editing_templates import register as register_editing_templates
+register_editing_templates(sys.modules[__name__])
 
 @app.get('/')
 def agent_entry():

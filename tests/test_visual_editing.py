@@ -37,7 +37,7 @@ class VisualEditingTests(unittest.TestCase):
         root=os.environ.get('VISUAL_EVIDENCE_ROOT')
         if root:Path(root).mkdir(parents=True,exist_ok=True)
         self.temp=tempfile.TemporaryDirectory(prefix='visual-',dir=root)
-        self.data=Path(self.temp.name)
+        self.data=Path(self.temp.name).resolve()
         (self.data/'projects').mkdir()
         self.patch=patch.object(w,'DATA',self.data/'projects');self.patch.start()
         self.client=TestClient(w.app,base_url='http://localhost')

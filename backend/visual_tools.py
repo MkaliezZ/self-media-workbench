@@ -47,6 +47,15 @@ def inspect_image(path):
     return {'width':image['width'],'height':image['height'],'sha256':sha(original)}
 
 
+def inspect_video(path):
+    video=next(s for s in probe(path)['streams'] if s['codec_type']=='video')
+    if video.get('sample_aspect_ratio','1:1') not in ('1:1','0:1','N/A'):
+        raise ValueError('Normalize non-square-pixel video before visual planning')
+    if video.get('tags',{}).get('rotate') not in (None,'0') or any(s.get('rotation',0)!=0 for s in video.get('side_data_list',[])):
+        raise ValueError('Normalize rotated video before visual planning')
+    return video
+
+
 def font_file(custom=None):
     if custom and custom.startswith(('\\\\','//')):raise ValueError('Use an installed local font')
     candidates=[custom] if custom else ([
@@ -118,6 +127,10 @@ def validate_record(record, directory):
         body=VisualPlan.model_validate(record['request']).model_dump()
         if any(record[key]!=body[key] for key in ('asr_run','review_revision','source_sha256')):
             raise ValueError('Plan binding integrity mismatch')
+        if body.get('template'):
+            from editing_templates import digest
+            if digest(record['template_definition'])!=body['template']['definition_sha256']:
+                raise ValueError('Frozen template definition integrity mismatch')
         if len(record['assets'])!=len(body['images']):raise ValueError('Plan asset count mismatch')
         for index,asset in enumerate(record['assets']):
             file=Path(directory)/asset['relative_path']
@@ -190,7 +203,7 @@ def compose(review, keeps, record, plan_dir, dest):
     if style['enabled']:
         font=plan_dir/record['font']['relative_path']
         if sha(font)!=record['font']['sha256']:raise ValueError('Font integrity mismatch')
-        local_font='font'+font.suffix;shutil.copy2(font,dest/local_font)
+        local_font='font'+font.suffix;shutil.copyfile(font,dest/local_font)
         mapped=project_words(review,keeps['keeps']);by_id={w['id']:w for w in mapped}
         cues=captions(review,mapped);groups=review['caption_groups']
         emphasis={tuple(e['word_ids']) for e in body['emphasis']}
@@ -255,18 +268,26 @@ def register(w):
                 selections(review,keeps,body)
                 if not body['reason'].strip():raise ValueError('Visual plan requires a reason')
                 if not item.get('has_video'):raise ValueError('Visual composition requires video')
-                meta=probe(path/item['relative_path']);video=next(s for s in meta['streams'] if s['codec_type']=='video')
-                # Version one accepts already oriented square-pixel video only; never silently misplace regions.
-                if video.get('sample_aspect_ratio','1:1') not in ('1:1','0:1','N/A'):raise ValueError('Normalize non-square-pixel video before visual planning')
-                if video.get('tags',{}).get('rotate') not in (None,'0') or any(s.get('rotation',0)!=0 for s in video.get('side_data_list',[])):
-                    raise ValueError('Normalize rotated video before visual planning')
+                video=inspect_video(path/item['relative_path'])
+                definition=None
+                if body.get('template'):
+                    from editing_templates import template_snapshot,compile_plan,CompileTemplate
+                    binding=body['template'];definition=template_snapshot(binding)
+                    candidate={k:body[k] for k in ('request_id','project_revision','review_revision','asr_run','source_sha256','captions')}
+                    candidate.update({k:binding[k] for k in ('selection_reason','frame_inspection_note','protected_regions','beats')})
+                    candidate.update(template_id=binding['id'],template_version=binding['version'])
+                    candidate['custom_definition']=binding.get('custom_definition')
+                    candidate=CompileTemplate.model_validate(candidate).model_dump()
+                    if compile_plan(candidate,review,video['width'],video['height'])!=body:
+                        raise ValueError('Template operations changed; recompile the actual beats before saving')
                 pid_visual=uuid.uuid4().hex;dest=path/'media'/mid/'visual-plans'/pid_visual;dest.mkdir(parents=True)
                 record={'id':pid_visual,'created_at':w.now(),'request':body,'asr_run':out.name,
                     'review_revision':review.get('revision',0),'source_sha256':item['sha256'],
                     'video_width':video['width'],'video_height':video['height'],'assets':[],
                     'acceptance':'Agent-selected content; declarations are not independently verified'}
+                if definition:record['template_definition']=definition
                 if body['captions']['enabled']:
-                    font=font_file(body['captions']['font_path']);local='font'+font.suffix.lower();shutil.copy2(font,dest/local)
+                    font=font_file(body['captions']['font_path']);local='font'+font.suffix.lower();shutil.copyfile(font,dest/local)
                     record['font']={'relative_path':local,'sha256':sha(dest/local)}
                 for i,cue in enumerate(body['images']):
                     original=Path(cue['path'])

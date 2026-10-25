@@ -1,0 +1,23 @@
+{
+  "sealed_at_utc": "2026-10-25T14:55:48.970177+00:00",
+  "awaiting_new_track_matte_sha": true,
+  "future_implementation_or_test_read": false,
+  "prior_3109_report_sha256": "4ddee7c7d921d22fdb37d5bb40786f6b87b589c910dbd632c2ce8fcc52a93510",
+  "files": {
+    "evidence\\new-matte-source-storyboard.jpg": "4e60e738c71f9a918c5e629f7450dc6aa6ed51c6ffb59a6f5a99153eeda4e137",
+    "evidence\\preparation_checks.json": "48cadcbd9aefa95718bba32314e5a1d5bff986bd87530a41c11f9569baec8a43",
+    "evidence\\source-video-probe.json": "fd3a45aa39ff706a5c85537b96feb1fd33ef26303e31251074897420a925fbcd",
+    "generate_matte_materials.py": "be560fbc9a79cf2b493e948dd3383547f613d9710f7cd688e21f27838f48034f",
+    "materials\\deep_background.png": "9e17d304913d6f62f2141f0aea69df9dfbb41c28fb008c60c2a9958aca130d30",
+    "materials\\deep_original_clock.wav": "a5c8308fb3bde774ab762c1cf86d9ceffd3b52169a7f7bb6812270afe7e07857",
+    "materials\\deep_rover_960x600_25fps.mp4": "52b020f4b6af5d9c712add6e4f3fe2f8ca870543ddf418e36cfcaff55c865353",
+    "materials\\independent_alpha_bands.png": "64a8d24dfeff95abae467e8545f78dbb84ae971343ac90383fc69321b78b51f9",
+    "materials\\independent_feather_circle.png": "928649c0695209ead8a6114eed16d4f6c51951a6523cfa7b116434b495b62401",
+    "materials\\independent_foreground_hole.png": "0e7430df604458b31d74e6cce0c8d8eb9efad8f9962491b2d756483a97d8f216",
+    "materials\\independent_luma_bands.png": "e9974854ff895c6f2a70c139cfaa35a52d5793064373389a68dcf628f2e5b3ab",
+    "materials\\manifest.json": "f48c72a526c052bf51ef5dd22fc8c2c03690141083675c31efa4ad7d130b827c",
+    "materials\\matte_calibration.json": "18544d06ded80e1e36ca585050bf9a837e84284bf3a83c2e4b17b638bcf0064b",
+    "README.md": "046e64d65c80ffb9c08f763c2e018747889265aea2ce5513ed9df14421c6f276",
+    "SEALED_TRACK_MATTE_TASK.md": "5f882470a9907baabcc175d3554dd1f10ad19fd42217054e835d2e99d018794d"
+  }
+}

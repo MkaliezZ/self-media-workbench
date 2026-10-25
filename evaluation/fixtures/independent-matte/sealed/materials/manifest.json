@@ -1,0 +1,37 @@
+{
+  "nature": "Original synthetic deep-sea observation illustration/animation/audio; not real filmed or measured data",
+  "files": {
+    "deep_background.png": {
+      "sha256": "9e17d304913d6f62f2141f0aea69df9dfbb41c28fb008c60c2a9958aca130d30",
+      "bytes": 44634
+    },
+    "deep_original_clock.wav": {
+      "sha256": "a5c8308fb3bde774ab762c1cf86d9ceffd3b52169a7f7bb6812270afe7e07857",
+      "bytes": 3840044
+    },
+    "deep_rover_960x600_25fps.mp4": {
+      "sha256": "52b020f4b6af5d9c712add6e4f3fe2f8ca870543ddf418e36cfcaff55c865353",
+      "bytes": 375203
+    },
+    "independent_alpha_bands.png": {
+      "sha256": "64a8d24dfeff95abae467e8545f78dbb84ae971343ac90383fc69321b78b51f9",
+      "bytes": 2703
+    },
+    "independent_feather_circle.png": {
+      "sha256": "928649c0695209ead8a6114eed16d4f6c51951a6523cfa7b116434b495b62401",
+      "bytes": 16790
+    },
+    "independent_foreground_hole.png": {
+      "sha256": "0e7430df604458b31d74e6cce0c8d8eb9efad8f9962491b2d756483a97d8f216",
+      "bytes": 17989
+    },
+    "independent_luma_bands.png": {
+      "sha256": "e9974854ff895c6f2a70c139cfaa35a52d5793064373389a68dcf628f2e5b3ab",
+      "bytes": 2215
+    },
+    "matte_calibration.json": {
+      "sha256": "18544d06ded80e1e36ca585050bf9a837e84284bf3a83c2e4b17b638bcf0064b",
+      "bytes": 1971
+    }
+  }
+}

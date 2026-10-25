@@ -1,0 +1,31 @@
+{
+  "format": 1,
+  "case": "independent sealed20s deep-sea track matte",
+  "files": {
+    "BUNDLE-EXCEPTIONS.json": "29d2bbf2cb5a45dc17a4e50fb6b116c837044c8c6e202aa428bf86fc5e411b6f",
+    "portable/decode_media.py": "332d50186351cd7e7de927665b0843796cc60367fb95157398b56613ff1acdbb",
+    "portable/run_case.py": "36870f785a1219a5a722bb2e6735910af225626cc05730bf891dc9150f90a131",
+    "portable/verify_v1.py": "fd79619f60ef1aec1980e32642248159901ce4d7bb509f1932a3240f14479f75",
+    "portable/verify_v2.py": "d179fdfecafef3dabd34b7265e1dadfd3eb2e898fd6bf879bff45bb26ef6dadf",
+    "README.md": "a3a31300108a2dfa826100d539f6b3ab3aad86f71fa0df1b48b3db506899c2ba",
+    "sealed/evidence/new-matte-source-storyboard.jpg": "4e60e738c71f9a918c5e629f7450dc6aa6ed51c6ffb59a6f5a99153eeda4e137",
+    "sealed/evidence/preparation_checks.json": "48cadcbd9aefa95718bba32314e5a1d5bff986bd87530a41c11f9569baec8a43",
+    "sealed/generate_matte_materials.py": "be560fbc9a79cf2b493e948dd3383547f613d9710f7cd688e21f27838f48034f",
+    "sealed/materials/deep_background.png": "9e17d304913d6f62f2141f0aea69df9dfbb41c28fb008c60c2a9958aca130d30",
+    "sealed/materials/deep_original_clock.wav": "a5c8308fb3bde774ab762c1cf86d9ceffd3b52169a7f7bb6812270afe7e07857",
+    "sealed/materials/deep_rover_960x600_25fps.mp4": "52b020f4b6af5d9c712add6e4f3fe2f8ca870543ddf418e36cfcaff55c865353",
+    "sealed/materials/independent_alpha_bands.png": "64a8d24dfeff95abae467e8545f78dbb84ae971343ac90383fc69321b78b51f9",
+    "sealed/materials/independent_feather_circle.png": "928649c0695209ead8a6114eed16d4f6c51951a6523cfa7b116434b495b62401",
+    "sealed/materials/independent_foreground_hole.png": "0e7430df604458b31d74e6cce0c8d8eb9efad8f9962491b2d756483a97d8f216",
+    "sealed/materials/independent_luma_bands.png": "e9974854ff895c6f2a70c139cfaa35a52d5793064373389a68dcf628f2e5b3ab",
+    "sealed/materials/manifest.json": "f48c72a526c052bf51ef5dd22fc8c2c03690141083675c31efa4ad7d130b827c",
+    "sealed/materials/matte_calibration.json": "18544d06ded80e1e36ca585050bf9a837e84284bf3a83c2e4b17b638bcf0064b",
+    "sealed/original-seal.json": "a98025c88079ca7498bcbb9f3ce2fefd6ddd16c6c7ec534b731128385babbd3f",
+    "sealed/README.md": "046e64d65c80ffb9c08f763c2e018747889265aea2ce5513ed9df14421c6f276",
+    "sealed/SEALED_TRACK_MATTE_TASK.md": "5f882470a9907baabcc175d3554dd1f10ad19fd42217054e835d2e99d018794d",
+    "source-records/measure_track_blind.py": "2c5d5de2872148814645c4c8236638a37f577230fcf6d646e2ee4fbfc88561ce",
+    "source-records/measure_track_blind_v2.py": "75a79b71f0feaca4e42ec614808bdfebbbb4702aed4b43644b4bb844a2a5112c",
+    "source-records/run_track_blind.py": "f3ee279a2a88c38555bb68130a632786f80cd7edd3e9e019c241e0748d13ca43",
+    "WINDOWS-RESULT.md": "3ed7f4188115e627f3186a19c398b55b95a1ca919ec2cfd7f4077296f43c5755"
+  }
+}

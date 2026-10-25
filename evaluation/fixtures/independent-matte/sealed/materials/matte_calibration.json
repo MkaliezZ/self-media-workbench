@@ -1,0 +1,138 @@
+{
+  "nature": "Original synthetic deep-sea observation illustration/animation/audio; not real filmed or measured data",
+  "canvas": [
+    1280,
+    720
+  ],
+  "fps": 30,
+  "duration": 20,
+  "frames": 600,
+  "background_rgb": [
+    21,
+    42,
+    61
+  ],
+  "static_slot": [
+    384,
+    104,
+    512,
+    512
+  ],
+  "source_video_crop_pixels": [
+    180,
+    0,
+    600,
+    600
+  ],
+  "alpha_bands": [
+    0,
+    0.25098039215686274,
+    0.5019607843137255,
+    1
+  ],
+  "alpha_matte_rgb": "Alternating horizontal pure black/white stripes, independent of alpha",
+  "alpha_hole": {
+    "centre": [
+      256,
+      256
+    ],
+    "radius": 55,
+    "alpha": 0
+  },
+  "luma_bands": [
+    0,
+    0.25098039215686274,
+    0.5019607843137255,
+    1
+  ],
+  "luma_alpha": 1,
+  "static_probe_local_points": [
+    [
+      64,
+      32
+    ],
+    [
+      192,
+      32
+    ],
+    [
+      320,
+      32
+    ],
+    [
+      448,
+      32
+    ],
+    [
+      64,
+      96
+    ],
+    [
+      448,
+      96
+    ],
+    [
+      256,
+      256
+    ]
+  ],
+  "moving_slot": {
+    "from": [
+      100,
+      280,
+      320,
+      320
+    ],
+    "to": [
+      800,
+      120,
+      320,
+      320
+    ],
+    "enter_seconds": 3.5,
+    "hold_seconds": 0.5,
+    "easing": "smoothstep",
+    "source_in": 16
+  },
+  "circle_matte": {
+    "radius_source_px": 256,
+    "inward_feather_source_px": 38.4,
+    "inward_feather_at_320_output_px": 24
+  },
+  "foreground_slot": [
+    460,
+    160,
+    360,
+    360
+  ],
+  "foreground_hole_centre_output": [
+    640,
+    340
+  ],
+  "foreground_transparent_rgb": [
+    255,
+    0,
+    255
+  ],
+  "foreground_cross_beam_local_pixels": [
+    [
+      306,
+      105,
+      334,
+      535
+    ],
+    [
+      105,
+      306,
+      535,
+      334
+    ]
+  ],
+  "mode_probe_output_times": [
+    2,
+    6,
+    10,
+    14,
+    18
+  ]
+}

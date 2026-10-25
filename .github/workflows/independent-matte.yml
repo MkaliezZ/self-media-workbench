@@ -1,0 +1,67 @@
+name: Independent native matte acceptance
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - backend/motion_*.py
+      - backend/timeline_*.py
+      - evaluation/fixtures/independent-matte/**
+      - .github/workflows/independent-matte.yml
+  pull_request:
+    paths:
+      - backend/motion_*.py
+      - backend/timeline_*.py
+      - evaluation/fixtures/independent-matte/**
+      - .github/workflows/independent-matte.yml
+permissions:
+  contents: read
+jobs:
+  sealed-case:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    env:
+      PYTHONUTF8: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install native dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install FFmpeg on Windows if absent
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg --no-progress -y
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: Install native macOS FFmpeg and text filters
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          command -v ffmpeg >/dev/null || brew install ffmpeg
+          if ! ffmpeg -hide_banner -filters 2>/dev/null | grep -q ' drawtext '; then
+            brew install ffmpeg@7
+            echo "$(brew --prefix ffmpeg@7)/bin" >> "$GITHUB_PATH"
+          fi
+      - name: Run unchanged independent sealed case with real media checks
+        run: python -B -X utf8 evaluation/fixtures/independent-matte/portable/run_case.py --repo . --out evaluation/runs/independent-matte --no-install
+      - name: Print native summary and retained decoded measurements
+        if: always()
+        run: python -c "from pathlib import Path; p=Path('evaluation/runs/independent-matte'); [print(str(f)+'\n'+f.read_text('utf-8')) for f in [p/'summary.json',p/'failure.json',p/'decoded-evidence-v2/measurements.json'] if f.is_file()]"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: independent-matte-${{ matrix.os }}
+          path: |
+            evaluation/runs/independent-matte/
+            !evaluation/runs/independent-matte/**/font.*
+            !evaluation/runs/independent-matte/**/title-font.*
+            !evaluation/runs/independent-matte/**/motion-layer.mov
+          if-no-files-found: warn

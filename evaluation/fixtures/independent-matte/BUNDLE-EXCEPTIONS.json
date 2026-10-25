@@ -1,0 +1,13 @@
+{
+  "original_seal_preserved_unchanged": true,
+  "not_redistributed_original_preparation_files": [
+    {
+      "relative_path": "evidence/source-video-probe.json",
+      "sha256": "fd3a45aa39ff706a5c85537b96feb1fd33ef26303e31251074897420a925fbcd",
+      "reason": "Original Windows ffprobe trace embeds a host absolute filename; not required to execute. Exact original remains in the local evidence packet."
+    }
+  ],
+  "creation_only_nonportable_record": "sealed/generate_matte_materials.py records the original Windows system font used to create the sealed bitmap/video inputs. The portable acceptance never executes it and needs no Windows font.",
+  "historical_checkers": "source-records scripts are exact archival copies, not the portable runtime. portable/verify_v1.py and verify_v2.py keep their numerical logic but use the self-contained decoder/arguments.",
+  "old_overflow": "Original Windows overflow history remains separate; this main-case capsule makes no inherited native Mac overflow claim."
+}

@@ -1,0 +1,71 @@
+{
+  "prepared_at_utc": "2026-10-25T14:55:48.963178+00:00",
+  "new_source_video": {
+    "width": 960,
+    "height": 600,
+    "fps": "25/1",
+    "frames": "600",
+    "duration": "24.000000",
+    "has_audio": false,
+    "full_decode": "PASS"
+  },
+  "audio": {
+    "sr": 48000,
+    "frames": 960000,
+    "duration": 20.0,
+    "channels": 2
+  },
+  "mask_pixels": {
+    "alpha_black_rgb_opaque": [
+      0,
+      0,
+      0,
+      255
+    ],
+    "alpha_white_rgb_transparent": [
+      255,
+      255,
+      255,
+      0
+    ],
+    "alpha_hole": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "luma_mid_alpha_opaque": [
+      128,
+      128,
+      128,
+      255
+    ],
+    "circle_center": [
+      233,
+      61,
+      178,
+      255
+    ],
+    "circle_corner": [
+      233,
+      61,
+      178,
+      0
+    ],
+    "png_transparent_magenta_hole": [
+      255,
+      0,
+      255,
+      0
+    ],
+    "png_opaque_cross": [
+      113,
+      69,
+      46,
+      255
+    ]
+  },
+  "source_storyboard_visually_inspected": true,
+  "future_track_matte_implementation_or_tests_read": false,
+  "awaiting_sha": true
+}

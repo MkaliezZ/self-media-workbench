@@ -14,3 +14,6 @@ evaluation/runs/
 *.log
 .DS_Store
 skills/media-workbench/location.json
+# Exactly two original synthetic media inputs of the independently sealed case.
+!evaluation/fixtures/independent-matte/sealed/materials/deep_original_clock.wav
+!evaluation/fixtures/independent-matte/sealed/materials/deep_rover_960x600_25fps.mp4

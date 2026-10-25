@@ -121,7 +121,7 @@ Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确�
 
 [中文口播验收](evaluation/chinese-acceptance-20261021.md)在 Windows、Apple Silicon GPU 和 Intel CPU 上使用同一份中文合成素材，保留原始识别错误、基于已知原稿的辅助纠错、字幕修订及实际停顿剪除／恢复导出。首次比较失败，以及后来自动检查通过但语义断句错误的字幕结果，均与最终三端复测结果一起保留。
 
-普通导出保留独立 MP4/SRT。保存 visual-plan 后可另导出重点字幕、本地 PNG/JPEG 与静态区域提示的 visual.mp4，保留原件与旧导出。新视觉功能在 Windows 完成真实合成、像素、剪切与恢复测试；本轮 macOS 实际运行尚未验证，历史 ASR 验收不能替代。详见[视觉编辑](docs/visual-editing.md)。没有在线自动搜图或自动对外发布，也不保证内容或营销效果。模型识别、字幕、具有语义的停顿、生产可用性及平台要求仍需 Agent 审阅，必要时由人确认。
+普通导出保留独立 MP4/SRT。保存 visual-plan 后可另导出重点字幕、本地 PNG/JPEG 与静态区域提示的 visual.mp4，保留原件与旧导出。视觉与行业模板已在 Windows、macOS Apple Silicon 和 Intel 云端各通过 59 项测试及实际语音/导出检查，修订前失败也已保留；这些是合成素材技术检查，不是行业审美或真实运营验收。详见[视觉编辑](docs/visual-editing.md)。没有在线自动搜图或自动对外发布，也不保证内容或营销效果。模型识别、字幕、具有语义的停顿、生产可用性及平台要求仍需 Agent 审阅，必要时由人确认。
 
 ### 行业与视频类型模板
 
@@ -250,7 +250,7 @@ A separate [fresh macOS installation audit](evaluation/fresh-macos-20261021.md) 
 
 The [Chinese speech audit](evaluation/chinese-acceptance-20261021.md) uses identical synthetic Chinese media on Windows, Apple Silicon GPU and Intel CPU. It retains original recognition errors, reference-assisted corrections, caption revisions and actual pause cut/restore exports. Initial comparison failure and a later automatically passed but semantically wrong subtitle grouping remain alongside the repaired three-platform retest.
 
-Ordinary exports retain separate MP4/SRT. A saved visual-plan optionally adds visual.mp4 with complete-cue emphasis, local PNG/JPEG images and static region highlights, preserving originals and earlier exports. The new visual path has real Windows composition/pixel/cut/restore tests; macOS execution of this addition remains unverified and is not covered by historical ASR acceptance. See [visual editing](docs/visual-editing.md). Online image search and automatic external publishing are not provided; content/marketing effectiveness is not guaranteed. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
+Ordinary exports retain separate MP4/SRT. A saved visual-plan optionally adds visual.mp4 with complete-cue emphasis, local PNG/JPEG images and static region highlights, preserving originals and earlier exports. Visual editing and recipes passed 59 tests plus native speech/export checks on each of Windows, macOS Apple Silicon and Intel, with earlier failures retained; synthetic technical checks do not establish real industry aesthetics or publishing effectiveness. See [visual editing](docs/visual-editing.md). Online image search and automatic external publishing are not provided; content/marketing effectiveness is not guaranteed. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
 
 ### Industry and video-form recipes
 

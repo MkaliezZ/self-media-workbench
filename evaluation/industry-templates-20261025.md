@@ -32,3 +32,9 @@ Follow-up [cloud run 40178986267](https://github.com/MkaliezZ/self-media-workben
 ## Artifacts and reproduction
 
 Run `python -B -X utf8 -m unittest discover -s tests -v`. Set VISUAL_EVIDENCE_ROOT to retain isolated projects, template attempts, drafts, snapshots, input assets/fonts, failed/revised outputs and FFmpeg logs. The repository does not bundle system fonts or raw private project data. Local evidence includes initial/final logs, source/output hashes and representative frames. See [recipe usage](../docs/industry-templates.md) and [generation guidance](../skills/self-media-workflow/references/recipe-generation.md).
+
+## Final cloud verification
+
+[Run 40179335454](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40179335454), runtime commit 65f21be, completed successfully on Windows, macOS 15 Apple Silicon and macOS 15 Intel. Each platform passed all **59 tests**, including actual recipe/visual FFmpeg rendering and the fixed file-loading syntax, then completed its native speech/ASR/export smoke checks. The Apple job also completed its MLX capability/inference/fallback probe; actual device behaviour remains in its result logs, not inferred from the job name. Earlier failures remain in the previous runs and local records.
+
+The local real-HTTP check also exported a narrated-travel recipe to terminal done, restarted its owned idle service and resumed the same project with its template preserved. All test services were stopped. These are technical checks on explicitly synthetic material. They do not constitute independent Agent blind testing, real travel footage review, audio aesthetics or industry performance acceptance.

@@ -268,6 +268,10 @@ Source-bound [motion effects](docs/motion-effects.md) also execute article highl
 
 Native `track_matte` renders video-in-text, alpha/luma/inverted mattes and feathering, combined with endpoint motion, split reveals, foreground alpha holes and transitions. The [mask showcase](scripts/mask_showcase.py) uses the same native API. Frozen-font text layout is preflighted before save/head mutation and export-job creation. Automatic segmentation and tracking remain unsupported.
 
+本轮Windows、Apple Silicon、Intel Mac各71项检查及原生功能片导出通过；同一独立封存新素材另在三端实际通过25项媒体检查、11类非法输入，原始失败与未测组合继续保留。[独立三端验收](evaluation/independent-matte-20261025.md)。
+
+This revision passed71 checks and actual technical-film exports on each native Windows, Apple Silicon and Intel Mac host. The same independently sealed changed-material case separately passed25 media checks and11 rejected requests per native host. Original failures and untested combinations remain explicit in the [independent native acceptance](evaluation/independent-matte-20261025.md).
+
 ### Planned capabilities
 
 See the [visual-editing roadmap](docs/plans/visual-editing-roadmap.md) for emphasis, semantic cueing and asset search/composition, and the [editing-system integration plan](docs/plans/editing-system-integration.md) for conditional recipes, reusable visual/audio operations and implementation stages. Local caption emphasis, image layouts and static regions are integrated. Online search, complex animation and sound generation remain planned; current schemas and actual validation define runtime scope.

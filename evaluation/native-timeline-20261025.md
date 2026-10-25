@@ -28,6 +28,10 @@ The first native [cloud run](https://github.com/MkaliezZ/self-media-workbench/ac
 
 The corrected Windows native cases passed again. Native Mac re-execution is required; a Windows pass is not substituted. The initial Mac artifacts/logs and the first timing analysis remain in local evidence.
 
+A further native diagnostic reported 299/300 video frames and 11.96-second video while audio was now exactly 12 seconds. That intermediate correction was insufficient and remained a failure. Export errors now include measured clocks, and test folders are retained before setup so setup failures keep native files. Redundant container-wide stop times were then removed: finite video-frame/audio-sample filters are the sole end conditions, with explicit CFR/encoder time bases. Final decoded verification remains strict.
+
+The original large failure artifact remains remotely retained. A range-based read archived selected actual segments/map/MP4 locally: each first-run Mac segment reported a container duration one frame shorter than its decoded frame count, and the first final MP4 decoded to 298 frames/11.92 seconds. A large full-archive transfer was stopped; selected raw evidence and logs were preserved. Later artifacts exclude system font binaries while retaining font hashes.
+
 ## Independent changed-material check
 
 An independent Agent designed/sealed its task and four travel-animation/music inputs before receiving product commit 380f904. It then freshly cloned the public repository, used only the documented entry/capabilities and its own sources, and executed baseline/cut/restored exports. On Windows these measured 16/15/16 seconds and 480/450/480 frames, with zero music-clock lag and unchanged original hashes; baseline/restored MP4 hashes were identical on that host. See [the independent case and its declared limits](independent_travel/README.md).

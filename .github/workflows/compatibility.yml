@@ -57,6 +57,9 @@ jobs:
       - name: Independent changed-material travel timeline
         if: always()
         run: python -B -X utf8 scripts/independent_timeline_acceptance.py --output evaluation/runs/independent-travel
+      - name: Real scenic travel edit with pinned public inputs
+        if: always()
+        run: python -B -X utf8 scripts/real_travel_acceptance.py --out evaluation/runs/real-travel
       - name: Actual native speech, local CPU ASR and HTTP export
         env:
           HF_HUB_DISABLE_XET: '1'

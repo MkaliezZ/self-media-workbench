@@ -154,7 +154,8 @@ def render(record,plan_dir,dest):
         start=shot['source_in'] if source['info']['has_audio'] else 0
         graph.append(f'[{audio}]atrim=start={start:.8f}:duration={duration:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={shot["source_audio_gain"]},apad,atrim=duration={duration:.8f},asetpts=N/SR/TB[a]')
         script=dest/f'segment-{i:04}.filters';script.write_text(';\n'.join(graph),'utf-8')
-        args+=['-/filter_complex',script.name,'-map','[v]','-map','[a]','-t',f'{duration:.8f}',
+        args+=['-/filter_complex',script.name,'-map','[v]','-map','[a]',
+            '-r',str(fps),'-fps_mode','cfr','-enc_time_base:v',f'1:{fps}',
             '-c:v','libx264','-preset','fast','-crf','18','-bf','0','-pix_fmt','yuv420p','-c:a','pcm_s16le',f'segment-{i:04}.mkv']
         run(args,dest,f'segment-{i:04}.process.json')
     (dest/'segments.txt').write_text('\n'.join(f"file 'segment-{i:04}.mkv'\nduration {shot['frames']/fps:.8f}" for i,shot in enumerate(mapping['shots'])),'utf-8')
@@ -179,7 +180,8 @@ def render(record,plan_dir,dest):
             graph.append(f"[{last}]drawtext=fontfile={local}:textfile={file}:expansion=none:fontsize={size}:fontcolor=0x{cue['colour']}:box=1:boxcolor=black@0.5:boxborderw=4:x=(w-text_w)/2:y=h-text_h-{round(height*cue['bottom_margin'])}:enable='gte(t,{cue['start']})*lt(t,{cue['end']})'[{label}]");last=label
     script=dest/'timeline.filters';script.write_text(';\n'.join(graph),'utf-8')
     args+=['-/filter_complex',script.name,'-map',f'[{last}]','-map','[aout]',
-        '-t',f"{mapping['duration']:.8f}",'-c:v','libx264','-preset','medium','-crf','18',
+        '-r',str(fps),'-fps_mode','cfr','-enc_time_base:v',f'1:{fps}',
+        '-c:v','libx264','-preset','medium','-crf','18',
         '-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-movflags','+faststart','timeline.mp4']
     run(args,dest,'timeline-render-process.json')
     actual=probe(dest/'timeline.mp4',count_frames=True)

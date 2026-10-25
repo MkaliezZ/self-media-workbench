@@ -60,7 +60,9 @@ def resolve_sources(w,path,body):
 
 def timeline_map(body,resolved,check_grid=True):
     entries=[];frame=0;fps=body['fps'];sources=set()
-    for shot in body['shots']:
+    from timeline_fx import transition_frames,validate_masks
+    overlap=transition_frames(body)
+    for index,shot in enumerate(body['shots']):
         source=resolved.get(shot['source_id'])
         if not source or not source['info']['has_video']:raise ValueError('Each shot requires a registered video/image source')
         info=source['info'];a,b=shot['source_in'],shot['source_out']
@@ -69,6 +71,7 @@ def timeline_map(body,resolved,check_grid=True):
         if info['kind']!='image' and b>info['video_duration']+.0001:raise ValueError('Shot exceeds actual source video duration')
         frames=round((b-a)*fps)
         if frames<1:raise ValueError('Shot is shorter than one output frame')
+        frame-=overlap[index-1] if index else 0
         entries.append({**shot,'output_start':frame/fps,'output_end':(frame+frames)/fps,
             'start_frame':frame,'end_frame':frame+frames,'frames':frames,
             'quantization_seconds':frames/fps-(b-a),'generated_silence':not info['has_audio']})
@@ -84,7 +87,11 @@ def timeline_map(body,resolved,check_grid=True):
         sources.add(bed['source_id'])
     for title in body['titles']:
         if title['start']>=title['end'] or title['end']>total+.0001 or not title['text'].strip():raise ValueError('Invalid title interval/text')
+    for cue in body.get('masks',[]):sources.add(cue['source_id'])
+    validate_masks(body,resolved,total)
     if sources!=set(resolved):raise ValueError('Unused registered source in timeline; remove it or describe an actual use')
+    for i,n in enumerate(overlap):
+        if n and (n>=entries[i]['frames'] or n>=entries[i+1]['frames']):raise ValueError('Transition must be shorter than both adjacent shots')
     errors=[];grid=body['music_grid']
     if grid:
         times=grid['source_times']
@@ -95,13 +102,19 @@ def timeline_map(body,resolved,check_grid=True):
         bed=beds[0]
         if times[0]<bed['source_in']-.0001 or times[-1]>bed['source_in']+bed['duration']+.0001:
             raise ValueError('Grid lies outside the selected music interval')
-        actual=[0.]+[e['output_end'] for e in entries]
+        actual=[0.]+[(e['end_frame']-(overlap[i]/2 if i<len(overlap) else 0))/fps for i,e in enumerate(entries)]
         for edge,(t,observed) in enumerate(zip(times,actual)):
             target=bed['start']+t-bed['source_in'];error=observed-target
             errors.append({'edge':edge,'source_time':t,'target':target,'actual':observed,'error_seconds':error})
             if check_grid and abs(error)>grid['max_error_frames']/fps+1e-6:raise ValueError('Shot edges miss the reviewed music grid; align the draft first')
-    return {'shots':entries,'duration':total,'frames':frame,'fps':fps,'audio':body['audio'],
+    result={'shots':entries,'duration':total,'frames':frame,'fps':fps,'audio':body['audio'],
         'titles':body['titles'],'beat_alignment':errors,'timing_scope':'source seconds mapped to output frames; no ASR or invented spoken alignment'}
+    if body.get('transitions'):
+        result['transitions']=[{**t,'frames':round(t['duration']*fps),
+            'output_start':entries[next(i for i,s in enumerate(entries) if s['id']==t['after_shot_id'])]['output_end']-round(t['duration']*fps)/fps,
+            'output_end':entries[next(i for i,s in enumerate(entries) if s['id']==t['after_shot_id'])]['output_end']} for t in body['transitions']]
+    if body.get('masks'):result['masks']=body['masks']
+    return result
 
 
 def align(body,resolved):
@@ -114,18 +127,22 @@ def align(body,resolved):
     bed=beds[0];targets=[round((bed['start']+t-bed['source_in'])*body['fps']) for t in times]
     if targets[0]!=0 or any(b<=a for a,b in zip(targets,targets[1:])):raise ValueError('Music grid must start the timeline and have increasing frame edges')
     changes=[]
+    from timeline_fx import transition_frames
+    overlap=transition_frames(body);start_frame=0
     for i,shot in enumerate(result['shots']):
-        end=shot['source_in']+(targets[i+1]-targets[i])/body['fps']
+        end_frame=round(targets[i+1]+(overlap[i]/2 if i<len(overlap) else 0))
+        end=shot['source_in']+(end_frame-start_frame)/body['fps']
         if end>shot['source_out']+1e-6:raise ValueError('Alignment needs footage outside the approved shot window; select a longer source interval')
         changes.append({'shot_id':shot['id'],'old_source_out':shot['source_out'],'new_source_out':end})
         shot['source_out']=end
+        start_frame=end_frame-(overlap[i] if i<len(overlap) else 0)
     result=TimelinePlan.model_validate(result).model_dump()
     return {'plan':result,'changes':changes,'map':timeline_map(result,resolved),'status':'draft_not_saved'}
 
 
 def integrity(record,directory):
     body=TimelinePlan.model_validate(record['request']).model_dump()
-    if digest(body)!=record['request_sha256']:raise ValueError('Timeline request integrity mismatch')
+    if digest(record['request'])!=record['request_sha256']:raise ValueError('Timeline request integrity mismatch')
     sources={}
     for source in record['sources']:
         file=directory/source['relative_path']
@@ -159,18 +176,21 @@ def render(record,plan_dir,dest):
             '-c:v','libx264','-preset','fast','-crf','18','-bf','0','-pix_fmt','yuv420p','-c:a','pcm_s16le',f'segment-{i:04}.mkv']
         run(args,dest,f'segment-{i:04}.process.json')
     (dest/'segments.txt').write_text('\n'.join(f"file 'segment-{i:04}.mkv'\nduration {shot['frames']/fps:.8f}" for i,shot in enumerate(mapping['shots'])),'utf-8')
-    args=['ffmpeg','-hide_banner','-v','error','-nostdin','-n','-f','concat','-safe','1','-i','segments.txt']
-    graph=[f"[0:a:0]apad,atrim=duration={mapping['duration']:.8f},asetpts=N/SR/TB[original]"]
+    from timeline_fx import base_graph,add_masks
+    args,graph,base_video,base_audio,next_input=base_graph(body,mapping)
+    graph.append(f"[{base_audio}]apad,atrim=duration={mapping['duration']:.8f},asetpts=N/SR/TB[original]")
     audio_labels=['[original]']
     for i,bed in enumerate(body['audio'],1):
         args+=['-i',str(sources[bed['source_id']]['path'])]
-        expr=f"[{i}:a:0]atrim=start={bed['source_in']:.8f}:duration={bed['duration']:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={bed['gain']}"
+        input_index=next_input;next_input+=1
+        expr=f"[{input_index}:a:0]atrim=start={bed['source_in']:.8f}:duration={bed['duration']:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={bed['gain']}"
         if bed['fade_in']:expr+=f",afade=t=in:st=0:d={bed['fade_in']}"
         if bed['fade_out']:expr+=f",afade=t=out:st={bed['duration']-bed['fade_out']}:d={bed['fade_out']}"
         expr+=f",adelay={round(bed['start']*1000)}:all=1[b{i}]";graph.append(expr);audio_labels.append(f'[b{i}]')
     graph.append(''.join(audio_labels)+f"amix=inputs={len(audio_labels)}:duration=first:normalize=0:dropout_transition=0,alimiter=limit=0.95:level=0:latency=1,atrim=duration={mapping['duration']:.8f}[aout]")
-    graph.append(f"[0:v:0]fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={mapping['frames']},setpts=N/({fps}*TB)[clocked]")
+    graph.append(f"[{base_video}]fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={mapping['frames']},setpts=N/({fps}*TB)[clocked]")
     last='clocked'
+    args,graph,last,next_input=add_masks(body,sources,dest,args,graph,last,next_input)
     if body['titles']:
         font=plan_dir/record['font']['relative_path'];local='title-font'+font.suffix;shutil.copyfile(font,dest/local)
         for i,cue in enumerate(body['titles']):

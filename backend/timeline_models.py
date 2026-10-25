@@ -1,7 +1,7 @@
 """Native source-time timeline, independent of ASR and subtitle grouping."""
 from typing import Literal
 from pydantic import Field,model_validator
-from visual_models import Strict,Colour
+from visual_models import Strict,Colour,Rect
 from editing_templates import RecipeDefinition
 
 
@@ -53,6 +53,26 @@ class Title(Strict):
     bottom_margin: float = Field(default=.08,ge=.02,le=.35,allow_inf_nan=False)
 
 
+class Transition(Strict):
+    after_shot_id: str
+    kind: Literal['fade','wipeleft','wiperight','slideleft','slideright','circleopen']
+    duration: float = Field(ge=.08,le=2,allow_inf_nan=False)
+    reason: str = Field(min_length=1,max_length=1000)
+
+
+class MaskCue(Strict):
+    source_id: str
+    source_in: float = Field(default=0.,ge=0,allow_inf_nan=False)
+    start: float = Field(ge=0,allow_inf_nan=False)
+    end: float = Field(gt=0,allow_inf_nan=False)
+    crop: Rect = Field(default_factory=lambda:Rect(x=0.,y=0.,width=1.,height=1.))
+    slot: Rect
+    shape: Literal['rectangle','ellipse']='ellipse'
+    feather: int = Field(default=12,ge=0,le=64)
+    opacity: float = Field(default=1.,gt=0,le=1,allow_inf_nan=False)
+    reason: str = Field(min_length=1,max_length=1000)
+
+
 class TimelinePlan(Strict):
     request_id: str = Field(pattern=r'^[A-Za-z0-9_-]{1,80}$')
     project_revision: int = Field(ge=1)
@@ -69,6 +89,8 @@ class TimelinePlan(Strict):
     audio: list[AudioBed] = Field(default_factory=list,max_length=16)
     music_grid: MusicGrid | None=None
     titles: list[Title] = Field(default_factory=list,max_length=64)
+    transitions: list[Transition] = Field(default_factory=list,max_length=31)
+    masks: list[MaskCue] = Field(default_factory=list,max_length=16)
     font_path: str | None=None
 
     @model_validator(mode='after')

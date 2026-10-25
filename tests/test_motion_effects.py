@@ -52,6 +52,10 @@ class MotionEffectsTests(unittest.TestCase):
         for change in [{'highlights':[rect(.0,.0,.1,.1)]},{'lift_seconds':4.},{'page_quad':[{'x':x,'y':y} for x,y in [(0.,0.),(1.,1.),(1.,0.),(0.,1.)]]}]:
             body=copy.deepcopy(self.body);body['effects'][0].update(change)
             with self.assertRaises(ValueError):timeline_map(TimelinePlan.model_validate(body).model_dump(),{k:self.resolved[k] for k in ('base','article')})
+        q=self.body['effects'][0]['page_quad']
+        for points in [[q[0],q[3],q[2],q[1]],q[2:]+q[:2]]:
+            body=copy.deepcopy(self.body);body['effects'][0]['page_quad']=points
+            with self.assertRaisesRegex(ValueError,'upright'):timeline_map(TimelinePlan.model_validate(body).model_dump(),{k:self.resolved[k] for k in ('base','article')})
     def test_video_pip_reveal_spotlight_and_authored_text(self):
         b=copy.deepcopy(self.body);b['sources']=[self.refs[1],self.refs[2]]
         b['effects']=[{'kind':'motion_layer','source_id':'video','start':0.,'end':4.,'source_in':0.,'from_rect':rect(.05,.2,.15,.15),'to_rect':rect(.3,.2,.55,.55),'enter_seconds':.6,'exit_seconds':.5,'animation':'reveal_left','reason':'Actual moving source, authored zoom and reveal'},

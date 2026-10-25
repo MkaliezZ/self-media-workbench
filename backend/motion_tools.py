@@ -57,7 +57,8 @@ def validate_effects(body,resolved,total):
                 if duration<sum(cue[k] for k in ['reveal_seconds','highlight_seconds','lift_seconds','return_seconds'])+.1:raise ValueError('Document stages leave no readable hold')
                 q=np.array([[p['x'],p['y']] for p in cue['page_quad']]);edges=np.roll(q,-1,axis=0)-q
                 crosses=np.array([np.linalg.det(np.array([edges[i],edges[(i+1)%4]])) for i in range(4)])
-                if not (np.all(crosses>1e-5) or np.all(crosses<-1e-5)):raise ValueError('Page quad must be convex and ordered TL/TR/BR/BL')
+                ordered=q[0,0]<q[1,0] and q[3,0]<q[2,0] and q[0,1]<q[3,1] and q[1,1]<q[2,1]
+                if not np.all(crosses>1e-5) or not ordered:raise ValueError('Page quad must be convex and ordered upright TL/TR/BR/BL, without mirrored or inverted corners')
                 for r in cue['highlights']:
                     if r['x']<crop['x']-1e-6 or r['y']<crop['y']-1e-6 or r['x']+r['width']>crop['x']+crop['width']+1e-6 or r['y']+r['height']>crop['y']+crop['height']+1e-6:raise ValueError('Highlight must lie inside the selected source region')
             else:

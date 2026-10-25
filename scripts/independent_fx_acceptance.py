@@ -58,8 +58,9 @@ class FxRun(Run):
 
 def stop_owned(run,checkout):
     """Only stop our recorded, command-verified, idle service; no unrelated PID."""
-    import os,signal,urllib.request
-    ctx=run.context('before-owned-restart')
+    import os,signal,urllib.request,uuid
+    tag='owned-stop-'+uuid.uuid4().hex[:12]
+    ctx=run.context('before-'+tag)
     assert all(j.get('status') not in ('running','queued','pending') for j in ctx['jobs'])
     for file in (run.output/'state'/'services').glob('*.json'):
         record=read(file)
@@ -67,7 +68,7 @@ def stop_owned(run,checkout):
         pid=int(record['pid'])
         command=(subprocess.check_output(['powershell','-NoProfile','-Command',f"(Get-CimInstance Win32_Process -Filter 'ProcessId = {pid}').CommandLine"],text=True,encoding='utf-8',errors='replace') if sys.platform=='win32' else subprocess.check_output(['ps','-p',str(pid),'-o','command='],text=True))
         assert str(checkout).casefold() in command.casefold() and 'workbench.py' in command and 'serve' in command
-        write(run.output/'owned-service-stop.json',{'pid':pid,'recorded_root':str(checkout),'command':command,'all_jobs_terminal':True})
+        write(run.output/(tag+'.json'),{'pid':pid,'recorded_root':str(checkout),'command':command,'all_jobs_terminal':True})
         os.kill(pid,signal.SIGTERM)
         for _ in range(30):
             try:urllib.request.urlopen(run.base+'/api/status',timeout=.2).close()

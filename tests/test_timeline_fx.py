@@ -2,6 +2,7 @@
 import copy
 import json
 import os
+import shutil
 import struct
 import subprocess
 import sys
@@ -15,7 +16,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'backend'))
 from timeline_models import TimelinePlan
 from timeline_tools import timeline_map,render,digest,source_info
 from timeline_fx import alpha_field
-from visual_tools import sha
+from visual_tools import sha,font_file
 
 
 class TimelineFXTests(unittest.TestCase):
@@ -40,6 +41,7 @@ class TimelineFXTests(unittest.TestCase):
             'intent':'Fade, spatial wipe and alpha-preserving feathered local layer','width':480,'height':320,'fps':25,'sources':refs,
             'shots':[{'id':id,'source_id':id,'source_in':0.,'source_out':3.,'role':'test','reason':'Colour identity check'} for id in ['a','b','c']],
             'transitions':[{'after_shot_id':'a','kind':'fade','duration':.4,'reason':'Blend'}, {'after_shot_id':'b','kind':'wipeleft','duration':.6,'reason':'Spatial reveal'}],
+            'titles':[{'text':'LOCK','start':3.72,'end':3.88,'font_height':.07}],
             'masks':[{'source_id':'layer','start':4.,'end':7.,'slot':{'x':.25,'y':.25,'width':.25,'height':.375},'shape':'ellipse','feather':16,'reason':'Local alpha check'}]}).model_dump()
         mapping=timeline_map(body,resolved);self.assertEqual(mapping['frames'],200)
         def execute(plan,name):
@@ -48,6 +50,10 @@ class TimelineFXTests(unittest.TestCase):
             for ref in plan['sources']:
                 s=resolved[ref['id']];sources.append({'id':ref['id'],'relative_path':s['path'].name,'info':s['info'],'metadata':{},'sha256':ref['sha256']})
             record={'request':plan,'request_sha256':digest(plan),'map':timeline_map(plan,resolved),'sources':sources}
+            if plan['titles']:
+                original=font_file(None);local=folder/('font'+original.suffix)
+                if not local.exists():shutil.copyfile(original,local)
+                record['font']={'relative_path':local.name,'sha256':sha(local)}
             render(record,folder,directory);return directory/'timeline.mp4'
         movie=execute(body,'actual')
         def frame(t):
@@ -55,6 +61,10 @@ class TimelineFXTests(unittest.TestCase):
         before=frame(2.4)[20,20].astype(float);middle=frame(2.8)[20,20].astype(float);after=frame(3.2)[20,20].astype(float)
         self.assertGreater(before[0],220);self.assertGreater(after[2],220)
         self.assertTrue(70<middle[0]<190 and 70<middle[2]<190,middle)
+        def white(at):
+            roi=frame(at)[255:300,180:300]
+            return int(np.all(roi>210,axis=2).sum())
+        self.assertLess(white(3.68),5);self.assertGreater(white(3.72),40);self.assertLess(white(3.88),5)
         wipe=frame(5.3);self.assertGreater(np.linalg.norm(wipe[20,20].astype(float)-wipe[20,-20].astype(float)),100)
         layer=frame(4.4)
         self.assertGreater(layer[110,150,:].mean(),220) # Inside opaque source and ellipse.
@@ -64,7 +74,7 @@ class TimelineFXTests(unittest.TestCase):
         self.assertEqual(int(a[60,60]),255);self.assertEqual(int(a[0,0]),0)
         self.assertGreater(len(np.unique(a[60,:30])),10)
         # Remove newly added optional fields to emulate a genuinely saved older request/map checksum.
-        old=copy.deepcopy(body);old.pop('transitions');old.pop('masks');old['sources']=old['sources'][:3]
+        old=copy.deepcopy(body);old.pop('transitions');old.pop('masks');old['sources']=old['sources'][:3];old['titles']=[]
         old_resolved={k:v for k,v in resolved.items() if k!='layer'}
         olddir=folder/'old';olddir.mkdir();oldrecord={'request':old,'request_sha256':digest(old),'map':timeline_map(old,old_resolved),
             'sources':[{'id':r['id'],'relative_path':resolved[r['id']]['path'].name,'info':resolved[r['id']]['info'],'metadata':{},'sha256':r['sha256']} for r in old['sources']]}

@@ -166,7 +166,7 @@ def render(record,plan_dir,dest):
         if not source['info']['has_audio']:args+=['-f','lavfi','-i','anullsrc=r=48000:cl=stereo']
         fit=(f'scale={width}:{height}:force_original_aspect_ratio=decrease,pad={width}:{height}:(ow-iw)/2:(oh-ih)/2:color=0x16181A'
              if shot['fit']=='contain' else f'scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height}')
-        graph=[f"[0:v]trim=start={shot['source_in']:.8f}:end={shot['source_out']:.8f},setpts=PTS-STARTPTS,scale=trunc(iw*sar/2)*2:ih,setsar=1,{fit},fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={shot['frames']},setpts=N/({fps}*TB),format=yuv420p[v]"]
+        graph=[f"[0:v]trim=start={shot['source_in']:.8f}:end={shot['source_out']:.8f},setpts=PTS-STARTPTS,scale=trunc(iw*sar/2)*2:ih,setsar=1,{fit},setsar=1,fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={shot['frames']},setpts=N/({fps}*TB),format=yuv420p[v]"]
         audio='0:a:0' if source['info']['has_audio'] else '1:a:0'
         start=shot['source_in'] if source['info']['has_audio'] else 0
         graph.append(f'[{audio}]atrim=start={start:.8f}:duration={duration:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={shot["source_audio_gain"]},apad,atrim=duration={duration:.8f},asetpts=N/SR/TB[a]')
@@ -197,7 +197,8 @@ def render(record,plan_dir,dest):
             size=max(12,round(height*cue['font_height']));file=f'title-{i:04}.txt'
             (dest/file).write_text(wrapped(cue['text'],max(4,int(width*.88/size)*2)),'utf-8')
             label=f'title{i}'
-            graph.append(f"[{last}]drawtext=fontfile={local}:textfile={file}:expansion=none:fontsize={size}:fontcolor=0x{cue['colour']}:box=1:boxcolor=black@0.5:boxborderw=4:x=(w-text_w)/2:y=h-text_h-{round(height*cue['bottom_margin'])}:enable='gte(t,{cue['start']})*lt(t,{cue['end']})'[{label}]");last=label
+            first=math.ceil(cue['start']*fps-1e-7);end=math.ceil(cue['end']*fps-1e-7)
+            graph.append(f"[{last}]drawtext=fontfile={local}:textfile={file}:expansion=none:fontsize={size}:fontcolor=0x{cue['colour']}:box=1:boxcolor=black@0.5:boxborderw=4:x=(w-text_w)/2:y=h-text_h-{round(height*cue['bottom_margin'])}:enable='gte(n,{first})*lt(n,{end})'[{label}]");last=label
     script=dest/'timeline.filters';script.write_text(';\n'.join(graph),'utf-8')
     args+=['-/filter_complex',script.name,'-map',f'[{last}]','-map','[aout]',
         '-r',str(fps),'-fps_mode','cfr','-enc_time_base:v',f'1:{fps}',
@@ -269,8 +270,11 @@ def register(w):
                 receipt=path/'timeline-requests'/(body['request_id']+'.json');signature=digest(body)
                 if receipt.exists():
                     old=w.read(receipt)
-                    if old['signature']!=signature:raise HTTPException(409,'Timeline request_id reused with changed content')
-                    return {**w.read(path/'timeline-plans'/old['id']/'plan.json'),'idempotent_replay':True}
+                    saved=w.read(path/'timeline-plans'/old['id']/'plan.json')
+                    if digest(saved['request'])!=saved['request_sha256']:raise HTTPException(409,'Timeline saved request integrity mismatch')
+                    if old['signature']!=signature and TimelinePlan.model_validate(saved['request']).model_dump()!=body:
+                        raise HTTPException(409,'Timeline request_id reused with changed content')
+                    return {**saved,'idempotent_replay':True}
                 project=w.read(path/'project.json')
                 if body['project_revision']!=project['revision'] or body['supersedes']!=project.get('timeline_head'):
                     raise HTTPException(409,'Project/head changed; refresh context and reconsider')

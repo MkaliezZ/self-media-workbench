@@ -43,7 +43,7 @@ def base_graph(body,mapping):
     graph=[];fps=body['fps'];overlap=transition_frames(body)
     for i in range(len(body['shots'])):
         args+=['-i',f'segment-{i:04}.mkv']
-        graph.extend([f'[{i}:v]fps={fps},settb=AVTB,setpts=PTS-STARTPTS,format=yuv444p[v{i}]',f'[{i}:a]asetpts=PTS-STARTPTS[a{i}]'])
+        graph.extend([f'[{i}:v]setpts=PTS-STARTPTS,fps={fps},setsar=1,settb=AVTB,format=yuv444p[v{i}]',f'[{i}:a]asetpts=PTS-STARTPTS[a{i}]'])
     video,audio='v0','a0';cues={c['after_shot_id']:c for c in body['transitions']}
     for i in range(1,len(body['shots'])):
         n=overlap[i-1];v,a=f'joinedv{i}',f'joineda{i}'
@@ -82,7 +82,7 @@ def add_masks(body,sources,dest,args,graph,last,next_input):
         source_input=next_input;mask_input=next_input+1;next_input+=2
         if info['kind']=='image':args+=['-loop','1']
         args+=['-i',str(source['path']),'-loop','1','-framerate',str(fps),'-i',alpha.name]
-        graph.append(f'[{source_input}:v]trim=start={cue["source_in"]:.8f}:duration={duration:.8f},setpts=PTS-STARTPTS,crop={cw}:{ch}:{cx}:{cy},setsar=1,scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},fps={fps},format=rgba,split=2[mc{i}][ma{i}]')
+        graph.append(f'[{source_input}:v]trim=start={cue["source_in"]:.8f}:duration={duration:.8f},setpts=PTS-STARTPTS,crop={cw}:{ch}:{cx}:{cy},setsar=1,scale={width}:{height}:force_original_aspect_ratio=increase,crop={width}:{height},setsar=1,fps={fps},format=rgba,split=2[mc{i}][ma{i}]')
         graph.append(f'[ma{i}]alphaextract[existing{i}]')
         graph.append(f'[{mask_input}:v]trim=duration={duration:.8f},setpts=PTS-STARTPTS,format=gray[shape{i}]')
         graph.append(f"[existing{i}][shape{i}]blend=all_expr='A*B/255':shortest=1[alpha{i}]")

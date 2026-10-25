@@ -90,6 +90,13 @@ class NativeTimelineTests(unittest.TestCase):
     def test_revision_cut_restore_idempotency_and_invalid_requests(self):
         initial_hash=sha(self.original)
         replay=self.save(self.plan);self.assertEqual(replay.status_code,200,replay.text);self.assertTrue(replay.json()['idempotent_replay'])
+        # A saved pre-FX request/receipt must replay without schema-default conflicts.
+        from timeline_tools import digest
+        old=copy.deepcopy(self.record);old['request'].pop('transitions',None);old['request'].pop('masks',None)
+        old['request_sha256']=digest(old['request'])
+        w.write(self.project/'timeline-plans'/old['id']/'plan.json',old)
+        w.write(self.project/'timeline-requests'/(old['request']['request_id']+'.json'),{'id':old['id'],'signature':old['request_sha256']})
+        replay=self.save(old['request']);self.assertEqual(replay.status_code,200,replay.text);self.assertTrue(replay.json()['idempotent_replay'])
         changed=copy.deepcopy(self.plan);changed['intent']='different intent'
         self.assertEqual(self.save(changed).status_code,409)
         def revision(id):

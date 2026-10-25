@@ -270,6 +270,6 @@ MIT applies to this repository's own code and documentation. The previous privat
 
 Reconciled mechanisms: [editing logic library](docs/editing-logics.md). Native-timeline acceptance is reported separately; the historical 59-test result does not cover this addition.
 
-原生时间轴的独立盲测、修订与三端执行状态见[本轮验收记录](evaluation/native-timeline-20261025.md)。
+原生时间轴已在 Windows、Apple Silicon 与 Intel Mac 各通过64项测试、实际后台重启续做、独立换素材16→15→16秒剪切/恢复，以及350帧/14秒实景旅行示例。各端恢复版与该端首版哈希一致；Mac缺帧和比较器修订均保留。[本轮验收记录](evaluation/native-timeline-20261025.md)。技术验收不代表真人审美听审或真实运营效果。
 
-For native-timeline blind checks, revisions and platform execution scope, see [current acceptance](evaluation/native-timeline-20261025.md).
+Native timelines passed 64 tests per host, real HTTP restart/resume, the independent 16→15→16s changed-material recovery case and a 350-frame/14s real-scenery edit on Windows, Apple Silicon and Intel macOS. Each restored export matched that host's baseline hash; Mac frame-clock failures and comparator repairs remain recorded. See [current acceptance](evaluation/native-timeline-20261025.md). Technical acceptance does not establish human listening aesthetics or publishing effectiveness.

@@ -38,6 +38,26 @@ An independent Agent designed/sealed its task and four travel-animation/music in
 
 The first independent image checker incorrectly assumed pure-black padding. It was corrected to compare only source-bearing pixels without changing the sealed task/materials or error threshold. Its report-path reuse and reconstruction are explicitly disclosed, rather than claimed as untouched original evidence. This was a measurement repair, separate from the real Mac product-clock defect. Its portable changed-material entry has been added to each native OS job; platform results will be recorded after execution.
 
-## Reproduction
+## Final native verification
+
+[Run 40183154932](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40183154932), runtime commit **6d3dc30**, completed successfully on native Windows, Apple Silicon macOS 15 and Intel macOS 15. Each platform executed:
+
+| Check | Windows | Apple Silicon | Intel Mac |
+|---|---|---|---|
+| Full protocol/actual-media suite | 64 passed | 64 passed | 64 passed |
+| Actual timeline HTTP + restart/resume | 300 frames / 12s | 300 frames / 12s | 300 frames / 12s |
+| Independent changed-material baseline/cut/restore | 16/15/16s | 16/15/16s | 16/15/16s |
+| Independent restore hash equals that host's baseline | yes | yes | yes |
+| Pinned real-scenery travel edit | 350 frames / 14s | 350 frames / 14s | 350 frames / 14s |
+
+Independent music normalized correlation was approximately 0.9999888 on each host; its declared lag/image/frame thresholds passed. The independent generator/task is the same, while native font rendering/encoders cause video-input hashes to differ across operating systems; no cross-host binary identity is claimed. Music inputs and the two pinned public-domain scenic video inputs were identical by hash. Each host separately checked imported/original preservation and its own immutable exports. The independent Agent's final fresh-clone Windows recheck at 6d3dc30 also passed without new product fixes.
+
+The real-scene example uses public scenic B-roll from the same park, plus an original procedural music score. It is explicitly **not the user's personal trip**, and does not claim the montage shows a continuous personal itinerary. Source pages, usage declarations and pinned hashes are in scripts/real_travel_acceptance.py and actual run manifests. Whole-file decode and measured clocks passed on all three native hosts.
+
+All real failures remain linked above: early onset timestamps, missing frame/container-clock defects, setup-failure retention, and the independent comparator's padding/report-path repair. The passing result was obtained by product/measurement corrections, not relaxed frame/duration thresholds. This is native execution and independent changed-material technical acceptance. It does not certify arbitrary music beat detection, human aesthetic listening, factual travel experiences or publishing effectiveness.
+
+System-font binaries are excluded from uploaded evidence; their hashes remain, and each test uses that host's installed font. Full original media/process artifacts remain in the run, and verbatim per-platform summary/acceptance JSON and raw logs were additionally archived locally.
+
+## Reproduction commands
 
 `python -B -X utf8 -m unittest discover -s tests -v` and `python -B -X utf8 scripts/timeline_http_acceptance.py --out <new evidence folder>`. Set TIMELINE_EVIDENCE_ROOT and VISUAL_EVIDENCE_ROOT to retain original requests/inputs, rejected attempts, failed jobs, frozen assets, process logs and outputs. The compatibility workflow runs both checks on native Windows, macOS ARM64 and Intel; generated test media is reproducible and needs no model for the timeline path.

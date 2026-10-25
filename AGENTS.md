@@ -1,5 +1,7 @@
 # Unified entry for AI Agents
 
+For “高级口播” / advanced talking-head edits, discover talking_profiles and compile_talking_profile, then read references/advanced-talking.md. Ordinary talking-head review stays on the simple ASR/caption route. Advanced scenes compile local effect clocks to a native timeline and freeze a production_profile; inspect and save the draft, export, and verify actual voice/readability. keyframe_layer supports bounded multi-stage planar perspective, actual-pixel highlights/inversion and restrained layer finish, not 3D/tracking/matting. An existing audio stream is insufficient: actual selected intervals are checked for signal; listen to verify speech. Retain human acceptance gates explicitly requested by the user before any release/push.
+
 This is an Agent workbench. You, the calling Agent, reason, choose topics and write content; the local service records evidence/state, validates submissions and executes media tools. No model API key or browser form is required.
 
 For any user task, use `python workbench.py run "<user task>"` (or `python3` on macOS). Pass explicitly provided files with repeated `--input` options. The entry starts a loopback service automatically, registers supported files and selects a project/start phase from actual state. You may pass `--intent` after interpreting the whole task; otherwise auto routing is a conservative hint. Do not tell the user to remember commands or provide JSON.

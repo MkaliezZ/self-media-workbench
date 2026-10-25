@@ -11,3 +11,5 @@ The optional Vulkan/Metal subprocess adapter calls separately built MIT-licensed
 Runtime dependencies retain their own licenses: FastAPI (MIT), Pydantic (MIT), Uvicorn (BSD-3-Clause), NumPy (BSD-3-Clause), faster-whisper and CTranslate2 (MIT); development HTTPX (BSD-3-Clause). See each installed distribution for authoritative notices and transitive dependencies. Models, ONNX artifacts, optional NVIDIA libraries and FFmpeg binaries are not bundled. Their applicable licenses depend on the actual model/distribution/build. Installing a separate binary does not change that binary's license to MIT.
 
 Public methods are repository-authored workflow instructions. Evaluation uses new synthetic content explicitly labeled as simulation; no synthetic result establishes real marketing performance.
+
+Public demo movies include licensed music embedded in finished audiovisual works. See [demo media notices](docs/demos/README.md); that music is not relicensed as MIT and is not distributed separately.

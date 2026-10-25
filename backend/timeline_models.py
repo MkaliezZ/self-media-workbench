@@ -82,6 +82,7 @@ class TimelinePlan(Strict):
     intent: str = Field(min_length=1,max_length=2000)
     logic_id: str | None = None
     recipe: RecipeDefinition | None=None
+    production_profile: dict | None=None
     width: int = Field(default=1280,ge=160,le=3840)
     height: int = Field(default=720,ge=160,le=3840)
     fps: int = Field(default=25,ge=15,le=60)
@@ -107,6 +108,9 @@ class TimelinePlan(Strict):
             roles=[r.id for r in self.recipe.roles];actual=[s.role for s in self.shots]
             if any(r not in roles for r in actual) or set(actual)!=set(roles) or [roles.index(r) for r in actual]!=sorted(roles.index(r) for r in actual):
                 raise ValueError('Shots must cover the native recipe roles in the declared narrative order')
+        if self.production_profile:
+            from talking_profiles import validate_binding
+            validate_binding(self.model_dump())
         return self
 
 

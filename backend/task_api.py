@@ -167,6 +167,8 @@ def register_tasks(w, context):
             if intent=='edit':
                 from editing_templates import hints
                 result['editing_templates']=hints(body.task)
+            from talking_profiles import hints as talking_hints
+            result['talking_profiles']=talking_hints(body.task)
             w.write(registry,{'signature':signature,'result':result})
             w.event(path,'task_routed',{'task_id':task_id,'intent':intent,'start':start})
         return result

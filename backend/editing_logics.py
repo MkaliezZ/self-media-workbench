@@ -1,5 +1,7 @@
 """Functional method library: independent of names, accounts and tutorial links."""
 LOGICS=[
+ {'id':'advanced_talking_head','name':'高级口播','logic':'语义拆镜→分层合成→证据或类比→关系解释→干净讲述与收束','operations':['多阶段透视关键帧','分层视差与遮挡','边缘失焦与节制纹理','证据原像素抽离','语义驱动的声音分轨'],
+  'boundary':'编排合成不等于三维生成、自动抠像、OCR或音素对齐；逐段检查真实像素与声音','runtime':'talking-profile compile + native_timeline'},
  {'id':'faceless_reference','name':'不露脸资料解说','logic':'命题→资料主画面→解释→限定结论','operations':['资料优先布局','局部资料高亮','旁白独立音轨'],
   'boundary':'示意不能冒充具体事件证据；不以无关配图消灭所有空白','runtime':'visual_plan + native_timeline'},
  {'id':'science_evidence','name':'科普资料串联','logic':'现象问题→资料支持→机制解释→不确定性','operations':['文案画面并行规划','原图区域提示','字幕与材料绑定'],

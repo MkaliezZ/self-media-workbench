@@ -1,5 +1,9 @@
 # 常用信息动效 / Source-bound motion effects
 
+新增 `keyframe_layer`：静态图的2–32个平面透视/透明度/虚化关键帧，源像素乘色或黑白反相扫描，局部清晰与边缘失焦、暗角、RGB位移、可复现颗粒和网点纹理。见[高级口播操作说明](../skills/self-media-workflow/references/advanced-talking.md)。保留原始Alpha；这些是受限的二维图层处理，不能称为三维引擎、OCR、跟踪或自动抠像。
+
+`keyframe_layer` adds multi-stage planar image keys and actual-pixel highlight/inversion with restrained per-layer finish. Native video layers remain `motion_layer` / `track_matte`. Ordinary source/ASR routes remain separate; discover the advanced production profile for semantic scenes and real selected-interval voice checks.
+
 `timeline-plan.effects` 提供可复用的原生动作组件，不需要生成图片来代替效果。Agent 负责阅读原文、选择真实区域、安排语义时机；服务冻结来源并执行逐帧合成。`doctor.visual_editing.motion` 检查Pillow及FFmpeg qtrle编码器，依赖由requirements.txt安装，使用CPU合成。
 
 | kind | 实际动作 | 主要输入 |

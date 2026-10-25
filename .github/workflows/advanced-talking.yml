@@ -1,0 +1,91 @@
+name: Advanced talking head native acceptance
+on:
+  push:
+    paths:
+      - backend/**
+      - tests/**
+      - scripts/master_audio.py
+      - evaluation/fixtures/independent-advanced/**
+      - .github/workflows/advanced-talking.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install documented dependencies
+        run: python -m pip install -r requirements-dev.txt "psutil>=5,<8"
+      - name: Native Windows FFmpeg
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg --no-progress -y
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: Native macOS FFmpeg with text filters
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          command -v ffmpeg >/dev/null || brew install ffmpeg
+          if ! ffmpeg -hide_banner -filters 2>/dev/null | grep -q ' drawtext '; then
+            brew install ffmpeg@7
+            echo "$(brew --prefix ffmpeg@7)/bin" >> "$GITHUB_PATH"
+          fi
+      - name: Run complete local regression suite
+        run: python -B -X utf8 -m unittest discover -s tests -v
+      - name: Verify and extract unchanged independent capsule
+        shell: python
+        run: |
+          import hashlib, pathlib, zipfile
+          p=pathlib.Path('evaluation/fixtures/independent-advanced/capsule.zip')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='719d57f677cbddd02a56e9e52c72a29e6ac5fd363a0d93a49aa1d41a0d821702'
+          with zipfile.ZipFile(p) as z:
+              assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist())
+              z.extractall('evaluation/runs/advanced-capsule')
+          p=pathlib.Path('evaluation/fixtures/independent-advanced/scan-mask-supplement.zip')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='47a9355e729c97695fd1155ed6288870e83a8c3724635a5e30ec73143f8594da'
+          with zipfile.ZipFile(p) as z:
+              assert all(not pathlib.PurePosixPath(n).is_absolute() and '..' not in pathlib.PurePosixPath(n).parts for n in z.namelist())
+              z.extractall('evaluation/runs/advanced-scan-capsule')
+      - name: Actual changed-material exports, pixels, PCM and restart
+        run: python -B -X utf8 evaluation/runs/advanced-capsule/run_acceptance.py --repo . --out evaluation/runs/advanced-native
+      - name: Explicit audio mastering preserves native video
+        shell: python
+        run: |
+          import json, pathlib, subprocess, sys
+          index=json.loads(pathlib.Path('evaluation/runs/advanced-native/positive/exports-index.json').read_text('utf-8'))
+          source=index['versions']['advanced']['video']
+          subprocess.run([sys.executable,'-B','-X','utf8','scripts/master_audio.py','--input',source,'--out','evaluation/runs/advanced-master'],check=True)
+      - name: Actual original-pixel scans and alpha-mask compilation
+        run: python -B -X utf8 evaluation/runs/advanced-scan-capsule/run_supplement.py --repo . --out evaluation/runs/advanced-scan-mask
+      - name: Measure scan, hold, original glyphs and moving alpha hole
+        run: python -B -X utf8 evaluation/runs/advanced-scan-capsule/measure_supplement.py --out evaluation/runs/advanced-scan-mask
+      - name: Upload retained native evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: advanced-${{ matrix.os }}
+          path: |
+            evaluation/runs/advanced-native/
+            evaluation/runs/advanced-master/
+            evaluation/runs/advanced-scan-mask/
+            !evaluation/runs/**/font.*
+            !evaluation/runs/**/motion-layer.mov
+            !evaluation/runs/**/*.rgb
+            !evaluation/runs/**/*.pcm
+            !evaluation/runs/**/*.npy
+            !evaluation/runs/**/*.f32
+            !evaluation/runs/**/.runtime/**
+          if-no-files-found: warn

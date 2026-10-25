@@ -487,6 +487,8 @@ from timeline_tools import register as register_timeline_tools
 register_timeline_tools(sys.modules[__name__])
 from editing_logics import register as register_editing_logics
 register_editing_logics(sys.modules[__name__])
+from talking_profiles import register as register_talking_profiles
+register_talking_profiles(sys.modules[__name__])
 
 @app.get('/')
 def agent_entry():

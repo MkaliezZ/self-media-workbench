@@ -89,6 +89,9 @@ def timeline_map(body,resolved,check_grid=True):
         if title['start']>=title['end'] or title['end']>total+.0001 or not title['text'].strip():raise ValueError('Invalid title interval/text')
     for cue in body.get('masks',[]):sources.add(cue['source_id'])
     validate_masks(body,resolved,total)
+    if body.get('production_profile'):
+        from talking_audio import check
+        check(body,entries,resolved)
     if body.get('effects'):
         from motion_tools import validate_effects
         sources.update(validate_effects(body,resolved,total))

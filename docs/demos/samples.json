@@ -1,0 +1,22 @@
+[
+  {
+    "file": "advanced-talking-90s.mp4",
+    "bytes": 19559889,
+    "sha256": "810c39519d6528a04009bd1d1d0d65b2a914e95435eb674e40cb03599e0a84cf",
+    "duration_seconds": 90.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": "25/1",
+    "video_frames": 2250
+  },
+  {
+    "file": "effects-with-audio-95s.mp4",
+    "bytes": 13880320,
+    "sha256": "23174b3c351735f040e8ec088813cdd0271cb318718b9c29d7a05535dc92ac89",
+    "duration_seconds": 95.8,
+    "width": 1920,
+    "height": 1080,
+    "fps": "25/1",
+    "video_frames": 2395
+  }
+]

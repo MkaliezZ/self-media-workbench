@@ -1,5 +1,5 @@
 """Deterministic RGBA motion compositor driven by saved source-bound plans."""
-import json,math,subprocess
+import io,json,math,subprocess
 from pathlib import Path
 import numpy as np
 from PIL import Image,ImageDraw,ImageFont,ImageFilter,ImageChops,ImageOps
@@ -46,13 +46,17 @@ def validate_effects(body,resolved,total):
         duration=cue['end']-cue['start']
         if duration<=0 or cue['end']>total+1e-6 or not cue['reason'].strip():raise ValueError('Invalid motion interval/reason')
         kind=cue['kind']
-        if kind in ('document_extract','motion_layer','track_matte'):
+        if kind in ('document_extract','motion_layer','track_matte','keyframe_layer'):
             id=cue['source_id'];s=resolved.get(id)
             if not s or not s['info']['has_video']:raise ValueError('Motion needs an actual registered image/video source')
             info=s['info'];used.add(id);crop=cue['source_rect'] if kind=='document_extract' else cue['crop']
             x,y,x2,y2=box(crop,info['width'],info['height'])
             if min(x2-x,y2-y)<2:raise ValueError('Motion source region is smaller than two pixels')
-            if kind=='document_extract':
+            if kind=='keyframe_layer':
+                if info['kind']!='image':raise ValueError('Keyframe layer currently needs a registered still image; video remains motion_layer')
+                from keyframe_tools import validate
+                validate(cue,duration)
+            elif kind=='document_extract':
                 if info['kind']!='image':raise ValueError('Document extraction needs a registered still image')
                 if duration<sum(cue[k] for k in ['reveal_seconds','highlight_seconds','lift_seconds','return_seconds'])+.1:raise ValueError('Document stages leave no readable hold')
                 q=np.array([[p['x'],p['y']] for p in cue['page_quad']]);edges=np.roll(q,-1,axis=0)-q
@@ -116,7 +120,7 @@ def highlighted(page,cue,progress):
 
 
 def text_layer(cue,w,h,font_path):
-    x,y,x2,y2=box(cue['slot'],w,h);im=Image.new('RGBA',(x2-x,y2-y));d=ImageDraw.Draw(im);f=ImageFont.truetype(str(font_path),round(cue['font_height']*h));lines=cue['text'].split('\n');line_h=round(cue['font_height']*h*1.35);top=(im.height-line_h*len(lines))/2
+    x,y,x2,y2=box(cue['slot'],w,h);im=Image.new('RGBA',(x2-x,y2-y));d=ImageDraw.Draw(im);f=ImageFont.truetype(io.BytesIO(Path(font_path).read_bytes()),round(cue['font_height']*h));lines=cue['text'].split('\n');line_h=round(cue['font_height']*h*1.35);top=(im.height-line_h*len(lines))/2
     bounds=[d.textbbox((0,top+row*line_h),line,font=f) for row,line in enumerate(lines) if line]
     if bounds and (min(b[1] for b in bounds)<0 or max(b[3] for b in bounds)>im.height):raise ValueError('Motion text exceeds its slot vertically; enlarge the slot, split the cue or reduce font height')
     accent_at=cue['text'].find(cue['accent']) if cue['accent'] else -1;offset=0
@@ -140,9 +144,12 @@ def render_layer(body,sources,dest,font_path=None):
     frames=body['_motion_frames'];effects=body.get('effects',[]);cache={};readers={};events=[]
     for i,cue in enumerate(effects):
         k=cue['kind'];entry={'kind':k,'start_frame':math.ceil(cue['start']*fps-1e-7),'end_frame':math.ceil(cue['end']*fps-1e-7),'request':cue}
-        if k in ('document_extract','motion_layer','track_matte'):
+        if k in ('document_extract','motion_layer','track_matte','keyframe_layer'):
             source=sources[cue['source_id']]
             if source['info']['kind']=='image':cache[i]=Image.open(source['path']).convert('RGBA')
+        if k=='keyframe_layer':
+            from keyframe_tools import prepare
+            cache[('finish',i)]=prepare(cue,(w,h))
         if k=='track_matte':
             image=Image.open(sources[cue['matte_id']]['path']).convert('RGBA')
             mask=image.getchannel('A') if cue['matte_mode']=='alpha' else ImageChops.multiply(image.convert('L'),image.getchannel('A'))
@@ -168,7 +175,10 @@ def render_layer(body,sources,dest,font_path=None):
                     if t>=cue['end'] and i in readers:readers.pop(i).close()
                     continue
                 a=t-cue['start'];duration=cue['end']-cue['start'];k=cue['kind']
-                if k=='document_extract':
+                if k=='keyframe_layer':
+                    from keyframe_tools import render
+                    canvas.alpha_composite(render(cache[i],cue,a,(w,h),n,cache[('finish',i)]))
+                elif k=='document_extract':
                     page,hi,crop,q,selected,target=cache[('doc',i)];hp=clamp((a-cue['reveal_seconds'])/cue['highlight_seconds'])
                     shown=page if hp==0 else hi if hp==1 else highlighted(page,cue,hp);warp(shown,q,canvas)
                     lifted=cue['reveal_seconds']+cue['highlight_seconds'];back=duration-cue['return_seconds']

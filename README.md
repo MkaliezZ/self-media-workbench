@@ -12,7 +12,18 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 **对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不代表已完成内容创作。
 
+### 样片：看实际输出
+
+| 高级口播 · 90 秒 | 剪辑特效声画版 · 95.8 秒 |
+|---|---|
+| [![高级口播：让下一条，有据可改](docs/demos/advanced-talking.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/advanced-talking-90s.mp4) | [![文章抽离、蒙版与轨道遮罩](docs/demos/effects-with-audio.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/effects-with-audio-95s.mp4) |
+| [播放／下载 MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/advanced-talking-90s.mp4)：以自媒体运营逻辑串起关键词匹配、前景遮挡、原文抽离、对照图解与复盘。 | [播放／下载 MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/effects-with-audio-95s.mp4)：14 组文章标黄、透视拉正、聚光灯、画中画、视频填字、Alpha／亮度／反向遮罩与转场。 |
+
+两条均为实际导出的 1080p / 25fps 成片，包含合成旁白、BGM 与轻音效。90 秒样片使用有室内背景的 AI 静态人物图，无口型动画；原始口播视频实际经过 CUDA ASR，按原时间边界整理字幕。图像与声音生成在工作台外完成，剪辑与合成由工作台执行。[分段说明、文件校验与媒体许可](docs/demos/README.md)。
+
 ### 给其他 Agent 的快速开始
+
+**两种口播流程：**普通口播侧重原意、删音、字幕和必要配图；**高级口播**先按语义拆镜，再安排分层遮挡、纸页透视、关键词扫描、原文抽离、关系图和声音。统一入口返回 `talking_profiles`，Agent阅读[高级口播说明](skills/self-media-workflow/references/advanced-talking.md)，编译成原生时间轴并实际导出。静态人物图与合成旁白可作已声明的模拟素材；生成模型/服务另行准备。多阶段透视是平面合成，声音信号检查不代替听审。
 
 把仓库链接和任务发给具备文件读写、终端执行能力的 Agent 即可，无需让使用者记安装或启动命令：
 
@@ -100,6 +111,7 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 选题 | 有素材支撑的备选题与选定问题 |
 | 脚本 | 口播词、镜头、时长估算与行动引导 |
 | 本地剪辑 | 实际 ASR、明确的剪除与恢复、审阅后的字幕分组、MP4/SRT/JSON |
+| 高级口播 | 按语义分场、冻结制作模板、平面关键帧、原像素逐行标黄／反相、前景遮挡、声音编排与真实导出 |
 | 视觉编辑 | 完整字幕组强调、本地配图、静态区域高亮、方案与时间轴 |
 | 行业与类型模板 | 十二类预设；Agent 生成自定义叙事/用镜/节奏/声音逻辑，按组件能力编译 |
 | 发布准备 | 标题、配文、披露说明及真实素材绑定 |
@@ -130,9 +142,11 @@ Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确�
 
 内置知识教学、财经商业、美业服务、电商产品、餐饮探店、家居房产、有旁白旅行 Vlog，以及补回的不露脸资料、科普、生活场景、游戏事件回看和第一人称解说。Agent 还可按行业、视频形式、观看目的与素材条件生成项目专用逻辑，每段说明画面、节奏和声音，保存定义/版本后编译为实际方案。纯画面、多源及审阅后的音乐打点现使用[原生时间轴](docs/native-timeline.md)，无须 ASR；跟踪、复杂组动画、变速与音乐生成仍列为缺项。[使用与边界](docs/industry-templates.md) · [本轮验证](evaluation/industry-templates-20261025.md)。
 
+高级口播新增有界多阶段平面关键帧、顺序扫描且持续保留的原像素标黄／反相，以及按层配置的模糊、暗角、颗粒、半色调等处理。Agent 按语义编排位置与时机；不代表自动 OCR、人物抠像、运动跟踪或真正的 3D 引擎。[动效与边界](docs/motion-effects.md) · [高级口播验收及失败修订](evaluation/advanced-talking-20261025.md)。
+
 ### 功能规划
 
-重点文案强调、语义打点、素材检索与配图见[文案驱动视觉编辑规划](docs/plans/visual-editing-roadmap.md)。多种内容形式的方法库、条件方案、画面与声音组件及接入顺序见[剪辑体系合并规划](docs/plans/editing-system-integration.md)。本地字幕强调、图片布局与静态区域提示已接入；在线检索、复杂动效与声音生成仍是规划，当前范围以实际 schema 和验证结果为准。
+重点文案强调、语义打点、素材检索与配图见[文案驱动视觉编辑规划](docs/plans/visual-editing-roadmap.md)。多种内容形式的方法库、条件方案、画面与声音组件及接入顺序见[剪辑体系合并规划](docs/plans/editing-system-integration.md)。本地字幕强调、图片布局与静态区域提示已接入；在线检索、复杂组动画与声音生成仍是规划，当前范围以实际 schema 和验证结果为准。
 
 ### 协议与私有材料
 
@@ -144,7 +158,18 @@ Your AI Agent chooses the relevant feature, resumes the right project, creates c
 
 **Just tell the Agent your task:** “Diagnose this account and select topics,” “Revise this talking-head script,” “Edit this video and check the captions,” or “Continue the previous project with a performance review.” The unified entry prepares the project, inputs, state and starting phase; the calling Agent then reasons and executes. An intake plan is not completed content.
 
+### Watch actual exports
+
+| Advanced talking head · 90 seconds | Editing effects with audio · 95.8 seconds |
+|---|---|
+| [![Advanced talking head: evidence for the next edit](docs/demos/advanced-talking.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/advanced-talking-90s.mp4) | [![Document extraction, masks and track mattes](docs/demos/effects-with-audio.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/effects-with-audio-95s.mp4) |
+| [Watch / download MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/advanced-talking-90s.mp4): account diagnosis, topics, scripts and review, with keyword match cuts, foreground occlusion, document extraction and diagrams. | [Watch / download MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/effects-with-audio-95s.mp4): 14 demonstrations of highlighting, rectification, spotlight, PiP, video-in-text, alpha/luma/inverted mattes and transitions. |
+
+Both are actual 1080p / 25fps exports with declared synthetic Chinese narration, BGM and light sound effects. The 90-second film uses a static AI office portrait without lip animation. Its raw video underwent actual CUDA ASR, with captions retaining the original group bounds. Image and voice generation are external preparation; editing and compositing run in the workbench. [Chapters, checksums and media licensing](docs/demos/README.md).
+
 ### Quick start for other Agents
+
+**Two talking-head routes:** ordinary editing preserves meaning, reviews cuts and captions, and adds only needed visuals. **Advanced talking head (高级口播)** authors semantic scenes with layered occlusion, planar perspective keys, source-pixel emphasis/extraction, diagrams and sound. Discover `talking_profiles` and read the [operator guide](skills/self-media-workflow/references/advanced-talking.md), compile a native timeline, then actually export and inspect it. Declared static AI portraits plus synthetic voice are supported inputs; avatar/TTS/music generation remains external. Planar compositing is not 3D, and audio signal checks do not replace listening.
 
 Send the repository link and a task to an Agent that can read/write files and execute terminal commands. The user does not need to remember installation or startup commands:
 
@@ -264,26 +289,24 @@ Native timelines also render six overlap-transition choices and real rectangle/e
 
 Source-bound [motion effects](docs/motion-effects.md) also execute article highlighting, paragraph extraction/rectification/return, screenshot magnification, authored moving spotlights, video PiP entrance transforms, linear mask reveals and kinetic text. The calling Agent selects real source regions and explicit output timing; these are not automatic OCR, tracking or acoustic character alignment. A reproducible technical showcase is provided in `scripts/motion_showcase.py`.
 
-轨道遮罩现可用 `track_matte` 执行视频填字、Alpha/亮度/反向遮罩及羽化，组合已有位移、分屏、前景透明洞与转场。使用[蒙版展示脚本](scripts/mask_showcase.py)生成实际原生示例。文字布局在保存与导出前预检，避免推进到不可导出的head；自动抠像/跟踪仍未实现。
 
 Native `track_matte` renders video-in-text, alpha/luma/inverted mattes and feathering, combined with endpoint motion, split reveals, foreground alpha holes and transitions. The [mask showcase](scripts/mask_showcase.py) uses the same native API. Frozen-font text layout is preflighted before save/head mutation and export-job creation. Automatic segmentation and tracking remain unsupported.
 
-本轮Windows、Apple Silicon、Intel Mac各71项检查及原生功能片导出通过；同一独立封存新素材另在三端实际通过25项媒体检查、11类非法输入，原始失败与未测组合继续保留。[独立三端验收](evaluation/independent-matte-20261025.md)。
 
 This revision passed71 checks and actual technical-film exports on each native Windows, Apple Silicon and Intel Mac host. The same independently sealed changed-material case separately passed25 media checks and11 rejected requests per native host. Original failures and untested combinations remain explicit in the [independent native acceptance](evaluation/independent-matte-20261025.md).
 
+Advanced production adds bounded multi-stage planar keyframes, sequential held source-pixel highlighting/inversion, and per-layer blur, vignette, grain and halftone finish. The Agent authors material selection and timing; automatic OCR, tracking, matting and true 3D are not provided. [Advanced production evidence and retained failures](evaluation/advanced-talking-20261025.md).
+
 ### Planned capabilities
 
-See the [visual-editing roadmap](docs/plans/visual-editing-roadmap.md) for emphasis, semantic cueing and asset search/composition, and the [editing-system integration plan](docs/plans/editing-system-integration.md) for conditional recipes, reusable visual/audio operations and implementation stages. Local caption emphasis, image layouts and static regions are integrated. Online search, complex animation and sound generation remain planned; current schemas and actual validation define runtime scope.
+See the [visual-editing roadmap](docs/plans/visual-editing-roadmap.md) for emphasis, semantic cueing and asset search/composition, and the [editing-system integration plan](docs/plans/editing-system-integration.md) for conditional recipes, reusable visual/audio operations and implementation stages. Local caption emphasis, image layouts and static regions are integrated. Online search, complex group animation and sound generation remain planned; current schemas and actual validation define runtime scope.
 
 ### License and private materials
 
 MIT applies to this repository's own code and documentation. The previous private prototype used an AGPL renderer; this public version replaces that path with its own Python/FFmpeg implementation and includes none of that vendor code. Dependencies and separately installed FFmpeg/model binaries retain their own licenses; see [THIRD_PARTY.md](THIRD_PARTY.md).
 
-补齐的功能逻辑见[剪辑逻辑库](docs/editing-logics.md)；原生时间轴本轮验收另行记录，旧版 59 项结果不覆盖本次新增功能。
 
 Reconciled mechanisms: [editing logic library](docs/editing-logics.md). Native-timeline acceptance is reported separately; the historical 59-test result does not cover this addition.
 
-原生时间轴已在 Windows、Apple Silicon 与 Intel Mac 各通过64项测试、实际后台重启续做、独立换素材16→15→16秒剪切/恢复，以及350帧/14秒实景旅行示例。各端恢复版与该端首版哈希一致；Mac缺帧和比较器修订均保留。[本轮验收记录](evaluation/native-timeline-20261025.md)。技术验收不代表真人审美听审或真实运营效果。
 
 Native timelines passed 64 tests per host, real HTTP restart/resume, the independent 16→15→16s changed-material recovery case and a 350-frame/14s real-scenery edit on Windows, Apple Silicon and Intel macOS. Each restored export matched that host's baseline hash; Mac frame-clock failures and comparator repairs remain recorded. See [current acceptance](evaluation/native-timeline-20261025.md). Technical acceptance does not establish human listening aesthetics or publishing effectiveness.

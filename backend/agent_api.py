@@ -249,17 +249,19 @@ def register(w):
     def capabilities():
         return {'protocol_version':1, 'primary_client':'ai_agent',
                 'reasoning_executor':'calling agent using the skill; server stores, validates and runs local media tools',
-                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe','timeline-plan','timeline-export','music-onsets']},
+                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe','talking-profile','timeline-plan','timeline-export','music-onsets']},
                 'media_editing':{'spoken_cuts':'explicit contiguous ASR word groups with reason and source/run binding',
                                  'restore':'speech_cuts=[] restores spoken groups; omitted preserves decisions',
                                  'review_attempts':'project media/<mid>/review-attempts records accepted/rejected writes'},
                 'native_timeline':{'transitions':['fade','wipeleft','wiperight','slideleft','slideright','circleopen'],
                     'transition_timing':'overlap reduces total frames; reviewed music edges use transition midpoints',
                     'masks':'static rectangle/ellipse source crops with inward feather, opacity and multiplied original PNG alpha',
-                    'motion_effects':['document_extract','motion_layer','spotlight','motion_text','track_matte'],
+                    'motion_effects':['document_extract','motion_layer','spotlight','motion_text','track_matte','keyframe_layer'],
                     'limits':'32 shots with transitions, 16 masks; no automatic tracking/matting'},
                 'actions':{
                     'editing_logics':{'method':'GET','path':'/api/visual/logics'},
+                    'talking_profiles':{'method':'GET','path':'/api/visual/talking-profiles'},
+                    'compile_talking_profile':{'method':'POST','path':'/api/projects/{pid}/talking-profile/compile','schema':PREFIX+'/schemas/talking-profile'},
                     'timeline_plans':{'method':'GET','path':'/api/projects/{pid}/timeline-plans'},
                     'save_timeline':{'method':'POST','path':'/api/projects/{pid}/timeline-plans','schema':PREFIX+'/schemas/timeline-plan'},
                     'align_timeline':{'method':'POST','path':'/api/projects/{pid}/timeline/align','schema':PREFIX+'/schemas/timeline-plan'},
@@ -291,6 +293,9 @@ def register(w):
 
     @app.get(PREFIX+'/schemas/{name}')
     def schema(name:str):
+        if name=='talking-profile':
+            from talking_profiles import TalkingCompile
+            return TalkingCompile.model_json_schema()
         if name in ('timeline-plan','timeline-export','music-onsets'):
             from timeline_models import TimelinePlan,TimelineExport,OnsetRequest
             return {'timeline-plan':TimelinePlan,'timeline-export':TimelineExport,'music-onsets':OnsetRequest}[name].model_json_schema()

@@ -82,4 +82,37 @@ class TrackMatte(MotionLayer):
     invert: bool=False
 
 
-Effect=Annotated[Union[DocumentExtract,MotionLayer,Spotlight,MotionText,TrackMatte],Field(discriminator='kind')]
+class ScenePoint(Strict):
+    x: float=Field(ge=-4,le=5,allow_inf_nan=False)
+    y: float=Field(ge=-4,le=5,allow_inf_nan=False)
+
+
+class LayerKey(Strict):
+    at: float=Field(ge=0,allow_inf_nan=False,description='Seconds relative to the cue start')
+    quad: list[ScenePoint]=Field(min_length=4,max_length=4,description='Convex upright TL/TR/BR/BL; outside-canvas coordinates permit intentional cropping')
+    opacity: float=Field(default=1.,ge=0,le=1,allow_inf_nan=False)
+    blur: float=Field(default=0.,ge=0,le=24,allow_inf_nan=False)
+
+
+class KeyframeLayer(Timed):
+    kind: Literal['keyframe_layer']
+    source_id: str
+    crop: Rect=Field(default_factory=lambda:Rect(x=0.,y=0.,width=1.,height=1.))
+    keys: list[LayerKey]=Field(min_length=2,max_length=32)
+    easing: Literal['linear','smoothstep','ease_out_cubic']='smoothstep'
+    shadow: bool=False
+    grayscale: bool=False
+    focus_rect: Rect | None=None
+    edge_blur: float=Field(default=0.,ge=0,le=18,allow_inf_nan=False)
+    vignette: float=Field(default=0.,ge=0,le=.8,allow_inf_nan=False)
+    chroma_pixels: int=Field(default=0,ge=0,le=8)
+    grain: float=Field(default=0.,ge=0,le=.12,allow_inf_nan=False)
+    halftone: float=Field(default=0.,ge=0,le=.4,allow_inf_nan=False)
+    highlights: list[Rect]=Field(default_factory=list,max_length=12)
+    highlight_mode: Literal['multiply','invert']='multiply'
+    highlight_colour: Colour='FFE66B'
+    highlight_delay: float=Field(default=0.,ge=0,allow_inf_nan=False)
+    highlight_seconds: float=Field(default=.6,gt=0,le=5,allow_inf_nan=False)
+
+
+Effect=Annotated[Union[DocumentExtract,MotionLayer,Spotlight,MotionText,TrackMatte,KeyframeLayer],Field(discriminator='kind')]

@@ -329,6 +329,7 @@ def register(w):
         def worker():
             result=render(record,plan_dir,dest)
             w.write(dest/'provenance.json',{'timeline_plan_id':record['id'],'created_at':w.now(),'external_publication':False,
+                'video_sha256':w.file_sha256(dest/'timeline.mp4'),
                 'sources':[{'id':s['id'],'sha256':s['sha256'],'metadata':s['metadata']} for s in record['sources']],
                 'timing_scope':record['map']['timing_scope']})
             return {'export_id':eid,'timeline_plan_id':record['id'],**result}

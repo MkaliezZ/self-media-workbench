@@ -196,18 +196,46 @@ def register(w):
         if stage == 'publish':
             mids = {m['id']:m for m in state['media']}
             exports = {e['id']:e for e in state['exports']}
+            plans = {p['id']:p for p in state['timeline_plans']}
+            bound_exports = set()
+            computed['publication_exports'] = []
             for asset in payload['assets']:
-                mid, eid = asset['media_id'], asset['export_id']
-                if mid not in mids:
-                    error('unknown_media', 'payload.assets', mid)
-                elif mids[mid].get('media_nature') in ('generated', 'mixed', 'restored') and not payload['disclosure'].strip():
+                eid = asset['export_id']
+                provenance = exports.get(eid,{}).get('provenance',{})
+                is_timeline = asset.get('kind') == 'timeline'
+                if is_timeline:
+                    plan_id = asset['timeline_plan_id']
+                    valid = plan_id in plans and eid in exports and provenance.get('timeline_plan_id') == plan_id
+                    source_metadata = [s['metadata'] for s in plans.get(plan_id,{}).get('sources',[])]
+                else:
+                    mid = asset['media_id']
+                    if mid not in mids:error('unknown_media', 'payload.assets', mid)
+                    valid = mid in mids and eid in exports and provenance.get('source_media_id') == mid
+                    source_metadata = [mids[mid]] if mid in mids else []
+                if any(m.get('media_nature') in ('generated','mixed','restored') for m in source_metadata) and not payload['disclosure'].strip():
                     error('missing_disclosure', 'payload.disclosure', 'State generated/restored/mixed asset nature.')
-                if eid is not None and (eid not in exports or exports[eid]['provenance']['source_media_id'] != mid):
-                    error('unbound_export', 'payload.assets', str(eid))
+                if eid is None and not is_timeline:continue
+                job = next((j for j in state['jobs'] if j['status']=='done' and j.get('result',{}).get('export_id')==eid
+                            and (j['kind']=='timeline_export' if is_timeline else j.get('media_id')==asset['media_id'])),None)
+                video_name = 'timeline.mp4' if is_timeline else (job or {}).get('result',{}).get('primary_video','reviewed_cut.mp4')
+                video = w.folder(state['project']['id'])/'exports'/str(eid)/video_name
+                if not valid or not job or not video.is_file():
+                    error('unbound_export', 'payload.assets', 'Bind an actual completed export from this project and its matching source/plan: '+str(eid))
+                    continue
+                video_sha = w.file_sha256(video)
+                if provenance.get('video_sha256') and provenance['video_sha256'] != video_sha:
+                    error('changed_export', 'payload.assets', 'Completed video bytes changed: '+str(eid))
+                    continue
+                bound_exports.add(eid)
+                computed['publication_exports'].append({'export_id':eid,'kind':'timeline' if is_timeline else 'media',
+                    'video_sha256':video_sha,'hash_scope':'matched_export' if provenance.get('video_sha256') else 'captured_at_submission'})
             for check in payload['checklist']:
                 check_links(check['evidence'], 'payload.checklist')
-                if check['state'] == 'checked' and not check['evidence']:
-                    error('unsupported_check', 'payload.checklist', 'Checked requires a source anchor.')
+                if any(eid not in bound_exports for eid in check['export_ids']):
+                    error('unbound_check_export', 'payload.checklist', 'Checklist export references must also be valid bound publication assets.')
+                if check['state'] == 'checked' and not check['evidence'] and not check['export_ids']:
+                    error('unsupported_check', 'payload.checklist', 'Checked requires a source anchor or a bound completed export.')
+            warnings.append('Export references bind actual local files, not human listening, factual accuracy, rights clearance or external publication.')
         if stage == 'review':
             computed['metrics'] = []
             for i,m in enumerate(payload['metrics']):

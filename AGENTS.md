@@ -4,6 +4,8 @@ For “高级口播” / advanced talking-head edits, discover talking_profiles 
 
 This is an Agent workbench. You, the calling Agent, reason, choose topics and write content; the local service records evidence/state, validates submissions and executes media tools. No model API key or browser form is required.
 
+Publication preparation accepts ordinary media/export bindings and native timeline/export bindings; discover publish schema and read references/publish.md. A timeline asset uses kind=timeline, timeline_plan_id and export_id. Checklist export_ids must reference completed exports also bound in assets. Technical file references never certify listening, rights or real external publication. Corrupt media import returns 422 and removes only its newly created failed copy; source files and project state remain intact. Imported video_duration/audio_duration are separate source clocks.
+
 For any user task, use `python workbench.py run "<user task>"` (or `python3` on macOS). Pass explicitly provided files with repeated `--input` options. The entry starts a loopback service automatically, registers supported files and selects a project/start phase from actual state. You may pass `--intent` after interpreting the whole task; otherwise auto routing is a conservative hint. Do not tell the user to remember commands or provide JSON.
 
 The returned JSON is an intake plan, **not finished generated content**. Read its context and `skill.entry`, then the reference for the selected phase. Discover submission and phase schemas via `python workbench.py schema submission` and `schema <phase>`; perform the work and submit with `python workbench.py submit <project_id> --json <your file>`. Every successful mutation requires fresh context before the next submission.

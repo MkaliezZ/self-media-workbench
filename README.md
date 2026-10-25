@@ -114,7 +114,7 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 高级口播 | 按语义分场、冻结制作模板、平面关键帧、原像素逐行标黄／反相、前景遮挡、声音编排与真实导出 |
 | 视觉编辑 | 完整字幕组强调、本地配图、静态区域高亮、方案与时间轴 |
 | 行业与类型模板 | 十二类预设；Agent 生成自定义叙事/用镜/节奏/声音逻辑，按组件能力编译 |
-| 发布准备 | 标题、配文、披露说明及真实素材绑定 |
+| 发布准备 | 标题、配文、披露说明；普通媒体或原生／高级时间轴导出绑定、检查项导出引用 |
 | 原生时间轴 | 无旁白画面、多源/静帧、独立音轨、审阅音乐打点、标题、版本恢复 |
 | 转场与蒙版 | 重叠转场、矩形/椭圆真 Alpha 蒙版、局部取景、向内羽化、PNG 透明区域保留 |
 | 信息动效 | 文章标黄后抽离/透视拉正/放大/收回、局部放大、移动聚光灯、视频画中画入场、线性揭示与重点文字动效 |
@@ -125,6 +125,8 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 项目状态默认保存在操作系统的私有应用数据目录。`configure --data-dir ...` 可复用已有项目库，无需移动或删除数据。`--skill-root` 和 `--library` 可选接入私有方法及知识目录。配置改变后需要重启运行中的服务。[配置与协议](docs/configuration.md)。
 
 ### 平台支持与验证范围
+
+**DSH 新素材盲测修订：**已修复损坏媒体导入的 500／残留，以及截断 WAV 被当成短音频误接受的问题，并补齐高级时间轴成片接发布准备的绑定。本机 80 项完整回归通过，独立复测与本轮 CI 结果持续记录在[DSH 盲测与修订记录](evaluation/dsh-blind-round2-20261025.md)；下方历史三平台成绩不替代本轮终态。
 
 **2026-10-25 本轮：**Windows、Apple Silicon（ARM64）、Intel Mac（x86_64）的兼容性、高级口播、独立蒙版三组 CI 共 **9 个原生任务全部通过**。每端高级口播回归 78 项、独立媒体检查 27 项、扫描／蒙版补充检查 49 项；包含实际导出、声音整理、恢复与后台重启。Apple Silicon 另确认实际 MLX GPU 转写与导出，无 CPU 回退。云端 Windows／Intel Mac 的 ASR 为 CPU 基线，不能当作对应 GPU 实测。[本轮完整记录](evaluation/advanced-talking-20261025.md) · [CI 结果索引](evaluation/advanced-ci-20261025.json)。
 
@@ -262,7 +264,7 @@ The entry automatically starts/reuses an identified loopback service, registers 
 | Advanced talking head | Semantic scenes, frozen production profile, planar keyframes, original-pixel highlight/invert scans, foreground occlusion, audio arrangement and actual exports |
 | Visual editing | Complete-cue emphasis, local images, static region highlights, saved plans/timeline |
 | Industry/form recipes | Twelve presets; Agent-generated story/shot/pacing/audio logic, compiled within actual component limits |
-| Publication preparation | Title/caption/disclosure and real asset bindings |
+| Publication preparation | Title/caption/disclosure, ordinary or native/advanced timeline export bindings, and checklist export references |
 | Native timeline | Silent/multi-source/still footage, independent audio, reviewed music edges, titles and revision restoration |
 | Review | Defined metrics or collection plan, hypothesis and next experiment |
 
@@ -271,6 +273,8 @@ A focused task can enter script/edit/review directly. Complete workflows resume 
 State defaults to the operating system's private application-data directory. `configure --data-dir ...` can reuse an existing project store without moving or deleting it. `--skill-root` and `--library` optionally use private method/knowledge directories. Restart a running service after changing configuration. [Configuration and protocol](docs/configuration.md).
 
 ### Platform and validation scope
+
+**New DSH changed-material revision:** fixes corrupt-import HTTP 500/residue and truncated-WAV acceptance, and connects native/advanced exports to publication preparation. All 80 current local regression tests passed. Independent retest and this revision's native CI are tracked in the [DSH audit and repair record](evaluation/dsh-blind-round2-20261025.md); earlier results below do not substitute for their terminal results.
 
 **2026-10-25 revision:** all **9 native jobs** passed across compatibility, advanced-production and independent-matte workflows on Windows, Apple Silicon (ARM64) and Intel Mac (x86_64). Each host passed 78 advanced regression tests, 27 independent media checks and 49 scan/mask supplement checks, with actual exports, mastering, restoration and service restart. Apple Silicon additionally verified actual MLX GPU ASR/export without CPU fallback. Hosted Windows/Intel Mac ASR is a CPU baseline, not vendor GPU acceptance. [Full evidence](evaluation/advanced-talking-20261025.md) · [CI index](evaluation/advanced-ci-20261025.json).
 

@@ -92,6 +92,8 @@ class VisualEditingTests(unittest.TestCase):
             job=self.client.get(f'/api/projects/{self.pid}/jobs/'+job['id']).json()
         self.assertEqual(job['status'],'done',json.dumps(job,ensure_ascii=False))
         dest=self.path/'exports'/job['result']['export_id']
+        provenance=json.loads((dest/'provenance.json').read_text('utf-8'))
+        self.assertEqual(provenance['video_sha256'],sha(dest/job['result']['primary_video']))
         subprocess.run(['ffmpeg','-v','error','-i',str(dest/'visual.mp4'),'-f','null','-'],check=True,capture_output=True)
         return dest
 

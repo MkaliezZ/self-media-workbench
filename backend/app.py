@@ -198,16 +198,31 @@ async def import_media(pid: str, body: MediaImport):
     mid = uuid.uuid4().hex
     dest = path/'media'/mid/('original'+source.suffix.lower())
     dest.parent.mkdir(parents=True)
-    await __import__('asyncio').to_thread(shutil.copy2, source, dest)
-    digest = await __import__('asyncio').to_thread(file_sha256, dest)
-    metadata = json.loads(subprocess.check_output(['ffprobe','-v','error','-show_format','-show_streams','-of','json',str(dest)]))
+    try:
+        await __import__('asyncio').to_thread(shutil.copy2, source, dest)
+        digest = await __import__('asyncio').to_thread(file_sha256, dest)
+        if dest.suffix == '.wav':
+            with dest.open('rb') as stream:header=stream.read(12)
+            if header[:4] == b'RIFF' and header[8:12] == b'WAVE':
+                declared_bytes = int.from_bytes(header[4:8], 'little')
+                if declared_bytes not in (0, 0xffffffff) and declared_bytes+8 > dest.stat().st_size:
+                    raise ValueError('Truncated WAV RIFF container')
+        from timeline_tools import source_info
+        info = await __import__('asyncio').to_thread(source_info, dest, 'media')
+    except (OSError, ValueError, KeyError, TypeError, subprocess.SubprocessError) as exc:
+        # This newly generated UUID folder belongs only to this failed import.
+        # Validate the absolute deletion target; never remove the caller's input.
+        if dest.parent.resolve().parent != (path/'media').resolve() or dest.parent.name != mid:
+            raise RuntimeError('Refuse cleanup outside the current media import') from exc
+        await __import__('asyncio').to_thread(shutil.rmtree, dest.parent)
+        raise HTTPException(422, 'Cannot import readable audio/video: '+str(exc)) from exc
     item = {'id':mid,'name':source.name,'imported_from':str(source),'relative_path':dest.relative_to(path).as_posix(),
-            'sha256':digest,'duration':float(metadata['format']['duration']),
-            'has_video':any(s['codec_type']=='video' for s in metadata['streams']), 'imported_at':now()}
+            'sha256':digest,'duration':max(info.get('video_duration',0),info.get('audio_duration',0)),
+            'has_video':info['has_video'], 'imported_at':now()}
     item.update(provenance)
-    item['has_audio']=any(s['codec_type']=='audio' for s in metadata['streams'])
-    if not item['has_video'] and not item['has_audio']:
-        raise HTTPException(422,'素材没有可用音视频轨道')
+    item['has_audio']=info['has_audio']
+    for clock in ('video_duration','audio_duration'):
+        if clock in info:item[clock]=info[clock]
     with LOCK:
         project = read(path/'project.json')
         project['media'].append(item)
@@ -394,6 +409,7 @@ def export(pid: str,mid: str,body: ExportReview | None=None):
             from visual_tools import compose
             visual_result = compose(review,plan,visual_record,visual_dir,dest)
         write(dest/'provenance.json',{'source_sha256':item['sha256'],'source_media_id':mid,
+                                     'video_sha256':file_sha256(dest/visual_result.get('primary_video','reviewed_cut.mp4')),
                                      'source_media_metadata':source_metadata,
                                      'project_revision_at_export':project_revision,
                                      'asr_run':out.name,'review_revision':review.get('revision',0),

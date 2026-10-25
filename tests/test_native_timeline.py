@@ -149,4 +149,42 @@ class NativeTimelineTests(unittest.TestCase):
         self.assertLess(float(np.abs(self.audio(movie)).max()),.0001)
 
 
+    def test_publish_binds_real_timeline_and_rejects_wrong_or_changed_export(self):
+        eid=self.result['job']['result']['export_id']
+        timeline={'kind':'timeline','timeline_plan_id':self.record['id'],'export_id':eid}
+        def submit(assets,refs,request_id='publish-timeline',pid=None):
+            pid=pid or self.pid
+            state=self.client.get(f'/api/agent/v1/projects/{pid}/context').json()
+            body={'request_id':request_id,'revision':state['project']['revision'],'context_id':state['context_id'],
+                'stage':'publish','input_artifact_ids':[],'standalone_reason':'Only prepare an already rendered simulation.',
+                'payload':{'script_artifact_id':None,'title':'Synthetic native export','caption':'Not externally published',
+                    'disclosure':'Synthetic graphics and audio for a technical test','assets':assets,
+                    'checklist':[{'item':'Bound exported video','state':'checked','evidence':[],'export_ids':refs}]},
+                'declared_status':'needs_review','unresolved':['No human listening or rights certification'],
+                'supersedes':None,'revision_reason':None}
+            return self.client.post(f'/api/agent/v1/projects/{pid}/artifacts',json=body)
+        before=self.context()['project']
+        wrong={'media_id':before['media'][0]['id'],'export_id':eid}
+        for assets,refs in [([wrong],[eid]),([],[eid]),([{**timeline,'timeline_plan_id':'0'*32}],[eid])]:
+            response=submit(assets,refs)
+            self.assertEqual(response.status_code,422,response.text)
+            self.assertEqual(self.context()['project'],before)
+        response=submit([timeline],[eid]);self.assertEqual(response.status_code,200,response.text)
+        bound=response.json()['computed']['publication_exports'][0]
+        self.assertEqual(bound['video_sha256'],sha(self.original))
+        self.assertEqual(bound['hash_scope'],'matched_export')
+        self.assertEqual(self.context()['project']['verification'],'needs_review')
+        other=self.client.post('/api/projects',json={'title':'Other simulation','simulation':True}).json()
+        response=submit([timeline],[eid],pid=other['id'])
+        self.assertEqual(response.status_code,422,response.text)
+        before=self.context()['project'];original=self.original.read_bytes()
+        try:
+            self.original.write_bytes(original+b'changed bytes')
+            response=submit([timeline],[eid],request_id='changed-publish-video')
+            self.assertEqual(response.status_code,422,response.text)
+            self.assertTrue(any(e['code']=='changed_export' for e in response.json()['errors']))
+            self.assertEqual(self.context()['project'],before)
+        finally:self.original.write_bytes(original)
+
+
 if __name__=='__main__':unittest.main()

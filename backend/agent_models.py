@@ -68,10 +68,17 @@ class Asset(Record):
     export_id: str | None
 
 
+class TimelineAsset(Record):
+    kind: Literal['timeline']
+    timeline_plan_id: str
+    export_id: str
+
+
 class Check(Record):
     item: str = Field(min_length=1)
     state: Literal['checked', 'missing', 'not_applicable']
     evidence: list[Link]
+    export_ids: list[str] = Field(default_factory=list, description='Actual completed exports also bound in this publication assets list; technical evidence references, not human/rights certification.')
 
 
 class Publish(Record):
@@ -79,7 +86,7 @@ class Publish(Record):
     title: str = Field(min_length=1)
     caption: str
     disclosure: str
-    assets: list[Asset]
+    assets: list[Asset | TimelineAsset]
     checklist: list[Check] = Field(min_length=1)
 
 

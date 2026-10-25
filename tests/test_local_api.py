@@ -2,6 +2,7 @@
 import json
 import hashlib
 import sys
+import wave
 import tempfile
 import unittest
 from pathlib import Path
@@ -113,6 +114,33 @@ class LocalApiTests(unittest.TestCase):
         (out/'transcript.original.json').write_text('{}',encoding='utf-8')
         with self.assertRaisesRegex(ValueError,'已有原始转录'):
             transcribe(ROOT/'evidence/asr-smoke/source.mp4',out)
+
+    def test_corrupt_import_has_no_orphan_or_state_change(self):
+        project_dir=self.data/self.project['id']
+        before=self.client.get(self.url).json()
+        for suffix in ('.mp4','.wav'):
+            source=self.data/('truncated'+suffix)
+            source.write_bytes(b'not a valid audio/video stream')
+            before_hash=hashlib.sha256(source.read_bytes()).hexdigest()
+            response=self.client.post(self.url+'/media',json={'path':str(source)})
+            self.assertEqual(response.status_code,422,response.text)
+            self.assertEqual(self.client.get(self.url).json(),before)
+            self.assertEqual(list((project_dir/'media').iterdir()),[])
+            self.assertEqual(list((project_dir/'jobs').glob('*.json')),[])
+            self.assertEqual(hashlib.sha256(source.read_bytes()).hexdigest(),before_hash)
+        wav_source=self.data/'header-valid-but-truncated.wav'
+        with wave.open(str(wav_source),'wb') as stream:
+            stream.setparams((1,2,16000,0,'NONE','not compressed'))
+            stream.writeframes(b'\x00\x01'*16000)
+        original_wav=wav_source.read_bytes();wav_source.write_bytes(original_wav[:4096])
+        response=self.client.post(self.url+'/media',json={'path':str(wav_source)})
+        self.assertEqual(response.status_code,422,response.text)
+        self.assertEqual(self.client.get(self.url).json(),before)
+        self.assertEqual(list((project_dir/'media').iterdir()),[])
+        self.assertEqual(wav_source.read_bytes(),original_wav[:4096])
+        response=self.client.post(self.url+'/media',json={'path':str(fixture_path())})
+        self.assertEqual(response.status_code,200,response.text)
+        self.assertGreater(response.json()['media']['video_duration'],0)
 
 
 if __name__=='__main__':

@@ -51,6 +51,8 @@ TTS、数字人、音乐生成是可选外部素材生产，当前服务不内�
 
 ## English operator note
 
+素材登记的 `asset_id` 与时间轴中自行声明的 source `id` 不同，`evidence_source_id` 引用后者。剪辑末尾用实际 `video_duration`（新导入元数据会返回视频／音频各自时钟），旧素材可 probe 视频流；容器或音频总时长不能替代视频末帧边界。标题溢出时调整必要文案与布局后重新编译，不能删除关键解释只为通过校验。导出后接发布准备，按 [publish.md](publish.md) 绑定 timeline plan 与实际 export，不伪造 media_id。
+
 Discover the ordinary and advanced profiles, inspect real sources, then author scene purposes and local-time effects. The compiler offsets scenes onto the native frame clock and freezes the profile manifest. Save the returned timeline unchanged and poll the actual export. Never substitute the compiler response for a finished film.
 
 The new still-image keyframe layer supports bounded planar perspective, opacity/blur keys, alpha-preserving compositing, source-pixel highlight/inversion, selective edge defocus and restrained texture. It is not 3D, OCR, matting, tracking, acoustic alignment or an avatar/TTS/music generator. Decode checks reject silent voice paths but cannot certify speech quality. Keep the ordinary route simple and retain failed drafts and immutable revisions.

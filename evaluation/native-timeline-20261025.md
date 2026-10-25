@@ -22,6 +22,18 @@ The illustrated coastal case uses four locally authored scenes and original tona
 
 Independent fresh-clone, changed-material acceptance and native Windows/Apple Silicon/Intel cloud runs are recorded below when executed. Initial local evidence alone is not their completion.
 
+## Native-clock failure and correction
+
+The first native [cloud run](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40181258207) exposed a real clock defect on macOS: the requested 300-frame montage decoded to 298 frames, and an 11-second revision measured 10.92 seconds. The strict checks failed; their thresholds were not relaxed. Normalized segment clocks now use filter frame limits, exact PCM sample clocks, explicit concat durations and no intermediate B-frame reordering. A container-wide video-frame limit that could stop other streams early was removed. The final video/audio clocks are explicitly bounded, and the exporter now reads actual decoded frame counts/durations into timeline-verification.json and fails if they disagree with the saved map. Segment PCM sample counts and video frames are also checked by the acceptance suite.
+
+The corrected Windows native cases passed again. Native Mac re-execution is required; a Windows pass is not substituted. The initial Mac artifacts/logs and the first timing analysis remain in local evidence.
+
+## Independent changed-material check
+
+An independent Agent designed/sealed its task and four travel-animation/music inputs before receiving product commit 380f904. It then freshly cloned the public repository, used only the documented entry/capabilities and its own sources, and executed baseline/cut/restored exports. On Windows these measured 16/15/16 seconds and 480/450/480 frames, with zero music-clock lag and unchanged original hashes; baseline/restored MP4 hashes were identical on that host. See [the independent case and its declared limits](independent_travel/README.md).
+
+The first independent image checker incorrectly assumed pure-black padding. It was corrected to compare only source-bearing pixels without changing the sealed task/materials or error threshold. Its report-path reuse and reconstruction are explicitly disclosed, rather than claimed as untouched original evidence. This was a measurement repair, separate from the real Mac product-clock defect. Its portable changed-material entry has been added to each native OS job; platform results will be recorded after execution.
+
 ## Reproduction
 
 `python -B -X utf8 -m unittest discover -s tests -v` and `python -B -X utf8 scripts/timeline_http_acceptance.py --out <new evidence folder>`. Set TIMELINE_EVIDENCE_ROOT and VISUAL_EVIDENCE_ROOT to retain original requests/inputs, rejected attempts, failed jobs, frozen assets, process logs and outputs. The compatibility workflow runs both checks on native Windows, macOS ARM64 and Intel; generated test media is reproducible and needs no model for the timeline path.

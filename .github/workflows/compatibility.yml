@@ -53,6 +53,8 @@ jobs:
         run: python -B -X utf8 -m unittest discover -s tests -v
       - name: Actual native timeline HTTP, music alignment and restart
         run: python -B -X utf8 scripts/timeline_http_acceptance.py --out evaluation/runs/timeline-http
+      - name: Independent changed-material travel timeline
+        run: python -B -X utf8 scripts/independent_timeline_acceptance.py --output evaluation/runs/independent-travel
       - name: Actual native speech, local CPU ASR and HTTP export
         env:
           HF_HUB_DISABLE_XET: '1'
@@ -70,5 +72,8 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: result-${{ matrix.os }}
-          path: evaluation/runs/
+          path: |
+            evaluation/runs/
+            !evaluation/runs/**/font.*
+            !evaluation/runs/**/title-font.*
           if-no-files-found: warn

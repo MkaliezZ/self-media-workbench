@@ -57,6 +57,12 @@ class NativeTimelineTests(unittest.TestCase):
         meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-count_frames','-show_streams','-of','json',str(self.original)]))
         video=next(s for s in meta['streams'] if s['codec_type']=='video')
         self.assertEqual(int(video['nb_read_frames']),300);self.assertEqual((video['width'],video['height']),(640,360))
+        for shot in self.record['map']['shots']:
+            segment=self.original.parent/f"segment-{self.record['map']['shots'].index(shot):04}.mkv"
+            actual=probe(segment,count_frames=True)
+            stream=next(s for s in actual['streams'] if s['codec_type']=='video')
+            self.assertEqual(int(stream['nb_read_frames']),shot['frames'])
+            self.assertAlmostEqual(len(self.audio(segment)),shot['frames']/25*48000,delta=1)
         subprocess.run(['ffmpeg','-v','error','-i',str(self.original),'-f','null','-'],check=True,capture_output=True)
         for i,t in enumerate([.8,3.8,6.8,10.]):
             source=self.folder/'materials'/f'scene-{i}.mp4';local=t-self.record['map']['shots'][i]['output_start']

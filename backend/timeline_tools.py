@@ -152,14 +152,15 @@ def render(record,plan_dir,dest):
         graph=[f"[0:v]trim=start={shot['source_in']:.8f}:end={shot['source_out']:.8f},setpts=PTS-STARTPTS,scale=trunc(iw*sar/2)*2:ih,setsar=1,{fit},fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={shot['frames']},setpts=N/({fps}*TB),format=yuv420p[v]"]
         audio='0:a:0' if source['info']['has_audio'] else '1:a:0'
         start=shot['source_in'] if source['info']['has_audio'] else 0
-        graph.append(f'[{audio}]atrim=start={start:.8f}:duration={duration:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={shot["source_audio_gain"]},apad,atrim=duration={duration:.8f}[a]')
+        graph.append(f'[{audio}]atrim=start={start:.8f}:duration={duration:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={shot["source_audio_gain"]},apad,atrim=duration={duration:.8f},asetpts=N/SR/TB[a]')
         script=dest/f'segment-{i:04}.filters';script.write_text(';\n'.join(graph),'utf-8')
-        args+=['-/filter_complex',script.name,'-map','[v]','-map','[a]','-frames:v',str(shot['frames']),'-t',f'{duration:.8f}',
-            '-c:v','libx264','-preset','fast','-crf','18','-pix_fmt','yuv420p','-c:a','pcm_s16le',f'segment-{i:04}.mkv']
+        args+=['-/filter_complex',script.name,'-map','[v]','-map','[a]','-t',f'{duration:.8f}',
+            '-c:v','libx264','-preset','fast','-crf','18','-bf','0','-pix_fmt','yuv420p','-c:a','pcm_s16le',f'segment-{i:04}.mkv']
         run(args,dest,f'segment-{i:04}.process.json')
-    (dest/'segments.txt').write_text('\n'.join(f"file 'segment-{i:04}.mkv'" for i in range(len(mapping['shots']))),'utf-8')
+    (dest/'segments.txt').write_text('\n'.join(f"file 'segment-{i:04}.mkv'\nduration {shot['frames']/fps:.8f}" for i,shot in enumerate(mapping['shots'])),'utf-8')
     args=['ffmpeg','-hide_banner','-v','error','-nostdin','-n','-f','concat','-safe','1','-i','segments.txt']
-    graph=[];audio_labels=['[0:a:0]']
+    graph=[f"[0:a:0]apad,atrim=duration={mapping['duration']:.8f},asetpts=N/SR/TB[original]"]
+    audio_labels=['[original]']
     for i,bed in enumerate(body['audio'],1):
         args+=['-i',str(sources[bed['source_id']]['path'])]
         expr=f"[{i}:a:0]atrim=start={bed['source_in']:.8f}:duration={bed['duration']:.8f},asetpts=PTS-STARTPTS,aresample=48000,aformat=channel_layouts=stereo,volume={bed['gain']}"
@@ -167,7 +168,8 @@ def render(record,plan_dir,dest):
         if bed['fade_out']:expr+=f",afade=t=out:st={bed['duration']-bed['fade_out']}:d={bed['fade_out']}"
         expr+=f",adelay={round(bed['start']*1000)}:all=1[b{i}]";graph.append(expr);audio_labels.append(f'[b{i}]')
     graph.append(''.join(audio_labels)+f"amix=inputs={len(audio_labels)}:duration=first:normalize=0:dropout_transition=0,alimiter=limit=0.95:level=0:latency=1,atrim=duration={mapping['duration']:.8f}[aout]")
-    last='0:v:0'
+    graph.append(f"[0:v:0]fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={mapping['frames']},setpts=N/({fps}*TB)[clocked]")
+    last='clocked'
     if body['titles']:
         font=plan_dir/record['font']['relative_path'];local='title-font'+font.suffix;shutil.copyfile(font,dest/local)
         for i,cue in enumerate(body['titles']):
@@ -176,11 +178,22 @@ def render(record,plan_dir,dest):
             label=f'title{i}'
             graph.append(f"[{last}]drawtext=fontfile={local}:textfile={file}:expansion=none:fontsize={size}:fontcolor=0x{cue['colour']}:box=1:boxcolor=black@0.5:boxborderw=4:x=(w-text_w)/2:y=h-text_h-{round(height*cue['bottom_margin'])}:enable='gte(t,{cue['start']})*lt(t,{cue['end']})'[{label}]");last=label
     script=dest/'timeline.filters';script.write_text(';\n'.join(graph),'utf-8')
-    args+=['-/filter_complex',script.name,'-map',f'[{last}]' if last!='0:v:0' else last,'-map','[aout]',
-        '-frames:v',str(mapping['frames']),'-t',f"{mapping['duration']:.8f}",'-c:v','libx264','-preset','medium','-crf','18',
+    args+=['-/filter_complex',script.name,'-map',f'[{last}]','-map','[aout]',
+        '-t',f"{mapping['duration']:.8f}",'-c:v','libx264','-preset','medium','-crf','18',
         '-pix_fmt','yuv420p','-c:a','aac','-b:a','192k','-movflags','+faststart','timeline.mp4']
     run(args,dest,'timeline-render-process.json')
-    return {'primary_video':'timeline.mp4','files':['timeline.mp4','timeline-plan.json','timeline-map.json','provenance.json']}
+    actual=probe(dest/'timeline.mp4',count_frames=True)
+    video=next(s for s in actual['streams'] if s['codec_type']=='video')
+    audio=next(s for s in actual['streams'] if s['codec_type']=='audio')
+    verification={'expected_frames':mapping['frames'],'actual_frames':int(video.get('nb_read_frames',0)),
+        'expected_duration':mapping['duration'],'actual_video_duration':float(video['duration']),
+        'actual_audio_duration':float(audio['duration']),'actual_width':video['width'],'actual_height':video['height']}
+    (dest/'timeline-verification.json').write_text(json.dumps(verification,indent=2),'utf-8')
+    if (verification['actual_frames']!=mapping['frames'] or video['width']!=width or video['height']!=height
+        or abs(verification['actual_video_duration']-mapping['duration'])>1/fps+.001
+        or abs(verification['actual_audio_duration']-mapping['duration'])>1/fps+.025):
+        raise RuntimeError('Actual timeline frames/duration differ from the saved map; see timeline-verification.json')
+    return {'primary_video':'timeline.mp4','files':['timeline.mp4','timeline-plan.json','timeline-map.json','timeline-verification.json','provenance.json']}
 
 
 def onsets(file,start,end):

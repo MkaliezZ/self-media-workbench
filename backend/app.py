@@ -430,6 +430,7 @@ def artifact(pid:str,eid:str,name:str):
     allowed={'reviewed_cut.mp4','reviewed_cut.srt','reviewed_cut.words.json','edit-decision.json','provenance.json'}
     allowed.update({'visual.mp4','visual-plan.json','visual-timeline.json'})
     allowed.update({'timeline.mp4','timeline-plan.json','timeline-map.json'})
+    allowed.add('timeline-verification.json')
     if len(eid)!=32 or any(c not in '0123456789abcdef' for c in eid) or name not in allowed:
         raise HTTPException(404,'文件不存在')
     file=path/'exports'/eid/name

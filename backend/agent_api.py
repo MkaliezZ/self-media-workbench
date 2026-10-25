@@ -253,6 +253,10 @@ def register(w):
                 'media_editing':{'spoken_cuts':'explicit contiguous ASR word groups with reason and source/run binding',
                                  'restore':'speech_cuts=[] restores spoken groups; omitted preserves decisions',
                                  'review_attempts':'project media/<mid>/review-attempts records accepted/rejected writes'},
+                'native_timeline':{'transitions':['fade','wipeleft','wiperight','slideleft','slideright','circleopen'],
+                    'transition_timing':'overlap reduces total frames; reviewed music edges use transition midpoints',
+                    'masks':'static rectangle/ellipse source crops with inward feather, opacity and multiplied original PNG alpha',
+                    'limits':'32 shots with transitions, 16 masks; no automatic tracking/matting'},
                 'actions':{
                     'editing_logics':{'method':'GET','path':'/api/visual/logics'},
                     'timeline_plans':{'method':'GET','path':'/api/projects/{pid}/timeline-plans'},

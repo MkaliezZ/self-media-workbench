@@ -104,6 +104,7 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 行业与类型模板 | 十二类预设；Agent 生成自定义叙事/用镜/节奏/声音逻辑，按组件能力编译 |
 | 发布准备 | 标题、配文、披露说明及真实素材绑定 |
 | 原生时间轴 | 无旁白画面、多源/静帧、独立音轨、审阅音乐打点、标题、版本恢复 |
+| 转场与蒙版 | 重叠转场、矩形/椭圆真 Alpha 蒙版、局部取景、向内羽化、PNG 透明区域保留 |
 | 复盘 | 有定义的指标或采集计划、假设与下一次实验 |
 
 单项任务可直接进入脚本、剪辑或复盘；完整流程从最早缺失或过期的阶段续做。同一会话中说“继续”会续做当前项目；多个项目匹配时先确认选择。`--session` 用于隔离并行的独立会话。未知事实和缺失指标保持未知，旧稿、被拒请求与修订记录均保留。
@@ -257,6 +258,8 @@ Ordinary exports retain separate MP4/SRT. A saved visual-plan optionally adds vi
 ### Industry and video-form recipes
 
 Twelve presets cover education, finance/business, beauty services, products, food visits, home/property, narrated travel Vlog, faceless references, evidence-led science, life scenes, game-event replay and first-person explanation. The Agent can generate a project-specific recipe from industry, form, viewer goal and actual materials, with shot/pacing/audio intent per beat. Definitions and versions are frozen into executable plans; silent/multi-source video, independent audio and reviewed music edges use the [native timeline](docs/native-timeline.md) without ASR; tracking, complex group animation, time-warp and music generation remain unsupported. [Guide and scope](docs/industry-templates.md) · [Validation](evaluation/industry-templates-20261025.md).
+
+Native timelines also render six overlap-transition choices and real rectangle/ellipse alpha masks, with source-region crops, inward feather, opacity and preserved PNG transparency. Transitions reduce total duration; music-grid targets use their midpoints. Static masks do not imply tracking or AI matting. See the [timeline contract](skills/self-media-workflow/references/timeline.md) and [FX acceptance record](evaluation/timeline-fx-20261025.md).
 
 ### Planned capabilities
 

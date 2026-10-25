@@ -26,4 +26,12 @@
 
 当前限制：一个小时、128 个镜头、16 条附加音轨、15–60 整数输出帧率、偶数画布 ≤3840。混合源帧率可输入；输出帧数是权威时钟，AAC/容器时长另行检查。素材不足或音轨越界会明确拒绝，不能靠隐式补镜头或截断旁白掩盖。
 
+## 转场与透明蒙版 / Transitions and alpha masks
+
+`transitions` 选择非末镜头、原因、时长和 fade/wipeleft/wiperight/slideleft/slideright/circleopen。转场重叠两个镜头，成片总帧数扣除重叠；音乐打点对应转场中点。单个转场须短于两侧镜头，相邻转场不得吃完整个中间镜头。使用转场时最多 32 镜头；保留硬切是正常选择，不应为展示效果滥加特效。源片声音同步交叉淡化，独立音乐不重启。
+
+`masks` 从已登记图片/视频选局部 crop，以独立 source_in 和成片 start/end 放入静态 slot；支持矩形/椭圆、0–64 成片像素向内羽化及不透明度。现有 PNG Alpha 与形状 Alpha 相乘，透明洞不会变成实色。最多 16 层，按数组顺序叠放、位于标题下面；羽化不能大于较小边长的一半。非自动跟踪、运动蒙版、色键抠像或 AI 抠像。旧计划省略字段仍可导出和幂等重放。[详细 Agent 规则](../skills/self-media-workflow/references/timeline.md)。
+
+Native transitions use overlapping frames and crossfade original audio; independent beds remain continuous. Rectangle/ellipse source-region masks multiply their inward-feather alpha with the original PNG alpha. They are static compositions, without tracking/matting. Inspect actual decoded pixels and sound, keep failed attempts and restore as a new immutable revision. [Acceptance](../evaluation/timeline-fx-20261025.md).
+
 示例 `scripts/timeline_case.py` 为原创插画旅行动画与自制音乐，明确不是实拍旅行。`scripts/timeline_http_acceptance.py` 检查实际后台服务、导出和重启续做。跨系统和独立盲测结果见本轮验收记录。

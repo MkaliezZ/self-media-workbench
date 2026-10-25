@@ -114,15 +114,21 @@ def faster_direct(audio, model_path, device, language):
     def run(selected):
         model=WhisperModel(str(model_path),device=selected,
             compute_type=compute_type,local_files_only=True)
+        # Inference-only VAD avoids assigning the next word to a long music/silent
+        # hold. faster-whisper restores returned bounds to original-source time;
+        # this never changes the original media or makes an editing decision.
         segments,info=model.transcribe(audio,language=language or None,beam_size=5,
-            word_timestamps=True,vad_filter=False,condition_on_previous_text=False)
+            word_timestamps=True,vad_filter=True,
+            vad_parameters={'min_silence_duration_ms':500,'speech_pad_ms':200},
+            condition_on_previous_text=False)
         return list(segments),info
     segments,info=run(device)
     words=[{'word':w.word,'start':w.start,'end':w.end,'probability':w.probability}
         for segment in segments for w in segment.words or []]
     return {'backend':'faster-whisper','device':device,'model':str(model_path),'language':info.language,
         'words':words,'fallback_errors':[],'cuda_dll_dirs':directories,
-        'execution':{'gpu_inference_verified':device=='cuda','compute_type':compute_type,'supported_cuda_compute_types':supported}}
+        'execution':{'gpu_inference_verified':device=='cuda','compute_type':compute_type,'supported_cuda_compute_types':supported,
+            'inference_vad':True,'timestamp_scope':'aligner word groups restored to original-source seconds; media stays uncut'}}
 
 
 def infer(audio, model_path, mlx_model, backend, device, language,*,evidence_dir=None,

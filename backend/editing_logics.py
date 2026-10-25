@@ -13,12 +13,12 @@ LOGICS=[
  {'id':'region_explanation','name':'资料区域逐步解释','logic':'整体定位→指出区域→解释关系→回到整体','operations':['等比布局','原图坐标变换','分时静态矩形高亮'],
   'boundary':'静态区域不等于跟踪；关键帧形变尚未实现','runtime':'visual_plan; complex animation excluded'},
  {'id':'layer_intro','name':'片头多元素组合','logic':'明确主信息→建立人物/文字层级→协调进入顺序','operations':['独立元素分组与遮挡设计'],
-  'boundary':'复杂组动画、动态抠像与透明视频叠层仍待实现；不把设计当成运行能力','runtime':'planning_only for unsupported layer motion'},
+  'boundary':'静态PNG/源区域透明蒙版已可执行；复杂组动画、动态抠像和透明视频叠层尚未实现','runtime':'native_timeline for static alpha layers; unsupported group motion remains planning_only'},
  {'id':'audio_roles','name':'按作用安排声音','logic':'人声可懂→保留场景原声→音乐/音效有明确作用','operations':['独立音轨','增益','入出点','淡入淡出','混音限幅','瞬态候选与审阅打点'],
   'boundary':'瞬态不是所有真实节拍；混音技术检查不代替听审或生成音乐','runtime':'native_timeline; no music generation'}]
 
 
 def register(w):
     @w.app.get('/api/visual/logics')
-    def library():return {'version':'1.0','logics':LOGICS,
+    def library():return {'version':'1.1','logics':LOGICS,
         'scope':'reconciled functional mechanisms and explicit execution limits; not a claim of full-video research or production aesthetics'}

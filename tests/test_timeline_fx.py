@@ -49,7 +49,8 @@ class TimelineFXTests(unittest.TestCase):
             sources=[]
             for ref in plan['sources']:
                 s=resolved[ref['id']];sources.append({'id':ref['id'],'relative_path':s['path'].name,'info':s['info'],'metadata':{},'sha256':ref['sha256']})
-            record={'request':plan,'request_sha256':digest(plan),'map':timeline_map(plan,resolved),'sources':sources}
+            selected={r['id']:resolved[r['id']] for r in plan['sources']}
+            record={'request':plan,'request_sha256':digest(plan),'map':timeline_map(plan,selected),'sources':sources}
             if plan['titles']:
                 original=font_file(None);local=folder/('font'+original.suffix)
                 if not local.exists():shutil.copyfile(original,local)
@@ -79,6 +80,15 @@ class TimelineFXTests(unittest.TestCase):
         olddir=folder/'old';olddir.mkdir();oldrecord={'request':old,'request_sha256':digest(old),'map':timeline_map(old,old_resolved),
             'sources':[{'id':r['id'],'relative_path':resolved[r['id']]['path'].name,'info':resolved[r['id']]['info'],'metadata':{},'sha256':r['sha256']} for r in old['sources']]}
         render(oldrecord,folder,olddir)
+        primary=movie
+        for kind in ('wiperight','slideleft','slideright','circleopen'):
+            variant=copy.deepcopy(body);variant.update(sources=body['sources'][:2],shots=body['shots'][:2],masks=[],titles=[],
+                transitions=[{'after_shot_id':'a','kind':kind,'duration':.4,'reason':'Verify the declared transition family on actual decoded pixels'}])
+            movie=execute(variant,kind)
+            self.assertGreater(frame(2.4)[20,20,0],220);self.assertGreater(frame(3.2)[20,20,2],220)
+            spatial=frame(2.8).astype(float)
+            self.assertGreater(float(spatial[:,:,0].std()+spatial[:,:,2].std()),50,kind)
+        movie=primary
         (folder/'acceptance.json').write_text(json.dumps({'status':'passed','video':str(movie),'verification':json.loads((movie.parent/'timeline-verification.json').read_text()),'checks':['fade pixels','spatial wipe','original PNG alpha','ellipse outside','feather gradient','old request integrity/export']},indent=2),'utf-8')
         if not root:temp.cleanup()
 

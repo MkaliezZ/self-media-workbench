@@ -79,4 +79,39 @@ class MotionEffectsTests(unittest.TestCase):
         yellow=(region[:,:,0]>140)&(region[:,:,1]>115)&(region[:,:,2]<160)
         self.assertGreater(int(yellow[:72].sum()),30);self.assertGreater(int(yellow[72:].sum()),30)
 
+    def test_save_rejects_overflow_without_moving_head(self):
+        import app as w
+        from fastapi.testclient import TestClient
+        old=w.DATA;w.DATA=self.folder/'api';w.DATA.mkdir()
+        try:
+            with TestClient(w.app,base_url='http://localhost') as c:
+                pid=c.post('/api/projects',json={'title':'Text preflight state regression','simulation':True}).json()['id']
+                base=f'/api/projects/{pid}'
+                r=c.post('/api/agent/v1/tasks',json={'task':'Native effects','intent':'edit','project':pid,'simulation':True,'input_paths':[str(self.folder/'base.png')]});self.assertEqual(r.status_code,200);asset=r.json()['registered'][0]
+                context=c.get(f'/api/agent/v1/projects/{pid}/context').json()['project']
+                b=copy.deepcopy(self.body);b.update(project_revision=context['revision'],font_path=str(self.font),sources=[{'id':'base','kind':'image','asset_id':asset['id'],'sha256':asset['sha256']}],effects=[{'kind':'motion_text','start':0.,'end':4.,'text':'ONE\nTWO\nTHREE\nFOUR\nFIVE','slot':rect(.1,.4,.8,.08),'font_height':.08,'reason':'Refuse before changing project head'}])
+                response=c.post(base+'/timeline-plans',json=b);self.assertEqual(response.status_code,422,response.text)
+                now=c.get(f'/api/agent/v1/projects/{pid}/context').json()['project'];self.assertEqual(now['revision'],context['revision']);self.assertEqual(now.get('timeline_head'),context.get('timeline_head'))
+                attempts=list((w.DATA/pid/'timeline-attempts').glob('*.json'));self.assertTrue(attempts);self.assertFalse(json.loads(attempts[0].read_text('utf-8'))['accepted'])
+        finally:w.DATA=old
+
+    def test_alpha_luma_track_matte_and_inversion_preserve_holes(self):
+        image=Image.new('RGBA',(320,180));d=ImageDraw.Draw(image);d.ellipse((30,10,290,170),fill='white');d.ellipse((130,65,190,115),fill=(0,0,0,0));image.save(self.folder/'matte.png')
+        path=self.folder/'matte.png';ref={'id':'matte','kind':'image','asset_id':'matte','sha256':sha(path)}
+        self.resolved['matte']={'path':path,'info':source_info(path,'image'),'item':{}}
+        b=copy.deepcopy(self.body);b['sources']=[self.refs[1],self.refs[2],ref]
+        b['effects']=[{'kind':'track_matte','source_id':'video','matte_id':'matte','matte_mode':'alpha','start':0.,'end':4.,
+            'from_rect':rect(.2,.1,.6,.6),'to_rect':rect(.2,.1,.6,.6),'enter_seconds':.5,'exit_seconds':.5,'shadow':False,'reason':'Actual moving video through an alpha ring with a retained transparent hole'}]
+        _,v=self.execute(b,'alpha-track');base=np.array([86,103,122])
+        self.assertLess(np.abs(v[35,140:150,315:325].astype(float)-base).mean(),8.)
+        self.assertGreater(np.abs(v[35,130:155,245:270].astype(float)-base).mean(),15.)
+        self.assertGreater(np.abs(v[35].astype(float)-v[55].astype(float)).mean(),1.)
+        image.getchannel('A').convert('RGB').save(self.folder/'luma.png');path=self.folder/'luma.png';ref.update(sha256=sha(path));self.resolved['matte']={'path':path,'info':source_info(path,'image'),'item':{}}
+        with self.assertRaisesRegex(ValueError,'no alpha channel'):timeline_map(TimelinePlan.model_validate(b).model_dump(),self.resolved_for(b))
+        b['effects'][0].update(matte_mode='luma',invert=True,feather=3)
+        _,inverse=self.execute(b,'inverse-luma');self.assertGreater(np.abs(inverse[35,140:150,315:325].astype(float)-base).mean(),15.)
+        self.assertLess(np.abs(inverse[35,130:155,245:270].astype(float)-base).mean(),8.)
+
+    def resolved_for(self,body):return {r['id']:self.resolved[r['id']] for r in body['sources']}
+
 if __name__=='__main__':unittest.main()

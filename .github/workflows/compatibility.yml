@@ -57,6 +57,9 @@ jobs:
       - name: Actual native document extraction, PiP motion and reveal showcase
         if: always()
         run: python -B -X utf8 scripts/motion_showcase.py --out evaluation/runs/motion-showcase
+      - name: Actual native alpha luma inverse matte, feathered portal and occlusion
+        if: always()
+        run: python -B -X utf8 scripts/mask_showcase.py --out evaluation/runs/mask-showcase
       - name: Independent changed-material travel timeline
         if: always()
         run: python -B -X utf8 scripts/independent_timeline_acceptance.py --output evaluation/runs/independent-travel

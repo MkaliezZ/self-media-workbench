@@ -75,4 +75,11 @@ class MotionText(Timed):
     exit_seconds: float=Field(default=.4,ge=0,le=4,allow_inf_nan=False)
 
 
-Effect=Annotated[Union[DocumentExtract,MotionLayer,Spotlight,MotionText],Field(discriminator='kind')]
+class TrackMatte(MotionLayer):
+    kind: Literal['track_matte']
+    matte_id: str=Field(min_length=1)
+    matte_mode: Literal['alpha','luma']='alpha'
+    invert: bool=False
+
+
+Effect=Annotated[Union[DocumentExtract,MotionLayer,Spotlight,MotionText,TrackMatte],Field(discriminator='kind')]

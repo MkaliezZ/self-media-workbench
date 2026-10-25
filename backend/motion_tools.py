@@ -2,7 +2,7 @@
 import json,math,subprocess
 from pathlib import Path
 import numpy as np
-from PIL import Image,ImageDraw,ImageFont,ImageFilter,ImageChops
+from PIL import Image,ImageDraw,ImageFont,ImageFilter,ImageChops,ImageOps
 from timeline_fx import alpha_field
 
 
@@ -46,7 +46,7 @@ def validate_effects(body,resolved,total):
         duration=cue['end']-cue['start']
         if duration<=0 or cue['end']>total+1e-6 or not cue['reason'].strip():raise ValueError('Invalid motion interval/reason')
         kind=cue['kind']
-        if kind in ('document_extract','motion_layer'):
+        if kind in ('document_extract','motion_layer','track_matte'):
             id=cue['source_id'];s=resolved.get(id)
             if not s or not s['info']['has_video']:raise ValueError('Motion needs an actual registered image/video source')
             info=s['info'];used.add(id);crop=cue['source_rect'] if kind=='document_extract' else cue['crop']
@@ -66,6 +66,12 @@ def validate_effects(body,resolved,total):
                 if info['kind']=='image' and cue['source_in']!=0:raise ValueError('Still motion source_in must be zero')
                 if info['kind']!='image' and cue['source_in']+duration>info['video_duration']+.0001:raise ValueError('Motion exceeds actual source duration')
                 if cue['feather']>min(cue[k][d]*size for k in ('from_rect','to_rect') for d,size in [('width',w),('height',h)])/2:raise ValueError('Motion feather exceeds the smallest destination half-size')
+                if kind=='track_matte':
+                    matte=resolved.get(cue['matte_id'])
+                    if not matte or matte['info']['kind']!='image':raise ValueError('Track matte needs an actual registered still image')
+                    used.add(cue['matte_id'])
+                    with Image.open(matte['path']) as image:
+                        if cue['matte_mode']=='alpha' and 'A' not in image.getbands() and 'transparency' not in image.info:raise ValueError('Alpha matte image has no alpha channel; use an alpha PNG or explicit luma mode')
         elif kind=='motion_text':
             if cue['accent'] and cue['accent'] not in cue['text']:raise ValueError('Text accent must appear in the actual text')
             if duration<cue['enter_seconds']+cue['exit_seconds']+.1:raise ValueError('Text animation leaves no hold')
@@ -109,15 +115,38 @@ def highlighted(page,cue,progress):
     return result
 
 
+def text_layer(cue,w,h,font_path):
+    x,y,x2,y2=box(cue['slot'],w,h);im=Image.new('RGBA',(x2-x,y2-y));d=ImageDraw.Draw(im);f=ImageFont.truetype(str(font_path),round(cue['font_height']*h));lines=cue['text'].split('\n');line_h=round(cue['font_height']*h*1.35);top=(im.height-line_h*len(lines))/2
+    bounds=[d.textbbox((0,top+row*line_h),line,font=f) for row,line in enumerate(lines) if line]
+    if bounds and (min(b[1] for b in bounds)<0 or max(b[3] for b in bounds)>im.height):raise ValueError('Motion text exceeds its slot vertically; enlarge the slot, split the cue or reduce font height')
+    accent_at=cue['text'].find(cue['accent']) if cue['accent'] else -1;offset=0
+    for row,line in enumerate(lines):
+        if d.textlength(line,font=f)>im.width:raise ValueError('Motion text exceeds its slot; split lines or reduce font height')
+        left=(im.width-d.textlength(line,font=f))/2
+        for j,ch in enumerate(line):
+            c=cue['accent_colour'] if accent_at>=0 and accent_at<=offset+j<accent_at+len(cue['accent']) else cue['colour'];d.text((left,top+row*line_h),ch,font=f,fill=colour(c)+(255,));left+=d.textlength(ch,font=f)
+        offset+=len(line)+1
+    return im
+
+
+def preflight_text(body,font_path):
+    for cue in body.get('effects',[]):
+        if cue['kind']=='motion_text':text_layer(cue,body['width'],body['height'],font_path)
+
+
 def render_layer(body,sources,dest,font_path=None):
     w,h,fps=body['width'],body['height'],body['fps']
     # The saved map, rather than a fresh float-duration sum, defines this clock.
     frames=body['_motion_frames'];effects=body.get('effects',[]);cache={};readers={};events=[]
     for i,cue in enumerate(effects):
         k=cue['kind'];entry={'kind':k,'start_frame':math.ceil(cue['start']*fps-1e-7),'end_frame':math.ceil(cue['end']*fps-1e-7),'request':cue}
-        if k in ('document_extract','motion_layer'):
+        if k in ('document_extract','motion_layer','track_matte'):
             source=sources[cue['source_id']]
             if source['info']['kind']=='image':cache[i]=Image.open(source['path']).convert('RGBA')
+        if k=='track_matte':
+            image=Image.open(sources[cue['matte_id']]['path']).convert('RGBA')
+            mask=image.getchannel('A') if cue['matte_mode']=='alpha' else ImageChops.multiply(image.convert('L'),image.getchannel('A'))
+            cache[('matte',i)]=ImageChops.invert(mask) if cue['invert'] else mask
         if k=='document_extract':
             page=cache[i];hi=highlighted(page,cue,1.);q=np.array([[p['x']*w,p['y']*h] for p in cue['page_quad']]);crop=hi.crop(box(cue['source_rect'],*hi.size))
             source_h=homography(np.array([[0,0],[page.width,0],[page.width,page.height],[0,page.height]],float),q)
@@ -125,17 +154,7 @@ def render_layer(body,sources,dest,font_path=None):
             cache[('doc',i)]=(page,hi,crop,q,selected,target);crop.save(dest/f'document-crop-{i:02}.png')
             entry.update(source_quad=selected.tolist(),target_quad=target.tolist(),quote_verification='caller-reviewed text; actual selected pixels preserved, no OCR claim')
         if k=='motion_text':
-            x,y,x2,y2=box(cue['slot'],w,h);im=Image.new('RGBA',(x2-x,y2-y));d=ImageDraw.Draw(im);f=ImageFont.truetype(str(font_path),round(cue['font_height']*h));lines=cue['text'].split('\n');line_h=round(cue['font_height']*h*1.35);top=(im.height-line_h*len(lines))/2
-            bounds=[d.textbbox((0,top+row*line_h),line,font=f) for row,line in enumerate(lines) if line]
-            if bounds and (min(b[1] for b in bounds)<0 or max(b[3] for b in bounds)>im.height):raise ValueError('Motion text exceeds its slot vertically; enlarge the slot, split the cue or reduce font height')
-            accent_at=cue['text'].find(cue['accent']) if cue['accent'] else -1;offset=0
-            for row,line in enumerate(lines):
-                if d.textlength(line,font=f)>im.width:raise ValueError('Motion text exceeds its slot; split lines or reduce font height')
-                left=(im.width-d.textlength(line,font=f))/2
-                for j,ch in enumerate(line):
-                    c=cue['accent_colour'] if accent_at>=0 and accent_at<=offset+j<accent_at+len(cue['accent']) else cue['colour'];d.text((left,top+row*line_h),ch,font=f,fill=colour(c)+(255,));left+=d.textlength(ch,font=f)
-                offset+=len(line)+1
-            cache[i]=im
+            cache[i]=text_layer(cue,w,h,font_path)
         events.append(entry)
     write={'clock':'authored output frames; no automatic OCR, tracking or acoustic character alignment','events':events,'frames':frames,'fps':fps}
     (dest/'motion-events.json').write_text(json.dumps(write,ensure_ascii=False,indent=2),'utf-8')
@@ -178,8 +197,13 @@ def render_layer(body,sources,dest,font_path=None):
                     if cue['animation']=='pop':
                         scale=.65+.35*p;cx=(x+x2)/2;cy=(y+y2)/2;half_w=(x2-x)*scale/2;half_h=(y2-y)*scale/2
                         x,y,x2,y2=round(cx-half_w),round(cy-half_h),round(cx+half_w),round(cy+half_h)
-                    iw=max(2,x2-x);ih=max(2,y2-y);im=im.resize((iw,ih),Image.Resampling.LANCZOS)
+                    iw=max(2,x2-x);ih=max(2,y2-y)
+                    im=ImageOps.fit(im,(iw,ih),method=Image.Resampling.LANCZOS) if k=='track_matte' else im.resize((iw,ih),Image.Resampling.LANCZOS)
                     alpha=Image.fromarray(alpha_field(iw,ih,cue['shape'],cue['feather'],cue['opacity']*opacity))
+                    if k=='track_matte':
+                        matte=cache[('matte',i)].resize((iw,ih),Image.Resampling.LANCZOS)
+                        if cue['feather']:matte=matte.filter(ImageFilter.GaussianBlur(cue['feather']))
+                        alpha=ImageChops.multiply(alpha,matte)
                     if cue['animation'].startswith('reveal_'):
                         reveal=Image.new('L',(iw,ih));rd=ImageDraw.Draw(reveal)
                         rd.rectangle((0,0,round(iw*p) if cue['animation']=='reveal_left' else iw,round(ih*p) if cue['animation']=='reveal_up' else ih),fill=255);alpha=ImageChops.multiply(alpha,reveal)

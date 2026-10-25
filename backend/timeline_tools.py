@@ -156,6 +156,9 @@ def integrity(record,directory):
     if expected!={s['id']:s['sha256'] for s in record['sources']}:raise ValueError('Frozen source manifest mismatch')
     if digest(timeline_map(body,sources))!=digest(record['map']):raise ValueError('Timeline mapping integrity mismatch')
     if (body['titles'] or any(c['kind']=='motion_text' for c in body.get('effects',[]))) and sha(directory/record['font']['relative_path'])!=record['font']['sha256']:raise ValueError('Timeline font integrity mismatch')
+    if any(c['kind']=='motion_text' for c in body.get('effects',[])):
+        from motion_tools import preflight_text
+        preflight_text(body,directory/record['font']['relative_path'])
     return sources
 
 
@@ -300,6 +303,8 @@ def register(w):
                 if body['titles'] or any(c['kind']=='motion_text' for c in body.get('effects',[])):
                     font=font_file(body['font_path']);local='font'+font.suffix.lower();shutil.copyfile(font,dest/local)
                     record['font']={'relative_path':local,'sha256':sha(dest/local)}
+                    from motion_tools import preflight_text
+                    preflight_text(body,dest/local)
                 w.write(dest/'plan.json',record)
                 project.setdefault('timeline_plans',[]).append({'id':id,'relative_path':str((dest/'plan.json').relative_to(path))})
                 project['timeline_head']=id;w.snapshot(path,project)

@@ -264,6 +264,10 @@ Native timelines also render six overlap-transition choices and real rectangle/e
 
 Source-bound [motion effects](docs/motion-effects.md) also execute article highlighting, paragraph extraction/rectification/return, screenshot magnification, authored moving spotlights, video PiP entrance transforms, linear mask reveals and kinetic text. The calling Agent selects real source regions and explicit output timing; these are not automatic OCR, tracking or acoustic character alignment. A reproducible technical showcase is provided in `scripts/motion_showcase.py`.
 
+轨道遮罩现可用 `track_matte` 执行视频填字、Alpha/亮度/反向遮罩及羽化，组合已有位移、分屏、前景透明洞与转场。使用[蒙版展示脚本](scripts/mask_showcase.py)生成实际原生示例。文字布局在保存与导出前预检，避免推进到不可导出的head；自动抠像/跟踪仍未实现。
+
+Native `track_matte` renders video-in-text, alpha/luma/inverted mattes and feathering, combined with endpoint motion, split reveals, foreground alpha holes and transitions. The [mask showcase](scripts/mask_showcase.py) uses the same native API. Frozen-font text layout is preflighted before save/head mutation and export-job creation. Automatic segmentation and tracking remain unsupported.
+
 ### Planned capabilities
 
 See the [visual-editing roadmap](docs/plans/visual-editing-roadmap.md) for emphasis, semantic cueing and asset search/composition, and the [editing-system integration plan](docs/plans/editing-system-integration.md) for conditional recipes, reusable visual/audio operations and implementation stages. Local caption emphasis, image layouts and static regions are integrated. Online search, complex animation and sound generation remain planned; current schemas and actual validation define runtime scope.

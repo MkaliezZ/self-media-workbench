@@ -11,9 +11,9 @@ LOGICS=[
  {'id':'first_person','name':'第一人称经历解说','logic':'处境与视角→事件→反应→结果与边界','operations':['多源画面','旁白独立起止','原声与音乐分轨','明确的J/L音画衔接'],
   'boundary':'不制造亲历或原片因果，不提供他人声音克隆','runtime':'native_timeline'},
  {'id':'region_explanation','name':'资料区域逐步解释','logic':'整体定位→指出区域→解释关系→回到整体','operations':['等比布局','原图坐标变换','分时静态矩形高亮'],
-  'boundary':'静态区域不等于跟踪；关键帧形变尚未实现','runtime':'visual_plan; complex animation excluded'},
+  'boundary':'支持原文标黄抽离、透视拉正、双端位置缩放与聚光灯；不提供自动OCR、跟踪或任意关键帧曲线','runtime':'visual_plan + native_timeline effects'},
  {'id':'layer_intro','name':'片头多元素组合','logic':'明确主信息→建立人物/文字层级→协调进入顺序','operations':['独立元素分组与遮挡设计'],
-  'boundary':'静态PNG/源区域透明蒙版已可执行；复杂组动画、动态抠像和透明视频叠层尚未实现','runtime':'native_timeline for static alpha layers; unsupported group motion remains planning_only'},
+  'boundary':'图片/视频图层双端位移、缩放、平面旋转和揭示已执行；复杂父子组与自动抠像尚未实现','runtime':'native_timeline masks + effects; hierarchical group motion remains planning_only'},
  {'id':'audio_roles','name':'按作用安排声音','logic':'人声可懂→保留场景原声→音乐/音效有明确作用','operations':['独立音轨','增益','入出点','淡入淡出','混音限幅','瞬态候选与审阅打点'],
   'boundary':'瞬态不是所有真实节拍；混音技术检查不代替听审或生成音乐','runtime':'native_timeline; no music generation'}]
 

@@ -89,6 +89,9 @@ def timeline_map(body,resolved,check_grid=True):
         if title['start']>=title['end'] or title['end']>total+.0001 or not title['text'].strip():raise ValueError('Invalid title interval/text')
     for cue in body.get('masks',[]):sources.add(cue['source_id'])
     validate_masks(body,resolved,total)
+    if body.get('effects'):
+        from motion_tools import validate_effects
+        sources.update(validate_effects(body,resolved,total))
     if sources!=set(resolved):raise ValueError('Unused registered source in timeline; remove it or describe an actual use')
     for i,n in enumerate(overlap):
         if n and (n>=entries[i]['frames'] or n>=entries[i+1]['frames']):raise ValueError('Transition must be shorter than both adjacent shots')
@@ -114,6 +117,7 @@ def timeline_map(body,resolved,check_grid=True):
             'output_start':entries[next(i for i,s in enumerate(entries) if s['id']==t['after_shot_id'])]['output_end']-round(t['duration']*fps)/fps,
             'output_end':entries[next(i for i,s in enumerate(entries) if s['id']==t['after_shot_id'])]['output_end']} for t in body['transitions']]
     if body.get('masks'):result['masks']=body['masks']
+    if body.get('effects'):result['effects']=body['effects']
     return result
 
 
@@ -151,7 +155,7 @@ def integrity(record,directory):
     expected={r['id']:r['sha256'] for r in body['sources']}
     if expected!={s['id']:s['sha256'] for s in record['sources']}:raise ValueError('Frozen source manifest mismatch')
     if digest(timeline_map(body,sources))!=digest(record['map']):raise ValueError('Timeline mapping integrity mismatch')
-    if body['titles'] and sha(directory/record['font']['relative_path'])!=record['font']['sha256']:raise ValueError('Timeline font integrity mismatch')
+    if (body['titles'] or any(c['kind']=='motion_text' for c in body.get('effects',[]))) and sha(directory/record['font']['relative_path'])!=record['font']['sha256']:raise ValueError('Timeline font integrity mismatch')
     return sources
 
 
@@ -191,6 +195,9 @@ def render(record,plan_dir,dest):
     graph.append(f"[{base_video}]fps={fps},tpad=stop_mode=clone:stop_duration=1,trim=end_frame={mapping['frames']},setpts=N/({fps}*TB)[clocked]")
     last='clocked'
     args,graph,last,next_input=add_masks(body,sources,dest,args,graph,last,next_input)
+    from motion_tools import add_effects
+    motion_font=plan_dir/record['font']['relative_path'] if record.get('font') else None
+    args,graph,last,next_input=add_effects(body,mapping,sources,dest,motion_font,args,graph,last,next_input)
     if body['titles']:
         font=plan_dir/record['font']['relative_path'];local='title-font'+font.suffix;shutil.copyfile(font,dest/local)
         for i,cue in enumerate(body['titles']):
@@ -216,7 +223,7 @@ def render(record,plan_dir,dest):
         or abs(verification['actual_video_duration']-mapping['duration'])>1/fps+.001
         or abs(verification['actual_audio_duration']-mapping['duration'])>1/fps+.025):
         raise RuntimeError('Actual timeline frames/duration differ from the saved map: '+json.dumps(verification))
-    return {'primary_video':'timeline.mp4','files':['timeline.mp4','timeline-plan.json','timeline-map.json','timeline-verification.json','provenance.json']}
+    return {'primary_video':'timeline.mp4','files':['timeline.mp4','timeline-plan.json','timeline-map.json','timeline-verification.json','provenance.json']+(['motion-events.json'] if body.get('effects') else [])}
 
 
 def onsets(file,start,end):
@@ -290,7 +297,7 @@ def register(w):
                     shutil.copyfile(source['path'],dest/local)
                     if sha(dest/local)!=ref['sha256']:raise ValueError('Source changed while freezing timeline')
                     record['sources'].append({**ref,'relative_path':local,'info':source['info'],'metadata':source['item']})
-                if body['titles']:
+                if body['titles'] or any(c['kind']=='motion_text' for c in body.get('effects',[])):
                     font=font_file(body['font_path']);local='font'+font.suffix.lower();shutil.copyfile(font,dest/local)
                     record['font']={'relative_path':local,'sha256':sha(dest/local)}
                 w.write(dest/'plan.json',record)

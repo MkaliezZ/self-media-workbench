@@ -1,5 +1,6 @@
 """Local deterministic visual composition; no remote model, asset search or shell."""
 import hashlib
+import importlib.util
 import json
 import shutil
 import subprocess
@@ -81,6 +82,9 @@ def status():
         font=str(font_file())
         return {'available':not missing and not missing_encoders and bool(shutil.which('ffprobe')) and result.returncode==0 and encoders.returncode==0,
                 'missing_filters':missing,'missing_encoders':missing_encoders,'ffprobe':shutil.which('ffprobe'),'font':font,
+                'motion':{'available':'qtrle' in encoder_names and importlib.util.find_spec('PIL') is not None,
+                    'pillow_installed':importlib.util.find_spec('PIL') is not None,'qtrle_encoder':'qtrle' in encoder_names,
+                    'scope':'source-bound document extraction, image/video endpoint transforms, authored spotlight and text; CPU composition'},
                 'scope':'local 2D captions/images/static regions; calling Agent selects content; CPU composition'}
     except (OSError,ValueError,subprocess.TimeoutExpired) as exc:
         return {'available':False,'error':str(exc),'scope':'local 2D composition'}

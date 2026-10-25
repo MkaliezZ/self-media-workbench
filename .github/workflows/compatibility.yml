@@ -54,6 +54,9 @@ jobs:
       - name: Actual native timeline HTTP, music alignment and restart
         if: always()
         run: python -B -X utf8 scripts/timeline_http_acceptance.py --out evaluation/runs/timeline-http
+      - name: Actual native document extraction, PiP motion and reveal showcase
+        if: always()
+        run: python -B -X utf8 scripts/motion_showcase.py --out evaluation/runs/motion-showcase
       - name: Independent changed-material travel timeline
         if: always()
         run: python -B -X utf8 scripts/independent_timeline_acceptance.py --output evaluation/runs/independent-travel
@@ -84,4 +87,5 @@ jobs:
             evaluation/runs/
             !evaluation/runs/**/font.*
             !evaluation/runs/**/title-font.*
+            !evaluation/runs/**/motion-layer.mov
           if-no-files-found: warn

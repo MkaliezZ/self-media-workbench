@@ -29,6 +29,8 @@ class TaskEntryTests(unittest.TestCase):
         self.assertEqual(infer_intent('不要配图，不要字幕，只写脚本'),'script')
         self.assertEqual(infer_intent('继续加一个羽化蒙版和转场'),'edit')
         self.assertEqual(infer_intent('不要蒙版，不做转场，只写脚本'),'script')
+        self.assertEqual(infer_intent('把文章标黄后做段落抽离，再加移动聚光灯'),'edit')
+        self.assertEqual(infer_intent('不要动效，不要特效，只写脚本'),'script')
         self.assertEqual(infer_intent('不要复盘，帮我选题'),'topics')
         self.assertEqual(infer_intent('整理这个视频',True),'edit')
         r=self.task('只写一条脚本').json()

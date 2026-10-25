@@ -1,0 +1,15 @@
+# Source-bound motion effects: implementation and acceptance
+
+The requested demonstration is a technical-effect showcase. Earlier scenic/coffee films exercised static masks and transitions but did not implement the missing document-highlight/pullout/keyframe mechanics. Improving source imagery did not close that capability gap.
+
+This revision adds native `timeline-plan.effects`: document extraction, image/video motion layer, authored spotlight and motion text. Requests, source geometry, real cropped pixels, optional frozen fonts and output frame ranges are recorded. The ordinary source freeze, integrity checks, versioning and export clock remain in force. Old requests omit the new optional field without changing their saved map/checksum.
+
+Initial Windows verification passed68 tests, including two new actual-render cases: original quote pixels survive extraction into a front-facing card; background dims and the selection returns; invalid highlight/time/quad inputs reject; real video PiP, reveal, moving spotlight and text execute. No platform mocks substitute for native rendering.
+
+The first56-second1920×1080 technical film used an original Chinese teaching article with known glyph boxes, an explicitly illustrative UI and an existing licensed local video. It showed yellow marking, pixel-preserving extraction/rectification/return, moving attention region, screenshot magnification, video entrance with position/size/planar rotation/opacity, text accent motion and horizontal/vertical reveals. The source original, selected text/geometry, saved plan, final MP4 and motion-events report were retained.
+
+One initial decoder cleanup closed a source with one unused extra frame and produced a Broken pipe message despite a successful final export. The reader now limits decoded frames to the actual authored output interval and waits for normal completion before terminating a stuck owned decoder. Earlier outputs/logs remain retained. This fixes cleanup reporting, not an alleged image-generation or tracking capability.
+
+Native Windows/macOS tests and the full generated technical film are included in CI. Final native run/independent results will be recorded after actual execution. Intermediate RGBA `motion-layer.mov` scratch files are omitted from uploaded artifacts to bound storage; original inputs, plans, final renders, event records and logs are retained. Full first-run scratch evidence remains local.
+
+Boundaries: `quote` is a caller-reviewed declaration, not OCR proof. Selected source pixels are authoritative. Spotlight/motion coordinates are authored, not tracked. Text motion timing is authored, not fabricated acoustic alignment. Complex parent-child groups, arbitrary keyframe curves and automatic matting are not claimed. CPU motion composition is separate from ASR GPU execution.

@@ -3,6 +3,7 @@ from typing import Literal
 from pydantic import Field,model_validator
 from visual_models import Strict,Colour,Rect
 from editing_templates import RecipeDefinition
+from motion_models import Effect
 
 
 class SourceRef(Strict):
@@ -91,6 +92,7 @@ class TimelinePlan(Strict):
     titles: list[Title] = Field(default_factory=list,max_length=64)
     transitions: list[Transition] = Field(default_factory=list,max_length=31)
     masks: list[MaskCue] = Field(default_factory=list,max_length=16)
+    effects: list[Effect] = Field(default_factory=list,max_length=32)
     font_path: str | None=None
 
     @model_validator(mode='after')

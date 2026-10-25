@@ -256,6 +256,7 @@ def register(w):
                 'native_timeline':{'transitions':['fade','wipeleft','wiperight','slideleft','slideright','circleopen'],
                     'transition_timing':'overlap reduces total frames; reviewed music edges use transition midpoints',
                     'masks':'static rectangle/ellipse source crops with inward feather, opacity and multiplied original PNG alpha',
+                    'motion_effects':['document_extract','motion_layer','spotlight','motion_text'],
                     'limits':'32 shots with transitions, 16 masks; no automatic tracking/matting'},
                 'actions':{
                     'editing_logics':{'method':'GET','path':'/api/visual/logics'},

@@ -93,7 +93,7 @@ def doctor():
         'gpu_setup_guide':str(ROOT/'docs/accelerators.md'),'gpu_setup_helper':str(ROOT/'scripts/setup_cpp.py'),
         'whisper_cpp':{'executable':str(CPP_EXECUTABLE),'model':str(CPP_MODEL),'files_ready':cpp_ready,
                        'reason':cpp_reason,'gpu_index':CPP_GPU_INDEX,'gpu_execution_verified':False},
-        'dependencies':{k:importlib.util.find_spec(k) is not None for k in ['fastapi','pydantic','uvicorn','numpy','faster_whisper']},
+        'dependencies':{k:importlib.util.find_spec(k) is not None for k in ['fastapi','pydantic','uvicorn','numpy','PIL','faster_whisper']},
         'executables':{k:shutil.which(k) for k in ['ffmpeg','ffprobe']},
         'visual_editing':visual,'visual_setup_guide':str(ROOT/'docs/visual-editing.md'),
         'macos_asr':'Apple Silicon: MLX; Intel GPU: optional whisper.cpp Metal; recorded CPU fallback' if sys.platform=='darwin' else None,

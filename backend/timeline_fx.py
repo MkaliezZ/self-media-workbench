@@ -49,10 +49,10 @@ def base_graph(body,mapping):
         n=overlap[i-1];v,a=f'joinedv{i}',f'joineda{i}'
         if n:
             cue=cues[body['shots'][i-1]['id']];offset=mapping['shots'][i]['output_start']
-            graph.append(f'[{video}][v{i}]xfade=transition={cue["kind"]}:duration={n/fps:.8f}:offset={offset:.8f},settb=AVTB[{v}]')
+            graph.append(f'[{video}][v{i}]xfade=transition={cue["kind"]}:duration={n/fps:.8f}:offset={offset:.8f},fps={fps},settb=AVTB[{v}]')
             graph.append(f'[{audio}][a{i}]acrossfade=d={n/fps:.8f}:c1=tri:c2=tri[{a}]')
         else:
-            graph.append(f'[{video}][v{i}]concat=n=2:v=1:a=0,settb=AVTB[{v}]')
+            graph.append(f'[{video}][v{i}]concat=n=2:v=1:a=0,fps={fps},settb=AVTB[{v}]')
             graph.append(f'[{audio}][a{i}]concat=n=2:v=0:a=1[{a}]')
         video,audio=v,a
     return args,graph,video,audio,len(body['shots'])

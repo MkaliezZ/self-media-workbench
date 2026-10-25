@@ -1,0 +1,651 @@
+{
+  "runtime_commit": "112e620fd502c708ddbfaa526e048608822578ac",
+  "dsh_initial_verdict": "conditional",
+  "dsh_retest_status": {
+    "technical_patch_retest": "pass",
+    "full_clean_pass": false,
+    "acceptance_scope": "technical API/media/binding retest only",
+    "reason": "BUG-001 and the publish timeline binding gap are verified fixed in the exercised cases, but no human listening/aesthetic/rights/fact review and no real publication were performed; word/phoneme ground truth remains unverified."
+  },
+  "runtime_file_equivalence": {
+    "all_match_published_commit": true,
+    "normalization": "Git LF line endings",
+    "files_sha256": {
+      "backend/accelerators.py": "277d4cc44bf55c2ac3f3b785fc44e1ce6a4aa0465c99944c10453a377002c7b9",
+      "backend/agent_api.py": "8a0be65870788344d5e4f1f068491f96c15ac63f58ce239d94577205908523cc",
+      "backend/agent_models.py": "883333fe92fa9b47dd00c57e851dc7bd766228458f377471ed3d6352bac45f18",
+      "backend/app.py": "ba9690459e963737259eda17c327734c23afe7d5fb2f6b4084a0565f1f32e9de",
+      "backend/asr_backends.py": "20bca13ae14f691247ec31e3357e936ceec994ae9d5252f0fe43a3eafda440f6",
+      "backend/cpp_asr.py": "75ccb1c2d0b54f08bcf61c75ea44cd52dea17835b49add6994483fcb66de5b14",
+      "backend/ct2_worker.py": "ca692eb12a147797f8d2946016db1f0c906d0e4d46bd928c8595664ade1cf32c",
+      "backend/editing_logics.py": "34df77f74856ab17740969836a6c44d1107137a7075af57a61aaf2bbbfce521a",
+      "backend/editing_templates.py": "93a707eedf6ad510dfc076b5cf6675e7de2962917c27f046b8ea84f389444a32",
+      "backend/gpu_runtime.py": "97613f72b8be36756d975c8939f13b5af6fdce31c763efd980f1c084f86ea997",
+      "backend/keyframe_tools.py": "11361719623dd76829922b1b2e1971bea01b64c34cf93322b1b5ebc73538a274",
+      "backend/local_asr.py": "cb3fb8ff0b8bd9886ef04fc2474773ffb7209377503ede475a4cc7f81c0b9f02",
+      "backend/media_models.py": "3ce0d9c08efb2e62d2cb62aa1d766033f07cdbed8df3310fd613f6b4c7124401",
+      "backend/media_render.py": "6aff59dea5c8411f321dee645b4185c9aa1bcb3262fa892ad7ad205e24211041",
+      "backend/mlx_worker.py": "a0a9132ffe98b526eee1998c0d46cc9be0cf1321dc487cee9504b27f5f600b01",
+      "backend/motion_models.py": "20b09cbd0606b9e6a2a1729a323286cbb5ca94bba88c5a050ed3cbd780bd7827",
+      "backend/motion_tools.py": "fd416affb6b1b6dd05c06f3215f8d44198a7da3aff4fe7eee05453231e806ce9",
+      "backend/review_edits.py": "f4a0e5dbccc81acf3d92c036e8c488f1cca6f4deae3b318f5aaa3fe483f6076b",
+      "backend/settings.py": "489657232f24dec028081fd97257b60d89195e436fb73348e128055ee8a9d4d5",
+      "backend/talking_audio.py": "dfb0dde7c98cf8c574269b284be9ac30e2c299a1e27d266c923652d27598b268",
+      "backend/talking_profiles.py": "41f399f959d25b9c0502cef006ff44b8c31188c1cecd42617edccb0571fb3938",
+      "backend/task_api.py": "6b0a497dd0312ebfd481eaa30670f21931eee31fc98134aaae8a8eac10bebc1a",
+      "backend/timeline_fx.py": "f658ab63a4439ad1c43d3ad72130917df7b36d6353697be2956e0d7da240b4de",
+      "backend/timeline_models.py": "3b1016a55981f836a75a82961b9f23dc939dacfaab0a813f9c36eeddcf5be783",
+      "backend/timeline_tools.py": "dcbaaa445b807bdefacb483847b14dc2eabe68af479559641f22c402dc6bc9d7",
+      "backend/visual_models.py": "939f7499d0418eb06641ebeaa2518d3cf732365fc37cb9ebf13673a408c60c7f",
+      "backend/visual_tools.py": "28920e03e966f3921e2030a8e6df2c2d545db37630162442d0a6c152bd594c99",
+      "workbench.py": "cdfcce7700dae17243cc9548915e3d9bd18cf5e86954862fa122c4e011dbd1fb"
+    }
+  },
+  "input_package": {
+    "file": "sealed-inputs.zip",
+    "sha256": "e2e6ee7447bec57f91c2687b7230a65f4cb8b56453301deecb58b088be8fd4a9",
+    "bytes": 3675824,
+    "sealed_files": 18,
+    "manifest_sha256": "1dc0635b62132729cc17e1931ccf4f7fdb149ad3a9c1d30decd73334ac8b6caa",
+    "scope": "Exact original 18-file input seal plus manifest/checksum; historical environment is evidence, not deployment configuration. No test answers or raw agent trace."
+  },
+  "dsh_patch": {
+    "base_commit": "91b267a0e0796e34119fe73ce94c1e8c42455611",
+    "sha256": "21c02938b083f3edee8f8db02ff46fb4c9b63ee608fe8eb38170a6614b620aa9"
+  },
+  "corrupt_import_checks": {
+    "status": "fixed_verified",
+    "old_orphan_preserved": true,
+    "old_orphan_sha256": "8766fc2d5ca74c1cfc987ce1a413d21ee197a9fbee28e0887f3ace263a44c6aa",
+    "original_request_sha256_before": "be07cde01235c631a1f338d656ff0cd35d9d426ca3507fb544dc79de298fa9af",
+    "original_request_sha256_after": "be07cde01235c631a1f338d656ff0cd35d9d426ca3507fb544dc79de298fa9af",
+    "original_request_unchanged": true,
+    "exact_4096_video": {
+      "status": 422,
+      "body_sha256": "44895750c53b3c69c30fb8ce7936bba0d20fd9c96eb8f0f29d20f51f49b58845"
+    },
+    "truncated_wav": {
+      "status": 422,
+      "body_sha256": "8eb31f742a6f34ae46edbd2acf08750768f1ddfc9547a9f682cfeb7a4c5a6736"
+    },
+    "truncated_png": {
+      "status": 422,
+      "body_sha256": "6b50adbb62226ddeb35815a65294be1199240dad82a7e1122994ee5a74dcf08f"
+    },
+    "media_before": 2,
+    "media_after_failures": 2,
+    "image_before": 2,
+    "image_after_failures": 2,
+    "jobs_before": 7,
+    "jobs_after_failures": 7,
+    "new_failed_media_dirs": [],
+    "positive_import": {
+      "media_id": "604e77ae74ec439c9ddc3b77fa8252bf",
+      "sha256": "791084ebfc79f32524b89a053c6c10eae22cf883f47c0b4a2e596ff5829e7919",
+      "video_duration": 37.8,
+      "audio_duration": 37.831,
+      "project_revision": 17
+    }
+  },
+  "publication_binding": {
+    "artifact_id": "A1adc92f52c3946f69e9f6b9dae977d9e",
+    "revision_created": 18,
+    "supersedes": "Af062fbe069ee447ba3eea8dc2755bfc6",
+    "assets": [
+      {
+        "kind": "timeline",
+        "timeline_plan_id": "747692a89f5a4f288befa14f9533b41e",
+        "export_id": "f8e90b63325e4fe89891c085880d2c62"
+      },
+      {
+        "media_id": "13f7ce48f09a47c0848215ccd2f142dd",
+        "export_id": "3121bfe53da54712bbb2e7438026a247"
+      }
+    ],
+    "computed_publication_exports": [
+      {
+        "export_id": "f8e90b63325e4fe89891c085880d2c62",
+        "kind": "timeline",
+        "video_sha256": "08dc690972eaf559d540544494f0a430015e348b5b2356e241ae6b4c5cd54c1b",
+        "hash_scope": "matched_export"
+      },
+      {
+        "export_id": "3121bfe53da54712bbb2e7438026a247",
+        "kind": "media",
+        "video_sha256": "95ffa368e6f3a35e83789c89c8d0a83cd7bfb001afae9424ff20e12d32f2a736",
+        "hash_scope": "matched_export"
+      }
+    ],
+    "accepted": true,
+    "old_publish_preserved": true
+  },
+  "review_match": {
+    "artifact_id": "A546b92351a0c4b7ebd9f90c51f1bc2f1",
+    "revision_created": 19,
+    "supersedes": "A8da1cd8f2ae5412b9134fc4e7feb06cb",
+    "publish_artifact_id": "A1adc92f52c3946f69e9f6b9dae977d9e",
+    "accepted": true,
+    "old_review_stale_visible": true
+  },
+  "negative_cases": [
+    {
+      "name": "wrong-plan",
+      "status": 422,
+      "errors": [
+        "unbound_export"
+      ],
+      "revision_before": 19,
+      "revision_after": 19,
+      "jobs_before": 9,
+      "jobs_after": 9
+    },
+    {
+      "name": "type-mismatch-timeline-uses-media",
+      "status": 422,
+      "errors": [
+        "unbound_export"
+      ],
+      "revision_before": 19,
+      "revision_after": 19,
+      "jobs_before": 9,
+      "jobs_after": 9
+    },
+    {
+      "name": "type-mismatch-media-uses-timeline",
+      "status": 422,
+      "errors": [
+        "unbound_export"
+      ],
+      "revision_before": 19,
+      "revision_after": 19,
+      "jobs_before": 9,
+      "jobs_after": 9
+    },
+    {
+      "name": "nonexistent-export",
+      "status": 422,
+      "errors": [
+        "unbound_export"
+      ],
+      "revision_before": 19,
+      "revision_after": 19,
+      "jobs_before": 9,
+      "jobs_after": 9
+    },
+    {
+      "name": "unbound-checklist-export",
+      "status": 422,
+      "errors": [
+        "unbound_check_export"
+      ],
+      "revision_before": 19,
+      "revision_after": 19,
+      "jobs_before": 9,
+      "jobs_after": 9
+    },
+    {
+      "name": "cross-project-export",
+      "status": 422,
+      "errors": [
+        "missing_handoff",
+        "unbound_export"
+      ],
+      "revision_before": 3,
+      "revision_after": 3,
+      "jobs_before": 0,
+      "jobs_after": 0
+    },
+    {
+      "name": "tamper-probe",
+      "status": 422,
+      "errors": [
+        "changed_export",
+        "unbound_check_export"
+      ],
+      "revision_before": 19,
+      "revision_after": 19,
+      "jobs_before": 9,
+      "jobs_after": 9
+    }
+  ],
+  "negative_invariants": {
+    "no_head_change": true,
+    "no_job_change": true,
+    "tamper_restored": true
+  },
+  "measurements": {
+    "highlight": {
+      "actual_frame_pts": 14.0,
+      "source_region": {
+        "x0": 100,
+        "x1": 670,
+        "y0": 790,
+        "y1": 905
+      },
+      "output_box": [
+        161,
+        1020,
+        651,
+        1119
+      ],
+      "source_cream_dominant_rgb": [
+        250,
+        245,
+        234
+      ],
+      "source_cream_mean_rgb": [
+        249.811,
+        244.815,
+        233.821
+      ],
+      "source_cream_sample_count": 57583,
+      "source_text_mean_rgb": [
+        48.713,
+        47.647,
+        42.532
+      ],
+      "source_text_sample_count": 5333,
+      "output_cream_mean_rgb": [
+        247.619,
+        218.04,
+        99.383
+      ],
+      "output_text_mean_rgb": [
+        61.485,
+        49.573,
+        13.564
+      ],
+      "output_cream_yellow_fraction": 0.98432,
+      "output_text_dark_fraction": 0.81024,
+      "predicted_multiply_from_source_dominant": [
+        250,
+        221,
+        98
+      ],
+      "actual_output_box": {
+        "pixels": 48510,
+        "yellow_pixels": 42450,
+        "yellow_fraction": 0.87508,
+        "mean_rgb": [
+          228.717,
+          201.086,
+          91.371
+        ],
+        "dominant_rgb": [
+          250,
+          219,
+          98
+        ],
+        "dominant_count": 26533
+      },
+      "nonhighlight_source_mean_rgb": [
+        215.45,
+        208.685,
+        198.321
+      ],
+      "nonhighlight_output": {
+        "pixels": 16660,
+        "yellow_pixels": 0,
+        "yellow_fraction": 0.0,
+        "mean_rgb": [
+          213.919,
+          207.161,
+          196.081
+        ],
+        "dominant_rgb": [
+          249,
+          244,
+          232
+        ],
+        "dominant_count": 11089
+      },
+      "note": "Source masks come from the sealed article; output pixels are sampled at authored quad coordinates. Dominant yellow is computed from this frame, not a constant."
+    },
+    "dwell": {
+      "mode": "every_25fps_frame",
+      "frame_count": 39,
+      "first_pts": 9.48,
+      "last_pts": 11.0,
+      "span_seconds": 1.56,
+      "yellow_fraction_min": 0.87413,
+      "adjacent_frame_mae_max": 1.04064,
+      "stable_pass": true
+    },
+    "foreground": {
+      "advanced_frame_pts": 22.0,
+      "source_frame_pts": 22.0,
+      "hole_center_output_rgb": [
+        243.102,
+        238.268,
+        226.508
+      ],
+      "hole_center_source_rgb": [
+        243.1,
+        238.273,
+        226.512
+      ],
+      "hole_center_mae_vs_source": 0.311,
+      "opaque_frame_output_rgb": [
+        33.0,
+        57.0,
+        61.0
+      ],
+      "opaque_frame_source_rgb": [
+        242.0,
+        235.0,
+        219.0
+      ],
+      "opaque_frame_mae_vs_source": 181.667,
+      "source_alpha_hole_center": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_alpha_frame_pixel": [
+        24,
+        51,
+        57,
+        244
+      ],
+      "note": "Hole and opacity samples are from newly decoded frames at the listed actual PTS."
+    },
+    "titles": {
+      "srt_count": 13,
+      "plan_count": 13,
+      "text_matches": 13,
+      "time_matches": 13,
+      "samples": {
+        "1.0": {
+          "actual_pts": 1.0,
+          "bright_pixels": 9114
+        },
+        "3.0": {
+          "actual_pts": 3.0,
+          "bright_pixels": 8454
+        },
+        "6.0": {
+          "actual_pts": 6.0,
+          "bright_pixels": 7249
+        },
+        "14.0": {
+          "actual_pts": 14.0,
+          "bright_pixels": 2654
+        },
+        "18.0": {
+          "actual_pts": 18.0,
+          "bright_pixels": 0
+        },
+        "22.0": {
+          "actual_pts": 22.0,
+          "bright_pixels": 0
+        },
+        "30.0": {
+          "actual_pts": 30.0,
+          "bright_pixels": 4704
+        },
+        "36.0": {
+          "actual_pts": 36.0,
+          "bright_pixels": 12756
+        }
+      }
+    },
+    "audio": {
+      "source_rms": 0.06597594916820526,
+      "advanced_rms": 0.0659424364566803,
+      "ordinary_rms": 0.06584709882736206,
+      "advanced_envelope_corr": 0.9999982447508785,
+      "ordinary_envelope_corr": 0.9999914648506439,
+      "source_duration_s": 37.8314,
+      "advanced_duration_s": 37.8027,
+      "ordinary_duration_s": 37.8453,
+      "note": "Envelope correlation proves signal correspondence, not speech quality or human listening."
+    }
+  },
+  "subtitle_clock": {
+    "primary_method": "independent sealed-PCM silencedetect phrase anchors, not ASR",
+    "vad_anchors": [
+      {
+        "anchor": "caption1_end",
+        "srt_seconds": 2.02,
+        "audio_edge_kind": "silence_start",
+        "audio_edge_seconds": 2.054467,
+        "absolute_error_seconds": 0.0345
+      },
+      {
+        "anchor": "caption2_start",
+        "srt_seconds": 2.52,
+        "audio_edge_kind": "silence_end",
+        "audio_edge_seconds": 2.5678,
+        "absolute_error_seconds": 0.0478
+      },
+      {
+        "anchor": "caption6_start",
+        "srt_seconds": 13.85,
+        "audio_edge_kind": "silence_end",
+        "audio_edge_seconds": 13.89229,
+        "absolute_error_seconds": 0.0423
+      },
+      {
+        "anchor": "caption13_end",
+        "srt_seconds": 36.83,
+        "audio_edge_kind": "silence_start",
+        "audio_edge_seconds": 36.948957,
+        "absolute_error_seconds": 0.119
+      }
+    ],
+    "vad_max_error_seconds": 0.119,
+    "vad_pass": true,
+    "sapi_22050_clock_valid": false,
+    "sapi_16k_aux_used": false,
+    "calibrated_candidate": {
+      "audit": "evidence/v3/clock-calibration-audit.json",
+      "paired_events": 80,
+      "factor_matches": true,
+      "max_cross_format_delta_seconds": 0.015044926,
+      "default_pcm_matches_sealed_sapi": true,
+      "usable_as_corroboration": true,
+      "not_used_as_sole_alignment_proof": true
+    },
+    "note": "No zero-error claim. VAD is phrase-level; calibrated SAPI events are only corroboration, not human/phoneme ground truth."
+  },
+  "preservation": {
+    "initial_archive_manifest_sha256": "31513049917304b82dc1088e39e376b013a52fc71d40ed1c3492ca937fb7b553",
+    "critical_initial_files_unchanged": true,
+    "archive_copies_match": true,
+    "progress_note": "PROGRESS.md is intentionally updated in place for the new round; its initial version remains in initial-run-archive/PROGRESS.md.",
+    "prior_reports": {
+      "REPORT-01.md": "a2b489f3b5385cbfb7dc63726a3fae0bab4197e84b8fecf56ed115b8f4e2ecf6",
+      "result.json": "5f06acda72a2a12935d2bc026c18f8123313f1195d5d796107ff279b7574eb4c",
+      "FAILURES.md": "add8c305e000d83b6673c6a74f9405e8081fe64cb7017b050cf3d743729ac84c",
+      "REPORT-02-proof-audit.md": "8f07f4f7686a3c521407ab6b98384ba58fc31c34e14b50a21d5d30d24df1ddea",
+      "result-proof-v2.json": "79464d0c14588bcce6b329c60bd14f1504f240387161b5ec966e293e46da39d9",
+      "FAILURES-PROOF-V2.md": "eb2eea7fd916fe08c1860b9439e46d8f3f97baabc201abe63191c0f876314a7e",
+      "evidence/measurements.json": "1e6b0981d7fcf0935ed4e8e7238f8145bc2ed910de82d39d0ee2e11ecbb929df",
+      "evidence/proof-v2/measurements-v2.json": "df29ffa094ed0f9a9aaed8fd0c7969d28c3f34e34c3b76982e286d3702c0ad01"
+    }
+  },
+  "limitations": [
+    "Human listening, speech quality, aesthetic/readability, rights and factual review.",
+    "Real external publication and post-publication metrics.",
+    "Word/phoneme-level ground truth; VAD is phrase-boundary and SAPI calibration is engine metadata.",
+    "An incomplete export was not separately created; nonexistent export binding was tested. The API only exposes an export ID at terminal completion.",
+    "Advanced effects other than the frozen plan were not re-authored; the frozen plan was newly exported."
+  ],
+  "local_regression_tests": 80,
+  "workflow_runs": [
+    {
+      "id": 40230879840,
+      "name": "Advanced talking head native acceptance",
+      "conclusion": "success",
+      "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879840",
+      "jobs": [
+        {
+          "id": 121282141813,
+          "name": "native (macos-15-intel)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879840/job/121282141813"
+        },
+        {
+          "id": 121282141977,
+          "name": "native (macos-15)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879840/job/121282141977"
+        },
+        {
+          "id": 121282142006,
+          "name": "native (windows-latest)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879840/job/121282142006"
+        }
+      ]
+    },
+    {
+      "id": 40230879810,
+      "name": "Windows and macOS compatibility",
+      "conclusion": "success",
+      "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879810",
+      "jobs": [
+        {
+          "id": 121282141739,
+          "name": "platform (macos-15)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879810/job/121282141739"
+        },
+        {
+          "id": 121282141971,
+          "name": "platform (windows-latest)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879810/job/121282141971"
+        },
+        {
+          "id": 121282142017,
+          "name": "platform (macos-15-intel)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879810/job/121282142017"
+        }
+      ]
+    },
+    {
+      "id": 40230879814,
+      "name": "Independent native matte acceptance",
+      "conclusion": "success",
+      "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879814",
+      "jobs": [
+        {
+          "id": 121282141633,
+          "name": "sealed-case (macos-15)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879814/job/121282141633"
+        },
+        {
+          "id": 121282141868,
+          "name": "sealed-case (macos-15-intel)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879814/job/121282141868"
+        },
+        {
+          "id": 121282141933,
+          "name": "sealed-case (windows-latest)",
+          "conclusion": "success",
+          "url": "https://github.com/MkaliezZ/self-media-workbench/actions/runs/40230879814/job/121282141933"
+        }
+      ]
+    }
+  ],
+  "all_nine_native_jobs_passed": true,
+  "ci_actual_log_checks": {
+    "advanced-windows": {
+      "regression_tests": 80,
+      "seconds": 64.384
+    },
+    "advanced-arm": {
+      "regression_tests": 80,
+      "seconds": 69.811
+    },
+    "advanced-intel": {
+      "regression_tests": 80,
+      "seconds": 121.774
+    },
+    "compatibility-windows": {
+      "regression_tests": 80,
+      "seconds": 92.406
+    },
+    "compatibility-arm": {
+      "regression_tests": 80,
+      "seconds": 82.369
+    },
+    "compatibility-intel": {
+      "regression_tests": 80,
+      "seconds": 129.975
+    }
+  },
+  "ci_actual_asr": [
+    {
+      "platform": "win32",
+      "machine": "AMD64",
+      "actual_backend": "faster-whisper",
+      "actual_device": "cpu",
+      "gpu_asr_verified": false,
+      "execution": {
+        "gpu_inference_verified": false,
+        "compute_type": "int8",
+        "supported_cuda_compute_types": null,
+        "inference_vad": true,
+        "timestamp_scope": "aligner word groups restored to original-source seconds; media stays uncut"
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    },
+    {
+      "platform": "darwin",
+      "machine": "arm64",
+      "actual_backend": "faster-whisper",
+      "actual_device": "cpu",
+      "gpu_asr_verified": false,
+      "execution": {
+        "gpu_inference_verified": false,
+        "compute_type": "int8",
+        "supported_cuda_compute_types": null,
+        "inference_vad": true,
+        "timestamp_scope": "aligner word groups restored to original-source seconds; media stays uncut"
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    },
+    {
+      "platform": "darwin",
+      "machine": "arm64",
+      "actual_backend": "mlx",
+      "actual_device": "gpu",
+      "gpu_asr_verified": true,
+      "execution": {
+        "metal_available": true,
+        "gpu_kernel_verified": true,
+        "isolated_worker": true
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    },
+    {
+      "platform": "darwin",
+      "machine": "x86_64",
+      "actual_backend": "faster-whisper",
+      "actual_device": "cpu",
+      "gpu_asr_verified": false,
+      "execution": {
+        "gpu_inference_verified": false,
+        "compute_type": "int8",
+        "supported_cuda_compute_types": null,
+        "inference_vad": true,
+        "timestamp_scope": "aligner word groups restored to original-source seconds; media stays uncut"
+      },
+      "fallback_errors": [],
+      "export_job_status": "done",
+      "timing_verified": true
+    }
+  ]
+}

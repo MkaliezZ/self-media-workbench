@@ -1,0 +1,8 @@
+{
+  "file": "sealed-inputs.zip",
+  "sha256": "e2e6ee7447bec57f91c2687b7230a65f4cb8b56453301deecb58b088be8fd4a9",
+  "bytes": 3675824,
+  "sealed_files": 18,
+  "manifest_sha256": "1dc0635b62132729cc17e1931ccf4f7fdb149ad3a9c1d30decd73334ac8b6caa",
+  "scope": "Exact original 18-file input seal plus manifest/checksum; historical environment is evidence, not deployment configuration. No test answers or raw agent trace."
+}

@@ -126,9 +126,9 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 
 ### 平台支持与验证范围
 
-**DSH 新素材盲测修订：**已修复损坏媒体导入的 500／残留，以及截断 WAV 被当成短音频误接受的问题，并补齐高级时间轴成片接发布准备的绑定。本机 80 项完整回归通过，独立复测与本轮 CI 结果持续记录在[DSH 盲测与修订记录](evaluation/dsh-blind-round2-20261025.md)；下方历史三平台成绩不替代本轮终态。
+**最新 DSH 换素材验收：**初次盲测发现的损坏媒体 500／残留，以及补查发现的截断 WAV 误接受问题均已修复；高级时间轴成片可直接接发布准备并校验输出哈希。DSH 同素材正式技术复测通过，Windows、Apple Silicon、Intel Mac **9 个原生 CI 任务全通过，每端 80 项回归**。首次失败、错误测量、字幕修订和未测边界均保留。[完整记录与原始素材包](evaluation/dsh-blind-round2-20261025.md)。
 
-**2026-10-25 本轮：**Windows、Apple Silicon（ARM64）、Intel Mac（x86_64）的兼容性、高级口播、独立蒙版三组 CI 共 **9 个原生任务全部通过**。每端高级口播回归 78 项、独立媒体检查 27 项、扫描／蒙版补充检查 49 项；包含实际导出、声音整理、恢复与后台重启。Apple Silicon 另确认实际 MLX GPU 转写与导出，无 CPU 回退。云端 Windows／Intel Mac 的 ASR 为 CPU 基线，不能当作对应 GPU 实测。[本轮完整记录](evaluation/advanced-talking-20261025.md) · [CI 结果索引](evaluation/advanced-ci-20261025.json)。
+**前一版高级口播（2026-10-25）：**Windows、Apple Silicon（ARM64）、Intel Mac（x86_64）的兼容性、高级口播、独立蒙版三组 CI 共 **9 个原生任务全部通过**。每端高级口播回归 78 项、独立媒体检查 27 项、扫描／蒙版补充检查 49 项；包含实际导出、声音整理、恢复与后台重启。Apple Silicon 另确认实际 MLX GPU 转写与导出，无 CPU 回退。云端 Windows／Intel Mac 的 ASR 为 CPU 基线，不能当作对应 GPU 实测。[历史完整记录](evaluation/advanced-talking-20261025.md) · [历史 CI 索引](evaluation/advanced-ci-20261025.json)。
 
 Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确记录 CPU 回退；AMD/Intel GPU 的可选 whisper.cpp Vulkan 路径尚待实机验收。Apple Silicon 另支持可选 **MLX/Metal GPU** 和 CPU 回退；Intel Mac 默认使用 CTranslate2 CPU，可选 whisper.cpp Metal 路径尚未实机验证。FFmpeg 导出、状态及协议功能采用同一套 Python 实现。GPU 验证与 CPU 兼容性分别报告。
 
@@ -274,9 +274,9 @@ State defaults to the operating system's private application-data directory. `co
 
 ### Platform and validation scope
 
-**New DSH changed-material revision:** fixes corrupt-import HTTP 500/residue and truncated-WAV acceptance, and connects native/advanced exports to publication preparation. All 80 current local regression tests passed. Independent retest and this revision's native CI are tracked in the [DSH audit and repair record](evaluation/dsh-blind-round2-20261025.md); earlier results below do not substitute for their terminal results.
+**Latest DSH changed-material audit:** fixed corrupt-import HTTP 500/residue and truncated-WAV acceptance; native/advanced exports now bind directly to publication preparation with output hashes. The same-input independent DSH technical retest passed, and **all 9 native CI jobs passed on Windows, Apple Silicon and Intel Mac, with 80 regression tests per host**. Initial failures, measurement-method corrections, subtitle revisions and untested boundaries remain explicit. [Full audit and original input package](evaluation/dsh-blind-round2-20261025.md).
 
-**2026-10-25 revision:** all **9 native jobs** passed across compatibility, advanced-production and independent-matte workflows on Windows, Apple Silicon (ARM64) and Intel Mac (x86_64). Each host passed 78 advanced regression tests, 27 independent media checks and 49 scan/mask supplement checks, with actual exports, mastering, restoration and service restart. Apple Silicon additionally verified actual MLX GPU ASR/export without CPU fallback. Hosted Windows/Intel Mac ASR is a CPU baseline, not vendor GPU acceptance. [Full evidence](evaluation/advanced-talking-20261025.md) · [CI index](evaluation/advanced-ci-20261025.json).
+**Earlier advanced-production revision (2026-10-25):** all **9 native jobs** passed across compatibility, advanced-production and independent-matte workflows on Windows, Apple Silicon (ARM64) and Intel Mac (x86_64). Each host passed 78 advanced regression tests, 27 independent media checks and 49 scan/mask supplement checks, with actual exports, mastering, restoration and service restart. Apple Silicon additionally verified actual MLX GPU ASR/export without CPU fallback. Hosted Windows/Intel Mac ASR is a CPU baseline, not vendor GPU acceptance. [Historical evidence](evaluation/advanced-talking-20261025.md) · [Historical CI index](evaluation/advanced-ci-20261025.json).
 
 Windows supports CPU and NVIDIA CUDA when its optional runtime is available, with explicit CPU fallback; AMD/Intel GPU routes use optional whisper.cpp Vulkan and await hardware acceptance. Apple Silicon additionally supports optional **MLX/Metal GPU** with CPU fallback; Intel Mac defaults to CTranslate2 CPU with an optional, hardware-unverified whisper.cpp Metal route. FFmpeg export and state/protocol features use the same Python implementation. Actual GPU verification is reported separately from CPU compatibility.
 

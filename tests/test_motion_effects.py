@@ -61,4 +61,18 @@ class MotionEffectsTests(unittest.TestCase):
         self.assertGreater(float(v[98,10,10].mean()),float(v[50,10,10].mean())*1.8)
         self.assertTrue((out/'motion-source-00.stderr').exists())
 
+    def test_pop_executes_scale_and_text_rejects_vertical_clipping(self):
+        b=copy.deepcopy(self.body);b['sources']=[self.refs[1],self.refs[0]]
+        b['effects']=[{'kind':'motion_layer','source_id':'article','start':0.,'end':4.,'from_rect':rect(.25,.2,.5,.6),
+            'to_rect':rect(.25,.2,.5,.6),'enter_seconds':1.,'exit_seconds':.5,'animation':'pop','shadow':False,'reason':'Pop must change the actual bounds even when endpoint slots match'}]
+        _,v=self.execute(b,'pop')
+        self.assertGreater(np.abs(v[10,180,180].astype(float)-v[40,180,180].astype(float)).mean(),30.)
+        b['sources']=[self.refs[1]];b['effects']=[{'kind':'motion_text','start':0.,'end':4.,'text':'TOO\nMANY\nLINES',
+            'slot':rect(.1,.4,.8,.08),'font_height':.08,'reason':'Refuse cropped text, rather than silently cutting lower lines'}]
+        with self.assertRaisesRegex(ValueError,'vertically'):self.execute(b,'invalid-text')
+        b['effects'][0].update(text='KEEP\nEVIDENCE',accent='KEEP\nEVIDENCE',slot=rect(.1,.3,.8,.4),font_height=.07)
+        _,v=self.execute(b,'multiline-accent');region=v[40,108:252,64:576]
+        yellow=(region[:,:,0]>140)&(region[:,:,1]>115)&(region[:,:,2]<160)
+        self.assertGreater(int(yellow[:72].sum()),30);self.assertGreater(int(yellow[72:].sum()),30)
+
 if __name__=='__main__':unittest.main()

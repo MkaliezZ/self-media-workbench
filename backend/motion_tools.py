@@ -125,11 +125,15 @@ def render_layer(body,sources,dest,font_path=None):
             entry.update(source_quad=selected.tolist(),target_quad=target.tolist(),quote_verification='caller-reviewed text; actual selected pixels preserved, no OCR claim')
         if k=='motion_text':
             x,y,x2,y2=box(cue['slot'],w,h);im=Image.new('RGBA',(x2-x,y2-y));d=ImageDraw.Draw(im);f=ImageFont.truetype(str(font_path),round(cue['font_height']*h));lines=cue['text'].split('\n');line_h=round(cue['font_height']*h*1.35);top=(im.height-line_h*len(lines))/2
+            bounds=[d.textbbox((0,top+row*line_h),line,font=f) for row,line in enumerate(lines) if line]
+            if bounds and (min(b[1] for b in bounds)<0 or max(b[3] for b in bounds)>im.height):raise ValueError('Motion text exceeds its slot vertically; enlarge the slot, split the cue or reduce font height')
+            accent_at=cue['text'].find(cue['accent']) if cue['accent'] else -1;offset=0
             for row,line in enumerate(lines):
                 if d.textlength(line,font=f)>im.width:raise ValueError('Motion text exceeds its slot; split lines or reduce font height')
-                left=(im.width-d.textlength(line,font=f))/2;pos=line.find(cue['accent']) if cue['accent'] else -1
+                left=(im.width-d.textlength(line,font=f))/2
                 for j,ch in enumerate(line):
-                    c=cue['accent_colour'] if pos>=0 and pos<=j<pos+len(cue['accent']) else cue['colour'];d.text((left,top+row*line_h),ch,font=f,fill=colour(c)+(255,));left+=d.textlength(ch,font=f)
+                    c=cue['accent_colour'] if accent_at>=0 and accent_at<=offset+j<accent_at+len(cue['accent']) else cue['colour'];d.text((left,top+row*line_h),ch,font=f,fill=colour(c)+(255,));left+=d.textlength(ch,font=f)
+                offset+=len(line)+1
             cache[i]=im
         events.append(entry)
     write={'clock':'authored output frames; no automatic OCR, tracking or acoustic character alignment','events':events,'frames':frames,'fps':fps}
@@ -170,6 +174,9 @@ def render_layer(body,sources,dest,font_path=None):
                         im=readers[i].next()
                     else:im=cache[i]
                     im=im.crop(box(cue['crop'],*im.size));r=interpolate(cue['from_rect'],cue['to_rect'],p);x,y,x2,y2=box(r,w,h)
+                    if cue['animation']=='pop':
+                        scale=.65+.35*p;cx=(x+x2)/2;cy=(y+y2)/2;half_w=(x2-x)*scale/2;half_h=(y2-y)*scale/2
+                        x,y,x2,y2=round(cx-half_w),round(cy-half_h),round(cx+half_w),round(cy+half_h)
                     iw=max(2,x2-x);ih=max(2,y2-y);im=im.resize((iw,ih),Image.Resampling.LANCZOS)
                     alpha=Image.fromarray(alpha_field(iw,ih,cue['shape'],cue['feather'],cue['opacity']*opacity))
                     if cue['animation'].startswith('reveal_'):

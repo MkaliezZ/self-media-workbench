@@ -220,7 +220,7 @@ def compose(review, keeps, record, plan_dir, dest):
     script=dest/'visual-filters.txt';script.write_text(';\n'.join(filters),'utf-8')
     (dest/'visual-timeline.json').write_text(json.dumps({'events':visual_events,'captions':caption_records},ensure_ascii=False,indent=2),'utf-8')
     command=['ffmpeg','-hide_banner','-v','error','-nostdin','-n','-i','reviewed_cut.mp4',*inputs,
-             '-filter_complex_script',script.name,'-map',f'[{last}]','-map','0:a:0',
+             '-/filter_complex',script.name,'-map',f'[{last}]','-map','0:a:0',
              '-t',f"{keeps['output_duration']:.6f}",'-c:v','libx264','-preset','medium','-crf','18',
              '-pix_fmt','yuv420p','-c:a','copy','-movflags','+faststart','visual.mp4']
     try:

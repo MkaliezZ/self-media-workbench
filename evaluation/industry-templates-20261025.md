@@ -27,6 +27,8 @@ Materials are self-generated colour video, sine audio, a two-colour diagram and 
 
 New cloud results are reported separately. Local Windows success does not establish macOS execution. Existing historical ASR acceptance is not inherited as recipe/render acceptance.
 
+Follow-up [cloud run 40178986267](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40178986267) passed on both macOS 15 Apple Silicon and Intel, including the 59-test suite and native speech/export steps. Windows failed because its newer FFmpeg removed filter_complex_script; actual failed jobs/process logs were retained. Switched to documented `-/filter_complex` file loading, preserving graph files and avoiding Windows argument-length limits. This correction requires a new cloud result before Windows cloud acceptance is claimed.
+
 ## Artifacts and reproduction
 
 Run `python -B -X utf8 -m unittest discover -s tests -v`. Set VISUAL_EVIDENCE_ROOT to retain isolated projects, template attempts, drafts, snapshots, input assets/fonts, failed/revised outputs and FFmpeg logs. The repository does not bundle system fonts or raw private project data. Local evidence includes initial/final logs, source/output hashes and representative frames. See [recipe usage](../docs/industry-templates.md) and [generation guidance](../skills/self-media-workflow/references/recipe-generation.md).

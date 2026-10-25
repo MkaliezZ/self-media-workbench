@@ -26,6 +26,7 @@ class TaskEntryTests(unittest.TestCase):
 
     def test_focus_negation_and_media_routing(self):
         self.assertEqual(infer_intent('不需要剪辑，只写脚本'),'script')
+        self.assertEqual(infer_intent('不要配图，不要字幕，只写脚本'),'script')
         self.assertEqual(infer_intent('不要复盘，帮我选题'),'topics')
         self.assertEqual(infer_intent('整理这个视频',True),'edit')
         r=self.task('只写一条脚本').json()

@@ -2,6 +2,7 @@
 import hashlib
 import json
 import re
+import shutil
 import uuid
 from pathlib import Path
 from typing import Literal
@@ -32,10 +33,10 @@ class TaskRequest(BaseModel):
 def infer_intent(task, has_media=False):
     text = task.casefold()
     # Explicit exclusions are removed from this routing hint, never from source materials.
-    hint = re.sub(r'(?:不要|不用|不做|无需|不需要|不|no |do not )(?:再)?(?:剪辑|剪视频|edit|复盘|发布|诊断|选题)', '', text)
+    hint = re.sub(r'(?:不要|不用|不做|无需|不需要|不|no |do not )(?:再)?(?:剪辑|剪视频|配图|画面高亮|重点文案|字幕|visual edit|edit|复盘|发布|诊断|选题)', '', text)
     if any(k in hint for k in ['完整流程','全流程','从头到尾','full workflow','end to end']):return 'full'
     pairs = [('review',['复盘','发布数据','数据分析','review performance']),
-             ('edit',['剪辑','剪口播','剪气口','转录','字幕','edit video','transcribe']),
+             ('edit',['剪辑','剪口播','剪气口','转录','字幕','配图','画面高亮','重点文案','edit video','transcribe','visual edit']),
              ('publish',['发布准备','发布包','准备发布','publish preparation']),
              ('script',['脚本','逐字稿','口播稿','改稿','script']),
              ('topics',['选题','选个题','想几个题','topic']),
@@ -59,6 +60,10 @@ def register_tasks(w, context):
                 raise HTTPException(422,f'Input must be an existing local absolute path: {raw}')
             p = p.resolve()
             if p.suffix.lower() in MEDIA:inputs.append((p,'media',None))
+            elif p.suffix.lower() in ('.png','.jpg','.jpeg'):
+                from visual_tools import inspect_image
+                try:inputs.append((p,'image',inspect_image(p)))
+                except (ValueError,OSError) as exc:raise HTTPException(422,str(exc))
             elif p.suffix.lower() in ('.txt','.md','.json','.csv'):
                 try:
                     if p.stat().st_size > 1000000:raise ValueError('over one million bytes')
@@ -66,7 +71,7 @@ def register_tasks(w, context):
                     if not content.strip():raise ValueError('empty file')
                 except (ValueError,UnicodeError) as exc:raise HTTPException(422,f'Invalid UTF-8 source: {p.name}: {exc}')
                 inputs.append((p,'text',content))
-            else:raise HTTPException(422,f'Unsupported input type: {p.suffix}; provide UTF-8 text or audio/video')
+            else:raise HTTPException(422,f'Unsupported input type: {p.suffix}; provide UTF-8 text, audio/video or PNG/JPEG')
         signature = hashlib.sha256(body.model_dump_json().encode()).hexdigest()
         registry = w.DATA.parent / 'task-requests' / f'{body.request_id}.json'
         with w.LOCK:
@@ -105,7 +110,20 @@ def register_tasks(w, context):
             pid = project['id'];path = w.folder(pid)
         registered = []
         for p,kind,content in inputs:
-            if kind == 'media':
+            if kind == 'image':
+                with w.LOCK:
+                    project=w.read(path/'project.json')
+                    existing=next((a for a in project.get('image_assets',[]) if a['sha256']==content['sha256']),None)
+                    if not existing:
+                        local=path/'agent/assets'/(content['sha256']+p.suffix.lower());local.parent.mkdir(parents=True,exist_ok=True)
+                        if not local.exists():shutil.copy2(p,local)
+                        if w.file_sha256(local)!=content['sha256']:raise HTTPException(409,'Image changed during task intake')
+                        existing={**content,'id':uuid.uuid4().hex,'path':str(local),'label':p.name,
+                            'source_note':body.source_note,'usage_scope':body.usage_scope,'declaration_only':True}
+                        project.setdefault('image_assets',[]).append(existing);w.snapshot(path,project)
+                        w.event(path,'image_asset_registered',existing)
+                    registered.append({'kind':'image',**existing})
+            elif kind == 'media':
                 project = w.read(path/'project.json')
                 digest = w.file_sha256(p)
                 existing = next((m for m in project['media'] if m['sha256']==digest),None)

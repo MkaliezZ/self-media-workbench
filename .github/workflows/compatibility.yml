@@ -38,7 +38,17 @@ jobs:
       - name: Install FFmpeg on macOS if absent
         if: runner.os == 'macOS'
         run: command -v ffmpeg >/dev/null || brew install ffmpeg
+      - name: Ensure macOS text-rendering filters
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          if ! ffmpeg -hide_banner -filters 2>/dev/null | grep -q ' drawtext '; then
+            brew install ffmpeg@7
+            echo "$(brew --prefix ffmpeg@7)/bin" >> "$GITHUB_PATH"
+          fi
       - name: Protocol, routing and actual FFmpeg tests
+        env:
+          VISUAL_EVIDENCE_ROOT: evaluation/runs/visual
         run: python -B -X utf8 -m unittest discover -s tests -v
       - name: Actual native speech, local CPU ASR and HTTP export
         env:

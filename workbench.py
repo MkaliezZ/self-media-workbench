@@ -80,6 +80,10 @@ def doctor():
     except ValueError as exc:routing=[];routing_error=str(exc)
     try:mlx_local_model(MLX_MODEL);mlx_present=True
     except ValueError:mlx_present=False
+    try:
+        from visual_tools import status as visual_status
+        visual=visual_status()
+    except ImportError as exc:visual={'available':False,'error':str(exc)}
     return {'platform':sys.platform,'python':sys.version,'python_executable':sys.executable,'root':str(ROOT),
         'state_dir':str(STATE),'data_dir':str(DATA),'skill_entry':str(SKILL/'SKILL.md'),
         'model':str(MODEL),'model_present':(MODEL/'model.bin').is_file(),
@@ -91,6 +95,7 @@ def doctor():
                        'reason':cpp_reason,'gpu_index':CPP_GPU_INDEX,'gpu_execution_verified':False},
         'dependencies':{k:importlib.util.find_spec(k) is not None for k in ['fastapi','pydantic','uvicorn','numpy','faster_whisper']},
         'executables':{k:shutil.which(k) for k in ['ffmpeg','ffprobe']},
+        'visual_editing':visual,'visual_setup_guide':str(ROOT/'docs/visual-editing.md'),
         'macos_asr':'Apple Silicon: MLX; Intel GPU: optional whisper.cpp Metal; recorded CPU fallback' if sys.platform=='darwin' else None,
         'network_upload':False,'model_auto_download':False}
 

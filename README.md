@@ -100,6 +100,7 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 选题 | 有素材支撑的备选题与选定问题 |
 | 脚本 | 口播词、镜头、时长估算与行动引导 |
 | 本地剪辑 | 实际 ASR、明确的剪除与恢复、审阅后的字幕分组、MP4/SRT/JSON |
+| 视觉编辑 | 完整字幕组强调、本地配图、静态区域高亮、方案与时间轴 |
 | 发布准备 | 标题、配文、披露说明及真实素材绑定 |
 | 复盘 | 有定义的指标或采集计划、假设与下一次实验 |
 
@@ -119,7 +120,11 @@ Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确�
 
 [中文口播验收](evaluation/chinese-acceptance-20261021.md)在 Windows、Apple Silicon GPU 和 Intel CPU 上使用同一份中文合成素材，保留原始识别错误、基于已知原稿的辅助纠错、字幕修订及实际停顿剪除／恢复导出。首次比较失败，以及后来自动检查通过但语义断句错误的字幕结果，均与最终三端复测结果一起保留。
 
-MP4 和 SRT 分别输出。当前没有自动对外发布、字幕烧录或合成功能，也不保证内容或营销效果。模型识别、字幕、具有语义的停顿、生产可用性及平台要求仍需 Agent 审阅，必要时由人确认。
+普通导出保留独立 MP4/SRT。保存 visual-plan 后可另导出重点字幕、本地 PNG/JPEG 与静态区域提示的 visual.mp4，保留原件与旧导出。新视觉功能在 Windows 完成真实合成、像素、剪切与恢复测试；本轮 macOS 实际运行尚未验证，历史 ASR 验收不能替代。详见[视觉编辑](docs/visual-editing.md)。没有在线自动搜图或自动对外发布，也不保证内容或营销效果。模型识别、字幕、具有语义的停顿、生产可用性及平台要求仍需 Agent 审阅，必要时由人确认。
+
+### 功能规划
+
+重点文案强调、语义打点、素材检索与配图见[文案驱动视觉编辑规划](docs/plans/visual-editing-roadmap.md)。多种内容形式的方法库、条件方案、画面与声音组件及接入顺序见[剪辑体系合并规划](docs/plans/editing-system-integration.md)。本地字幕强调、图片布局与静态区域提示已接入；在线检索、复杂动效与声音生成仍是规划，当前范围以实际 schema 和验证结果为准。
 
 ### 协议与私有材料
 
@@ -219,6 +224,7 @@ The entry automatically starts/reuses an identified loopback service, registers 
 | Topic selection | Material-backed alternatives and chosen problem |
 | Script | Spoken text, shots, timing estimates and action |
 | Local editing | Actual ASR, explicit cuts/restoration, reviewed SRT grouping, MP4/SRT/JSON |
+| Visual editing | Complete-cue emphasis, local images, static region highlights, saved plans/timeline |
 | Publication preparation | Title/caption/disclosure and real asset bindings |
 | Review | Defined metrics or collection plan, hypothesis and next experiment |
 
@@ -238,7 +244,11 @@ A separate [fresh macOS installation audit](evaluation/fresh-macos-20261021.md) 
 
 The [Chinese speech audit](evaluation/chinese-acceptance-20261021.md) uses identical synthetic Chinese media on Windows, Apple Silicon GPU and Intel CPU. It retains original recognition errors, reference-assisted corrections, caption revisions and actual pause cut/restore exports. Initial comparison failure and a later automatically passed but semantically wrong subtitle grouping remain alongside the repaired three-platform retest.
 
-MP4 and SRT are separate outputs. There is no automatic external publishing, burned-caption/compositing feature or guarantee of content/marketing effectiveness. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
+Ordinary exports retain separate MP4/SRT. A saved visual-plan optionally adds visual.mp4 with complete-cue emphasis, local PNG/JPEG images and static region highlights, preserving originals and earlier exports. The new visual path has real Windows composition/pixel/cut/restore tests; macOS execution of this addition remains unverified and is not covered by historical ASR acceptance. See [visual editing](docs/visual-editing.md). Online image search and automatic external publishing are not provided; content/marketing effectiveness is not guaranteed. Actual model recognition, subtitles, meaningful pauses, production readiness and platform requirements still need review by the Agent and, where required, people.
+
+### Planned capabilities
+
+See the [visual-editing roadmap](docs/plans/visual-editing-roadmap.md) for emphasis, semantic cueing and asset search/composition, and the [editing-system integration plan](docs/plans/editing-system-integration.md) for conditional recipes, reusable visual/audio operations and implementation stages. Local caption emphasis, image layouts and static regions are integrated. Online search, complex animation and sound generation remain planned; current schemas and actual validation define runtime scope.
 
 ### License and private materials
 

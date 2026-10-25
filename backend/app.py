@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import threading
+import time
 import uuid
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
@@ -40,7 +41,9 @@ def now():
 
 
 def read(path):
-    return json.loads(path.read_text('utf-8'))
+    # Windows readers can temporarily deny replacement of the same JSON file.
+    with LOCK:
+        return json.loads(path.read_text('utf-8'))
 
 
 def file_sha256(path):
@@ -49,10 +52,17 @@ def file_sha256(path):
 
 
 def write(path, obj):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_suffix(path.suffix + '.' + uuid.uuid4().hex + '.tmp')
-    temp.write_text(json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
-    os.replace(temp, path)
+    with LOCK:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temp = path.with_suffix(path.suffix + '.' + uuid.uuid4().hex + '.tmp')
+        temp.write_text(json.dumps(obj, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+        for attempt in range(8):
+            try:
+                os.replace(temp, path)
+                break
+            except PermissionError:
+                if attempt==7:raise
+                time.sleep(.025*(attempt+1))
 
 
 def folder(pid):
@@ -351,12 +361,24 @@ def export(pid: str,mid: str,body: ExportReview | None=None):
         source_metadata = {**media_provenance(item), 'declaration_only':True}
         project_revision = read(path/'project.json')['revision']
         plan = plan_keeps(review, review.get('selected_ids',[]))
+        visual_record = None
+        visual_dir = None
+        if body is not None and body.visual_plan_id:
+            from visual_tools import check_binding, validate_record
+            visual_dir = path/'media'/mid/'visual-plans'/body.visual_plan_id
+            if not (visual_dir/'plan.json').is_file():
+                raise HTTPException(404,'Visual plan not found')
+            visual_record = read(visual_dir/'plan.json')
+            check_binding(visual_record,review,out.name,item['sha256'])
+            validate_record(visual_record,visual_dir)
         if not item['has_video']:
             raise HTTPException(422,'当前导出需要视频；音频识别可用，音频成品导出尚未实现')
         export_id = uuid.uuid4().hex
         dest = path/'exports'/export_id
         write(dest/'review.snapshot.json',review)
         write(dest/'plan.json',plan)
+        if visual_record:
+            write(dest/'visual-plan.json',visual_record)
     def run():
         source=path/item['relative_path']
         with source.open('rb') as stream:
@@ -364,13 +386,18 @@ def export(pid: str,mid: str,body: ExportReview | None=None):
         if current_hash!=item['sha256'] or review['source_sha256']!=item['sha256']:
             raise RuntimeError('原件或转录来源哈希不匹配；停止导出，先重新核对素材')
         render(source, review, plan, dest)
+        visual_result = {}
+        if visual_record:
+            from visual_tools import compose
+            visual_result = compose(review,plan,visual_record,visual_dir,dest)
         write(dest/'provenance.json',{'source_sha256':item['sha256'],'source_media_id':mid,
                                      'source_media_metadata':source_metadata,
                                      'project_revision_at_export':project_revision,
                                      'asr_run':out.name,'review_revision':review.get('revision',0),
+                                     'visual_plan_id':visual_record['id'] if visual_record else None,
                                      'created_at':now(),'external_publication':False})
-        return {'export_id':export_id,'files':['reviewed_cut.mp4','reviewed_cut.srt',
-                                             'reviewed_cut.words.json','edit-decision.json','provenance.json']}
+        return {'export_id':export_id,**visual_result,'files':['reviewed_cut.mp4','reviewed_cut.srt',
+                    'reviewed_cut.words.json','edit-decision.json','provenance.json']+visual_result.get('files',[])}
     return launch(path,mid,'export',run)
 
 
@@ -398,6 +425,7 @@ def original(pid:str,mid:str):
 def artifact(pid:str,eid:str,name:str):
     path=folder(pid)
     allowed={'reviewed_cut.mp4','reviewed_cut.srt','reviewed_cut.words.json','edit-decision.json','provenance.json'}
+    allowed.update({'visual.mp4','visual-plan.json','visual-timeline.json'})
     if len(eid)!=32 or any(c not in '0123456789abcdef' for c in eid) or name not in allowed:
         raise HTTPException(404,'文件不存在')
     file=path/'exports'/eid/name
@@ -445,6 +473,8 @@ async def calculate(pid:str,kind:str,request:Request):
 
 from agent_api import register as register_agent_api
 register_agent_api(sys.modules[__name__])
+from visual_tools import register as register_visual_tools
+register_visual_tools(sys.modules[__name__])
 
 @app.get('/')
 def agent_entry():

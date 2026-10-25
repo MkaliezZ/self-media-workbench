@@ -13,6 +13,7 @@ You are the reasoning executor. Use the local task entry and current project con
 | topics | [Topics](references/topics.md) | Distinct options, selected problem, usable material |
 | script | [Script](references/script.md) | Spoken text, timed shots, available visuals and one action |
 | edit | [Media](references/media.md) | Reviewed transcript/cuts, native SRT grouping, actual export |
+| edit: emphasis/images | [Visual](references/visual.md) | Source-bound cue emphasis, local images/static regions, actual styled export |
 | publish | [Preparation](references/publish.md) | Honest title/caption/disclosure, asset IDs and unresolved checks |
 | review | [Review](references/review.md) | Defined metrics or collection plan, hypothesis, next experiment |
 

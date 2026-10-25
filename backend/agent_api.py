@@ -58,6 +58,13 @@ def register(w):
                                          'review_url':f'/api/projects/{pid}/media/{item["id"]}/review',
                                          'original_transcript_path':str(review_path.with_name('transcript.original.json'))}
                 media.append(record)
+            visual_plans = []
+            for entry in project.get('visual_plans',[]):
+                saved=w.read(path/entry['relative_path'])
+                current=next((m for m in media if m['id']==entry['media_id']),{})
+                asr=current.get('asr',{})
+                visual_plans.append({**saved,'media_id':entry['media_id'],
+                    'stale':saved['asr_run']!=asr.get('run_id') or saved['review_revision']!=asr.get('revision') or saved['source_sha256']!=current.get('sha256')})
             exports = [{'id':p.parent.name, 'provenance':w.read(p)}
                        for p in sorted((path/'exports').glob('*/provenance.json'))]
             jobs = w.list_jobs(pid)
@@ -67,7 +74,7 @@ def register(w):
             state = {'protocol_version':1, 'project':project, 'sources':sources,
                      'artifacts':artifacts, 'heads':heads, 'media':media,
                      'tasks':[w.read(p) for p in sorted((path/'agent/tasks').glob('*.json'))],
-                     'exports':exports, 'jobs':jobs,
+                     'exports':exports, 'jobs':jobs, 'visual_plans':visual_plans,
                      'knowledge_library':{'root':str(w.LIBRARY) if w.LIBRARY else None,
                                           'ledger':str(w.LIBRARY/'阅读记录/全库逐篇阅读清单.json') if w.LIBRARY else None,
                                           'progress':w.read(w.LIBRARY/'阅读记录/当前阅读进度.json') if w.LIBRARY and (w.LIBRARY/'阅读记录/当前阅读进度.json').exists() else None},
@@ -241,11 +248,14 @@ def register(w):
     def capabilities():
         return {'protocol_version':1, 'primary_client':'ai_agent',
                 'reasoning_executor':'calling agent using the skill; server stores, validates and runs local media tools',
-                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export']},
+                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan']},
                 'media_editing':{'spoken_cuts':'explicit contiguous ASR word groups with reason and source/run binding',
                                  'restore':'speech_cuts=[] restores spoken groups; omitted preserves decisions',
                                  'review_attempts':'project media/<mid>/review-attempts records accepted/rejected writes'},
                 'actions':{
+                    'visual_status':{'method':'GET','path':'/api/visual/status'},
+                    'visual_plans':{'method':'GET','path':'/api/projects/{pid}/media/{mid}/visual-plans'},
+                    'visual_plan_save':{'method':'POST','path':'/api/projects/{pid}/media/{mid}/visual-plans','schema':PREFIX+'/schemas/visual-plan'},
                     'task':{'method':'POST','path':PREFIX+'/tasks','schema':PREFIX+'/schemas/task'},
                     'create_project':{'method':'POST','path':'/api/projects'},
                     'context':{'method':'GET','path':PREFIX+'/projects/{pid}/context'},
@@ -266,6 +276,9 @@ def register(w):
 
     @app.get(PREFIX+'/schemas/{name}')
     def schema(name:str):
+        if name == 'visual-plan':
+            from visual_models import VisualPlan
+            return VisualPlan.model_json_schema()
         if name == 'task':
             from task_api import TaskRequest
             return TaskRequest.model_json_schema()

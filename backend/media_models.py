@@ -56,3 +56,4 @@ class ExportReview(BaseModel):
     revision: int = Field(ge=0)
     asr_run: str = Field(min_length=1, max_length=80)
     source_sha256: str = Field(pattern=r'^[a-f0-9]{64}$')
+    visual_plan_id: str | None = Field(default=None, pattern=r'^[a-f0-9]{32}$')

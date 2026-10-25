@@ -49,7 +49,10 @@ jobs:
       - name: Protocol, routing and actual FFmpeg tests
         env:
           VISUAL_EVIDENCE_ROOT: evaluation/runs/visual
+          TIMELINE_EVIDENCE_ROOT: evaluation/runs/timeline
         run: python -B -X utf8 -m unittest discover -s tests -v
+      - name: Actual native timeline HTTP, music alignment and restart
+        run: python -B -X utf8 scripts/timeline_http_acceptance.py --out evaluation/runs/timeline-http
       - name: Actual native speech, local CPU ASR and HTTP export
         env:
           HF_HUB_DISABLE_XET: '1'

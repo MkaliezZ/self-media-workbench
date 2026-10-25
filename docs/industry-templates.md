@@ -18,7 +18,7 @@
 
 通过 `editing-recipe` schema 与 POST `/api/visual/recipes/validate` 检查定义，再作为 editing-template.custom_definition 编译。可执行定义随项目和导出冻结，保留版本与哈希。服务不会自行调用模型；创作与语义判断由调用 Agent 完成。
 
-纯画面旅行 Vlog、音乐卡点、多源访谈等需要独立视觉时间轴或声音轨道时，定义标为 planning_only，并列出 missing_capabilities，不能直接渲染。详细判断见 [Agent 生成方法](../skills/self-media-workflow/references/recipe-generation.md)。
+纯画面旅行 Vlog、审阅后的音乐打点与多源独立声音现使用 native_timeline 定义和[原生时间轴](native-timeline.md)编排；复杂跟踪、组动画、变速或音乐生成等仍标为 planning_only 并列缺项。详细判断见 [Agent 生成方法](../skills/self-media-workflow/references/recipe-generation.md)。
 
 模板包含不同的叙述职责、素材要求、字幕重点和横竖屏布局，不只是颜色预设。时间来自审阅后的 ASR 组和剪切映射，不按固定秒数机械转场。Agent 可针对已检查的画面调整安全槽位、关闭某段强调或使用原画面。模板不会自动重排原片叙事、删除有声内容或引入未知素材。
 
@@ -29,10 +29,12 @@
 - 草案经检查后提交现有 visual_plan_save；保存时重编译校验，冻结模板定义与素材。现有导出请求带 visual_plan_id。
 - context.visual_plans 包含模板与过期状态；续做使用同一项目，不增设人类启动点。
 
-当前支持单源视频、完整字幕组强调、本地 PNG/JPEG 与静态区域高亮，不接外部模型、不增加 Python 依赖。在线搜图、多源自动选镜、抠像跟踪、复杂动画和配乐尚未实现。素材不足会拒绝缺段落/缺图片请求，不补造事实。
+ASR 样式编译器支持单源视频、完整字幕组强调、本地 PNG/JPEG 与静态区域高亮；原生时间轴另支持无声视频、多源与独立配乐。在线搜图、语义自动选镜、抠像跟踪、复杂动画和音乐生成尚未实现。素材不足会拒绝缺段落/缺图片请求，不补造事实。
 
 protected_regions 由 Agent 看真实画面后标出；服务拒绝图片槽位与其相交。它不自动检测人物，不能独立证明内容属实、画面美观或使用条件已核实。字幕可读性、主体遮挡与声音仍需检查实际输出。
 
 ## 验证
 
 测试执行七种预设及自定义旅行叙事的真实 FFmpeg 合成和完整解码，覆盖横竖屏、安全槽位、缺段落/缺图片、遮挡、乱序或漏词、旧版本、过期审阅、编译结果篡改、规划模式拒绝渲染。素材是合成技术样片，不是各行业的真实商业案例。技术通过与实际内容质量分别报告，见[验收记录](../evaluation/industry-templates-20261025.md)。
+
+前版遗漏的不露脸资料、科普、生活场景、游戏/录屏事件及第一人称逻辑已补回预设。完整机制和仍缺的组件见[逻辑库](editing-logics.md)。

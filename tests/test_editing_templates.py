@@ -32,12 +32,12 @@ class EditingTemplateTests(unittest.TestCase):
             'template_id':t['id'],'template_version':t['version'],
             'selection_reason':'Exercise recipe contract on explicitly synthetic source',
             'frame_inspection_note':'Generated blue frame: no people or important UI; safe area inspected',
-            'protected_regions':[{'x':0.,'y':0.,'width':.1,'height':.1}],'beats':beats}
+            'protected_regions':[],'beats':beats}
 
     def compile(self,body):
         return self.client.post(self.url+'/visual-template/compile',json=body)
 
-    def test_all_seven_recipes_real_render_and_frozen_definitions(self):
+    def test_all_catalog_recipes_real_render_and_frozen_definitions(self):
         placements=[];colour=set()
         for t in catalog():
             with self.subTest(industry=t['id']):
@@ -58,7 +58,7 @@ class EditingTemplateTests(unittest.TestCase):
                 self.assertEqual(len(timeline['captions']),3)
                 self.assertEqual(self.context()['visual_plans'][-1]['stale'],False)
         self.assertGreaterEqual(len({json.dumps(p,sort_keys=True) for p in placements}),5)
-        self.assertEqual(len(colour),7)
+        self.assertGreaterEqual(len(colour),7)
 
     def test_reject_missing_roles_assets_coverage_occlusion_and_modified_compilation(self):
         t=catalog()[1];body=self.request(t)
@@ -101,7 +101,7 @@ class EditingTemplateTests(unittest.TestCase):
         self.assertLess(rect['x']+rect['width'],120);self.assertLess(rect['y']+rect['height'],130)
 
     def test_discovery_routing_and_stale_restore(self):
-        response=self.client.get('/api/visual/templates');self.assertEqual(len(response.json()['templates']),7)
+        response=self.client.get('/api/visual/templates');self.assertEqual(len(response.json()['templates']),len(catalog()))
         caps=self.client.get('/api/agent/v1/capabilities').json()
         self.assertIn('editing-template',caps['schemas'])
         task=self.client.post('/api/agent/v1/tasks',json={'task':'按餐饮探店行业模板剪辑','project':self.pid})

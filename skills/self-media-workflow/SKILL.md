@@ -16,6 +16,7 @@ You are the reasoning executor. Use the local task entry and current project con
 | edit: emphasis/images | [Visual](references/visual.md) | Source-bound cue emphasis, local images/static regions, actual styled export |
 | edit: industry recipe | [Industry](references/industry.md) | Industry structure/layout compiled to a saved visual plan |
 | edit: new form/logic | [Recipe generation](references/recipe-generation.md) | Agent-generated custom recipe; supported compilation or explicit planning-only gaps |
+| edit: silent/multi-source/music | [Native timeline](references/timeline.md) | Source seconds and output frames, independent audio, reviewed music edges, immutable revisions |
 | publish | [Preparation](references/publish.md) | Honest title/caption/disclosure, asset IDs and unresolved checks |
 | review | [Review](references/review.md) | Defined metrics or collection plan, hypothesis, next experiment |
 

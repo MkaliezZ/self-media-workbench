@@ -57,6 +57,29 @@ CATALOG=[
    ['保留环境与动作观看时间','不虚构到访或体验','纯音乐多源蒙太奇需额外时间轴能力'],
    {'landscape':slot(.66,.06,.29,.34),'portrait':slot(.64,.06,.30,.25)},['departure','reflection'],.043,'E4D2A8')]
 
+# These distinct content mechanisms share the same rendering primitives.
+CATALOG.extend([
+ recipe('faceless_explainer','不露脸资料解说',['不露脸','资料解说'],
+   [('claim','明确需要解释的命题'),('reference','资料卡或原图区域承担主要解释'),('conclusion','回到结论和限定条件')],
+   ['完整讲述或旁白','与论点匹配的资料及具体区域'],['引用卡不能冒充事实核实','没有相关素材时不堆装饰图'],
+   {'landscape':slot(.05,.06,.90,.66),'portrait':slot(.05,.06,.90,.56)},['claim','conclusion'],.049,'DDD2B8'),
+ recipe('science_report','科普资料串联',['科普资料','资料串联'],
+   [('question','明确待解释现象'),('evidence','大纲与可核实资料对应'),('explanation','解释机制与不确定条件')],
+   ['资料支撑的大纲','文案与画面对应关系'],['示意与真实观测分开','先核实材料再安排画面'],
+   {'landscape':slot(.40,.05,.55,.68),'portrait':slot(.06,.06,.88,.51)},['question','explanation'],.048,'B8D9E0'),
+ recipe('life_story','生活场景叙事',['生活叙事','生活vlog','日常vlog'],
+   [('space','先建立场景和空间'),('action','按实际前后关系展示行为'),('detail','由整体进入细节或感受')],
+   ['相关场景和动作镜头','必要环境声与观看时间'],['静音不等于无用','缺动作应补拍而非制造因果'],
+   {'landscape':slot(.69,.06,.25,.30),'portrait':slot(.68,.06,.26,.24)},['detail'],.043,'D7D2BC'),
+ recipe('game_replay','游戏与录屏事件回看',['游戏剪辑','事件回看','录屏回看'],
+   [('context','交代操作或事件前因'),('event','完整呈现关键变化'),('analysis','定位对象并解释为何重要')],
+   ['实际事件和操作前后画面','重要UI与可定位目标'],['不遮关键UI','慢放和自动跟踪不因区域提示而默认具备'],
+   {'landscape':slot(.72,.05,.24,.30),'portrait':slot(.68,.05,.28,.27)},['analysis'],.047,'CDD696'),
+ recipe('first_person_story','第一人称经历解说',['第一人称','经历解说','影视解说'],
+   [('setup','明确人物处境与叙述视角'),('event','把叙述与实际事件画面对齐'),('reflection','保留结果、感受与因果边界')],
+   ['可用原片或真实经历材料','自有或获准使用的旁白'],['不克隆他人音色','不虚构原片或亲历','声音与画面可独立安排但不能伪造因果'],
+   {'landscape':slot(.65,.06,.29,.38),'portrait':slot(.66,.06,.28,.30)},['setup','reflection'],.046,'D9BDAB')])
+
 
 def digest(value):return hashlib.sha256(json.dumps(value,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
 
@@ -122,7 +145,7 @@ class RecipeDefinition(Strict):
     industry: str = Field(min_length=1,max_length=200)
     video_type: str = Field(min_length=1,max_length=200)
     viewer_goal: str = Field(min_length=1,max_length=1000)
-    execution_mode: Literal['narrated_single_source_2d','planning_only']
+    execution_mode: Literal['narrated_single_source_2d','native_timeline','planning_only']
     missing_capabilities: list[str] = Field(default_factory=list,max_length=20)
     roles: list[Role] = Field(min_length=2,max_length=8)
     required_materials: list[str] = Field(min_length=1,max_length=20)
@@ -166,6 +189,7 @@ def intersects(a,b):
 
 def compile_plan(body,review,width,height):
     t=get_template(body['template_id'],body.get('custom_definition'))
+    if t.get('execution_mode')=='native_timeline':raise ValueError('Use timeline-plan with source seconds for this recipe, not the ASR visual compiler')
     if t.get('execution_mode')=='planning_only':raise ValueError('Recipe is planning only; missing: '+', '.join(t['missing_capabilities']))
     if body['template_version']!=t['version']:raise ValueError('Template version changed; inspect the catalog again')
     if not body['selection_reason'].strip() or not body['frame_inspection_note'].strip():raise ValueError('Inspect actual frames and explain template fit')

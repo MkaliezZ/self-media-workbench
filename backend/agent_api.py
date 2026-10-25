@@ -75,6 +75,7 @@ def register(w):
                      'artifacts':artifacts, 'heads':heads, 'media':media,
                      'tasks':[w.read(p) for p in sorted((path/'agent/tasks').glob('*.json'))],
                      'exports':exports, 'jobs':jobs, 'visual_plans':visual_plans,
+                     'timeline_plans':[w.read(path/e['relative_path']) for e in project.get('timeline_plans',[])],
                      'knowledge_library':{'root':str(w.LIBRARY) if w.LIBRARY else None,
                                           'ledger':str(w.LIBRARY/'阅读记录/全库逐篇阅读清单.json') if w.LIBRARY else None,
                                           'progress':w.read(w.LIBRARY/'阅读记录/当前阅读进度.json') if w.LIBRARY and (w.LIBRARY/'阅读记录/当前阅读进度.json').exists() else None},
@@ -248,11 +249,17 @@ def register(w):
     def capabilities():
         return {'protocol_version':1, 'primary_client':'ai_agent',
                 'reasoning_executor':'calling agent using the skill; server stores, validates and runs local media tools',
-                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe']},
+                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe','timeline-plan','timeline-export','music-onsets']},
                 'media_editing':{'spoken_cuts':'explicit contiguous ASR word groups with reason and source/run binding',
                                  'restore':'speech_cuts=[] restores spoken groups; omitted preserves decisions',
                                  'review_attempts':'project media/<mid>/review-attempts records accepted/rejected writes'},
                 'actions':{
+                    'editing_logics':{'method':'GET','path':'/api/visual/logics'},
+                    'timeline_plans':{'method':'GET','path':'/api/projects/{pid}/timeline-plans'},
+                    'save_timeline':{'method':'POST','path':'/api/projects/{pid}/timeline-plans','schema':PREFIX+'/schemas/timeline-plan'},
+                    'align_timeline':{'method':'POST','path':'/api/projects/{pid}/timeline/align','schema':PREFIX+'/schemas/timeline-plan'},
+                    'export_timeline':{'method':'POST','path':'/api/projects/{pid}/timeline/export','schema':PREFIX+'/schemas/timeline-export'},
+                    'music_onsets':{'method':'POST','path':'/api/projects/{pid}/music-onsets','schema':PREFIX+'/schemas/music-onsets'},
                     'editing_templates':{'method':'GET','path':'/api/visual/templates'},
                     'validate_editing_recipe':{'method':'POST','path':'/api/visual/recipes/validate','schema':PREFIX+'/schemas/editing-recipe'},
                     'compile_editing_template':{'method':'POST','path':'/api/projects/{pid}/media/{mid}/visual-template/compile','schema':PREFIX+'/schemas/editing-template'},
@@ -279,6 +286,9 @@ def register(w):
 
     @app.get(PREFIX+'/schemas/{name}')
     def schema(name:str):
+        if name in ('timeline-plan','timeline-export','music-onsets'):
+            from timeline_models import TimelinePlan,TimelineExport,OnsetRequest
+            return {'timeline-plan':TimelinePlan,'timeline-export':TimelineExport,'music-onsets':OnsetRequest}[name].model_json_schema()
         if name == 'editing-recipe':
             from editing_templates import RecipeDefinition
             return RecipeDefinition.model_json_schema()

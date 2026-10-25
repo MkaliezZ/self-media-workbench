@@ -101,8 +101,9 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 脚本 | 口播词、镜头、时长估算与行动引导 |
 | 本地剪辑 | 实际 ASR、明确的剪除与恢复、审阅后的字幕分组、MP4/SRT/JSON |
 | 视觉编辑 | 完整字幕组强调、本地配图、静态区域高亮、方案与时间轴 |
-| 行业与类型模板 | 七类预设；Agent 生成自定义叙事/用镜/节奏/声音逻辑，按组件能力编译 |
+| 行业与类型模板 | 十二类预设；Agent 生成自定义叙事/用镜/节奏/声音逻辑，按组件能力编译 |
 | 发布准备 | 标题、配文、披露说明及真实素材绑定 |
+| 原生时间轴 | 无旁白画面、多源/静帧、独立音轨、审阅音乐打点、标题、版本恢复 |
 | 复盘 | 有定义的指标或采集计划、假设与下一次实验 |
 
 单项任务可直接进入脚本、剪辑或复盘；完整流程从最早缺失或过期的阶段续做。同一会话中说“继续”会续做当前项目；多个项目匹配时先确认选择。`--session` 用于隔离并行的独立会话。未知事实和缺失指标保持未知，旧稿、被拒请求与修订记录均保留。
@@ -125,7 +126,7 @@ Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确�
 
 ### 行业与视频类型模板
 
-内置知识教学、财经商业、美业服务、电商产品、餐饮探店、家居房产和有旁白旅行 Vlog。Agent 还可按行业、视频形式、观看目的与素材条件生成项目专用逻辑，每段说明画面、节奏和声音，保存定义/版本后编译为实际方案。纯画面、多源或音乐驱动的方案会标记为仅规划并列出缺少的能力。[使用与边界](docs/industry-templates.md) · [本轮验证](evaluation/industry-templates-20261025.md)。
+内置知识教学、财经商业、美业服务、电商产品、餐饮探店、家居房产、有旁白旅行 Vlog，以及补回的不露脸资料、科普、生活场景、游戏事件回看和第一人称解说。Agent 还可按行业、视频形式、观看目的与素材条件生成项目专用逻辑，每段说明画面、节奏和声音，保存定义/版本后编译为实际方案。纯画面、多源及审阅后的音乐打点现使用[原生时间轴](docs/native-timeline.md)，无须 ASR；跟踪、复杂组动画、变速与音乐生成仍列为缺项。[使用与边界](docs/industry-templates.md) · [本轮验证](evaluation/industry-templates-20261025.md)。
 
 ### 功能规划
 
@@ -230,8 +231,9 @@ The entry automatically starts/reuses an identified loopback service, registers 
 | Script | Spoken text, shots, timing estimates and action |
 | Local editing | Actual ASR, explicit cuts/restoration, reviewed SRT grouping, MP4/SRT/JSON |
 | Visual editing | Complete-cue emphasis, local images, static region highlights, saved plans/timeline |
-| Industry/form recipes | Seven presets; Agent-generated story/shot/pacing/audio logic, compiled within actual component limits |
+| Industry/form recipes | Twelve presets; Agent-generated story/shot/pacing/audio logic, compiled within actual component limits |
 | Publication preparation | Title/caption/disclosure and real asset bindings |
+| Native timeline | Silent/multi-source/still footage, independent audio, reviewed music edges, titles and revision restoration |
 | Review | Defined metrics or collection plan, hypothesis and next experiment |
 
 A focused task can enter script/edit/review directly. Complete workflows resume the earliest missing or stale phase. Same-session “continue” resumes the current project; ambiguous project matches require selection rather than guessing. `--session` separates independent concurrent chats. Unknown source facts and missing metrics stay unknown. Old drafts, rejected requests and revisions are retained.
@@ -254,7 +256,7 @@ Ordinary exports retain separate MP4/SRT. A saved visual-plan optionally adds vi
 
 ### Industry and video-form recipes
 
-Seven presets cover education, finance/business, beauty services, products, food visits, home/property and narrated travel Vlog. The Agent can generate a project-specific recipe from industry, form, viewer goal and actual materials, with shot/pacing/audio intent per beat. Definitions and versions are frozen into executable plans; unsupported visual-only, multi-source or music-driven recipes remain planning-only with explicit missing capabilities. [Guide and scope](docs/industry-templates.md) · [Validation](evaluation/industry-templates-20261025.md).
+Twelve presets cover education, finance/business, beauty services, products, food visits, home/property, narrated travel Vlog, faceless references, evidence-led science, life scenes, game-event replay and first-person explanation. The Agent can generate a project-specific recipe from industry, form, viewer goal and actual materials, with shot/pacing/audio intent per beat. Definitions and versions are frozen into executable plans; silent/multi-source video, independent audio and reviewed music edges use the [native timeline](docs/native-timeline.md) without ASR; tracking, complex group animation, time-warp and music generation remain unsupported. [Guide and scope](docs/industry-templates.md) · [Validation](evaluation/industry-templates-20261025.md).
 
 ### Planned capabilities
 
@@ -263,3 +265,11 @@ See the [visual-editing roadmap](docs/plans/visual-editing-roadmap.md) for empha
 ### License and private materials
 
 MIT applies to this repository's own code and documentation. The previous private prototype used an AGPL renderer; this public version replaces that path with its own Python/FFmpeg implementation and includes none of that vendor code. Dependencies and separately installed FFmpeg/model binaries retain their own licenses; see [THIRD_PARTY.md](THIRD_PARTY.md).
+
+补齐的功能逻辑见[剪辑逻辑库](docs/editing-logics.md)；原生时间轴本轮验收另行记录，旧版 59 项结果不覆盖本次新增功能。
+
+Reconciled mechanisms: [editing logic library](docs/editing-logics.md). Native-timeline acceptance is reported separately; the historical 59-test result does not cover this addition.
+
+原生时间轴的独立盲测、修订与三端执行状态见[本轮验收记录](evaluation/native-timeline-20261025.md)。
+
+For native-timeline blind checks, revisions and platform execution scope, see [current acceptance](evaluation/native-timeline-20261025.md).

@@ -205,8 +205,9 @@ async def import_media(pid: str, body: MediaImport):
             'sha256':digest,'duration':float(metadata['format']['duration']),
             'has_video':any(s['codec_type']=='video' for s in metadata['streams']), 'imported_at':now()}
     item.update(provenance)
-    if not any(s['codec_type']=='audio' for s in metadata['streams']):
-        raise HTTPException(422,'素材没有音轨，不能识别口播')
+    item['has_audio']=any(s['codec_type']=='audio' for s in metadata['streams'])
+    if not item['has_video'] and not item['has_audio']:
+        raise HTTPException(422,'素材没有可用音视频轨道')
     with LOCK:
         project = read(path/'project.json')
         project['media'].append(item)
@@ -264,6 +265,8 @@ def launch(path, mid, kind, task):
 def asr(pid: str, mid: str):
     path = folder(pid)
     item = media(path,mid)
+    if item.get('has_audio') is False:
+        raise HTTPException(422,'素材没有音轨；可以使用原生时间轴，不能识别口播')
     # Each run gets its own directory; never replace a corrected transcript.
     runid = uuid.uuid4().hex
     out = path/'media'/mid/'asr'/runid
@@ -426,6 +429,7 @@ def artifact(pid:str,eid:str,name:str):
     path=folder(pid)
     allowed={'reviewed_cut.mp4','reviewed_cut.srt','reviewed_cut.words.json','edit-decision.json','provenance.json'}
     allowed.update({'visual.mp4','visual-plan.json','visual-timeline.json'})
+    allowed.update({'timeline.mp4','timeline-plan.json','timeline-map.json'})
     if len(eid)!=32 or any(c not in '0123456789abcdef' for c in eid) or name not in allowed:
         raise HTTPException(404,'文件不存在')
     file=path/'exports'/eid/name
@@ -477,6 +481,10 @@ from visual_tools import register as register_visual_tools
 register_visual_tools(sys.modules[__name__])
 from editing_templates import register as register_editing_templates
 register_editing_templates(sys.modules[__name__])
+from timeline_tools import register as register_timeline_tools
+register_timeline_tools(sys.modules[__name__])
+from editing_logics import register as register_editing_logics
+register_editing_logics(sys.modules[__name__])
 
 @app.get('/')
 def agent_entry():

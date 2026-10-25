@@ -20,7 +20,7 @@ from fixture_tools import fixture_path
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'backend'))
 from fastapi.testclient import TestClient
 import app as w
-from visual_tools import sha, geometry, status
+from visual_tools import sha, geometry, status, compose, probe
 
 
 def make_image(path):
@@ -129,6 +129,21 @@ class VisualEditingTests(unittest.TestCase):
         self.assertEqual(sha(dest/'visual.mp4'),baseline_hash)
         self.assertEqual(sha(self.path/self.media['relative_path']),original)
         self.assertEqual(w.read(self.out/'transcript.original.json'),self.review)
+
+    def test_still_overlay_does_not_extend_video_to_aac_tail(self):
+        import shutil
+        from review_edits import plan_keeps
+        saved=self.save();self.assertEqual(saved.status_code,200,saved.text)
+        record=saved.json();baseline=self.export(record);dest=self.data/'aac-tail';dest.mkdir()
+        subprocess.run(['ffmpeg','-v','error','-i',str(baseline/'reviewed_cut.mp4'),'-af','apad=whole_dur=4.0053',
+            '-c:v','copy','-c:a','aac',str(dest/'reviewed_cut.mp4')],check=True,capture_output=True)
+        keep=plan_keeps(self.review,[]);keep['output_duration']=float(probe(dest/'reviewed_cut.mp4')['format']['duration'])
+        compose(self.review,keep,record,self.path/'media'/self.mid/'visual-plans'/record['id'],dest)
+        counts=[]
+        for file in ('reviewed_cut.mp4','visual.mp4'):
+            stream=next(s for s in probe(dest/file,count_frames=True)['streams'] if s['codec_type']=='video')
+            counts.append(int(stream['nb_read_frames']))
+        self.assertEqual(counts,[100,100])
 
     def test_invalid_bindings_assets_and_replay_are_recorded(self):
         variations=[({'review_revision':4},409),({'project_revision':999},409),

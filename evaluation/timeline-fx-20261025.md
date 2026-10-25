@@ -12,6 +12,7 @@ The user requested a coherent capability film because the earlier travel edit di
 | Coherent film first native request/export | Independently rounded half-frame intervals lost two frames; mixed-aspect cover scaling left non-square SAR | Caller selects differences of absolute frame edges; renderer normalizes final SAR after fit |
 | Visual review of the film's first master | A detail layer selected the scenic source's introduction card | New immutable plan selects actual wave footage, retaining the first master |
 | Actual 90-second CUDA ASR without inference VAD | The next word was assigned to a preceding music-only hold (caption began56.96 for speech around60.45) | Enable inference-only VAD and retain returned original-source timestamps; new actual run begins the sentence60.55. No source media or hold is automatically cut |
+| Complete styled showcase decode | A looped image extended the90s/2250-frame video to2251frames because AAC ended90.005s | Static overlays now stop at the finite main video, without an audio-duration stop flag; added a real AAC-tail decoded-frame regression |
 
 ## Independent task and scope
 

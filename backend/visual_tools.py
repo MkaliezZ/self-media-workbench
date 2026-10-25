@@ -189,7 +189,7 @@ def compose(review, keeps, record, plan_dir, dest):
             place=geometry(asset,item['slot'],width,height)
             label=f"img{event['index']}";index=event['index']+1
             filters.append(f'[{index}:v]scale={place["width"]}:{place["height"]},setsar=1[{label}]')
-            output=f'v{len(filters)}';filters.append(f'[{last}][{label}]overlay=x={place["x"]}:y={place["y"]}:eof_action=repeat:{enabled(event)}[{output}]');last=output
+            output=f'v{len(filters)}';filters.append(f'[{last}][{label}]overlay=x={place["x"]}:y={place["y"]}:eof_action=repeat:shortest=1:{enabled(event)}[{output}]');last=output
             if item.get('highlight'):
                 roi=item['highlight'];box({'x':round(place['x']+roi['x']*place['width']),
                     'y':round(place['y']+roi['y']*place['height']),
@@ -221,7 +221,7 @@ def compose(review, keeps, record, plan_dir, dest):
     (dest/'visual-timeline.json').write_text(json.dumps({'events':visual_events,'captions':caption_records},ensure_ascii=False,indent=2),'utf-8')
     command=['ffmpeg','-hide_banner','-v','error','-nostdin','-n','-i','reviewed_cut.mp4',*inputs,
              '-/filter_complex',script.name,'-map',f'[{last}]','-map','0:a:0',
-             '-t',f"{keeps['output_duration']:.6f}",'-c:v','libx264','-preset','medium','-crf','18',
+             '-c:v','libx264','-preset','medium','-crf','18',
              '-pix_fmt','yuv420p','-c:a','copy','-movflags','+faststart','visual.mp4']
     try:
         result=subprocess.run(command,cwd=dest,capture_output=True,text=True,encoding='utf-8',errors='replace',

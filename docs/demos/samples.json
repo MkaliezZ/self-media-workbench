@@ -1,5 +1,22 @@
 [
   {
+    "file": "dsh-independent-edit-v03-89s.mp4",
+    "release_tag": "dsh-edit-2026-10-26",
+    "bytes": 12665183,
+    "sha256": "192303b80720d5894217408a128ea5ed45b177e68018cf0ef67030f06dcc095b",
+    "duration_seconds": 89.64,
+    "width": 1920,
+    "height": 1080,
+    "fps": "25/1",
+    "video_frames": 2241,
+    "version": "v03",
+    "scope": "same raw assets; independent initial edit; final revision includes frame-based feedback",
+    "human_listening": "not_performed",
+    "human_quality_acceptance": "pending_user_review",
+    "public_display": "maintainer_authorized",
+    "video_stream_bytes_preserved": true
+  },
+  {
     "file": "advanced-talking-90s.mp4",
     "bytes": 19559889,
     "sha256": "810c39519d6528a04009bd1d1d0d65b2a914e95435eb674e40cb03599e0a84cf",

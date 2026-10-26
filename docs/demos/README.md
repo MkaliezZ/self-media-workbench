@@ -1,8 +1,20 @@
 # 样片 / Demo films
 
-两条视频是工作台实际导出的成片。点击封面或 MP4 链接播放／下载；GitHub 是否内嵌播放取决于浏览器。视频存放在 Release 附件，不增加源码克隆体积。
+三条视频是工作台实际导出的成片。点击封面或 MP4 链接播放／下载；GitHub 是否内嵌播放取决于浏览器。视频存放在 Release 附件，不增加源码克隆体积。
 
 These are actual workbench exports. Click a cover or MP4 link to watch/download; inline playback depends on your browser. Movies live in release assets, keeping source clones small.
+
+## 最新 DSH 自主剪辑 / Latest DSH independently authored edit
+
+[![DSH edit: The Judgment Loop](dsh-independent-edit-v03.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/dsh-edit-2026-10-26/dsh-independent-edit-v03-89s.mp4)
+
+[89.64 秒 MP4 / 89.64-second MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/dsh-edit-2026-10-26/dsh-independent-edit-v03-89s.mp4) · v03 · 1920×1080 · 25 fps · 2241 frames
+
+DSH 在新会话中根据同一套原始素材自主编排，未收到旧成片或配方。14 场景、31 个效果包括关键词开头、Alpha 人物分层、问题卡、抽象/具体对照、原文标黄抽离和四步循环。v03 经实际帧反馈修订；技术执行通过，人耳听审未进行。静态 AI 人物、合成旁白和原 CUDA ASR 数据均继承，没有新素材生成或新 ASR。公开展示获维护者授权；技术结果与人工质量验收分开记录。
+
+DSH authored a new edit from the same raw assets in a fresh session, without the previous film or recipe. Its 14 scenes and 31 effects include keyword opening, alpha presenter layers, question cards, comparisons, original-document extraction and a four-step loop. v03 incorporates frame-based feedback. Technical execution passed; human listening was not performed. The static AI presenter, synthetic narration and earlier CUDA ASR are inherited. Public display is authorized separately from human quality acceptance.
+
+Explicit audio mastering preserves the native H.264 stream; measured -18.72 LUFS / -3.37 dBTP. [Audit, revision history and limits](../../evaluation/dsh-independent-edit-20261026.md).
 
 ## 高级口播 / Advanced talking head
 
@@ -47,8 +59,8 @@ Externally synthesized narration, BGM ducking and light sound effects accompany 
 
 ## 媒体许可与完整性 / Media licensing and integrity
 
-仓库自有代码和文档采用 MIT。两条成片中的配乐是 **Digital Clouds — Alejandro Magaña (A. M.)**，适用 [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/)。配乐作为合成视频的一部分使用，其权利不被重新声明为 MIT；不提供独立音乐文件。图形、剪辑与合成由本项目制作，人物是虚构的 AI 图像，旁白是合成声音。
+仓库自有代码和文档采用 MIT。三条成片中的配乐是 **Digital Clouds — Alejandro Magaña (A. M.)**，适用 [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/)。配乐作为合成视频的一部分使用，其权利不被重新声明为 MIT；不提供独立音乐文件。图形、剪辑与合成由本项目制作，人物是虚构的 AI 图像，旁白是合成声音。
 
-Repository-authored code and documentation use MIT. Both films include **Digital Clouds — Alejandro Magaña (A. M.)** under the [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/), embedded in the finished video. Its rights are not relicensed as MIT; no standalone music is distributed. Graphics, edits and compositing are project-authored; the fictional presenter is AI-generated and narration is synthetic.
+Repository-authored code and documentation use MIT. All three films include **Digital Clouds — Alejandro Magaña (A. M.)** under the [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/), embedded in the finished video. Its rights are not relicensed as MIT; no standalone music is distributed. Graphics, edits and compositing are project-authored; the fictional presenter is AI-generated and narration is synthetic.
 
-Exact file sizes, SHA256 hashes and probes: [samples.json](samples.json). Implementation and retained failures: [advanced production acceptance](../../evaluation/advanced-talking-20261025.md). Human sample review authorizes publication; platform CI is separately recorded and does not certify audience response.
+Exact file sizes, SHA256 hashes and probes: [samples.json](samples.json). Implementation and retained failures: [advanced production acceptance](../../evaluation/advanced-talking-20261025.md) and the [latest DSH edit audit](../../evaluation/dsh-independent-edit-20261026.md). Public showcase authorization and each film's quality-review status are recorded separately; platform CI does not certify audience response.

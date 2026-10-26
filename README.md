@@ -14,6 +14,12 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 ### 样片：看实际输出
 
+**最新 DSH 自主剪辑测试 ·《判断的循环》· v03 · 89.64 秒**
+
+[![DSH 同素材自主剪辑：判断的循环](docs/demos/dsh-independent-edit-v03.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/dsh-edit-2026-10-26/dsh-independent-edit-v03-89s.mp4)
+
+[播放／下载最新 MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/dsh-edit-2026-10-26/dsh-independent-edit-v03-89s.mp4)：DSH 在新会话中只接收原始素材和已有语音字幕数据，自行选择分镜、效果、节奏与布局，实际完成 14 场景、31 个效果的原生导出。最终版包含维护者基于实际帧提出问题后的修订；没有提供旧成片或旧剪辑配方。本片使用静态 AI 人物与合成旁白，继承原 CUDA ASR，本轮没有重新识别。技术检查与视觉复核已完成，人耳听审未进行；公开展示由维护者授权，不代表新增人工质量验收或运营效果验证。[测试范围、修订与文件校验](evaluation/dsh-independent-edit-20261026.md)。
+
 | 高级口播 · 90 秒 | 剪辑特效声画版 · 95.8 秒 |
 |---|---|
 | [![高级口播：让下一条，有据可改](docs/demos/advanced-talking.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/advanced-talking-90s.mp4) | [![文章抽离、蒙版与轨道遮罩](docs/demos/effects-with-audio.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/effects-with-audio-95s.mp4) |
@@ -126,6 +132,8 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 
 ### 平台支持与验证范围
 
+**最新 DSH 自主剪辑测试：**使用相同原始素材自主设计新时间轴，最终 v03 为 89.64 秒 / 2241 帧；技术导出、视频码流保留与实际帧复核通过。初始设计独立，最终版接受了问题反馈；本轮未新增 ASR、macOS 或 CI 测试，未做人耳听审。[完整范围与修订](evaluation/dsh-independent-edit-20261026.md)。
+
 **最新 DSH 换素材验收：**初次盲测发现的损坏媒体 500／残留，以及补查发现的截断 WAV 误接受问题均已修复；高级时间轴成片可直接接发布准备并校验输出哈希。DSH 同素材正式技术复测通过，Windows、Apple Silicon、Intel Mac **9 个原生 CI 任务全通过，每端 80 项回归**。首次失败、错误测量、字幕修订和未测边界均保留。[完整记录与原始素材包](evaluation/dsh-blind-round2-20261025.md)。
 
 **前一版高级口播（2026-10-25）：**Windows、Apple Silicon（ARM64）、Intel Mac（x86_64）的兼容性、高级口播、独立蒙版三组 CI 共 **9 个原生任务全部通过**。每端高级口播回归 78 项、独立媒体检查 27 项、扫描／蒙版补充检查 49 项；包含实际导出、声音整理、恢复与后台重启。Apple Silicon 另确认实际 MLX GPU 转写与导出，无 CPU 回退。云端 Windows／Intel Mac 的 ASR 为 CPU 基线，不能当作对应 GPU 实测。[历史完整记录](evaluation/advanced-talking-20261025.md) · [历史 CI 索引](evaluation/advanced-ci-20261025.json)。
@@ -163,6 +171,12 @@ Your AI Agent chooses the relevant feature, resumes the right project, creates c
 **Just tell the Agent your task:** “Diagnose this account and select topics,” “Revise this talking-head script,” “Edit this video and check the captions,” or “Continue the previous project with a performance review.” The unified entry prepares the project, inputs, state and starting phase; the calling Agent then reasons and executes. An intake plan is not completed content.
 
 ### Watch actual exports
+
+**Latest DSH independently authored edit · The Judgment Loop · v03 · 89.64 seconds**
+
+[![DSH independently authored same-material edit](docs/demos/dsh-independent-edit-v03.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/dsh-edit-2026-10-26/dsh-independent-edit-v03-89s.mp4)
+
+[Watch / download the latest MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/dsh-edit-2026-10-26/dsh-independent-edit-v03-89s.mp4). In a fresh session, DSH received raw assets and inherited speech/caption data, chose its own shots, effects, pacing and layout, and rendered 14 scenes with 31 native effects. The final revision incorporates maintainer feedback on actual frames; no earlier finished film or editing recipe was supplied. It uses a static AI presenter and synthetic narration, inheriting earlier CUDA ASR without a new recognition run. Technical checks and frame review are complete; human listening was not performed. The maintainer authorized public display, which does not add human quality acceptance or marketing validation. [Scope, revisions and checksums](evaluation/dsh-independent-edit-20261026.md).
 
 | Advanced talking head · 90 seconds | Editing effects with audio · 95.8 seconds |
 |---|---|
@@ -273,6 +287,8 @@ A focused task can enter script/edit/review directly. Complete workflows resume 
 State defaults to the operating system's private application-data directory. `configure --data-dir ...` can reuse an existing project store without moving or deleting it. `--skill-root` and `--library` optionally use private method/knowledge directories. Restart a running service after changing configuration. [Configuration and protocol](docs/configuration.md).
 
 ### Platform and validation scope
+
+**Latest DSH independently authored edit:** a new timeline using the same raw assets, with a final v03 export of 89.64 seconds / 2,241 frames. Technical export, preserved video-stream bytes and decoded-frame review passed. The initial design was independent; the final revision received issue-based feedback. This run adds no new ASR, macOS, CI or human-listening result. [Scope and retained revisions](evaluation/dsh-independent-edit-20261026.md).
 
 **Latest DSH changed-material audit:** fixed corrupt-import HTTP 500/residue and truncated-WAV acceptance; native/advanced exports now bind directly to publication preparation with output hashes. The same-input independent DSH technical retest passed, and **all 9 native CI jobs passed on Windows, Apple Silicon and Intel Mac, with 80 regression tests per host**. Initial failures, measurement-method corrections, subtitle revisions and untested boundaries remain explicit. [Full audit and original input package](evaluation/dsh-blind-round2-20261025.md).
 

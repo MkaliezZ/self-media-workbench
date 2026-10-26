@@ -47,6 +47,18 @@ TTS、数字人、音乐生成是可选外部素材生产，当前服务不内�
 
 交付至少包含实际影片、原始素材与性质、冻结方案、声音与阅读检查、真实失败和修订记录。单测/解码成功不等于审美通过；用户要求先验样片再发布时，保留待验收状态，收到通过后才推送。
 
+### 从组件演示到成片
+
+先明确交付是技术演示还是供观众观看的内容。前者可以展示参数与对照；后者只保留帮助理解的文字，测试编号、引擎说明和调试信息放在交接记录。素材披露可简洁呈现。组件测试片不能仅因渲染成功就当作高级口播成片。
+
+用户只验剪辑/特效执行时，沿用指定的原始素材和获准参考的配方，在独立项目重新登记、绑定并实际导出。参考成片仅用于比较，不能剪取或改名充当新输出。结论限定为同素材执行复现；不要擅自扩大为新图片、声音或创意生成测试。
+
+审分镜时逐段回答“听到这句话，画面帮助观众看懂了什么”。动作教学宜展示动作前后与位置关系；整页文章只在交代上下文时出现，引用段再定位、抽离并稳定阅读。不要让同一密集海报反复承担所有视觉任务；有意保留的静态讲述段仍可成立。
+
+导出后检查每次转场、叠层进出和关键阅读段，覆盖进入、重叠中间、稳定、退出帧；只看等间隔缩略图可能漏掉重影。尤其确认旧页退出后不会与新页正文重叠，主解释与字幕不争夺同一区域。发现可读性或叙事问题先修编排，不能以非零像素、特效数量或渲染成功代替。
+
+记录技术检查、实际听审、视觉审片、用户成片验收四种结果及各自证据。未听审写未听审；用户拒绝后追加拒绝记录，保留旧片与已成立的技术结果，替代版本仍为 `pending_user_review`。素材重做须登记新来源和时间，不能冒充原封存输入的同条件盲测。
+
 若交付音量不一致，Agent可对实际原生H.264导出调用 `scripts/master_audio.py --input <原片> --out <新目录>`。这是显式的交付后处理：两遍响度整理、独立报告和视频码流字节校验，原片不覆盖；需要把 result.json 与最终文件记入项目交接，不能称其为未经后处理的原生导出。它不改变语速或字幕时间。默认目标-17 LUFS、限制真峰值留出AAC余量；最终实测与听审分别报告。
 
 ## English operator note
@@ -56,3 +68,7 @@ TTS、数字人、音乐生成是可选外部素材生产，当前服务不内�
 Discover the ordinary and advanced profiles, inspect real sources, then author scene purposes and local-time effects. The compiler offsets scenes onto the native frame clock and freezes the profile manifest. Save the returned timeline unchanged and poll the actual export. Never substitute the compiler response for a finished film.
 
 The new still-image keyframe layer supports bounded planar perspective, opacity/blur keys, alpha-preserving compositing, source-pixel highlight/inversion, selective edge defocus and restrained texture. It is not 3D, OCR, matting, tracking, acoustic alignment or an avatar/TTS/music generator. Decode checks reject silent voice paths but cannot certify speech quality. Keep the ordinary route simple and retain failed drafts and immutable revisions.
+
+Distinguish a component demonstration from an audience-facing film. Keep debug labels in the handoff, give explanatory scenes a visible purpose, and inspect intermediate overlap frames as well as stable reading holds. Record technical, listening, visual and human-review results separately. A rejected film remains rejected even when its technical checks pass; a replacement stays pending human review, and newly created inputs are not a same-input blind retest.
+
+For an execution-only acceptance task, reuse the specified raw assets and the recipe the user allows you to reference, register them in an isolated project, and perform a new native export. Finished reference films are comparison targets only. Report same-material execution reproducibility without expanding the task into asset generation or independent creative testing.

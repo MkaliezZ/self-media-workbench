@@ -10,7 +10,7 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 由调用工作台的 AI Agent 选择功能、续做项目、创作内容、审阅剪辑并交付有版本记录的结果。工作台无需浏览器表单、Node 运行时或模型 API 密钥。
 
-**对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不代表已完成内容创作。
+**对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“按房间照片给三档布光方案”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不代表已完成内容创作。
 
 ### 样片：看实际输出
 
@@ -27,11 +27,25 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 两条均为实际导出的 1080p / 25fps 成片，包含合成旁白、BGM 与轻音效。90 秒样片使用有室内背景的 AI 静态人物图，无口型动画；原始口播视频实际经过 CUDA ASR，按原时间边界整理字幕。图像与声音生成在工作台外完成，剪辑与合成由工作台执行。[分段说明、文件校验与媒体许可](docs/demos/README.md)。
 
-### 给其他 Agent 的快速开始
+### 拍摄布光：简版／标准／理想
 
-**新增拍摄布光：**上传场景照片/平面图，比较「简版／标准／理想」三档布局，查看摆放原因、器材与高度，选择一档、导出 SVG/HTML、记录试拍并保留旧版本。服务启动后打开 `/ui/`，侧栏进入「拍摄布光 · 三档方案」；也可直接打开 `/ui/lighting.html`。调用 Agent 可实际审图并生成场景方案；独立网页上传先提供明确标记的默认草案，可补尺寸和布局确认。未知灯具/附件不编造瓦数或lux；Radiance为可选直射校验，真实效果仍待现场试拍。[使用与边界](docs/lighting.md) · [技术验收](evaluation/lighting-20261028.md)。
+面向单人固定机位口播，上传现场照片或平面图，一次比较三档建议。每档给出布局、摆放原因、器材要求和操作步骤；有确认的尺寸与高度时给出对应初值，空间不够则说明调整条件。
+
+| 方案 | 优先解决什么 | 典型安排与取舍 |
+|---|---|---|
+| 简版 | 少投入，先把人脸拍清楚 | 利用已确认可用窗光或已有单灯；背景和长时间稳定性控制较少 |
+| 标准 | 控制阴影，便于重复拍摄 | 主光加反光板或负补光；附件也需要占地 |
+| 理想 | 在可用空间内增加控制余量 | 按需增加分离光、控光附件；需要更多摆放与调整时间 |
+
+**怎么开始：**对 Agent 说「按这张房间照片给我简版、标准、理想三档打光方案」，附上图片即可。独立界面在本地服务地址的 `/ui/`，侧栏进入「拍摄布光 · 三档方案」，或直接打开 `/ui/lighting.html`。比较后可选择一档、下载 SVG 布局或 HTML 完整报告；补尺寸、灯具和试拍反馈后生成新版本，旧版保留。
+
+**准确性边界：**调用 Agent 实际查看图片并登记场景；独立网页上传本身不识图，先提供明确标记的默认草案，可手动补布局并确认。三档不等于固定灯数或固定瓦数；灯具、附件和测光资料不足时，只给能力要求与核对方法，不编造精确瓦数、lux或调光百分比。可选 Radiance 只交叉计算有匹配光度数据的灯的直射近似，不含墙面反射、柔光近场或相机观感。真实效果仍需现场试拍。
+
+[使用与可选引擎配置](docs/lighting.md) · [Agent 布光流程](skills/self-media-workflow/references/lighting.md) · [技术验收](evaluation/lighting-20261028.md)
 
 [![三档布光规划实际界面（合成场景）](docs/demos/lighting-three-tiers.png)](docs/lighting.md)
+
+### 给其他 Agent 的快速开始
 
 **两种口播流程：**普通口播侧重原意、删音、字幕和必要配图；**高级口播**先按语义拆镜，再安排分层遮挡、纸页透视、关键词扫描、原文抽离、关系图和声音。统一入口返回 `talking_profiles`，Agent阅读[高级口播说明](skills/self-media-workflow/references/advanced-talking.md)，编译成原生时间轴并实际导出。静态人物图与合成旁白可作已声明的模拟素材；生成模型/服务另行准备。多阶段透视是平面合成，声音信号检查不代替听审。
 
@@ -59,7 +73,7 @@ https://github.com/MkaliezZ/self-media-workbench
 
 ### 安装
 
-完整音视频流程需要 Python 3.11+、FFmpeg 和 ffprobe。纯文本任务不需要 FFmpeg 或 ASR 模型。
+完整音视频流程需要 Python 3.11+、FFmpeg 和 ffprobe。纯文本和布光规划不需要 FFmpeg 或 ASR 模型；布光可选配置 Radiance，不安装也能生成规则方案。
 
 ```sh
 git clone https://github.com/MkaliezZ/self-media-workbench.git
@@ -111,6 +125,7 @@ python workbench.py doctor
 python workbench.py run "只写这份素材的口播稿，不剪辑" --input /absolute/path/source.txt
 python workbench.py run "继续这个项目做选题"
 python workbench.py run "复盘我的项目" --project "project name" --input /absolute/path/metrics.json
+python workbench.py run "按这张布局图给三档布光方案" --input /absolute/path/room.png --intent lighting
 ```
 
 入口自动启动或复用已核验身份的本地回环服务、登记输入，并返回项目、上下文、当前或过期的产物以及建议阶段。它不会自行调用外部大模型。调用它的 Agent 读取对应方法、创作产物并执行发现的工具。Codex、DSH 或其他具备工具执行能力的 Agent 均可使用。
@@ -120,6 +135,7 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 账号诊断／可选对标 | 证据、优先问题、下一步行动 |
 | 选题 | 有素材支撑的备选题与选定问题 |
 | 脚本 | 口播词、镜头、时长估算与行动引导 |
+| 拍摄布光 | 简版／标准／理想三档、同源布局与摆放理由、器材要求、SVG/HTML、版本选择与试拍反馈 |
 | 本地剪辑 | 实际 ASR、明确的剪除与恢复、审阅后的字幕分组、MP4/SRT/JSON |
 | 高级口播 | 按语义分场、冻结制作模板、平面关键帧、原像素逐行标黄／反相、前景遮挡、声音编排与真实导出 |
 | 视觉编辑 | 完整字幕组强调、本地配图、静态区域高亮、方案与时间轴 |
@@ -130,11 +146,13 @@ python workbench.py run "复盘我的项目" --project "project name" --input /a
 | 信息动效 | 文章标黄后抽离/透视拉正/放大/收回、局部放大、移动聚光灯、视频画中画入场、线性揭示与重点文字动效 |
 | 复盘 | 有定义的指标或采集计划、假设与下一次实验 |
 
-单项任务可直接进入脚本、剪辑或复盘；完整流程从最早缺失或过期的阶段续做。同一会话中说“继续”会续做当前项目；多个项目匹配时先确认选择。`--session` 用于隔离并行的独立会话。未知事实和缺失指标保持未知，旧稿、被拒请求与修订记录均保留。
+单项任务可直接进入脚本、布光、剪辑或复盘；完整流程从最早缺失或过期的阶段续做。同一会话中说“继续”会续做当前项目；多个项目匹配时先确认选择。`--session` 用于隔离并行的独立会话。未知事实和缺失指标保持未知，旧稿、被拒请求与修订记录均保留。
 
 项目状态默认保存在操作系统的私有应用数据目录。`configure --data-dir ...` 可复用已有项目库，无需移动或删除数据。`--skill-root` 和 `--library` 可选接入私有方法及知识目录。配置改变后需要重启运行中的服务。[配置与协议](docs/configuration.md)。
 
 ### 平台支持与验证范围
+
+**布光首版（2026-10-28）：**Windows 本地完整回归 **92 项通过**，包含实际运行可选 Radiance 的布光用例；最后文档/导出细节修订后，布光专项 **12 项重跑通过**。已实操上传、三档生成、选择、历史回看和反馈保存，使用自绘合成场景，尚未验收真实房间与新手复做。[本轮验收与复现](evaluation/lighting-20261028.md)。实现提交 `c778dce` 的云端结果分别见[跨平台兼容性](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956726)和[高级口播回归](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956970)，不以历史通过记录代替本轮结果。
 
 **最新 DSH 自主剪辑测试：**使用相同原始素材自主设计新时间轴，最终 v03 为 89.64 秒 / 2241 帧；技术导出、视频码流保留与实际帧复核通过。初始设计独立，最终版接受了问题反馈；本轮未新增 ASR、macOS 或 CI 测试，未做人耳听审。[完整范围与修订](evaluation/dsh-independent-edit-20261026.md)。
 
@@ -189,9 +207,25 @@ Your AI Agent chooses the relevant feature, resumes the right project, creates c
 
 Both are actual 1080p / 25fps exports with declared synthetic Chinese narration, BGM and light sound effects. The 90-second film uses a static AI office portrait without lip animation. Its raw video underwent actual CUDA ASR, with captions retaining the original group bounds. Image and voice generation are external preparation; editing and compositing run in the workbench. [Chapters, checksums and media licensing](docs/demos/README.md).
 
-### Quick start for other Agents
+### Lighting planner: Simple / Standard / Ideal
 
-**Lighting planner:** compare Simple / Standard / Ideal plans, explanations, placements and setup steps; export SVG/HTML and retain versions and field notes. Open `/ui/` → the lighting sidebar entry, or `/ui/lighting.html`, on the running local service. The calling Agent interprets supplied images; the standalone page initially generates an explicitly assumed draft and supports manual scene confirmation. Unknown fixture data never yields invented wattage or lux. Optional Radiance provides a limited direct-light cross-check. Real-room and novice usability validation remain pending. [Guide](docs/lighting.md) · [Technical checks](evaluation/lighting-20261028.md).
+For a single presenter at a fixed camera position, compare three plans from room photos or a floor plan. Each includes a layout, equipment requirements, placement reasons and setup steps. Distances and heights require declared dimensions; infeasible layouts explain the conditions that need changing.
+
+| Plan | Priority | Typical arrangement and tradeoff |
+|---|---|---|
+| Simple | Get a usable face image with little extra equipment | Confirmed usable window light or an existing lamp; less background and long-session control |
+| Standard | Control shadows and repeat the setup | Key light plus a reflector or negative fill; accessories require space |
+| Ideal | Add control within the available room | Optional separation light and light-shaping accessories; more setup space and time |
+
+Ask the Agent: “Use this room photo to give me Simple, Standard and Ideal lighting plans.” For the standalone interface, open `/ui/` on the running local service and use the lighting sidebar entry, or open `/ui/lighting.html`. Select a tier, export SVG/HTML, record field feedback and regenerate without overwriting earlier versions.
+
+The calling Agent interprets supplied images. Uploading to the standalone page initially produces an explicitly assumed draft; users can edit and confirm the scene manually. Tiers do not imply fixed lamp counts or wattages. Missing fixture/modifier photometry never yields invented wattage, lux or dimmer percentages. Optional Radiance cross-checks only calibrated lights using a direct-light approximation, excluding wall bounce, softbox near-field behavior and camera appearance. Real-room and novice usability validation remain pending.
+
+[Guide and optional engine setup](docs/lighting.md) · [Agent workflow](skills/self-media-workflow/references/lighting.md) · [Technical checks](evaluation/lighting-20261028.md)
+
+[![Lighting planner interface using a synthetic room](docs/demos/lighting-three-tiers.png)](docs/lighting.md)
+
+### Quick start for other Agents
 
 **Two talking-head routes:** ordinary editing preserves meaning, reviews cuts and captions, and adds only needed visuals. **Advanced talking head (高级口播)** authors semantic scenes with layered occlusion, planar perspective keys, source-pixel emphasis/extraction, diagrams and sound. Discover `talking_profiles` and read the [operator guide](skills/self-media-workflow/references/advanced-talking.md), compile a native timeline, then actually export and inspect it. Declared static AI portraits plus synthetic voice are supported inputs; avatar/TTS/music generation remains external. Planar compositing is not 3D, and audio signal checks do not replace listening.
 
@@ -219,7 +253,7 @@ During setup, the Agent explicitly downloads and configures compatible models re
 
 ### Install
 
-Python 3.11+ and FFmpeg/ffprobe are required for the complete media workflow. Text workflows do not need FFmpeg or an ASR model.
+Python 3.11+ and FFmpeg/ffprobe are required for the complete media workflow. Text and lighting workflows do not need FFmpeg or an ASR model. Radiance is optional; rule-based plans work without it.
 
 ```sh
 git clone https://github.com/MkaliezZ/self-media-workbench.git
@@ -271,6 +305,7 @@ The Agent calls these itself; the human does not have to remember commands:
 python workbench.py run "Write a talking-head script from this material" --input /absolute/path/source.txt
 python workbench.py run "Continue topic selection for this project"
 python workbench.py run "Review my project" --project "project name" --input /absolute/path/metrics.json
+python workbench.py run "Create three lighting plans from this floor plan" --input /absolute/path/room.png --intent lighting
 ```
 
 The entry automatically starts/reuses an identified loopback service, registers inputs and returns the project, context, current/stale artifacts and recommended phase. It does **not** silently call an external LLM. The calling Agent reads the task-specific method, creates artifacts and executes the discovered tools. This works with Codex, DSH or another tool-capable Agent.
@@ -280,6 +315,7 @@ The entry automatically starts/reuses an identified loopback service, registers 
 | Diagnosis / optional benchmark | Evidence, priority issue, next action |
 | Topic selection | Material-backed alternatives and chosen problem |
 | Script | Spoken text, shots, timing estimates and action |
+| Lighting | Simple / Standard / Ideal layouts, placement reasons, equipment requirements, SVG/HTML, version selection and field feedback |
 | Local editing | Actual ASR, explicit cuts/restoration, reviewed SRT grouping, MP4/SRT/JSON |
 | Advanced talking head | Semantic scenes, frozen production profile, planar keyframes, original-pixel highlight/invert scans, foreground occlusion, audio arrangement and actual exports |
 | Visual editing | Complete-cue emphasis, local images, static region highlights, saved plans/timeline |
@@ -288,11 +324,13 @@ The entry automatically starts/reuses an identified loopback service, registers 
 | Native timeline | Silent/multi-source/still footage, independent audio, reviewed music edges, titles and revision restoration |
 | Review | Defined metrics or collection plan, hypothesis and next experiment |
 
-A focused task can enter script/edit/review directly. Complete workflows resume the earliest missing or stale phase. Same-session “continue” resumes the current project; ambiguous project matches require selection rather than guessing. `--session` separates independent concurrent chats. Unknown source facts and missing metrics stay unknown. Old drafts, rejected requests and revisions are retained.
+A focused task can enter script/lighting/edit/review directly. Complete workflows resume the earliest missing or stale phase. Same-session “continue” resumes the current project; ambiguous project matches require selection rather than guessing. `--session` separates independent concurrent chats. Unknown source facts and missing metrics stay unknown. Old drafts, rejected requests and revisions are retained.
 
 State defaults to the operating system's private application-data directory. `configure --data-dir ...` can reuse an existing project store without moving or deleting it. `--skill-root` and `--library` optionally use private method/knowledge directories. Restart a running service after changing configuration. [Configuration and protocol](docs/configuration.md).
 
 ### Platform and validation scope
+
+**Lighting first release (2026-10-28):** **92 local Windows regression tests passed**, including actual optional Radiance execution; the final report/document refinements were followed by **12 passing lighting tests**. Browser upload, three-tier generation, selection, history and feedback were exercised using a self-authored synthetic scene. Real-room and novice acceptance remain pending. [Checks and reproduction](evaluation/lighting-20261028.md). For implementation commit `c778dce`, see its [cross-platform compatibility](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956726) and [advanced-production regression](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956970) runs; historical passes do not establish this revision's results.
 
 **Latest DSH independently authored edit:** a new timeline using the same raw assets, with a final v03 export of 89.64 seconds / 2,241 frames. Technical export, preserved video-stream bytes and decoded-frame review passed. The initial design was independent; the final revision received issue-based feedback. This run adds no new ASR, macOS, CI or human-listening result. [Scope and retained revisions](evaluation/dsh-independent-edit-20261026.md).
 

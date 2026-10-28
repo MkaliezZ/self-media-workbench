@@ -1,6 +1,6 @@
 # 布光规则的教程依据 · 2026-10-28
 
-当前策略版本：`tutorial-rules-v2-20261028`。不使用Radiance或模拟lux选电功率；场景判断、教程原则、几何可行性与现场试拍分开处理。规则实现见 `backend/lighting_policy.py`，新方案保存策略版本、逐条规则ID和来源ID。
+当前策略版本：`tutorial-context-v3-20261028`。不使用Radiance或模拟lux选电功率；场景判断、教程原则、几何可行性与现场试拍分开处理。规则实现见 `backend/lighting_policy.py`，新方案保存策略版本、逐条规则ID和来源ID。
 
 ## 资料与复用范围
 
@@ -42,3 +42,10 @@
 ## 历史兼容
 
 原Radiance适配器与解析函数只保留作开发诊断和历史证据，新方案不调用它们。旧方案JSON、图和输入不覆盖；界面不再将旧lux展示成选型依据，重新生成会保存新策略版本。历史报告中的数学通过只证明当时的数学关系，不能证明真实灯具功率选择。
+
+
+## 已有顶灯上下文补充
+
+R6新增参考：[Oklahoma State University Extension · Light and Color](https://extension.okstate.edu/fact-sheets/light-and-color)，Gina Peek、Paulette Hebert、Mihyun Kang，2017年5月。已读白炽灯、色温与调光相关段落，仅作公开教育参考，未核实到开放许可，不复制图片。用它支持“白炽灯通常偏暖、调暗可能更暖、需按实际灯具核对”的检查，不将教材示例K值填成现场事实。
+
+`existing_light_context`结合R1/R5/R6：顶灯可能是有效面部补光、背景光，也可能造成不利阴影或混色。结论由开关计划与有依据的观察分支产生；未知条件只给开关对照步骤。面部效果声明需要文字依据，仍未独立验证。数值功率或同一CCT本身不能证明它有用，灯具W不相减，不自动降低主灯采购规格。

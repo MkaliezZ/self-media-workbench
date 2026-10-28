@@ -1,5 +1,5 @@
 """Source-linked shooting guidance; electrical watts are never inferred from lux."""
-VERSION = 'tutorial-rules-v2-20261028'
+VERSION = 'tutorial-context-v3-20261028'
 SOURCES = [
     {'id':'R1','title':'ARRI中文灯光手册：光源面积、溢光、曝光与主辅光',
      'url':'https://www.arri.com/resource/blob/83990/9d652bdf4480124850df62b824f2d47e/arri-lighting-handbook-chinese-data.pdf',
@@ -16,12 +16,52 @@ SOURCES = [
      'url':'https://aputure.com/en-US/articles/a-guide-to-videography-lighting-with-tom-shaw',
      'license':'copyright; manufacturer case studies, not universal minimums',
      'reviewed':'2026-10-28; full article text read; includes daylight and night counterexamples'},
+    {'id':'R6','title':'Oklahoma State University Extension · Light and Color',
+     'url':'https://extension.okstate.edu/fact-sheets/light-and-color',
+     'license':'copyright; public educational reference only',
+     'reviewed':'2026-10-28; source color and incandescent section read; no default fixture CCT inferred'},
 ]
 
 
 def status():
     return {'method':'tutorial_rules','policy_version':VERSION,'watts_from_simulation':False,
-            'radiance_in_planning':False,'references':SOURCES}
+            'radiance_in_planning':False,'existing_light_context':True,'references':SOURCES}
+
+
+def assess_existing(scene):
+    results=[]
+    for index,light in enumerate(scene.existing_lights,1):
+        checks=['在相同机位、快门、光圈、ISO和白平衡下，先拍顶灯关/开两版，主灯保持关闭',
+                '检查人脸亮暗、眼窝/鼻下阴影和肤色，不以桌面或地面变亮代替面部有效补光',
+                '再逐步开启主光，检查目标效果和可调余量；简版若只用窗光，不涉及降低主灯W']
+        decision='needs_comparison'
+        summary='还不能据此降低主光规格：已有光源对面部的有效贡献、阴影和混色尚未确认'
+        if light.state=='off':
+            decision='excluded'
+            summary='该光源计划关闭，不计入主光减负；按关闭后的场景规划'
+        elif light.face_effect in ('harsh_shadows','color_conflict'):
+            decision='control_or_switch_off'
+            summary='先控制或关闭该光源：已声明它造成不利阴影或混色，不能将它当作可抵扣的主光'
+        elif light.state=='on' and light.face_effect=='background_only':
+            decision='background_only'
+            summary='它主要服务背景，不能据此减少照亮人脸所需的主光输出'
+        elif light.state=='on' and light.face_effect=='useful_fill':
+            decision='may_reduce_operating_output'
+            summary='按已声明的观察，它可能降低主光实际调光输出；不等于已经可以购买更低额定W的主灯'
+        if light.mounting=='ceiling':
+            checks.append('顶灯从上方投射时，特别检查眼窝和鼻下阴影；平面位置接近人物不代表照脸有效')
+        if light.kind=='incandescent':
+            checks.append('白炽灯通常偏暖；本灯具体色温未知则保持未知，不自动填写2700K或3200K；与窗光/主光混用要检查两侧肤色')
+        if light.cct_k is not None:
+            checks.append('已登记色温'+str(light.cct_k)+'K，只是声明；与主光和窗光是否能混用仍需白平衡与肤色对照')
+        if light.basis=='assumed':
+            checks.insert(0,'这是情景假设，不是现场已确认的顶灯或实测效果')
+        results.append({'id':'C'+str(index),'label':light.label,'decision':decision,'summary':summary,
+            'declaration':light.model_dump(),'key_fixture_downsize':'not_established',
+            'watt_reduction':None,'dimmer_reduction_percent':None,'independently_verified':False,
+            'checks':checks,'reference_ids':['R1','R5','R6'],
+            'scope':'不同光源电功率不能相减；有帮助的环境光可降低工作输出，但额定功率、调光百分比和采购余量需要另行验证'})
+    return results
 
 
 def guidance(scene, tier, role, kind, fixture):
@@ -61,6 +101,8 @@ def guidance(scene, tier, role, kind, fixture):
         rules.append('wide_coverage')
     if fixture:
         checks.insert(0,'已有灯'+fixture.label+'的登记功率仅是资产信息；当前没有判定它足够，也未要求仅按W升级')
+    if scene.existing_lights:
+        checks.insert(0,'先看已有光源上下文评估；顶灯电功率不能从主灯W中扣除，先验证有效补光和混色')
     return {'method':'source_linked_cases_and_field_checks','summary':summary,
             'suggested_input_watts':None,'suitability':'needs_field_test',
             'reference_ids':refs,'rule_ids':rules,'checks':checks,
@@ -86,6 +128,11 @@ def scene_rules(scene):
          'action':'已有灯先试，余量不足先控环境或调整布局，再比较更高输出的实际机型',
          'verify':'按计划时段/景别/附件复测；不固定套用60/150/300W三档或统一调光百分比'},
     ]
+    if scene.existing_lights:
+        rules.append({'id':'existing_light_context','reference_ids':['R1','R5','R6'],
+            'reason':'房间变亮不一定改善人脸；已有灯可能提供有用补光，也可能制造阴影、色偏或只照背景',
+            'action':'记录顶灯种类、位置、开关和面部效果，固定曝光做关/开对照，再决定保留、控制或关闭',
+            'verify':'可减少工作输出不等于可降低额定采购W；无证据不抵扣瓦数，不自动填色温或减光百分比'})
     if scene.ambient_condition in ('window_mixed','bright_daylight'):
         rules.append({'id':'daylight_control','reference_ids':['R2','R5'],
             'reason':'日光强度和时间变化可能远大于普通室内条件',

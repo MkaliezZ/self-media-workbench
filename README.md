@@ -39,6 +39,8 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 **怎么开始：**对 Agent 说「按这张房间照片给我简版、标准、理想三档打光方案」，附上图片即可。独立界面在本地服务地址的 `/ui/`，侧栏进入「拍摄布光 · 三档方案」，或直接打开 `/ui/lighting.html`。比较后可选择一档、下载 SVG 布局或 HTML 完整报告；补尺寸、灯具和试拍反馈后生成新版本，旧版保留。
 
+可随平面图补充已有顶灯的灯种、开关、已知功率/色温及面部观察，查看「已有光源能否减少主光？」评估。顶灯有效补光可能减少主灯调光输出；不利阴影、混色或仅照背景不能作为减少面部主光的依据，未知效果先做固定曝光开关对照。已有灯W不直接抵扣主灯W，未知色温留空。
+
 **准确性边界：**调用 Agent 实际查看图片并登记场景；独立网页上传本身不识图，先提供明确标记的默认草案，可手动补布局并确认。三档不等于固定灯数或固定瓦数；灯具、附件和测光资料不足时，只给能力要求与核对方法，不编造精确瓦数、lux或调光百分比。当前采用有来源的教程规则，先看环境曝光、柔光面积、实际附件与输出余量；不调用 Radiance，不从模拟lux反推电功率。补充环境光、主光方式与最宽景别后，会按条件给案例与试拍检查。真实效果仍需现场试拍。
 
 [使用说明](docs/lighting.md) · [开放教材、专业教程与规则来源](docs/lighting-sources.md) · [Agent 布光流程](skills/self-media-workflow/references/lighting.md) · [技术验收](evaluation/lighting-20261028.md)
@@ -220,6 +222,8 @@ For a single presenter at a fixed camera position, compare three plans from room
 | Ideal | Add control within the available room | Optional separation light and light-shaping accessories; more setup space and time |
 
 Ask the Agent: “Use this room photo to give me Simple, Standard and Ideal lighting plans.” For the standalone interface, open `/ui/` on the running local service and use the lighting sidebar entry, or open `/ui/lighting.html`. Select a tier, export SVG/HTML, record field feedback and regenerate without overwriting earlier versions.
+
+Existing ceiling-light context can include bulb type, planned on/off state, declared wattage/CCT and observations. The result distinguishes useful face fill, background-only light, adverse shadows/color and unknown contribution. Useful fill may reduce operating output; lower nameplate wattage or purchase specifications are not established. Unknowns remain unknown and require a fixed-exposure on/off comparison.
 
 The calling Agent interprets supplied images. Uploading to the standalone page initially produces an explicitly assumed draft; users can edit and confirm the scene manually. Tiers do not imply fixed lamp counts or wattages. Missing fixture/modifier photometry never yields invented wattage, lux or dimmer percentages. Current plans use source-linked tutorial rules: environment exposure, apparent source size, actual modifiers and output headroom. They never call Radiance or convert simulated lux into electrical watts. Optional environment, modifier strategy and framing fields select conditional examples and field checks. Real-room and novice usability validation remain pending.
 

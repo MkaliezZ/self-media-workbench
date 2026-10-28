@@ -68,6 +68,25 @@ class Fixture(Strict):
         return self
 
 
+class ExistingLight(Strict):
+    label: str = Field(min_length=1, max_length=120)
+    kind: Literal['incandescent','led','fluorescent','unknown'] = 'unknown'
+    mounting: Literal['ceiling','practical','other'] = 'ceiling'
+    basis: Literal['user_declared','assumed','agent_observed'] = 'user_declared'
+    point: Point | None = None
+    input_watts: float | None = Field(default=None, gt=0, le=3000)
+    cct_k: int | None = Field(default=None, ge=1800, le=12000)
+    state: Literal['on','off','unknown'] = 'unknown'
+    face_effect: Literal['unknown','useful_fill','harsh_shadows','background_only','color_conflict'] = 'unknown'
+    note: str = Field(default='', max_length=1500)
+
+    @model_validator(mode='after')
+    def effect_evidence(self):
+        if self.face_effect!='unknown' and not self.note.strip():
+            raise ValueError('Known face effect requires an observation or comparison note')
+        return self
+
+
 class Scene(Strict):
     image_ids: list[str] = Field(default_factory=list, max_length=8)
     assessment: Literal['assumed', 'user_confirmed', 'agent_reviewed'] = 'assumed'
@@ -83,6 +102,7 @@ class Scene(Strict):
     windows: list[Window] = Field(default_factory=list, max_length=8)
     obstacles: list[Obstacle] = Field(default_factory=list, max_length=24)
     fixtures: list[Fixture] = Field(default_factory=list, max_length=8)
+    existing_lights: list[ExistingLight] = Field(default_factory=list, max_length=8)
     key_side: Literal['auto', 'left', 'right'] = 'auto'
     look: Literal['natural', 'contrast'] = 'natural'
     glasses: bool = False

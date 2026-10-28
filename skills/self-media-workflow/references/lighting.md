@@ -15,3 +15,6 @@
 input_watts是登记的额定输入功率，不是系统推荐或验证足够。来源案例的灯具级别也不等于实际最大输入W。新方案保存policy_version、rules、selection_guidance与来源；不调用Radiance、不从lux或渲染器W反推所需电功率。photometry仅保留供审阅，缺实际附件测试不能给精确W、调光百分比或采购保证。旧适配器仅作历史开发诊断，不通过安装或配置重新启用产品计算。
 
 独立网页/ui/lighting.html或/ui/#lighting支持上传、三档比较、点击调整人物/相机/障碍、选档、历史、SVG/报告下载和试拍记录。每次写入后重新取context/revision；Agent更新后刷新网页。field-checks记录选档、试拍图ID、曝光、测量点/方向、实际问题和下一项调整；声明记录不自动提升为真人验收通过。结构/几何、数值引擎、网页操作、实景效果分别报告。
+
+
+已有顶灯/环境灯写入scene.existing_lights，记录kind、mounting、basis、可选point、input_watts/cct_k（未知null）、state、face_effect、note。kind=incandescent不能仅凭照片暖色推断；情景假设用basis=assumed。face_effect非unknown需note，声明不是独立实测。读取existing_light_assessments区分待对照、有用面部补光、仅背景、不利阴影/混色及关闭状态。可调暗主灯不等于已验证可降低额定采购W；不能用顶灯W相减。顶灯投影不占灯架地面空间，记录后重新生成版本，不覆盖无顶灯方案。

@@ -10,7 +10,7 @@ from fastapi import HTTPException, Request
 from fastapi.responses import FileResponse, Response
 from PIL import Image, UnidentifiedImageError
 from lighting_models import Generate, Scene, Selection, FieldCheck
-from lighting_policy import SOURCES as REFERENCES, VERSION as POLICY_VERSION, guidance, scene_rules
+from lighting_policy import SOURCES as REFERENCES, VERSION as POLICY_VERSION, guidance, scene_rules, assess_existing
 
 TIERS = [('simple','简版','少投入，先把人脸拍清楚'),
          ('standard','标准','控制阴影与背景，方便重复拍摄'),
@@ -183,6 +183,10 @@ def svg(plan,tier):
                       f'<text x="{x0+ob["x"]*dx+4}" y="{y0+ob["y"]*dy+18}" font-size="13">{esc(ob["label"])}</text>'])
     for win in scene['windows']:
         x,y=pos(win['point']);parts.append(f'<circle cx="{x}" cy="{y}" r="10" fill="#8cc9df"/><text x="{x+14}" y="{y}" font-size="14">{esc(win["label"])}</text>')
+    for i,light in enumerate(scene.get('existing_lights',[]),1):
+        if not light.get('point'):continue
+        x,y=pos(light['point'])
+        parts.append(f'<circle cx="{x}" cy="{y}" r="18" fill="#fff2cd" stroke="#9c7637" stroke-dasharray="4 3"/><text x="{x}" y="{y+5}" text-anchor="middle" font-size="16">C{i}</text>')
     sx,sy=pos(scene['subject']);cx,cy=pos(scene['camera'])
     parts.append(f'<line x1="{cx}" y1="{cy}" x2="{sx}" y2="{sy}" stroke="#7a8780" stroke-dasharray="5 5"/>')
     for lamp in tier['lights']:
@@ -194,7 +198,7 @@ def svg(plan,tier):
                       f'<text x="{min(max(x-45,x0+4),x0+dx-145)}" y="{y-38}" font-family="sans-serif" font-size="26" fill="#334b40">{esc(lamp["label"])}</text>'])
     parts.extend([f'<circle cx="{sx}" cy="{sy}" r="32" fill="#245b48"/><text x="{sx}" y="{sy+8}" text-anchor="middle" font-size="22" fill="white">人物</text>',
                   f'<rect x="{cx-35}" y="{cy-20}" width="70" height="40" rx="5" fill="#344b46"/><text x="{cx}" y="{cy+8}" text-anchor="middle" font-size="22" fill="white">相机</text>',
-                  '<text x="40" y="700" font-size="15" font-family="sans-serif" fill="#52655c">方向以相机看向人物为准；反射光路未确认时不画直射线。虚线不是测光结果。</text>',
+                  '<text x="40" y="700" font-size="15" font-family="sans-serif" fill="#52655c">方向以机位看向人物；C为已有光源投影；虚线不是测光或未确认的反射路径。</text>',
                   '<text x="40" y="729" font-size="14" font-family="sans-serif" fill="#52655c">布局通过不等于现场效果通过；按编号摆放后固定曝光试拍。</text></svg>'])
     return ''.join(parts)
 
@@ -275,6 +279,7 @@ def register(w):
                     'precision_label':'按已确认尺寸的布局，器材占地仍须现场核对' if body.scene.width_m else '相对位置示意 · 未知尺寸，不是图片自动测量',
                     'tiers':tiers,'assumptions':assumptions,'references':REFERENCES,'supersedes':body.supersedes,
                     'planning_method':'tutorial_rules','policy_version':POLICY_VERSION,
+                    'existing_light_assessments':assess_existing(body.scene),
                     'revision_reason':body.revision_reason,'project_revision_at_save':p['revision'],
                     'human_acceptance':'not_tested','status':'needs_review','external_publication':False}
             w.write(dest/'plan.json',result)
@@ -306,6 +311,10 @@ def register(w):
                 rows.append('<tr><td colspan="8">教程规则规划；不从模拟照度反推瓦数。旧版计算不作为当前选型依据。</td></tr>')
                 sections.append('<h2>'+tier['name']+'</h2>'+svg(p,tier)+'<p>'+html.escape(tier['upgrade'])+'</p><p>'+html.escape(tier['tradeoff'])+'</p><table>'+''.join(rows)+'</table>'+rules+'<ol>'+''.join('<li>'+html.escape(s)+'</li>' for s in tier['steps'])+'</ol><ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in tier['warnings'])+'</ul>')
             assumptions='<ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in p['assumptions'])+'</ul>'
+            if p.get('existing_light_assessments'):
+                assumptions+='<h2>已有光源对主光的影响</h2>'
+                for assessment in p['existing_light_assessments']:
+                    assumptions+='<h3>'+html.escape(assessment['label'])+'</h3><p>'+html.escape(assessment['summary'])+'</p><p>'+html.escape('登记信息：'+json.dumps(assessment['declaration'],ensure_ascii=False))+'</p><ul>'+''.join('<li>'+html.escape(c)+'</li>' for c in assessment['checks'])+'</ul><p>'+html.escape(assessment['scope'])+'</p>'
             assumptions+='<h2>图片观察</h2><ul>'+''.join('<li>'+html.escape(o['note'])+'</li>' for o in p['scene'].get('observations',[]))+'</ul>'
             assumptions+='<h2>方法依据</h2><ul>'+''.join('<li><a href="'+html.escape(r['url'],quote=True)+'">'+html.escape(r['title']+' · '+r.get('license','历史资料'))+'</a></li>' for r in p['references'])+'</ul>'
             return Response('<!doctype html><meta charset="utf-8"><title>三档布光方案</title><style>body{max-width:1000px;margin:30px auto;font:16px sans-serif}svg{width:100%;height:auto}td{border:1px solid #ccd5c9;padding:8px}table{border-collapse:collapse}</style><h1>三档布光方案</h1><p>'+html.escape(p['precision_label'])+'</p>'+assumptions+''.join(sections),media_type='text/html')

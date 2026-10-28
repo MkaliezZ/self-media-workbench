@@ -202,6 +202,64 @@ class LightingTests(unittest.TestCase):
         self.assertIn('id="modifierStrategy"',page)
         self.assertIn('id="framing"',page)
 
+    def test_incandescent_context_does_not_invent_cct_or_subtract_watts(self):
+        existing={'label':'情景白炽顶灯','kind':'incandescent','basis':'assumed','state':'on',
+                  'point':{'x':.5,'y':.5},'input_watts':60.}
+        p=self.client.post(self.base+'/plans',json=self.body(existing_lights=[existing])).json()['plan']
+        a=p['existing_light_assessments'][0]
+        self.assertEqual(a['decision'],'needs_comparison')
+        self.assertIsNone(a['watt_reduction']);self.assertIsNone(a['dimmer_reduction_percent'])
+        self.assertIsNone(p['scene']['existing_lights'][0]['cct_k'])
+        self.assertEqual(a['key_fixture_downsize'],'not_established')
+        self.assertFalse(a['independently_verified'])
+        self.assertTrue(any('情景假设' in c for c in a['checks']))
+        actual=p['tiers'][0]['lights'][0]['point']
+        baseline=generate_tiers(Scene())[0][0]['lights'][0]['point']
+        self.assertEqual(actual,baseline,'Ceiling projection must not reserve a floor stand')
+        svg=self.client.get(self.base+'/plans/'+p['id']+'/files/simple.svg').text
+        self.assertIn('C1',svg);self.assertIn('已有光源投影',svg)
+
+    def test_useful_fill_is_conditional_operating_output_not_purchase_watts(self):
+        from lighting_models import ExistingLight
+        from lighting_policy import assess_existing
+        with self.assertRaises(ValueError):ExistingLight(label='顶灯',state='on',face_effect='useful_fill')
+        light=ExistingLight(label='顶灯',state='on',face_effect='useful_fill',note='固定曝光开关对照，人脸阴影得到补充')
+        a=assess_existing(Scene(existing_lights=[light]))[0]
+        self.assertEqual(a['decision'],'may_reduce_operating_output')
+        self.assertEqual(a['key_fixture_downsize'],'not_established')
+        self.assertIsNone(a['watt_reduction'])
+        self.assertFalse(a['independently_verified'])
+
+    def test_unhelpful_background_and_off_lights_are_not_counted_as_key_fill(self):
+        from lighting_models import ExistingLight
+        from lighting_policy import assess_existing
+        for effect,expected in [('harsh_shadows','control_or_switch_off'),('color_conflict','control_or_switch_off'),
+                                ('background_only','background_only')]:
+            light=ExistingLight(label='顶灯',state='on',face_effect=effect,note='模拟观察声明，不是实拍')
+            self.assertEqual(assess_existing(Scene(existing_lights=[light]))[0]['decision'],expected)
+            light.state='off'
+            self.assertEqual(assess_existing(Scene(existing_lights=[light]))[0]['decision'],'excluded')
+
+    def test_existing_light_effect_evidence_and_numeric_limits(self):
+        for light in ({'label':'顶灯','face_effect':'useful_fill'},
+                      {'label':'顶灯','input_watts':float('inf')},
+                      {'label':'顶灯','cct_k':0},
+                      {'label':'顶灯','point':{'x':2.,'y':.5}}):
+            response=self.client.post(self.base+'/plans',content=json.dumps(self.body(existing_lights=[light])),headers={'content-type':'application/json'})
+            self.assertEqual(response.status_code,422,response.text)
+
+    def test_existing_context_survives_report_and_is_optional_for_old_inputs(self):
+        body=self.body(existing_lights=[{'label':'白炽顶灯','kind':'incandescent','state':'on'}])
+        p=self.client.post(self.base+'/plans',json=body).json()['plan']
+        report=self.client.get(self.base+'/plans/'+p['id']+'/files/report.html').text
+        self.assertIn('已有光源对主光的影响',report);self.assertIn('还不能据此降低主光规格',report)
+        self.assertIn('同机位',report)
+        self.assertEqual(Scene().existing_lights,[])
+        page=self.client.get('/ui/lighting.html').text
+        self.assertIn('id="hasCeiling"',page);self.assertIn('id="existingContext"',page)
+        ids={s['id'] for s in p['references']}
+        self.assertTrue(set(p['existing_light_assessments'][0]['reference_ids']) <= ids)
+
     def test_legacy_diagnostic_only_not_product_planning(self):
         from lighting_radiance import binaries
         if not binaries():self.skipTest('Optional Radiance not configured on this host')

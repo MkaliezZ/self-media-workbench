@@ -1,4 +1,7 @@
-"""Optional direct-light cross-check. Never executes uploaded scene text or commands."""
+"""Historical developer diagnostic only; shooting plans never call this module.
+
+No result here selects electrical wattage. Uploaded scene commands are never executed.
+"""
 import os
 import shutil
 import subprocess

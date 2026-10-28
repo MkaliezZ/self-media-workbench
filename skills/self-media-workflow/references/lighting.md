@@ -10,8 +10,8 @@
 
 服务检查已知矩形障碍和灯架占地。图片外空间、器材完整尺寸、画面穿帮、眼镜/镜面、肤色和窗光变化仍需Agent与现场复核。找不到位置会给条件方案，不往墙外放灯。当前输出是确定性俯视图，不是自动房间重建、透视反投影或最终画面仿真。
 
-input_watts是登记的额定输入功率。无匹配型号/附件测光时，给选型要求和缺项，不编瓦数、照度或调光百分比。photometry必须有来源、时间、附件、色温和有效最短距离，并与当前附件/色温匹配。计算仅为满输出轴向小光源远场直射近似；缺少近场/反射/相机标定，target_lux也是用户目标而非通用肤色标准。
+按仓库 docs/lighting-sources.md 和 backend/lighting_policy.py 的教程规则工作：先构图与背景曝光，再主光面积/距离，再阴影和分离控制。补ambient_condition（unknown/controlled/window_mixed/bright_daylight）、modifier_strategy（unknown/softbox/bounce）、framing（head_shoulders/waist_up/wide）即可选择分支。三档不对应固定W；强日光先控环境，反射/宽景关注实际光路与覆盖余量。
 
-Radiance可由configure --radiance-bin /absolute/bin或SELF_MEDIA_RADIANCE_BIN启用。正常任务不下载；缺引擎时仍可规划。只有匹配光度、房间与高度数据时运行自生成场景。失败保留reason，不把粗算冒充成功模拟，不执行上传的.rad命令。
+input_watts是登记的额定输入功率，不是系统推荐或验证足够。来源案例的灯具级别也不等于实际最大输入W。新方案保存policy_version、rules、selection_guidance与来源；不调用Radiance、不从lux或渲染器W反推所需电功率。photometry仅保留供审阅，缺实际附件测试不能给精确W、调光百分比或采购保证。旧适配器仅作历史开发诊断，不通过安装或配置重新启用产品计算。
 
 独立网页/ui/lighting.html或/ui/#lighting支持上传、三档比较、点击调整人物/相机/障碍、选档、历史、SVG/报告下载和试拍记录。每次写入后重新取context/revision；Agent更新后刷新网页。field-checks记录选档、试拍图ID、曝光、测量点/方向、实际问题和下一项调整；声明记录不自动提升为真人验收通过。结构/几何、数值引擎、网页操作、实景效果分别报告。

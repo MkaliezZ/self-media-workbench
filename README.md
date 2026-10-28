@@ -39,11 +39,11 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 **怎么开始：**对 Agent 说「按这张房间照片给我简版、标准、理想三档打光方案」，附上图片即可。独立界面在本地服务地址的 `/ui/`，侧栏进入「拍摄布光 · 三档方案」，或直接打开 `/ui/lighting.html`。比较后可选择一档、下载 SVG 布局或 HTML 完整报告；补尺寸、灯具和试拍反馈后生成新版本，旧版保留。
 
-**准确性边界：**调用 Agent 实际查看图片并登记场景；独立网页上传本身不识图，先提供明确标记的默认草案，可手动补布局并确认。三档不等于固定灯数或固定瓦数；灯具、附件和测光资料不足时，只给能力要求与核对方法，不编造精确瓦数、lux或调光百分比。可选 Radiance 只交叉计算有匹配光度数据的灯的直射近似，不含墙面反射、柔光近场或相机观感。真实效果仍需现场试拍。
+**准确性边界：**调用 Agent 实际查看图片并登记场景；独立网页上传本身不识图，先提供明确标记的默认草案，可手动补布局并确认。三档不等于固定灯数或固定瓦数；灯具、附件和测光资料不足时，只给能力要求与核对方法，不编造精确瓦数、lux或调光百分比。当前采用有来源的教程规则，先看环境曝光、柔光面积、实际附件与输出余量；不调用 Radiance，不从模拟lux反推电功率。补充环境光、主光方式与最宽景别后，会按条件给案例与试拍检查。真实效果仍需现场试拍。
 
-[使用与可选引擎配置](docs/lighting.md) · [Agent 布光流程](skills/self-media-workflow/references/lighting.md) · [技术验收](evaluation/lighting-20261028.md)
+[使用说明](docs/lighting.md) · [开放教材、专业教程与规则来源](docs/lighting-sources.md) · [Agent 布光流程](skills/self-media-workflow/references/lighting.md) · [技术验收](evaluation/lighting-20261028.md)
 
-[![三档布光规划实际界面（合成场景）](docs/demos/lighting-three-tiers.png)](docs/lighting.md)
+[![三档布光规划实际界面（合成场景）](docs/demos/lighting-tutorial-rules.png)](docs/lighting.md)
 
 ### 给其他 Agent 的快速开始
 
@@ -73,7 +73,7 @@ https://github.com/MkaliezZ/self-media-workbench
 
 ### 安装
 
-完整音视频流程需要 Python 3.11+、FFmpeg 和 ffprobe。纯文本和布光规划不需要 FFmpeg 或 ASR 模型；布光可选配置 Radiance，不安装也能生成规则方案。
+完整音视频流程需要 Python 3.11+、FFmpeg 和 ffprobe。纯文本和布光规划不需要 FFmpeg 或 ASR 模型；布光使用教程规则与几何检查，不需要 Radiance。
 
 ```sh
 git clone https://github.com/MkaliezZ/self-media-workbench.git
@@ -152,6 +152,8 @@ python workbench.py run "按这张布局图给三档布光方案" --input /absol
 
 ### 平台支持与验证范围
 
+**教程规则迭代（2026-10-28）：**新方案不再自动计算Radiance或lux，铭牌W仅作登记。新增可控室内／混合窗光／强日光、柔光／反射、景别分支，带逐条方法和来源，见[教程规则验收](evaluation/lighting-tutorial-rules-20261028.md)。以下首版92项及Radiance数学测试是历史结果，不代表瓦数选型通过。
+
 **布光首版（2026-10-28）：**Windows 本地完整回归 **92 项通过**，包含实际运行可选 Radiance 的布光用例；最后文档/导出细节修订后，布光专项 **12 项重跑通过**。已实操上传、三档生成、选择、历史回看和反馈保存，使用自绘合成场景，尚未验收真实房间与新手复做。[本轮验收与复现](evaluation/lighting-20261028.md)。实现提交 `c778dce` 的云端结果分别见[跨平台兼容性](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956726)和[高级口播回归](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956970)，不以历史通过记录代替本轮结果。
 
 **最新 DSH 自主剪辑测试：**使用相同原始素材自主设计新时间轴，最终 v03 为 89.64 秒 / 2241 帧；技术导出、视频码流保留与实际帧复核通过。初始设计独立，最终版接受了问题反馈；本轮未新增 ASR、macOS 或 CI 测试，未做人耳听审。[完整范围与修订](evaluation/dsh-independent-edit-20261026.md)。
@@ -219,11 +221,11 @@ For a single presenter at a fixed camera position, compare three plans from room
 
 Ask the Agent: “Use this room photo to give me Simple, Standard and Ideal lighting plans.” For the standalone interface, open `/ui/` on the running local service and use the lighting sidebar entry, or open `/ui/lighting.html`. Select a tier, export SVG/HTML, record field feedback and regenerate without overwriting earlier versions.
 
-The calling Agent interprets supplied images. Uploading to the standalone page initially produces an explicitly assumed draft; users can edit and confirm the scene manually. Tiers do not imply fixed lamp counts or wattages. Missing fixture/modifier photometry never yields invented wattage, lux or dimmer percentages. Optional Radiance cross-checks only calibrated lights using a direct-light approximation, excluding wall bounce, softbox near-field behavior and camera appearance. Real-room and novice usability validation remain pending.
+The calling Agent interprets supplied images. Uploading to the standalone page initially produces an explicitly assumed draft; users can edit and confirm the scene manually. Tiers do not imply fixed lamp counts or wattages. Missing fixture/modifier photometry never yields invented wattage, lux or dimmer percentages. Current plans use source-linked tutorial rules: environment exposure, apparent source size, actual modifiers and output headroom. They never call Radiance or convert simulated lux into electrical watts. Optional environment, modifier strategy and framing fields select conditional examples and field checks. Real-room and novice usability validation remain pending.
 
-[Guide and optional engine setup](docs/lighting.md) · [Agent workflow](skills/self-media-workflow/references/lighting.md) · [Technical checks](evaluation/lighting-20261028.md)
+[Guide](docs/lighting.md) · [Open materials and rule sources](docs/lighting-sources.md) · [Agent workflow](skills/self-media-workflow/references/lighting.md) · [Technical checks](evaluation/lighting-20261028.md)
 
-[![Lighting planner interface using a synthetic room](docs/demos/lighting-three-tiers.png)](docs/lighting.md)
+[![Lighting planner interface using a synthetic room](docs/demos/lighting-tutorial-rules.png)](docs/lighting.md)
 
 ### Quick start for other Agents
 
@@ -253,7 +255,7 @@ During setup, the Agent explicitly downloads and configures compatible models re
 
 ### Install
 
-Python 3.11+ and FFmpeg/ffprobe are required for the complete media workflow. Text and lighting workflows do not need FFmpeg or an ASR model. Radiance is optional; rule-based plans work without it.
+Python 3.11+ and FFmpeg/ffprobe are required for the complete media workflow. Text and lighting workflows do not need FFmpeg or an ASR model. Lighting uses tutorial rules and geometry checks; Radiance is not needed.
 
 ```sh
 git clone https://github.com/MkaliezZ/self-media-workbench.git
@@ -329,6 +331,8 @@ A focused task can enter script/lighting/edit/review directly. Complete workflow
 State defaults to the operating system's private application-data directory. `configure --data-dir ...` can reuse an existing project store without moving or deleting it. `--skill-root` and `--library` optionally use private method/knowledge directories. Restart a running service after changing configuration. [Configuration and protocol](docs/configuration.md).
 
 ### Platform and validation scope
+
+**Tutorial-rule revision (2026-10-28):** new plans no longer run Radiance or lux calculations; nameplate W is a declaration only. Environment, modifier strategy and framing select source-linked guidance and field checks. [Current acceptance](evaluation/lighting-tutorial-rules-20261028.md). The first-release 92-test and Radiance mathematics results below are historical and do not validate wattage selection.
 
 **Lighting first release (2026-10-28):** **92 local Windows regression tests passed**, including actual optional Radiance execution; the final report/document refinements were followed by **12 passing lighting tests**. Browser upload, three-tier generation, selection, history and feedback were exercised using a self-authored synthetic scene. Real-room and novice acceptance remain pending. [Checks and reproduction](evaluation/lighting-20261028.md). For implementation commit `c778dce`, see its [cross-platform compatibility](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956726) and [advanced-production regression](https://github.com/MkaliezZ/self-media-workbench/actions/runs/40691956970) runs; historical passes do not establish this revision's results.
 

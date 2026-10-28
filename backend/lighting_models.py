@@ -86,6 +86,9 @@ class Scene(Strict):
     key_side: Literal['auto', 'left', 'right'] = 'auto'
     look: Literal['natural', 'contrast'] = 'natural'
     glasses: bool = False
+    ambient_condition: Literal['unknown', 'controlled', 'window_mixed', 'bright_daylight'] = 'unknown'
+    modifier_strategy: Literal['unknown', 'softbox', 'bounce'] = 'unknown'
+    framing: Literal['head_shoulders', 'waist_up', 'wide'] = 'head_shoulders'
     target_lux: float | None = Field(default=None, gt=0, le=100000)
 
     @model_validator(mode='after')

@@ -15,12 +15,15 @@
 <label>已有主灯型号<input id="fixtureLabel" maxlength="200" placeholder="没有灯或不清楚可留空"></label>
 <label>灯具额定输入功率（瓦）<input id="fixtureWatts" type="number" min="1" max="3000" step="1" placeholder="按铭牌填写，非照到脸上的亮度"></label>
 <label>当前附件<input id="modifier" maxlength="200" placeholder="例如：90cm柔光箱＋网格"></label>
+<label>环境光<select id="ambient"><option value="unknown">未确认（不默认低瓦数）</option><option value="controlled">可遮光／可控室内</option><option value="window_mixed">有窗混合光</option><option value="bright_daylight">强日光／明亮窗景</option></select></label>
+<label>主光方式<select id="modifierStrategy"><option value="unknown">未确认</option><option value="softbox">柔光箱／柔光布</option><option value="bounce">反射／二次柔光</option></select></label>
+<label>最宽景别<select id="framing"><option value="head_shoulders">头像／肩部</option><option value="waist_up">半身</option><option value="wide">宽景／全身</option></select></label>
 <label>画面取向<select id="look"><option value="natural">自然、阴影较柔和</option><option value="contrast">保留阴影与层次</option></select></label>
 <label class="inline"><input id="glasses" type="checkbox">拍摄人物戴眼镜</label></div>
 <div class="layout-editor"><div><h3>调整场景关系</h3><p>这是俯视示意；未确认尺寸时不代表真实比例。方向均以相机看向人物为准。</p><div class="actions"><button type="button" data-place="subject" class="active">放置人物</button><button type="button" data-place="camera">放置相机</button><button type="button" data-place="window">添加可用窗光</button><button type="button" data-place="obstacle">画不可摆放区域</button><button type="button" id="clearObjects">清空窗户与障碍</button></div><p id="placeGuide">点击右侧示意图放置人物。</p></div><svg id="editor" viewBox="0 0 100 80" role="img" aria-label="点击调整人物相机和障碍物的俯视示意"></svg></div>
 <label class="inline"><input id="confirmed" type="checkbox">我已核对这份示意中的人物、相机、窗户与障碍关系</label></details>
-<div class="actions"><button id="generate" class="primary">生成简版、标准、理想三套方案</button><button id="handoff" hidden>下载 Agent 审图交接</button></div><p class="small">仅保存到本机。尺寸、器材资料不足时会列出缺项，不凭照片编造精确瓦数或照度。</p></section>
+<div class="actions"><button id="generate" class="primary">生成简版、标准、理想三套方案</button><button id="handoff" hidden>下载 Agent 审图交接</button></div><p class="small">按专业教程规则规划，瓦数参考案例与实际附件试拍；不从Radiance或lux反推电功率。资料不足时先列缺项。</p></section>
 <section id="results" hidden><div class="section-title"><div><p class="eyebrow">THREE WAYS TO SET THE LIGHT</p><h2>选择适合你的一档</h2></div><label class="history-label">历史版本<select id="history" aria-label="布光历史版本"></select></label></div><p id="precision" class="scope"></p><div id="tiers" class="tiers"></div>
 <details class="panel"><summary>本次方案的假设与资料依据</summary><ul id="assumptions"></ul><div id="references"></div></details>
 <section class="panel"><h2>试拍后，记下一个要调整的问题</h2><p>保留相同机位、曝光与白平衡，再判断光线变化。记录不会自动变成人工验收通过。</p><div class="fields"><label>使用的档次<select id="feedbackTier"><option value="simple">简版</option><option value="standard">标准</option><option value="ideal">理想</option></select></label><label>相机/曝光记录<input id="exposure" maxlength="1000" placeholder="可选，例如：固定曝光、白平衡"></label></div><label>实际看到的问题<textarea id="feedback" maxlength="2000" rows="2" placeholder="例如：眼镜里仍有主光反射"></textarea></label><label>下一步只调整什么<textarea id="adjustment" maxlength="1000" rows="2" placeholder="例如：保持其他灯不动，改变主光侧向后再试拍"></textarea></label><button id="saveFeedback">保存试拍记录</button></section></section>
-<footer>布局与计算用于拍摄准备。真实光照、反光与观感，以现场检查和试拍为准。</footer></main><script src="lighting.js"></script></body></html>
+<footer>布局与教程建议用于拍摄准备。真实光照、反光与观感，以现场检查和试拍为准。</footer></main><script src="lighting.js"></script></body></html>

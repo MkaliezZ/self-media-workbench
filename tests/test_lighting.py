@@ -150,24 +150,79 @@ class LightingTests(unittest.TestCase):
         self.assertEqual(self.client.get('/ui/lighting.html').status_code,200)
         self.assertEqual(self.client.get('/ui/lighting.js').status_code,200)
 
-    def test_optional_real_radiance_cross_check(self):
+    def test_planning_never_calls_radiance_or_converts_lux_to_watts(self):
+        with patch('lighting_radiance.evaluate',side_effect=AssertionError('not a planning engine')):
+            p=self.client.post(self.base+'/plans',json=self.body()).json()['plan']
+        self.assertEqual(p['planning_method'],'tutorial_rules')
+        for tier in p['tiers']:
+            self.assertEqual(tier['radiance']['state'],'not_used')
+            for lamp in tier['lights']:
+                self.assertIsNone(lamp['calculation'])
+                self.assertIsNone(lamp['selection_guidance']['suggested_input_watts'])
+        status=self.client.get('/api/lighting/status').json()
+        self.assertFalse(status['radiance_in_planning'])
+        self.assertFalse(status['watts_from_simulation'])
+
+    def test_ambient_conditions_change_guidance_not_tier_wattage(self):
+        from lighting_policy import guidance
+        controlled=guidance(Scene(ambient_condition='controlled'),'simple','key','lamp',None)
+        bright=guidance(Scene(ambient_condition='bright_daylight'),'simple','key','lamp',None)
+        self.assertIn('UL150',controlled['summary'])
+        self.assertIn('600–700W',bright['summary'])
+        self.assertIn('不保证',bright['summary'])
+        for tier in ('simple','standard','ideal'):
+            g=guidance(Scene(ambient_condition='bright_daylight'),tier,'key','lamp',None)
+            self.assertEqual(g,bright)
+        unknown=guidance(Scene(),'ideal','key','lamp',None)
+        self.assertIn('不默认给低瓦数',unknown['summary'])
+
+    def test_bounce_wide_and_existing_power_need_assembly_test(self):
+        from lighting_policy import guidance,scene_rules
+        scene=Scene(ambient_condition='window_mixed',modifier_strategy='bounce',framing='wide')
+        g=guidance(scene,'standard','key','lamp',Fixture(label='已有小灯',input_watts=78.))
+        self.assertEqual(g['suitability'],'needs_field_test')
+        self.assertIn('未要求仅按W升级',g['checks'][0])
+        self.assertTrue(any('反射' in c for c in g['checks']))
+        self.assertTrue(any('宽景' in c for c in g['checks']))
+        self.assertTrue({'bounce_path','wide_coverage','daylight_control'} <= {r['id'] for r in scene_rules(scene)})
+        self.assertEqual(guidance(scene,'simple','fill','reflector',None)['suitability'],'not_applicable')
+        tiers,_=generate_tiers(Scene(width_m=4.,depth_m=3.,modifier_strategy='bounce'))
+        self.assertTrue(all(t['feasibility']=='conditional' for t in tiers))
+        self.assertTrue(all(t['lights'][0]['aim'] is None for t in tiers))
+        self.assertTrue(all(t['lights'][0]['path_kind']=='bounce_unresolved' for t in tiers))
+
+    def test_rules_have_reviewed_sources_and_license_attribution(self):
+        from lighting_policy import SOURCES,scene_rules
+        ids={s['id'] for s in SOURCES}
+        self.assertTrue(all(set(r['reference_ids']) <= ids for r in scene_rules(Scene())))
+        self.assertEqual(next(s for s in SOURCES if s['id']=='R4')['license'],'CC BY 4.0; except separately credited material')
+        self.assertTrue(all(s['reviewed'] for s in SOURCES))
+        page=self.client.get('/ui/lighting.html').text
+        self.assertIn('id="ambient"',page)
+        self.assertIn('id="modifierStrategy"',page)
+        self.assertIn('id="framing"',page)
+
+    def test_legacy_diagnostic_only_not_product_planning(self):
         from lighting_radiance import binaries
         if not binaries():self.skipTest('Optional Radiance not configured on this host')
         photo={'reference_lux':1000.,'reference_distance_m':1.,'modifier':'裸灯','cct_k':5600,
                'source':'合成数据，非厂商测光','measured_at':'synthetic','basis':'user_measurement','minimum_distance_m':.5}
         p=self.client.post(self.base+'/plans',json=self.body(width_m=4.,depth_m=4.,face_height_m=1.2,ceiling_m=2.7,
             fixtures=[{'label':'模拟灯','modifier':'裸灯','input_watts':78.,'photometry':photo}])).json()['plan']
-        tier=p['tiers'][0];self.assertEqual(tier['radiance']['state'],'done',tier['radiance'])
+        from lighting_radiance import evaluate
+        tier=p['tiers'][0];self.assertEqual(tier['radiance']['state'],'not_used')
+        scene=Scene(**p['scene'])
+        for lamp in tier['lights']:lamp['calculation']=calculate(scene,lamp,scene.fixtures[0])
+        diagnostic=evaluate(scene,tier['lights'])
+        self.assertEqual(diagnostic['state'],'done',diagnostic)
         analytic=tier['lights'][0]['calculation']['illuminance_lux']
-        self.assertAlmostEqual(tier['radiance']['illuminance_lux']/analytic,1.,delta=.02)
-        self.assertEqual(tier['radiance']['included_lights'],['L1'])
-        ideal=p['tiers'][2]['radiance']
-        self.assertEqual(ideal['included_lights'],['L1'])
-        self.assertEqual(ideal['excluded_lights'],['L2','L3'])
-        self.assertIn('非整套方案总照度',ideal['scope'])
+        self.assertAlmostEqual(diagnostic['illuminance_lux']/analytic,1.,delta=.02)
+        self.assertEqual(diagnostic['included_lights'],['L1'])
+        self.assertIn('非整套方案总照度',diagnostic['scope'])
         report=self.client.get(self.base+'/plans/'+p['id']+'/files/report.html').text
         self.assertIn('78.0W',report)
-        self.assertIn('合成数据，非厂商测光',report)
+        self.assertIn('不从模拟照度反推瓦数',report)
+        self.assertNotIn('499.',report)
 
 
 if __name__=='__main__':unittest.main()

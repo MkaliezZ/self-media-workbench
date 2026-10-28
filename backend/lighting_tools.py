@@ -10,17 +10,11 @@ from fastapi import HTTPException, Request
 from fastapi.responses import FileResponse, Response
 from PIL import Image, UnidentifiedImageError
 from lighting_models import Generate, Scene, Selection, FieldCheck
+from lighting_policy import SOURCES as REFERENCES, VERSION as POLICY_VERSION, guidance, scene_rules
 
 TIERS = [('simple','简版','少投入，先把人脸拍清楚'),
          ('standard','标准','控制阴影与背景，方便重复拍摄'),
          ('ideal','理想','在现有空间内提高控光与稳定性')]
-REFERENCES = [
-    {'id':'R1','title':'ARRI中文灯光手册，光线特性与基础光源',
-     'url':'https://www.arri.com/en/learn/lighting/lighting-handbook'},
-    {'id':'R2','title':'访谈布光：机位、自然光变化与附件',
-     'url':'https://www.godox.com/solutions-video/1032.html'},
-    {'id':'R3','title':'摄影棚访谈：先构图，再逐灯调整',
-     'url':'https://www.indepthcine.com/videos/studio-interview'}]
 
 
 def digest(value):
@@ -79,6 +73,7 @@ def height_for(scene, role):
 
 
 def calculate(scene, lamp, fixture):
+    """Legacy mathematical diagnostic, not used by generate_tiers or power guidance."""
     if not (scene.width_m and scene.face_height_m and lamp['height_m'] and fixture and fixture.photometry):return None
     width,depth=world(scene); dx=(lamp['point']['x']-scene.subject.x)*width;dy=(lamp['point']['y']-scene.subject.y)*depth
     dz=lamp['height_m']-scene.face_height_m; distance=math.sqrt(dx*dx+dy*dy+dz*dz)
@@ -124,7 +119,15 @@ def generate_tiers(scene):
                            'verified':False},
                   'distance_m':round(math.hypot((point['x']-scene.subject.x)*width,(point['y']-scene.subject.y)*depth),2) if measured else None,
                   'reference_ids':['R1','R2']}
-            lamp['calculation']=calculate(scene,lamp,fixture) if kind=='lamp' else None
+            lamp['calculation']=None  # Legacy diagnostic helper is not a shooting/selection method.
+            lamp['selection_guidance']=guidance(scene,code,role,kind,fixture)
+            if role=='key' and kind=='lamp' and scene.modifier_strategy=='bounce':
+                lamp['aim']=None
+                lamp['height_m']=None
+                lamp['height_instruction']='先补反射面位置，再确定灯高与朝向；不能按直射主光安排'
+                lamp['reason']='用中性反射面形成较大的发光面；本图尚未确认反射面，灯位只作占地候选'
+                lamp['path_kind']='bounce_unresolved'
+                warnings.append('反射主光尚未登记反射面位置与实际双段光路；灯位仅为占地候选，补齐反射布局后再试拍')
             lights.append(lamp);used.append((point['x']*width,point['y']*depth))
         first=scene.fixtures[0] if scene.fixtures else None
         if code=='simple' and usable:
@@ -153,8 +156,8 @@ def generate_tiers(scene):
         if not scene.fixtures:warnings.append('未登记灯具/附件，不能给出精确瓦数、照度或调光百分比；按选型要求补型号后再计算')
         if scene.target_lux is not None:warnings.append('目标lux为用户输入，不是通用人像曝光标准；亮度调整需结合实际相机和光度数据')
         tiers.append({'id':code,'name':name,'goal':goal,'lights':lights,'upgrade':delta,'tradeoff':compromise,
-                      'feasibility':'conditional' if warnings and any('没有找到' in w for w in warnings) else 'layout_checked' if measured else 'needs_dimensions',
-                      'warnings':warnings,'steps':['先确认人物、相机和最宽画面，留出通道与灯架空间',
+                      'feasibility':'conditional' if any('没有找到' in w or '反射主光尚未' in w for w in warnings) else 'layout_checked' if measured else 'needs_dimensions',
+                      'warnings':warnings,'rules':scene_rules(scene),'steps':['先确认最宽画面；关补灯记录环境与背景曝光，再锁定相机曝光和白平衡',
                         '只开主光/使用窗光，调位置与柔光，检查面部曝光和眼镜反光',
                         '再逐项加入本档附件/分离光，避免背景抢眼和器材入画',
                         '固定曝光与白平衡试拍，保留前后对照，每次只调整一个问题'],
@@ -184,12 +187,14 @@ def svg(plan,tier):
     parts.append(f'<line x1="{cx}" y1="{cy}" x2="{sx}" y2="{sy}" stroke="#7a8780" stroke-dasharray="5 5"/>')
     for lamp in tier['lights']:
         x,y=pos(lamp['point']);color='#d59428' if lamp['kind'] in ('lamp','window') else '#7c8a9e'
-        parts.extend([f'<line x1="{x}" y1="{y}" x2="{sx}" y2="{sy}" stroke="{color}" stroke-width="2" stroke-dasharray="7 5"/>',
+        if lamp.get('path_kind')!='bounce_unresolved':
+            parts.append(f'<line x1="{x}" y1="{y}" x2="{sx}" y2="{sy}" stroke="{color}" stroke-width="2" stroke-dasharray="7 5"/>')
+        parts.extend([
                       f'<circle cx="{x}" cy="{y}" r="26" fill="{color}"/><text x="{x}" y="{y+8}" text-anchor="middle" font-size="22" fill="white">{lamp["id"]}</text>',
                       f'<text x="{min(max(x-45,x0+4),x0+dx-145)}" y="{y-38}" font-family="sans-serif" font-size="26" fill="#334b40">{esc(lamp["label"])}</text>'])
     parts.extend([f'<circle cx="{sx}" cy="{sy}" r="32" fill="#245b48"/><text x="{sx}" y="{sy+8}" text-anchor="middle" font-size="22" fill="white">人物</text>',
                   f'<rect x="{cx-35}" y="{cy-20}" width="70" height="40" rx="5" fill="#344b46"/><text x="{cx}" y="{cy+8}" text-anchor="middle" font-size="22" fill="white">相机</text>',
-                  '<text x="40" y="700" font-size="15" font-family="sans-serif" fill="#52655c">方向均以相机朝人物看过去为准；虚线表示照向人物，不表示实测光束或照度。</text>',
+                  '<text x="40" y="700" font-size="15" font-family="sans-serif" fill="#52655c">方向以相机看向人物为准；反射光路未确认时不画直射线。虚线不是测光结果。</text>',
                   '<text x="40" y="729" font-size="14" font-family="sans-serif" fill="#52655c">布局通过不等于现场效果通过；按编号摆放后固定曝光试拍。</text></svg>'])
     return ''.join(parts)
 
@@ -211,9 +216,10 @@ def register(w):
         return path,w.read(file)
     @app.get('/api/lighting/status')
     def lighting_status():
-        from lighting_radiance import status
+        from lighting_policy import status
         return {'tiers':[c for c,_,_ in TIERS],'image_reasoning':'calling_agent_or_explicit_user_scene; upload alone is an assumption draft',
-                'radiance':status(),'ui':'/ui/#lighting','reference':'references/lighting.md'}
+                **status(),'radiance':{'state':'not_used','reason':'拍摄方案采用教程规则，不从模拟照度反推瓦数'},
+                'ui':'/ui/#lighting','reference':'references/lighting.md'}
     @app.post('/api/projects/{pid}/lighting/images')
     async def upload(pid:str,request:Request):
         path=w.folder(pid);raw=bytearray()
@@ -262,13 +268,13 @@ def register(w):
             bound=assets(path,body.scene.image_ids)
             if not bound:raise HTTPException(422,'请先登记至少一张场景图片')
             tiers,assumptions=generate_tiers(body.scene)
-            from lighting_radiance import evaluate
-            for tier in tiers:tier['radiance']=evaluate(body.scene,tier['lights'])
+            for tier in tiers:tier['radiance']={'state':'not_used','illuminance_lux':None,'reason':'教程规则规划；不从模拟照度反推瓦数'}
             lid=uuid.uuid4().hex;dest=path/'lighting/plans'/lid
             result={'id':lid,'created_at':w.now(),'scene':body.scene.model_dump(),
                     'source_images':[{'id':a['id'],'sha256':a['sha256'],'label':a['label']} for a in bound],
                     'precision_label':'按已确认尺寸的布局，器材占地仍须现场核对' if body.scene.width_m else '相对位置示意 · 未知尺寸，不是图片自动测量',
                     'tiers':tiers,'assumptions':assumptions,'references':REFERENCES,'supersedes':body.supersedes,
+                    'planning_method':'tutorial_rules','policy_version':POLICY_VERSION,
                     'revision_reason':body.revision_reason,'project_revision_at_save':p['revision'],
                     'human_acceptance':'not_tested','status':'needs_review','external_publication':False}
             w.write(dest/'plan.json',result)
@@ -293,13 +299,15 @@ def register(w):
                               str(lamp['height_m'])+'m' if lamp['height_m'] is not None else lamp['height_instruction'],
                               lamp['fixture']['modifier'] if lamp['fixture'] else '附件待核对',lamp['reason']]
                     rows.append('<tr>'+''.join('<td>'+html.escape(s)+'</td>' for s in settings)+'</tr>')
-                    if lamp.get('calculation'):
-                        rows.append('<tr><td colspan="8">'+html.escape(json.dumps(lamp['calculation'],ensure_ascii=False))+'</td></tr>')
-                rows.append('<tr><td colspan="8">'+html.escape('Radiance：'+json.dumps(tier['radiance'],ensure_ascii=False))+'</td></tr>')
-                sections.append('<h2>'+tier['name']+'</h2>'+svg(p,tier)+'<p>'+html.escape(tier['upgrade'])+'</p><p>'+html.escape(tier['tradeoff'])+'</p><table>'+''.join(rows)+'</table><ol>'+''.join('<li>'+html.escape(s)+'</li>' for s in tier['steps'])+'</ol><ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in tier['warnings'])+'</ul>')
+                    if lamp.get('selection_guidance'):
+                        guide=lamp['selection_guidance']
+                        rows.append('<tr><td colspan="8">'+html.escape(guide['summary']+'；'+'；'.join(guide.get('checks',[])))+'</td></tr>')
+                rules='<ul>'+''.join('<li>'+html.escape(r['action']+'；原因：'+r['reason']+'；核对：'+r['verify']+' ['+', '.join(r['reference_ids'])+']')+'</li>' for r in tier.get('rules',[]))+'</ul>'
+                rows.append('<tr><td colspan="8">教程规则规划；不从模拟照度反推瓦数。旧版计算不作为当前选型依据。</td></tr>')
+                sections.append('<h2>'+tier['name']+'</h2>'+svg(p,tier)+'<p>'+html.escape(tier['upgrade'])+'</p><p>'+html.escape(tier['tradeoff'])+'</p><table>'+''.join(rows)+'</table>'+rules+'<ol>'+''.join('<li>'+html.escape(s)+'</li>' for s in tier['steps'])+'</ol><ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in tier['warnings'])+'</ul>')
             assumptions='<ul>'+''.join('<li>'+html.escape(s)+'</li>' for s in p['assumptions'])+'</ul>'
             assumptions+='<h2>图片观察</h2><ul>'+''.join('<li>'+html.escape(o['note'])+'</li>' for o in p['scene'].get('observations',[]))+'</ul>'
-            assumptions+='<h2>方法依据</h2><ul>'+''.join('<li><a href="'+html.escape(r['url'],quote=True)+'">'+html.escape(r['title'])+'</a></li>' for r in p['references'])+'</ul>'
+            assumptions+='<h2>方法依据</h2><ul>'+''.join('<li><a href="'+html.escape(r['url'],quote=True)+'">'+html.escape(r['title']+' · '+r.get('license','历史资料'))+'</a></li>' for r in p['references'])+'</ul>'
             return Response('<!doctype html><meta charset="utf-8"><title>三档布光方案</title><style>body{max-width:1000px;margin:30px auto;font:16px sans-serif}svg{width:100%;height:auto}td{border:1px solid #ccd5c9;padding:8px}table{border-collapse:collapse}</style><h1>三档布光方案</h1><p>'+html.escape(p['precision_label'])+'</p>'+assumptions+''.join(sections),media_type='text/html')
         return FileResponse(path/'lighting/plans'/lid/name,media_type='image/svg+xml' if name.endswith('.svg') else 'application/json',filename=name)
     @app.post('/api/projects/{pid}/lighting/plans/{lid}/select')

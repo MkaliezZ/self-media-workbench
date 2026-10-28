@@ -139,16 +139,22 @@ class LightingTests(unittest.TestCase):
         self.assertFalse(segment_hit((0,0),(2,2),ob,4,4,1.6,1.2))
         self.assertTrue(segment_hit((0,0),(2,2),ob,4,4,.5,.5))
 
-    def test_routes_schema_and_frontend_entry(self):
+    def test_agent_routes_schema_and_removed_frontend(self):
         self.assertEqual(infer_intent('按照片给三档打光方案'),'lighting')
         self.assertEqual(infer_intent('不要打光，只写脚本'),'script')
         task=self.client.post('/api/agent/v1/tasks',json={'task':'给这张图布光','project':self.project['id']}).json()
         self.assertEqual(task['start_at'],'lighting');self.assertIn('lighting',task)
         for name in ('lighting-plan','lighting-scene','lighting-selection','lighting-field-check'):
             self.assertEqual(self.client.get('/api/agent/v1/schemas/'+name).status_code,200)
-        page=self.client.get('/ui/');self.assertEqual(page.status_code,200);self.assertIn('拍摄布光',page.text)
-        self.assertEqual(self.client.get('/ui/lighting.html').status_code,200)
-        self.assertEqual(self.client.get('/ui/lighting.js').status_code,200)
+        for route in ('/ui','/ui/','/ui/lighting.html','/ui/lighting.js','/docs','/redoc'):
+            self.assertEqual(self.client.get(route).status_code,404,route)
+        self.assertFalse((ROOT/'frontend').exists())
+        self.assertNotIn('ui',task['lighting'])
+        self.assertNotIn('ui',self.client.get('/api/lighting/status').json())
+        entry=self.client.get('/').json()
+        self.assertEqual(entry['interface'],'agent_cli_and_api')
+        self.assertNotIn('web_ui',entry);self.assertNotIn('lighting_ui',entry)
+        self.assertEqual(self.client.get('/openapi.json').status_code,200)
 
     def test_planning_never_calls_radiance_or_converts_lux_to_watts(self):
         with patch('lighting_radiance.evaluate',side_effect=AssertionError('not a planning engine')):
@@ -197,10 +203,9 @@ class LightingTests(unittest.TestCase):
         self.assertTrue(all(set(r['reference_ids']) <= ids for r in scene_rules(Scene())))
         self.assertEqual(next(s for s in SOURCES if s['id']=='R4')['license'],'CC BY 4.0; except separately credited material')
         self.assertTrue(all(s['reviewed'] for s in SOURCES))
-        page=self.client.get('/ui/lighting.html').text
-        self.assertIn('id="ambient"',page)
-        self.assertIn('id="modifierStrategy"',page)
-        self.assertIn('id="framing"',page)
+        schema=self.client.get('/api/agent/v1/schemas/lighting-scene').json()
+        for field in ('ambient_condition','modifier_strategy','framing'):
+            self.assertIn(field,schema['properties'])
 
     def test_incandescent_context_does_not_invent_cct_or_subtract_watts(self):
         existing={'label':'情景白炽顶灯','kind':'incandescent','basis':'assumed','state':'on',
@@ -255,8 +260,8 @@ class LightingTests(unittest.TestCase):
         self.assertIn('已有光源对主光的影响',report);self.assertIn('还不能据此降低主光规格',report)
         self.assertIn('同机位',report)
         self.assertEqual(Scene().existing_lights,[])
-        page=self.client.get('/ui/lighting.html').text
-        self.assertIn('id="hasCeiling"',page);self.assertIn('id="existingContext"',page)
+        schema=self.client.get('/api/agent/v1/schemas/lighting-scene').json()
+        self.assertIn('existing_lights',schema['properties'])
         ids={s['id'] for s in p['references']}
         self.assertTrue(set(p['existing_light_assessments'][0]['reference_ids']) <= ids)
 

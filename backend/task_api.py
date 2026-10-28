@@ -171,7 +171,7 @@ def register_tasks(w, context):
             if intent=='lighting':
                 result['lighting']={'reference':str(w.ROOT/'skills/self-media-workflow/references/lighting.md'),'tiers':['simple','standard','ideal'],
                     'status':'/api/lighting/status','plans':f'/api/projects/{pid}/lighting/plans',
-                    'schema':'/api/agent/v1/schemas/lighting-plan','ui':'/ui/#lighting',
+                    'schema':'/api/agent/v1/schemas/lighting-plan',
                     'instruction':'Inspect the actual bound images; submit observations and scene geometry, then generate exactly three plans. Upload-only output is an explicitly assumed draft.'}
             from talking_profiles import hints as talking_hints
             result['talking_profiles']=talking_hints(body.task)

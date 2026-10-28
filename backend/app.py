@@ -19,7 +19,6 @@ from pathlib import Path
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
-from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
 
 from local_asr import DEFAULT_MODEL, transcribe
@@ -34,7 +33,7 @@ if not (SKILL / 'SKILL.md').is_file():
     raise RuntimeError(f'Configured self-media skill entry is missing: {SKILL / "SKILL.md"}')
 POOL = ThreadPoolExecutor(max_workers=1)
 LOCK = threading.RLock()
-app = FastAPI(title='自媒体工作台 · 本地开发版')
+app = FastAPI(title='自媒体 Agent 工作台 · 本地开发版', docs_url=None, redoc_url=None)
 
 
 @app.exception_handler(RequestValidationError)
@@ -516,13 +515,10 @@ register_talking_profiles(sys.modules[__name__])
 from lighting_tools import register as register_lighting
 register_lighting(sys.modules[__name__])
 
-# Optional standalone UI; the existing Agent API remains available at its original routes.
-app.mount('/ui', StaticFiles(directory=str(ROOT/'frontend'), html=True), name='standalone_ui')
-
 @app.get('/')
 def agent_entry():
     return {'primary_client':'ai_agent', 'entry':'AGENTS.md', 'capabilities':'/api/agent/v1/capabilities',
-            'task_entry':'/api/agent/v1/tasks', 'web_ui':'/ui/', 'lighting_ui':'/ui/#lighting', 'external_publication':False}
+            'task_entry':'/api/agent/v1/tasks', 'interface':'agent_cli_and_api', 'external_publication':False}
 
 
 if __name__=='__main__':

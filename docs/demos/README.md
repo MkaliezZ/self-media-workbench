@@ -64,3 +64,6 @@ Externally synthesized narration, BGM ducking and light sound effects accompany 
 Repository-authored code and documentation use MIT. All three films include **Digital Clouds — Alejandro Magaña (A. M.)** under the [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/), embedded in the finished video. Its rights are not relicensed as MIT; no standalone music is distributed. Graphics, edits and compositing are project-authored; the fictional presenter is AI-generated and narration is synthetic.
 
 Exact file sizes, SHA256 hashes and probes: [samples.json](samples.json). Implementation and retained failures: [advanced production acceptance](../../evaluation/advanced-talking-20261025.md) and the [latest DSH edit audit](../../evaluation/dsh-independent-edit-20261026.md). Public showcase authorization and each film's quality-review status are recorded separately; platform CI does not certify audience response.
+
+
+布光界面截图属于历史验收证据。2026-10-28已移除前端，当前仅通过Agent/CLI/API操作，见[现行布光说明](../lighting.md)。视频成片、布局和导出能力不依赖前端。

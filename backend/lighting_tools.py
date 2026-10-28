@@ -223,7 +223,7 @@ def register(w):
         from lighting_policy import status
         return {'tiers':[c for c,_,_ in TIERS],'image_reasoning':'calling_agent_or_explicit_user_scene; upload alone is an assumption draft',
                 **status(),'radiance':{'state':'not_used','reason':'拍摄方案采用教程规则，不从模拟照度反推瓦数'},
-                'ui':'/ui/#lighting','reference':'references/lighting.md'}
+                'reference':'references/lighting.md'}
     @app.post('/api/projects/{pid}/lighting/images')
     async def upload(pid:str,request:Request):
         path=w.folder(pid);raw=bytearray()

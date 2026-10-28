@@ -9,6 +9,7 @@ You are the reasoning executor. Use the local task entry and current project con
 
 | Phase | Reference | Deliverable |
 |---|---|---|
+| lighting | [拍摄布光](references/lighting.md) | Image-bound scene, exactly three tiers, layouts, saved selection and field-check records |
 | diagnose | [Diagnosis](references/diagnose.md) | Evidence, priority issue, next action |
 | topics | [Topics](references/topics.md) | Distinct options, selected problem, usable material |
 | script | [Script](references/script.md) | Spoken text, timed shots, available visuals and one action |

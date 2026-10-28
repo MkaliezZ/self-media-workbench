@@ -13,3 +13,5 @@ Runtime dependencies retain their own licenses: FastAPI (MIT), Pydantic (MIT), U
 Public methods are repository-authored workflow instructions. Evaluation uses new synthetic content explicitly labeled as simulation; no synthetic result establishes real marketing performance.
 
 Public demo movies include licensed music embedded in finished audiovisual works. See [demo media notices](docs/demos/README.md); that music is not relicensed as MIT and is not distributed separately.
+
+The optional lighting adapter invokes separately installed [Radiance](https://radsite.lbl.gov/radiance/misc/license.txt) executables. No upstream source or binary is redistributed here. Repository-authored scene generation, three-tier rules, SVG output and standalone browser UI are MIT. The UI's original project screens were carried forward from the copyright holder's local prototype; no renderer vendor tree was copied. Pillow retains its HPND license. Tutorial links are method references, not licensed fixtures or a photometric database; the evaluation floor plan is self-authored synthetic material.

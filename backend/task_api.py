@@ -16,7 +16,7 @@ MEDIA = {'.mp4','.mov','.mkv','.webm','.wav','.mp3','.m4a'}
 class TaskRequest(BaseModel):
     model_config = ConfigDict(extra='forbid', strict=True)
     task: str = Field(min_length=1, max_length=10000)
-    intent: Literal['auto','full','diagnose','topics','script','edit','publish','review'] = 'auto'
+    intent: Literal['auto','full','diagnose','topics','script','edit','publish','review','lighting'] = 'auto'
     project: str | None = None
     new_project: bool = False
     title: str | None = Field(default=None, min_length=1, max_length=120)
@@ -33,7 +33,8 @@ class TaskRequest(BaseModel):
 def infer_intent(task, has_media=False):
     text = task.casefold()
     # Explicit exclusions are removed from this routing hint, never from source materials.
-    hint = re.sub(r'(?:不要|不用|不做|无需|不需要|不|no |do not )(?:再)?(?:剪辑|行业模板|剪视频|配图|画面高亮|重点文案|字幕|转场|蒙版|遮罩|时间轴|音乐卡点|特效|动效|段落抽离|文章标黄|聚光灯|画中画|transition|mask|visual edit|edit|复盘|发布|诊断|选题)', '', text)
+    hint = re.sub(r'(?:不要|不用|不做|无需|不需要|不|no |do not )(?:再)?(?:打光|布光|补光|灯位|lighting|剪辑|行业模板|剪视频|配图|画面高亮|重点文案|字幕|转场|蒙版|遮罩|时间轴|音乐卡点|特效|动效|段落抽离|文章标黄|聚光灯|画中画|transition|mask|visual edit|edit|复盘|发布|诊断|选题)', '', text)
+    if any(k in hint for k in ['打光','布光','补光','灯位','lighting plan']):return 'lighting'
     if any(k in hint for k in ['完整流程','全流程','从头到尾','full workflow','end to end']):return 'full'
     pairs = [('review',['复盘','发布数据','数据分析','review performance']),
              ('edit',['剪辑','行业模板','剪口播','剪气口','转录','字幕','配图','画面高亮','重点文案','转场','蒙版','遮罩','时间轴','音乐卡点','特效','动效','段落抽离','文章标黄','聚光灯','画中画','transition','mask','edit video','transcribe','visual edit']),
@@ -167,6 +168,11 @@ def register_tasks(w, context):
             if intent=='edit':
                 from editing_templates import hints
                 result['editing_templates']=hints(body.task)
+            if intent=='lighting':
+                result['lighting']={'reference':str(w.ROOT/'skills/self-media-workflow/references/lighting.md'),'tiers':['simple','standard','ideal'],
+                    'status':'/api/lighting/status','plans':f'/api/projects/{pid}/lighting/plans',
+                    'schema':'/api/agent/v1/schemas/lighting-plan','ui':'/ui/#lighting',
+                    'instruction':'Inspect the actual bound images; submit observations and scene geometry, then generate exactly three plans. Upload-only output is an explicitly assumed draft.'}
             from talking_profiles import hints as talking_hints
             result['talking_profiles']=talking_hints(body.task)
             w.write(registry,{'signature':signature,'result':result})

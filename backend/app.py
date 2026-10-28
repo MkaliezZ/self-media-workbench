@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import ValidationError
@@ -34,6 +35,13 @@ if not (SKILL / 'SKILL.md').is_file():
 POOL = ThreadPoolExecutor(max_workers=1)
 LOCK = threading.RLock()
 app = FastAPI(title='自媒体工作台 · 本地开发版')
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_error(request, exc):
+    # Non-finite input cannot be echoed into a JSON response (which would become 500).
+    return JSONResponse({'detail':[{k:e[k] for k in ('type','loc','msg') if k in e}
+                                   for e in exc.errors()]}, status_code=422)
 
 
 def now():
@@ -505,11 +513,16 @@ from editing_logics import register as register_editing_logics
 register_editing_logics(sys.modules[__name__])
 from talking_profiles import register as register_talking_profiles
 register_talking_profiles(sys.modules[__name__])
+from lighting_tools import register as register_lighting
+register_lighting(sys.modules[__name__])
+
+# Optional standalone UI; the existing Agent API remains available at its original routes.
+app.mount('/ui', StaticFiles(directory=str(ROOT/'frontend'), html=True), name='standalone_ui')
 
 @app.get('/')
 def agent_entry():
     return {'primary_client':'ai_agent', 'entry':'AGENTS.md', 'capabilities':'/api/agent/v1/capabilities',
-            'task_entry':'/api/agent/v1/tasks', 'external_publication':False}
+            'task_entry':'/api/agent/v1/tasks', 'web_ui':'/ui/', 'lighting_ui':'/ui/#lighting', 'external_publication':False}
 
 
 if __name__=='__main__':

@@ -96,6 +96,7 @@ def doctor():
         'dependencies':{k:importlib.util.find_spec(k) is not None for k in ['fastapi','pydantic','uvicorn','numpy','PIL','faster_whisper']},
         'executables':{k:shutil.which(k) for k in ['ffmpeg','ffprobe']},
         'visual_editing':visual,'visual_setup_guide':str(ROOT/'docs/visual-editing.md'),
+        'lighting':__import__('lighting_radiance').status(),'lighting_ui':'/ui/#lighting',
         'macos_asr':'Apple Silicon: MLX; Intel GPU: optional whisper.cpp Metal; recorded CPU fallback' if sys.platform=='darwin' else None,
         'network_upload':False,'model_auto_download':False}
 
@@ -110,7 +111,7 @@ def main(argv=None):
     sub.add_parser('doctor')
     serve=sub.add_parser('serve');serve.add_argument('--port',type=int,default=8765)
     config=sub.add_parser('configure')
-    for key in ('data-dir','model','mlx-model','cpp-executable','cpp-model','skill-root','library'):config.add_argument('--'+key,type=Path)
+    for key in ('data-dir','model','mlx-model','cpp-executable','cpp-model','skill-root','library','radiance-bin'):config.add_argument('--'+key,type=Path)
     config.add_argument('--device',choices=['auto','cpu','cuda','gpu','vulkan','metal']);config.add_argument('--language')
     config.add_argument('--asr-backend',choices=['auto','faster-whisper','mlx','whisper.cpp'])
     config.add_argument('--cpp-gpu-index',type=int)
@@ -118,7 +119,7 @@ def main(argv=None):
     config.add_argument('--cuda-dll-dir',action='append',type=Path)
     sub.add_parser('install-skill')
     run=sub.add_parser('run');run.add_argument('task');run.add_argument('--input',action='append',default=[])
-    run.add_argument('--intent',default='auto',choices=['auto','full','diagnose','topics','script','edit','publish','review'])
+    run.add_argument('--intent',default='auto',choices=['auto','full','diagnose','topics','script','edit','publish','review','lighting'])
     run.add_argument('--project');run.add_argument('--new',action='store_true');run.add_argument('--title')
     run.add_argument('--simulation',action='store_true');run.add_argument('--media-nature',default='unknown',choices=['unknown','recorded','generated','restored','mixed'])
     run.add_argument('--source-note',default='');run.add_argument('--usage-scope',default='')
@@ -138,7 +139,7 @@ def main(argv=None):
     if args.command=='doctor':result=doctor()
     elif args.command=='configure':
         config=dict(CONFIG)
-        for key in ('data_dir','model','mlx_model','cpp_executable','cpp_model','cpp_gpu_index','require_gpu','asr_backend','skill_root','library','device','language'):
+        for key in ('data_dir','model','mlx_model','cpp_executable','cpp_model','cpp_gpu_index','require_gpu','asr_backend','skill_root','library','device','language','radiance_bin'):
             value=getattr(args,key,None)
             if value is not None:
                 if key=='cpp_gpu_index' and value<0:raise ValueError('GPU index must be nonnegative')

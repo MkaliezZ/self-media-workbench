@@ -29,6 +29,10 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 ### 给其他 Agent 的快速开始
 
+**新增拍摄布光：**上传场景照片/平面图，比较「简版／标准／理想」三档布局，查看摆放原因、器材与高度，选择一档、导出 SVG/HTML、记录试拍并保留旧版本。服务启动后打开 `/ui/`，侧栏进入「拍摄布光 · 三档方案」；也可直接打开 `/ui/lighting.html`。调用 Agent 可实际审图并生成场景方案；独立网页上传先提供明确标记的默认草案，可补尺寸和布局确认。未知灯具/附件不编造瓦数或lux；Radiance为可选直射校验，真实效果仍待现场试拍。[使用与边界](docs/lighting.md) · [技术验收](evaluation/lighting-20261028.md)。
+
+[![三档布光规划实际界面（合成场景）](docs/demos/lighting-three-tiers.png)](docs/lighting.md)
+
 **两种口播流程：**普通口播侧重原意、删音、字幕和必要配图；**高级口播**先按语义拆镜，再安排分层遮挡、纸页透视、关键词扫描、原文抽离、关系图和声音。统一入口返回 `talking_profiles`，Agent阅读[高级口播说明](skills/self-media-workflow/references/advanced-talking.md)，编译成原生时间轴并实际导出。静态人物图与合成旁白可作已声明的模拟素材；生成模型/服务另行准备。多阶段透视是平面合成，声音信号检查不代替听审。
 
 把仓库链接和任务发给具备文件读写、终端执行能力的 Agent 即可，无需让使用者记安装或启动命令：
@@ -186,6 +190,8 @@ Your AI Agent chooses the relevant feature, resumes the right project, creates c
 Both are actual 1080p / 25fps exports with declared synthetic Chinese narration, BGM and light sound effects. The 90-second film uses a static AI office portrait without lip animation. Its raw video underwent actual CUDA ASR, with captions retaining the original group bounds. Image and voice generation are external preparation; editing and compositing run in the workbench. [Chapters, checksums and media licensing](docs/demos/README.md).
 
 ### Quick start for other Agents
+
+**Lighting planner:** compare Simple / Standard / Ideal plans, explanations, placements and setup steps; export SVG/HTML and retain versions and field notes. Open `/ui/` → the lighting sidebar entry, or `/ui/lighting.html`, on the running local service. The calling Agent interprets supplied images; the standalone page initially generates an explicitly assumed draft and supports manual scene confirmation. Unknown fixture data never yields invented wattage or lux. Optional Radiance provides a limited direct-light cross-check. Real-room and novice usability validation remain pending. [Guide](docs/lighting.md) · [Technical checks](evaluation/lighting-20261028.md).
 
 **Two talking-head routes:** ordinary editing preserves meaning, reviews cuts and captions, and adds only needed visuals. **Advanced talking head (高级口播)** authors semantic scenes with layered occlusion, planar perspective keys, source-pixel emphasis/extraction, diagrams and sound. Discover `talking_profiles` and read the [operator guide](skills/self-media-workflow/references/advanced-talking.md), compile a native timeline, then actually export and inspect it. Declared static AI portraits plus synthetic voice are supported inputs; avatar/TTS/music generation remains external. Planar compositing is not 3D, and audio signal checks do not replace listening.
 

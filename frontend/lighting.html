@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拍摄布光 · 自媒体工作台</title><link rel="stylesheet" href="lighting.css"></head>
+<body><header class="top"><a href="./">自媒体工作台</a><span>拍摄准备 / 布光规划</span><a href="./">返回项目工作台 ↗</a></header>
+<main><section class="intro"><div><p class="eyebrow">LIGHTING PLANNER</p><h1>把光放到合适的位置。</h1><p>上传现场照片或平面图，一次比较简版、标准与理想方案。先用已有器材，再决定值得增加什么。</p></div><div class="intro-note">01 上传场景<br>02 比较三档<br>03 照图摆放，试拍调整</div></section>
+<div id="notice" role="status" aria-live="polite"></div>
+<section class="panel input-panel"><div class="section-title"><h2>你的拍摄场景</h2><span id="projectLabel">上传后保存为本机项目</span></div>
+<div class="upload-grid"><label class="drop" for="images"><span class="upload-icon">＋</span><strong>上传照片或布局图</strong><span>PNG / JPEG / WebP · 每张最多 10MB · 可多角度补充</span><input id="images" type="file" accept="image/png,image/jpeg,image/webp" multiple></label><div id="previews" class="previews"><p>一张图片就能开始。没有尺寸时先给相对位置示意。</p></div></div>
+<p class="scope" id="assessment">网页不会仅凭上传就宣称已识别房间。未由 Agent 审图或你确认的部分，会明确标为假设初稿。</p>
+<details id="sceneDetails"><summary>补充尺寸、已有灯具或调整人物位置（可选）</summary><div class="fields">
+<label>房间宽度（米）<input id="width" type="number" min="0.6" max="30" step="0.1" placeholder="未知可留空"></label>
+<label>房间进深（米）<input id="depth" type="number" min="0.6" max="30" step="0.1" placeholder="与宽度一起填写"></label>
+<label>层高（米）<input id="ceiling" type="number" min="1.8" max="8" step="0.1" placeholder="未知可留空"></label>
+<label>人物面部高度（米）<input id="faceHeight" type="number" min="0.5" max="2.5" step="0.05" placeholder="坐下/站立后的实际高度"></label>
+<label>已有主灯型号<input id="fixtureLabel" maxlength="200" placeholder="没有灯或不清楚可留空"></label>
+<label>灯具额定输入功率（瓦）<input id="fixtureWatts" type="number" min="1" max="3000" step="1" placeholder="按铭牌填写，非照到脸上的亮度"></label>
+<label>当前附件<input id="modifier" maxlength="200" placeholder="例如：90cm柔光箱＋网格"></label>
+<label>画面取向<select id="look"><option value="natural">自然、阴影较柔和</option><option value="contrast">保留阴影与层次</option></select></label>
+<label class="inline"><input id="glasses" type="checkbox">拍摄人物戴眼镜</label></div>
+<div class="layout-editor"><div><h3>调整场景关系</h3><p>这是俯视示意；未确认尺寸时不代表真实比例。方向均以相机看向人物为准。</p><div class="actions"><button type="button" data-place="subject" class="active">放置人物</button><button type="button" data-place="camera">放置相机</button><button type="button" data-place="window">添加可用窗光</button><button type="button" data-place="obstacle">画不可摆放区域</button><button type="button" id="clearObjects">清空窗户与障碍</button></div><p id="placeGuide">点击右侧示意图放置人物。</p></div><svg id="editor" viewBox="0 0 100 80" role="img" aria-label="点击调整人物相机和障碍物的俯视示意"></svg></div>
+<label class="inline"><input id="confirmed" type="checkbox">我已核对这份示意中的人物、相机、窗户与障碍关系</label></details>
+<div class="actions"><button id="generate" class="primary">生成简版、标准、理想三套方案</button><button id="handoff" hidden>下载 Agent 审图交接</button></div><p class="small">仅保存到本机。尺寸、器材资料不足时会列出缺项，不凭照片编造精确瓦数或照度。</p></section>
+<section id="results" hidden><div class="section-title"><div><p class="eyebrow">THREE WAYS TO SET THE LIGHT</p><h2>选择适合你的一档</h2></div><label class="history-label">历史版本<select id="history" aria-label="布光历史版本"></select></label></div><p id="precision" class="scope"></p><div id="tiers" class="tiers"></div>
+<details class="panel"><summary>本次方案的假设与资料依据</summary><ul id="assumptions"></ul><div id="references"></div></details>
+<section class="panel"><h2>试拍后，记下一个要调整的问题</h2><p>保留相同机位、曝光与白平衡，再判断光线变化。记录不会自动变成人工验收通过。</p><div class="fields"><label>使用的档次<select id="feedbackTier"><option value="simple">简版</option><option value="standard">标准</option><option value="ideal">理想</option></select></label><label>相机/曝光记录<input id="exposure" maxlength="1000" placeholder="可选，例如：固定曝光、白平衡"></label></div><label>实际看到的问题<textarea id="feedback" maxlength="2000" rows="2" placeholder="例如：眼镜里仍有主光反射"></textarea></label><label>下一步只调整什么<textarea id="adjustment" maxlength="1000" rows="2" placeholder="例如：保持其他灯不动，改变主光侧向后再试拍"></textarea></label><button id="saveFeedback">保存试拍记录</button></section></section>
+<footer>布局与计算用于拍摄准备。真实光照、反光与观感，以现场检查和试拍为准。</footer></main><script src="lighting.js"></script></body></html>

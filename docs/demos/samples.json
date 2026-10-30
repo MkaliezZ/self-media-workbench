@@ -17,6 +17,51 @@
     "video_stream_bytes_preserved": true
   },
   {
+    "file": "shot-library-talking-v2-90s.mp4",
+    "release_tag": "showcase-2026-10-30",
+    "bytes": 8172074,
+    "sha256": "bcc31a5d027e984447881b0c399ca47991dbcbf16c6bc108ca5b0b06e5395916",
+    "duration_seconds": 90.0,
+    "width": 1920,
+    "height": 1080,
+    "fps": "25/1",
+    "video_frames": 2250,
+    "has_audio": true,
+    "kind": "talking",
+    "showcase_status": "current",
+    "public_display": "maintainer_authorized",
+    "human_quality_acceptance": "pending_user_review",
+    "version": "v2",
+    "scope": "same sealed materials; current calling Agent re-edit, not independent DSH blind test",
+    "scenes": 17,
+    "new_library_segments": 6,
+    "new_library_types": 5,
+    "native_effects": 18,
+    "caption_groups": 48,
+    "asr": "inherited corrected CUDA ASR; no new run",
+    "human_listening": "not_performed",
+    "video_stream_bytes_preserved": true
+  },
+  {
+    "file": "shot-library-nine-effects-45s-silent.mp4",
+    "release_tag": "showcase-2026-10-30",
+    "bytes": 1251712,
+    "sha256": "bfa12ca7fb5729b10f2d484a5f6525a42eaf3646fc161a965155153359ecd3fd",
+    "duration_seconds": 45.0,
+    "width": 1280,
+    "height": 720,
+    "fps": "25/1",
+    "video_frames": 1125,
+    "has_audio": false,
+    "kind": "library",
+    "showcase_status": "current",
+    "public_display": "maintainer_authorized",
+    "human_quality_acceptance": "pending_user_review",
+    "scope": "nine parameterized adaptations; original synthetic images and data; diagnostic tone removed",
+    "audio": "none",
+    "human_listening": "not_applicable_silent"
+  },
+  {
     "file": "advanced-talking-90s.mp4",
     "bytes": 19559889,
     "sha256": "810c39519d6528a04009bd1d1d0d65b2a914e95435eb674e40cb03599e0a84cf",
@@ -24,7 +69,9 @@
     "width": 1920,
     "height": 1080,
     "fps": "25/1",
-    "video_frames": 2250
+    "video_frames": 2250,
+    "release_tag": "showcase-2026-10-25",
+    "showcase_status": "historical"
   },
   {
     "file": "effects-with-audio-95s.mp4",
@@ -34,6 +81,8 @@
     "width": 1920,
     "height": 1080,
     "fps": "25/1",
-    "video_frames": 2395
+    "video_frames": 2395,
+    "release_tag": "showcase-2026-10-25",
+    "showcase_status": "historical"
   }
 ]

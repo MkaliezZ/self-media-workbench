@@ -1,8 +1,8 @@
 # 样片 / Demo films
 
-三条视频是工作台实际导出的成片。点击封面或 MP4 链接播放／下载；GitHub 是否内嵌播放取决于浏览器。视频存放在 Release 附件，不增加源码克隆体积。
+当前展示为保留的DSH样片、新版镜头库同素材口播和九类镜头静音展示。点击封面或MP4链接播放／下载；GitHub是否内嵌播放取决于浏览器。视频存放在Release附件，不增加源码克隆体积；原两条样片在下方保留为历史记录。
 
-These are actual workbench exports. Click a cover or MP4 link to watch/download; inline playback depends on your browser. Movies live in release assets, keeping source clones small.
+The current showcase keeps the DSH film alongside the new same-source talking-head edit and silent nine-shot demonstration. Click a cover or MP4 link to watch/download; inline playback depends on your browser. Movies live in release assets, keeping source clones small. The two replaced films remain below as historical records.
 
 ## 最新 DSH 自主剪辑 / Latest DSH independently authored edit
 
@@ -16,7 +16,31 @@ DSH authored a new edit from the same raw assets in a fresh session, without the
 
 Explicit audio mastering preserves the native H.264 stream; measured -18.72 LUFS / -3.37 dBTP. [Audit, revision history and limits](../../evaluation/dsh-independent-edit-20261026.md).
 
-## 高级口播 / Advanced talking head
+## 镜头库同素材口播 / Same-source shot-library talking head
+
+[![The Judgment Loop: shot-library re-edit v2](shot-library-talking-v2.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-30/shot-library-talking-v2-90s.mp4)
+
+[90秒MP4 / 90-second MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-30/shot-library-talking-v2-90s.mp4) · v2 · 1920×1080 · 25fps · 2250 frames
+
+同一套43件封存材料、同一静态AI人物与合成旁白，按高级口播流程重新编排17个场景。生成7个库镜头后，经实际画面对照撤回不利于三步同时阅读的堆叠，最终采用6个新库片段/5种镜头语法，结合18个原生效果、原文像素抽离和48条原时钟字幕。原始声音保留完整90秒，旧DSH片为89.64秒；这是同素材编辑比较，不是新DSH盲测，也不以效果数量证明审美提升。
+
+The same 43 sealed inputs, static AI presenter and synthetic voice were newly arranged through the advanced talking-head workflow into 17 scenes. Seven library clips were rendered; the stack was removed after frame review because three steps needed simultaneous reading. The final film uses six library segments / five shot types, 18 native effects, original-pixel document extraction and 48 inherited captions on the original clock. It retains all 90 seconds of audio versus the DSH film's 89.64 seconds. This is an editorial comparison, not a new blind DSH test or proof of aesthetic superiority by effect count.
+
+响度整理保留原生H.264视频流，实测约-18.70 LUFS / -3.35 dBTP。实际导出、完整解码、输入哈希、音频时钟和关键帧/切换边界复核通过；未做人耳听审，人工成片验收仍为pending_user_review，公开展示已获维护者授权。[范围、修订与校验](../../evaluation/shot-library-talking-20261030.md)。
+
+Explicit mastering preserves the native H.264 stream (-18.70 LUFS / -3.35 dBTP). Export, full decode, input hashes, audio clock and keyframe/boundary checks passed; human listening was not performed and human quality acceptance remains pending. Public display is separately authorized. [Scope, revisions and integrity](../../evaluation/shot-library-talking-20261030.md).
+
+## 九类镜头静音展示 / Nine parameterized shots, silent
+
+[![Nine parameterized shot outputs](shot-library.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-30/shot-library-nine-effects-45s-silent.mp4)
+
+[45秒静音MP4 / 45-second silent MP4](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-30/shot-library-nine-effects-45s-silent.mp4) · 1280×720 · 25fps · 1125 frames · **no audio track**
+
+每5秒展示一种可执行适配：打字改写、马克笔标题、空心字点亮、列表递进、卡片堆叠、前后对照、折线图、分屏、数字滚动。使用自制示意图片和明确声明的示意数据；不是账号实测或成绩承诺。九条真实渲染通过工作台原生时间轴合成为45秒视频，公开版移除验收用诊断音轨、保留视频流。[镜头库依赖、来源与边界](../shot-library.md) · [21条实际渲染验收](../../evaluation/shot-library-20261030.md)。
+
+Each five-second segment demonstrates one executable adaptation: rewrite, marker title, outline fill, list reveal, card stack, before/after, line chart, split screen and digit roll. Original synthetic images and declared illustrative data are not observed account metrics. Nine actual renders are composed through the native timeline; the public silent version removes the diagnostic test tone while preserving the video stream. [Setup, provenance and limits](../shot-library.md) · [21-render acceptance](../../evaluation/shot-library-20261030.md).
+
+## 历史高级口播 / Historical advanced talking head
 
 [![90-second advanced talking head](advanced-talking.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/advanced-talking-90s.mp4)
 
@@ -37,7 +61,7 @@ Explicit audio mastering preserves the native H.264 stream; measured -18.72 LUFS
 
 The presenter is a static AI office portrait with no lip animation. External normal-rate TTS forms the declared simulated source video. Actual CUDA ASR produced 283 model groups, reviewed into 48 caption groups without changing their bounds; eight normal pauses were kept. Native timelines execute the composition. Explicit delivery mastering preserves the video stream (-17.22 LUFS, -1.74 dBTP). Model-estimated timestamps are not guaranteed character-level acoustic alignment.
 
-## 剪辑特效声画版 / Editing effects with audio
+## 历史剪辑特效声画版 / Historical editing effects with audio
 
 [![Editing effects with audio](effects-with-audio.jpg)](https://github.com/MkaliezZ/self-media-workbench/releases/download/showcase-2026-10-25/effects-with-audio-95s.mp4)
 
@@ -59,11 +83,11 @@ Externally synthesized narration, BGM ducking and light sound effects accompany 
 
 ## 媒体许可与完整性 / Media licensing and integrity
 
-仓库自有代码和文档采用 MIT。三条成片中的配乐是 **Digital Clouds — Alejandro Magaña (A. M.)**，适用 [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/)。配乐作为合成视频的一部分使用，其权利不被重新声明为 MIT；不提供独立音乐文件。图形、剪辑与合成由本项目制作，人物是虚构的 AI 图像，旁白是合成声音。
+仓库自有代码和文档采用MIT，镜头库所用第三方代码与依赖保留各自许可，见[来源记录](../../THIRD_PARTY.md)。DSH、新口播与历史声画样片中的配乐是 **Digital Clouds — Alejandro Magaña (A. M.)**，适用 [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/)。配乐作为成片的一部分使用，不重新声明为MIT、不提供独立音乐文件；45秒静音展示不含配乐或音轨。图形、剪辑与合成由本项目制作，人物是虚构AI图像，旁白为合成声音。
 
-Repository-authored code and documentation use MIT. All three films include **Digital Clouds — Alejandro Magaña (A. M.)** under the [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/), embedded in the finished video. Its rights are not relicensed as MIT; no standalone music is distributed. Graphics, edits and compositing are project-authored; the fictional presenter is AI-generated and narration is synthetic.
+Repository-authored code/docs use MIT; third-party shot sources and dependencies retain their own terms in [THIRD_PARTY.md](../../THIRD_PARTY.md). The DSH, new talking-head and historical audiovisual films embed **Digital Clouds — Alejandro Magaña (A. M.)** under the [Mixkit Stock Music Free License](https://mixkit.co/license/modal/musicFree/). Music is not relicensed as MIT or distributed separately; the 45-second silent showcase has no music or audio track. Graphics, edits and compositing are project-authored; the fictional presenter is AI-generated and narration is synthetic.
 
-Exact file sizes, SHA256 hashes and probes: [samples.json](samples.json). Implementation and retained failures: [advanced production acceptance](../../evaluation/advanced-talking-20261025.md) and the [latest DSH edit audit](../../evaluation/dsh-independent-edit-20261026.md). Public showcase authorization and each film's quality-review status are recorded separately; platform CI does not certify audience response.
+Exact file sizes, SHA256 hashes and probes: [samples.json](samples.json). Current evidence: [same-source re-edit and revisions](../../evaluation/shot-library-talking-20261030.md), [shot-library acceptance](../../evaluation/shot-library-20261030.md) and the [preserved DSH audit](../../evaluation/dsh-independent-edit-20261026.md). Earlier [advanced production acceptance](../../evaluation/advanced-talking-20261025.md) remains historical. Public showcase authorization and each film's quality-review status are recorded separately; platform CI does not certify audience response.
 
 
 布光界面截图属于历史验收证据。2026-10-28已移除前端，当前仅通过Agent/CLI/API操作，见[现行布光说明](../lighting.md)。视频成片、布局和导出能力不依赖前端。

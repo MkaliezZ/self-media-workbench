@@ -1,0 +1,82 @@
+{
+  "repository": "https://github.com/Vincentwei1021/video-shotcraft",
+  "revision": "1266a3ec4831289c4d893d42dd5102723658039a",
+  "files": [
+    {
+      "path": "LICENSE",
+      "git_blob_sha": "71ffb8bd20fc152507c1b3dd48f2890bef493ca6"
+    },
+    {
+      "path": "demos/typography/typewriter-moves/TypewriterErrorRetype.tsx",
+      "git_blob_sha": "b16cac5a3689a659d1bb64e87783b1f0753de980"
+    },
+    {
+      "path": "references/shots/typography/typewriter-moves.md",
+      "git_blob_sha": "4c8a353233cf5bb5d48438e801c274790d9ccc26"
+    },
+    {
+      "path": "demos/typography/marker-underline-title/MarkerUnderlineTitle.tsx",
+      "git_blob_sha": "98af3adf319e1401f7de7e0dacdb66d4645fe52b"
+    },
+    {
+      "path": "references/shots/typography/marker-underline-title.md",
+      "git_blob_sha": "940a6450922b2f3488938c75ca819ffeddd1e3d8"
+    },
+    {
+      "path": "demos/typography/outline-word-fill/OutlineWordFill.tsx",
+      "git_blob_sha": "96e3662c3f4d4f53629e53fa2e9a3a886c839856"
+    },
+    {
+      "path": "references/shots/typography/outline-word-fill.md",
+      "git_blob_sha": "4c45cb34aa5678b4b4db458a65f17805a17c8c7f"
+    },
+    {
+      "path": "demos/ui-entrance/list-reveal/ListReveal.tsx",
+      "git_blob_sha": "233960e24fd9ef08c57344371195799beb0d5fb8"
+    },
+    {
+      "path": "references/shots/ui-entrance/list-reveal.md",
+      "git_blob_sha": "47a433b893a120be885093766b546668e9397746"
+    },
+    {
+      "path": "demos/ui-entrance/card-stack/CardStack.tsx",
+      "git_blob_sha": "cb8d25c71e4995322832c3b51c605e62d6d58a66"
+    },
+    {
+      "path": "references/shots/ui-entrance/card-stack.md",
+      "git_blob_sha": "830b6275b1ae13c90ea2c4d52d9005c4564cbde8"
+    },
+    {
+      "path": "demos/data/before-after-slider-scrub/BeforeAfterSliderScrub.tsx",
+      "git_blob_sha": "69741be54a18e246e8860f5767daa47706e1bb46"
+    },
+    {
+      "path": "references/shots/data/before-after-slider-scrub.md",
+      "git_blob_sha": "f0066e7f734efc15eeb69651f12d1fba3961044a"
+    },
+    {
+      "path": "demos/data/chart-live-moves/AxisRescaleShockV2.tsx",
+      "git_blob_sha": "11a2b2fb3756e4c3228ad8123705d5ded5e0e9ed"
+    },
+    {
+      "path": "references/shots/data/chart-live-moves.md",
+      "git_blob_sha": "689a4f065a038856ec4b4a30dc0ea7fa08901a42"
+    },
+    {
+      "path": "demos/rhythm/quad-split-parallel-scenes/QuadSplitParallelScenes.tsx",
+      "git_blob_sha": "8693003fea3532a2cc3926d66240a01349c685e6"
+    },
+    {
+      "path": "references/shots/rhythm/quad-split-parallel-scenes.md",
+      "git_blob_sha": "f08c3a481ccc09d8ce39b73daeef31457bb18fa4"
+    },
+    {
+      "path": "assets/lib/DigitRoll.tsx",
+      "git_blob_sha": "65537ce91a2714e8d1f2a382d1edecd06d4c2c2d"
+    },
+    {
+      "path": "references/shots/data/gauge-readout-moves.md",
+      "git_blob_sha": "be299ea5212eece744872dc388aff3b5dff970ca"
+    }
+  ]
+}

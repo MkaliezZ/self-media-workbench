@@ -514,6 +514,8 @@ from talking_profiles import register as register_talking_profiles
 register_talking_profiles(sys.modules[__name__])
 from lighting_tools import register as register_lighting
 register_lighting(sys.modules[__name__])
+from shot_tools import register as register_shots
+register_shots(sys.modules[__name__])
 
 @app.get('/')
 def agent_entry():

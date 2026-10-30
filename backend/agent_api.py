@@ -75,6 +75,7 @@ def register(w):
                      'artifacts':artifacts, 'heads':heads, 'media':media,
                      'tasks':[w.read(p) for p in sorted((path/'agent/tasks').glob('*.json'))],
                      'exports':exports, 'jobs':jobs, 'visual_plans':visual_plans,
+                     'shot_renders':project.get('shot_renders',[]),
                      'timeline_plans':[w.read(path/e['relative_path']) for e in project.get('timeline_plans',[])],
                      'lighting':{'head':project.get('lighting_head'),'selection':project.get('lighting_selection'),
                          'plans':project.get('lighting_plans',[]),'field_checks':project.get('lighting_field_checks',[]),
@@ -280,7 +281,7 @@ def register(w):
     def capabilities():
         return {'protocol_version':1, 'primary_client':'ai_agent',
                 'reasoning_executor':'calling agent using the skill; server stores, validates and runs local media tools',
-                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe','talking-profile','timeline-plan','timeline-export','music-onsets','lighting-plan','lighting-scene','lighting-selection','lighting-field-check']},
+                'schemas':{s:PREFIX+'/schemas/'+s for s in [*MODELS, 'task', 'submission', 'source','media-import','media-transcribe','media-review','media-export','visual-plan','editing-template','editing-recipe','talking-profile','timeline-plan','timeline-export','music-onsets','lighting-plan','lighting-scene','lighting-selection','lighting-field-check','shot-render']},
                 'media_editing':{'spoken_cuts':'explicit contiguous ASR word groups with reason and source/run binding',
                                  'restore':'speech_cuts=[] restores spoken groups; omitted preserves decisions',
                                  'review_attempts':'project media/<mid>/review-attempts records accepted/rejected writes'},
@@ -290,6 +291,10 @@ def register(w):
                     'motion_effects':['document_extract','motion_layer','spotlight','motion_text','track_matte','keyframe_layer'],
                     'limits':'32 shots with transitions, 16 masks; no automatic tracking/matting'},
                 'actions':{
+                    'shot_library':{'method':'GET','path':'/api/visual/shots?q=关键词','scope':'124 reference cards, 9 parameterized adaptations; check status before execution'},
+                    'shot_runtime':{'method':'GET','path':'/api/visual/shots/status'},
+                    'render_shot':{'method':'POST','path':'/api/projects/{pid}/shot-renders','schema':PREFIX+'/schemas/shot-render'},
+                    'shot_history':{'method':'GET','path':'/api/projects/{pid}/shot-renders'},
                     'lighting_status':{'method':'GET','path':'/api/lighting/status'},
                     'lighting_image_upload':{'method':'POST','path':'/api/projects/{pid}/lighting/images?name=filename','body':'raw PNG/JPEG/WebP bytes; max 10MB'},
                     'lighting_generate':{'method':'POST','path':'/api/projects/{pid}/lighting/plans','schema':PREFIX+'/schemas/lighting-plan'},
@@ -331,6 +336,9 @@ def register(w):
 
     @app.get(PREFIX+'/schemas/{name}')
     def schema(name:str):
+        if name=='shot-render':
+            from shot_models import ShotRender
+            return ShotRender.model_json_schema()
         if name in ('lighting-plan','lighting-scene','lighting-selection','lighting-field-check'):
             from lighting_models import Generate,Scene,Selection,FieldCheck
             return {'lighting-plan':Generate,'lighting-scene':Scene,'lighting-selection':Selection,'lighting-field-check':FieldCheck}[name].model_json_schema()

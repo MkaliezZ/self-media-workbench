@@ -10,7 +10,9 @@ An MIT-licensed local self-media workbench for AI Agents on Windows and macOS.
 
 工作台仅提供 **Agent / CLI / API** 入口，前端页面已移除。直接向Agent提出任务、附上材料，由它管理工具、服务和续做；使用者无需填写表单、坐标或JSON。[移除范围与101项回归验收](evaluation/agent-only-20261028.md)。
 
-由调用工作台的 AI Agent 选择功能、续做项目、创作内容、审阅剪辑并交付有版本记录的结果。工作台无需浏览器表单、Node 运行时或模型 API 密钥。
+由调用工作台的 AI Agent 选择功能、续做项目、创作内容、审阅剪辑并交付有版本记录的结果。基础功能无需浏览器表单、Node 运行时或模型 API 密钥；可选镜头库另需本机 Node/Remotion。
+
+**可选镜头库：**固定版本的124张镜头参考卡、150个样式索引，含9类可执行的中文参数化适配：打字改写、马克笔标题、空心字点亮、列表递进、卡片堆叠、前后对照、折线图、分屏、数字滚动。Agent按内容目的选镜头，后台Remotion渲染完成后自动登记为生成素材，接现有原生时间轴；保留参数、字体、素材哈希、源码与历史。参考索引不等于全部可执行，不要求打开前端。[依赖、许可与边界](docs/shot-library.md) · [Agent操作](skills/self-media-workflow/references/shots.md)。
 
 **对 Agent 直接说任务即可：**“诊断这个账号并选题”“只改这份口播稿”“按房间照片给三档布光方案”“剪这个视频并检查字幕”“继续上次项目做复盘”。统一入口会准备项目、材料、状态和起点；调用它的 AI Agent 继续完成推理和执行。入口返回计划本身不代表已完成内容创作。
 
@@ -195,7 +197,9 @@ Windows 支持 CPU，以及安装可选运行库后的 NVIDIA CUDA，并明确�
 
 The workbench is **Agent / CLI / API only**. The frontend has been removed. Give the calling Agent the task and materials; it manages tools, services and project continuation without asking the human to fill forms, coordinates or JSON.
 
-Your AI Agent chooses the relevant feature, resumes the right project, creates content, reviews edits and delivers versioned results. No browser form, Node runtime or model API key is required by the workbench.
+Your AI Agent chooses the relevant feature, resumes the right project, creates content, reviews edits and delivers versioned results. Core workflows require no browser form, Node runtime or model API key. The optional shot library adds a separate local Node/Remotion runtime.
+
+**Optional shot library:** 124 pinned reference cards / 150 indexed styles, with nine executable parameterized adaptations for Chinese text, titles, lists, card stacks, comparisons, line charts, split screens and digit rolls. The Agent chooses by communicative purpose, renders headlessly, registers generated media and composes through the existing native timeline. The reference catalog is not a claim that every upstream demo is executable. [Setup, licensing and limits](docs/shot-library.md) · [Agent guide](skills/self-media-workflow/references/shots.md).
 
 **Just tell the Agent your task:** “Diagnose this account and select topics,” “Revise this talking-head script,” “Edit this video and check the captions,” or “Continue the previous project with a performance review.” The unified entry prepares the project, inputs, state and starting phase; the calling Agent then reasons and executes. An intake plan is not completed content.
 

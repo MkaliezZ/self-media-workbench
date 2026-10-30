@@ -1,0 +1,67 @@
+name: Optional parameterized shot renderer
+on:
+  push:
+    paths:
+      - shot_renderer/**
+      - third_party/video-shotcraft/**
+      - backend/shot_*.py
+      - scripts/setup_shots.py
+      - scripts/shot_acceptance.py
+      - tests/test_shot_library.py
+      - .github/workflows/shot-library.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-15, macos-15-intel]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: shot_renderer/package-lock.json
+      - run: python -m pip install -r requirements-dev.txt
+      - name: Windows FFmpeg
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+            choco install ffmpeg --no-progress -y
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+      - name: macOS FFmpeg with drawtext
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          command -v ffmpeg >/dev/null || brew install ffmpeg
+          if ! ffmpeg -hide_banner -filters 2>/dev/null | grep -q ' drawtext '; then
+            brew install ffmpeg@7
+            echo "$(brew --prefix ffmpeg@7)/bin" >> "$GITHUB_PATH"
+          fi
+      - name: Explicit locked setup
+        run: python scripts/setup_shots.py
+      - run: npm --prefix shot_renderer run typecheck
+      - run: python -B -X utf8 -m unittest discover -s tests -p test_shot_library.py -v
+      - name: Actual 21 renders, native composition and fresh-process recovery
+        run: python -B -X utf8 scripts/shot_acceptance.py --compact --out evaluation/runs/shot-library
+      - name: Retain render and failure evidence
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: shots-${{ matrix.os }}
+          path: |
+            evaluation/runs/shot-library/
+            !evaluation/runs/**/public/font.*
+            !evaluation/runs/**/bundle/**
+          if-no-files-found: warn

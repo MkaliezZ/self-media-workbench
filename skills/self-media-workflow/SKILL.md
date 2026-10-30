@@ -19,6 +19,7 @@ You are the reasoning executor. Use the local task entry and current project con
 | edit: new form/logic | [Recipe generation](references/recipe-generation.md) | Agent-generated custom recipe; supported compilation or explicit planning-only gaps |
 | edit: silent/multi-source/music | [Native timeline](references/timeline.md) | Source seconds and output frames, independent audio, reviewed music edges, immutable revisions |
 | edit: advanced talking head | [高级口播 / Advanced talking](references/advanced-talking.md) | Semantic scenes, layered/perspective motion, readable evidence, real voice path and frozen production profile |
+| edit: reusable shots | [Parameterized shots](references/shots.md) | 124 reference cards, nine executable adaptations, optional headless render to registered generated media and native timeline |
 | publish | [Preparation](references/publish.md) | Honest title/caption/disclosure, asset IDs and unresolved checks |
 | review | [Review](references/review.md) | Defined metrics or collection plan, hypothesis, next experiment |
 

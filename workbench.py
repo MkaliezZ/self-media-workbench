@@ -96,6 +96,7 @@ def doctor():
         'dependencies':{k:importlib.util.find_spec(k) is not None for k in ['fastapi','pydantic','uvicorn','numpy','PIL','faster_whisper']},
         'executables':{k:shutil.which(k) for k in ['ffmpeg','ffprobe']},
         'visual_editing':visual,'visual_setup_guide':str(ROOT/'docs/visual-editing.md'),
+        'shot_library':__import__('shot_tools').runtime_status(),
         'lighting':__import__('lighting_policy').status(),'lighting_reference':str(ROOT/'skills/self-media-workflow/references/lighting.md'),
         'macos_asr':'Apple Silicon: MLX; Intel GPU: optional whisper.cpp Metal; recorded CPU fallback' if sys.platform=='darwin' else None,
         'network_upload':False,'model_auto_download':False}

@@ -1,0 +1,385 @@
+{
+  "upstream_revision": "1266a3ec4831289c4d893d42dd5102723658039a",
+  "platform": "Windows",
+  "node": "25.8.1",
+  "browser": "Microsoft Edge 149.0.4022.69, headless chrome-for-testing mode",
+  "regression": {
+    "tests": 106,
+    "passed": true,
+    "seconds": 132.755
+  },
+  "renders": [
+    {
+      "case": "landscape",
+      "kind": "typewriter-rewrite",
+      "verification": {
+        "sha256": "232d18de623cec0861297210f9144e559526150d95a274aaa7ecae575080ffd1",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 2.5433203125,
+        "final_hold_difference": 3.90625e-05
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "marker-title",
+      "verification": {
+        "sha256": "07e896f8c85867d16c276a31f3eea7600cab057ed0c0c98fe8bf597a18d62b8a",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.8335677083333333,
+        "final_hold_difference": 0.0010677083333333333
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "outline-title",
+      "verification": {
+        "sha256": "4e9149cb4d6f791970af74603e5fa60ace053643cb6651698437b7551f747bc2",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 4.028658854166666,
+        "final_hold_difference": 0.0
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "list-reveal",
+      "verification": {
+        "sha256": "89f2de251469b7e87e81a294fb59a8668b3c9613a70e965f0faae8330f71a936",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 3.0870572916666665,
+        "final_hold_difference": 0.00026041666666666666
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "card-stack",
+      "verification": {
+        "sha256": "2efc63605a0aa9a4a8788524c4c792893d78b0af873ccae78b5a2b26256c0042",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 29.827604166666667,
+        "final_hold_difference": 0.00022135416666666666
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "before-after",
+      "verification": {
+        "sha256": "28fc358ccaa514f7626431ebd7a2a9676d0f3995fa835e63a746fe498be84a91",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 9.179622395833333,
+        "final_hold_difference": 0.002864583333333333
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "line-chart",
+      "verification": {
+        "sha256": "6f33e5b80f813c42bd24d97546ddfd602fb130053f8f950522943a731dfb433f",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.0808203125,
+        "final_hold_difference": 0.000625
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "split-screen",
+      "verification": {
+        "sha256": "9f22d10824dda0b472720889a512aad6804a39042d7a669174f61dc970dd470f",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 15.069713541666667,
+        "final_hold_difference": 0.0057552083333333335
+      }
+    },
+    {
+      "case": "landscape",
+      "kind": "digit-roll",
+      "verification": {
+        "sha256": "1d98fcea90b0698f91c70592fde2864f090d51dfb5d09a2a05d7e2a32747914d",
+        "frames": 125,
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.0441796875,
+        "final_hold_difference": 0.0
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "typewriter-rewrite",
+      "verification": {
+        "sha256": "f590411112ccf28d3247332400ce50dcd9fd2f857df43119bbdb192b71940349",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 2.4673567708333333,
+        "final_hold_difference": 0.0
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "marker-title",
+      "verification": {
+        "sha256": "d2e03d8eb72b0b4d2aaa752e4cd21eb99b7b86595b7ee15f3c5c0bdc35d61918",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.1284114583333333,
+        "final_hold_difference": 0.0
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "outline-title",
+      "verification": {
+        "sha256": "0b49b89a8ad59de03e24bdf456d5e0be7b462b673bfe810f4b989ecc81e2cd8c",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 3.8166927083333335,
+        "final_hold_difference": 0.00022135416666666666
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "list-reveal",
+      "verification": {
+        "sha256": "6c6d8dd4f84a9d3f821c91ad4fdcc59092272bc843bee407e7d80f85c56d6089",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 3.13109375,
+        "final_hold_difference": 0.007838541666666667
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "card-stack",
+      "verification": {
+        "sha256": "9fadab8d410d55d8da67877833ee3935395850a40e55615d25f3c60f34a203d6",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 45.70893229166666,
+        "final_hold_difference": 0.00026041666666666666
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "before-after",
+      "verification": {
+        "sha256": "8aab9ca0aba5a883e3f6ceb8b1ab2425a14c0a0d89e66ad92771317f55724775",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 5.452473958333333,
+        "final_hold_difference": 0.0028776041666666668
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "line-chart",
+      "verification": {
+        "sha256": "0e71d2e8f70be8062d5f5aefbaa7a5dc6a55b1880676f7c590c8aeaea8270417",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.1262369791666667,
+        "final_hold_difference": 0.0010546875
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "split-screen",
+      "verification": {
+        "sha256": "4f4da95970dcd3650f571163754d55faed6cec3429bbf8b8aaf874e24f396ca3",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 17.426002604166666,
+        "final_hold_difference": 0.0067317708333333335
+      }
+    },
+    {
+      "case": "portrait",
+      "kind": "digit-roll",
+      "verification": {
+        "sha256": "1b673a7116327d51fe325eec0155c64dfc0d9c05e4f5de2d6fbbe5e065e6d348",
+        "frames": 150,
+        "width": 360,
+        "height": 640,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.0710416666666667,
+        "final_hold_difference": 2.604166666666667e-05
+      }
+    },
+    {
+      "case": "fullhd",
+      "kind": "marker-title",
+      "verification": {
+        "sha256": "0d66e1f01a97a847f318324e215a50f46729da930079b5e473993cced21c9365",
+        "frames": 150,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 2.2616276041666667,
+        "final_hold_difference": 0.0011588541666666668
+      }
+    },
+    {
+      "case": "portrait-fullhd",
+      "kind": "before-after",
+      "verification": {
+        "sha256": "b87b5bc39f0bb51fe79a1f5393caa0945ace75b6ca89b9e9311858823f70ab5d",
+        "frames": 125,
+        "width": 1080,
+        "height": 1920,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 5.350416666666667,
+        "final_hold_difference": 0.0023046875
+      }
+    },
+    {
+      "case": "square",
+      "kind": "list-reveal",
+      "verification": {
+        "sha256": "1c5d3156265aa4e4ecbfba4bb91e73cdeb0064f072461a6cb759aa9f29089dd3",
+        "frames": 125,
+        "width": 640,
+        "height": 640,
+        "fps": 25,
+        "full_decode": true,
+        "verification": "technical; visual, listening and human acceptance remain separate"
+      },
+      "pixel_checks": {
+        "motion_difference": 1.7343229166666667,
+        "final_hold_difference": 0.0041015625
+      }
+    }
+  ],
+  "native_timeline": {
+    "width": 1280,
+    "height": 720,
+    "fps": 25,
+    "frames": 1125,
+    "duration": 45,
+    "fresh_process_recovery": {
+      "renders": 21,
+      "media": 22
+    }
+  },
+  "preview_sha256": "bfa12ca7fb5729b10f2d484a5f6525a42eaf3646fc161a965155153359ecd3fd",
+  "human_acceptance": "pending_user_review",
+  "listening": "not_performed; diagnostic tone excluded from silent preview",
+  "macos_and_cloud_ci": "not_yet_verified"
+}

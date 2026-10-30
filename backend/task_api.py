@@ -168,6 +168,10 @@ def register_tasks(w, context):
             if intent=='edit':
                 from editing_templates import hints
                 result['editing_templates']=hints(body.task)
+                result['shot_library']={'catalog':'/api/visual/shots','runtime':'/api/visual/shots/status',
+                    'schema':'/api/agent/v1/schemas/shot-render',
+                    'reference':str(w.ROOT/'skills/self-media-workflow/references/shots.md'),
+                    'scope':'Optional motion segments. Choose by semantic purpose; reference-only cards cannot be rendered by ID.'}
             if intent=='lighting':
                 result['lighting']={'reference':str(w.ROOT/'skills/self-media-workflow/references/lighting.md'),'tiers':['simple','standard','ideal'],
                     'status':'/api/lighting/status','plans':f'/api/projects/{pid}/lighting/plans',

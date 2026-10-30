@@ -14,6 +14,12 @@ evaluation/runs/
 *.log
 .DS_Store
 skills/media-workbench/location.json
+node_modules/
+shot_renderer/.runtime/
+!third_party/video-shotcraft/demos/data/
+!third_party/video-shotcraft/demos/data/**
+!third_party/video-shotcraft/references/shots/data/
+!third_party/video-shotcraft/references/shots/data/**
 # Exactly two original synthetic media inputs of the independently sealed case.
 !evaluation/fixtures/independent-matte/sealed/materials/deep_original_clock.wav
 !evaluation/fixtures/independent-matte/sealed/materials/deep_rover_960x600_25fps.mp4

@@ -13,6 +13,7 @@ from fastapi import HTTPException
 from PIL import ImageFont
 from shot_models import ShotRender
 from visual_tools import font_file
+from diagram_catalog import DIAGRAMS, DIAGRAM_KINDS
 
 ROOT = Path(__file__).resolve().parents[1]
 RENDERER = ROOT/'shot_renderer'
@@ -62,9 +63,13 @@ def catalog(query='', status=None):
     q=query.casefold().strip()
     cards=[c for c in data['cards'] if (not status or c['status']==status)
            and (not q or q in json.dumps(c,ensure_ascii=False).casefold())]
+    native=[copy.deepcopy(c) for c in DIAGRAMS if (not status or status=='native_executable')
+            and (not q or q in json.dumps(c,ensure_ascii=False).casefold())]
     return {**{k:v for k,v in data.items() if k!='cards'}, 'cards':cards,
+            'native_cards':native,'native_matched':len(native),
+            'native_reference':'docs/explanatory-diagrams.md',
             'matched':len(cards), 'runtime':runtime_status(),
-            'scope':'124 reference cards; only named adaptations have executable bounded parameters; no claim of exact demo reproduction'}
+            'scope':'124 pinned upstream cards / 9 adaptations, plus 4 original native diagrams; separate provenance, no exact reproduction claim'}
 
 
 def images_in(shot):
@@ -108,7 +113,28 @@ def text_layout(body,font):
             'subtitle':fit([shot.get('subtitle','')],content,100,34),
             'body':40,'detail':28,'hero':100,'tick':28}
     kind=shot['kind'];items=shot.get('items',[]);bodyY=410 if portrait else 310;bottom=H-125
-    if kind=='typewriter-rewrite':
+    if kind in DIAGRAM_KINDS:
+        portrait=H>W
+        note=shot.get('data_note','')
+        if kind=='process-chain' and shot.get('step_probability') is not None:
+            note='独立、同概率示意模型；不是实测成功率。'+note
+        elif kind=='process-chain' and shot.get('fail_step') is not None:
+            note='失败路径示意。'+note
+        layout['tick']=fit([note or '结构示意；位置、大小与数量不代表测量值'],content-12,105,28,20,1.25)
+        if kind=='concept-network':
+            layout['body']=fit([shot['center'],*shot['nodes']],(240 if portrait else 270)-24,84,40,26,1.25)
+        elif kind=='layered-rings':
+            layout['body']=min(fit([shot['center']],276,90,40,26,1.25),fit(shot['layers'],364,50,38,26,1.25))
+        elif kind=='concept-matrix':
+            layout['body']=fit([shot['label']],content,70,40,26,1.25)
+            layout['hero']=fit([shot['conclusion']],content-64,146,100,32,1.25)
+        else:
+            nw=min(content*.7,620) if portrait else min(235,content/len(shot['steps'])-35)
+            layout['body']=fit([f'{i+1}  '+s for i,s in enumerate(shot['steps'])],nw-24,(100 if portrait else 135)-16,36,24,1.25)
+            prob=shot.get('step_probability')
+            equation=f'({prob*100:.1f}%) ^ {len(shot["steps"])} = {prob**len(shot["steps"])*100:.1f}%' if prob is not None else ''
+            layout['hero']=fit([equation],content,120,72,26,1.25)
+    elif kind=='typewriter-rewrite':
         layout['hero']=fit([shot['initial'],shot['replacement']],content-100,H*.27,120,40)
     elif kind in ('marker-title','outline-title'):
         layout['hero']=fit([shot['title']],content,H*.25,150,40)
@@ -154,7 +180,7 @@ def verify_output(w,dest,props):
 def register(w):
     @w.app.get('/api/visual/shots')
     def library(q:str='',status:str | None=None):
-        if status not in (None,'adapted_subset','reference_only'):raise HTTPException(422,'Unknown catalog status')
+        if status not in (None,'adapted_subset','reference_only','native_executable'):raise HTTPException(422,'Unknown catalog status')
         return catalog(q,status)
 
     @w.app.get('/api/visual/shots/status')
@@ -203,7 +229,10 @@ def register(w):
                 record={'id':rid,'created_at':w.now(),'request':body,'request_sha256':signature,'props_sha256':digest(props),
                     'upstream_revision':catalog()['revision'],'files':code+frozen+[
                         {'relative_path':'public/'+font_name,'sha256':w.file_sha256(public/font_name)}],
-                    'runtime':runtime,'nature':'generated','fidelity':'adapted motion grammar, not exact upstream demo',
+                    'runtime':runtime,'nature':'generated',
+                    'implementation_origin':'original_native' if body['shot']['kind'] in DIAGRAM_KINDS else 'upstream_adaptation',
+                    'native_definition':next((copy.deepcopy(c) for c in DIAGRAMS if c['id']==body['shot']['kind']),None),
+                    'fidelity':'original explanatory diagram; not a source-video replica' if body['shot']['kind'] in DIAGRAM_KINDS else 'adapted motion grammar, not exact upstream demo',
                     'external_publication':False}
                 w.write(dest/'request.json',record)
 
@@ -225,8 +254,9 @@ def register(w):
                     check_frozen()
                     verification=verify_output(w,dest,props);w.write(dest/'verification.json',verification)
                     from media_models import MediaImport
+                    origin='original native diagram' if body['shot']['kind'] in DIAGRAM_KINDS else 'upstream adaptation '+record['upstream_revision']
                     imported=asyncio.run(w.import_media(pid,MediaImport(path=str(dest/'shot.mp4'),media_nature='generated',
-                        source_note=f"Parameterized shot {body['shot']['kind']}; render_id={rid}; upstream={record['upstream_revision']}",
+                        source_note=f"Parameterized shot {body['shot']['kind']}; render_id={rid}; implementation={origin}",
                         usage_scope='Generated motion segment; data and image rights require their own review')))
                     result={'render_id':rid,'media_id':imported['media']['id'],'media':imported['media'],
                         'verification':verification,'path':str(dest/'shot.mp4'),'record_path':str(dest/'request.json'),

@@ -41,8 +41,41 @@ class ShotLibraryTests(unittest.TestCase):
         caps=self.c.get('/api/agent/v1/capabilities').json()
         self.assertIn('render_shot',caps['actions']);self.assertIn('shot-render',caps['schemas'])
         schema=self.c.get(caps['schemas']['shot-render']).json()
-        self.assertEqual(len(schema['properties']['shot']['oneOf']),9)
+        self.assertEqual(len(schema['properties']['shot']['oneOf']),13)
+        self.assertEqual(len(r['native_cards']),4)
+        native=self.c.get('/api/visual/shots?status=native_executable').json()
+        self.assertEqual(native['cards'],[])
+        self.assertEqual(len(native['native_cards']),4)
+        self.assertEqual(self.c.get('/api/visual/shots?q=累积').json()['native_cards'][0]['id'],'process-chain')
         self.assertEqual(self.c.get('/ui/').status_code,404)
+
+    def test_diagram_probability_requires_explicit_model_and_existing_failure_step(self):
+        chain={'kind':'process-chain','title':'流程可靠性','steps':['输入','处理','输出']}
+        for change in [{'step_probability':.95},
+                       {'step_probability':.95,'data_note':'示意'},
+                       {'step_probability':.95,'independent_assumption':True},
+                       {'step_probability':.95,'independent_assumption':True,'data_note':'示意','fail_step':2},
+                       {'fail_step':4,'data_note':'失败路径示意'}, {'fail_step':2},
+                       {'step_probability':float('nan'),'independent_assumption':True,'data_note':'示意'}]:
+            with self.assertRaises(ValueError):
+                ShotRender.model_validate({**self.body,'shot':{**chain,**change}})
+        valid=ShotRender.model_validate({**self.body,'shot':{**chain,'step_probability':.95,
+            'independent_assumption':True,'data_note':'独立同概率示意，非实测'}})
+        self.assertAlmostEqual(valid.shot.step_probability**len(valid.shot.steps),.857375)
+        with self.assertRaises(ValueError):
+            ShotRender.model_validate({**self.body,'duration':3,'shot':{**chain,'steps':['步骤']*7}})
+
+    def test_diagram_bounds_and_long_text_do_not_create_jobs(self):
+        shots=[{'kind':'concept-network','title':'关系','center':'中心','nodes':['节点']*7},
+               {'kind':'concept-matrix','title':'集合','label':'对象','rows':5,'columns':9,'conclusion':'结论','data_note':'示意'},
+               {'kind':'layered-rings','title':'层级','center':'中心','layers':['层']*4},
+               {'kind':'layered-rings','title':'层级','center':'中心','layers':['层'*16]}]
+        with patch.object(shot_tools,'runtime_status',return_value={'available':True}):
+            for shot in shots:
+                r=self.c.post(self.url,json={**self.body,'shot':shot})
+                self.assertEqual(r.status_code,422,r.text)
+        self.assertEqual(w.read(w.DATA/self.pid/'project.json')['revision'],1)
+        self.assertFalse(list((w.DATA/self.pid/'jobs').glob('*.json')))
 
     def test_schema_rejects_code_urls_nan_wrong_clocks_and_unknown_shots(self):
         for change in [{'fps':24},{'duration':float('inf')},{'width':641},

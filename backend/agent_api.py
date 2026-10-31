@@ -291,7 +291,7 @@ def register(w):
                     'motion_effects':['document_extract','motion_layer','spotlight','motion_text','track_matte','keyframe_layer'],
                     'limits':'32 shots with transitions, 16 masks; no automatic tracking/matting'},
                 'actions':{
-                    'shot_library':{'method':'GET','path':'/api/visual/shots?q=关键词','scope':'124 reference cards, 9 parameterized adaptations; check status before execution'},
+                    'shot_library':{'method':'GET','path':'/api/visual/shots?q=关键词','scope':'124 upstream reference cards / 9 adaptations, plus 4 original native diagrams in native_cards; check status before execution'},
                     'shot_runtime':{'method':'GET','path':'/api/visual/shots/status'},
                     'render_shot':{'method':'POST','path':'/api/projects/{pid}/shot-renders','schema':PREFIX+'/schemas/shot-render'},
                     'shot_history':{'method':'GET','path':'/api/projects/{pid}/shot-renders'},

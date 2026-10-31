@@ -5,6 +5,7 @@
 import React, {useEffect, useState} from 'react';
 import {AbsoluteFill, Img, Freeze, staticFile, useCurrentFrame, delayRender, continueRender, cancelRender} from 'remotion';
 import {DigitRoll} from './vendor/DigitRoll';
+import {DiagramFilm, DiagramSpec} from './diagrams';
 
 type Item = {label:string; detail:string; image?:unknown; image_file?:string};
 type Shot = {kind:string; title:string; subtitle:string; initial?:string; replacement?:string;
@@ -68,7 +69,10 @@ export const ShotFilm:React.FC<FilmProps> = p => {
   </div>;
 
   let body:React.ReactNode;
-  if(s.kind==='typewriter-rewrite'){
+  if(['concept-network','concept-matrix','layered-rings','process-chain'].includes(s.kind)){
+    body=<DiagramFilm shot={s as unknown as DiagramSpec} f={f} W={W} H={H} bodyY={bodyY}
+      foreground={p.foreground} accent={p.accent} secondary={p.secondary} background={p.background} layout={p.layout}/>;
+  }else if(s.kind==='typewriter-rewrite'){
     const first=Array.from(s.initial!),last=Array.from(s.replacement!);
     const n1=Math.floor(first.length*ramp(f,0,28));
     const shown=f<42?first.slice(0,n1).join(''):f<65?first.slice(0,Math.ceil(first.length*(1-ramp(f,42,23)))).join(''):last.slice(0,Math.floor(last.length*ramp(f,65,35))).join('');

@@ -5,6 +5,7 @@
 ## 发现与选择
 
 - `GET /api/visual/shots?q=<关键词>` 搜索固定上游版本的 124 张参考卡、150 个样式索引。
+- 同一检索另在 `native_cards` 返回4个原创解释型图解；`status=native_executable` 单独筛选原创可执行项。上游 `cards` 和 `adaptations` 的数量不增加，分别记录来源。
 - `status=adapted_subset` 只返回有本地适配实现的卡；`reference_only` 没有可直接执行的参数接口。索引中的 `adaptations` 给出可用 `shot.kind`。
 - `GET /api/visual/shots/status`、`doctor.shot_library` 检查本机可用性；schema 名为 `shot-render`。
 - 必须按观看目的选动作：观点改写、重点强调、步骤递进、对比、数字解释、同时观察。不要为显得高级给每句话加动画；保留干净讲述、证据阅读和安静停留。
@@ -20,8 +21,14 @@
 | line-chart | title、points[{label,value}]、unit、data_note | 2–8个非负数据点，显示坐标与单位；数据须有真实来源或声明示意 |
 | split-screen | title、items[{label,detail,image?}] | 2–4格，横屏双列、竖屏单列，不能伪造同期/同场关系 |
 | digit-roll | title、value、data_note | 数字滚动到声明值；动画不证明统计真实性 |
+| concept-network | title、center、nodes、direction | 节点与关系线错峰建立；无向/汇聚/发散由Agent明确选择 |
+| concept-matrix | title、label、rows、columns、conclusion、data_note | 重复图标铺开→背景降权→结论，数量须声明示意或依据 |
+| layered-rings | title、center、layers | 中心保留，1–3层圈与标签依次进入；不是量化强度图 |
+| process-chain | title、steps；可选fail_step或step_probability | 2–7步流程；概率需要显式独立同概率假设与说明，失败与概率分镜 |
 
 全库为 Apache-2.0 的上游配方索引；9个本地实现是选取运动语法后的参数化适配，**不是全部150个样例的原样复刻**。具体来源和固定 commit 见 `third_party/video-shotcraft/catalog.json`。不要仅因名字匹配就声称原样还原。
+
+另4个图解为工作台原创实现，不属于上述上游。真人／资料／图解交替的选择规则、具体参数和未实现动作见[解释型图解](../../../docs/explanatory-diagrams.md)。用户给视频学习时只复用剪辑逻辑和视觉机制，不继承其中观点、数据、人物、品牌或配乐。
 
 ## 执行
 

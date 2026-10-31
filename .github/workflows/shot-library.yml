@@ -5,8 +5,10 @@ on:
       - shot_renderer/**
       - third_party/video-shotcraft/**
       - backend/shot_*.py
+      - backend/diagram_catalog.py
       - scripts/setup_shots.py
       - scripts/shot_acceptance.py
+      - scripts/diagram_acceptance.py
       - tests/test_shot_library.py
       - .github/workflows/shot-library.yml
   workflow_dispatch:
@@ -55,6 +57,8 @@ jobs:
       - run: python -B -X utf8 -m unittest discover -s tests -p test_shot_library.py -v
       - name: Actual 21 renders, native composition and fresh-process recovery
         run: python -B -X utf8 scripts/shot_acceptance.py --compact --out evaluation/runs/shot-library
+      - name: Fourteen original diagram renders and silent native composition
+        run: python -B -X utf8 scripts/diagram_acceptance.py --compact --out evaluation/runs/explanatory-diagrams
       - name: Retain render and failure evidence
         if: always()
         uses: actions/upload-artifact@v7
@@ -62,6 +66,7 @@ jobs:
           name: shots-${{ matrix.os }}
           path: |
             evaluation/runs/shot-library/
+            evaluation/runs/explanatory-diagrams/
             !evaluation/runs/**/public/font.*
             !evaluation/runs/**/bundle/**
           if-no-files-found: warn

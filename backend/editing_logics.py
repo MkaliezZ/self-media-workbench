@@ -1,5 +1,9 @@
 """Functional method library: independent of names, accounts and tutorial links."""
 LOGICS=[
+ {'id':'explanatory_diagram_talking','name':'口播与图解交替','logic':'真人建立注意→资料或结构图接管主画面→人物小窗保留→逐层解释→回到真人停留',
+  'operations':['按解释负担切换版式','图形先出现再连线或突出结论','中心关系/重复集合/能力圈/流程链','非重点降权和稳定阅读停留'],
+  'boundary':'只复用剪辑和信息动效机制，不继承参考视频观点、数据或表现；复杂弧线路径粒子、动态圆角形变和三维角色视频不属于四个图解组件',
+  'runtime':'shot-render native_cards + native_timeline motion_layer/masks; Agent authors source-clock timing'},
  {'id':'advanced_talking_head','name':'高级口播','logic':'语义拆镜→分层合成→证据或类比→关系解释→干净讲述与收束','operations':['多阶段透视关键帧','分层视差与遮挡','边缘失焦与节制纹理','证据原像素抽离','语义驱动的声音分轨'],
   'boundary':'编排合成不等于三维生成、自动抠像、OCR或音素对齐；逐段检查真实像素与声音','runtime':'talking-profile compile + native_timeline'},
  {'id':'faceless_reference','name':'不露脸资料解说','logic':'命题→资料主画面→解释→限定结论','operations':['资料优先布局','局部资料高亮','旁白独立音轨'],
@@ -22,5 +26,5 @@ LOGICS=[
 
 def register(w):
     @w.app.get('/api/visual/logics')
-    def library():return {'version':'1.1','logics':LOGICS,
+    def library():return {'version':'1.2','logics':LOGICS,
         'scope':'reconciled functional mechanisms and explicit execution limits; not a claim of full-video research or production aesthetics'}

@@ -79,7 +79,58 @@ class Counter(Heading):
     data_note: str = Field(min_length=1, max_length=1000)
 
 
-Shot = Annotated[Rewrite | Marker | Outline | ListReveal | CardStack | Comparison | LineChart | Split | Counter,
+Label = Annotated[str, Field(min_length=1, max_length=16)]
+
+
+class ConceptNetwork(Heading):
+    kind: Literal['concept-network']
+    center: Label
+    nodes: list[Label] = Field(min_length=2, max_length=6)
+    direction: Literal['relation', 'inward', 'outward'] = 'relation'
+
+
+class ConceptMatrix(Heading):
+    kind: Literal['concept-matrix']
+    label: Label
+    rows: int = Field(ge=2, le=5)
+    columns: int = Field(ge=2, le=8)
+    conclusion: str = Field(min_length=1, max_length=32)
+    data_note: str = Field(min_length=1, max_length=1000,
+        description='Declare whether repeated icons are schematic or represent measured counts')
+
+
+class LayeredRings(Heading):
+    kind: Literal['layered-rings']
+    center: Label
+    layers: list[Label] = Field(min_length=1, max_length=3)
+
+
+class ProcessChain(Heading):
+    kind: Literal['process-chain']
+    steps: list[Label] = Field(min_length=2, max_length=7)
+    step_probability: float | None = Field(default=None, ge=0, le=1, allow_inf_nan=False)
+    independent_assumption: bool = False
+    fail_step: int | None = Field(default=None, ge=1, le=7)
+    data_note: str = Field(default='', max_length=1000)
+
+    @model_validator(mode='after')
+    def meaningful_chain(self):
+        if self.fail_step is not None and self.fail_step > len(self.steps):
+            raise ValueError('Failure step must exist in this chain (one-based index)')
+        if self.step_probability is not None:
+            if not self.independent_assumption or not self.data_note.strip():
+                raise ValueError('Probability product requires an explicit independence assumption and data note')
+            if self.fail_step is not None:
+                raise ValueError('Use separate shots for an illustrative failure and the probability model')
+        elif self.independent_assumption:
+            raise ValueError('An independence assumption requires a declared step probability')
+        if self.fail_step is not None and not self.data_note.strip():
+            raise ValueError('An illustrative failure path needs a data note')
+        return self
+
+
+Shot = Annotated[Rewrite | Marker | Outline | ListReveal | CardStack | Comparison | LineChart | Split | Counter |
+                 ConceptNetwork | ConceptMatrix | LayeredRings | ProcessChain,
                  Field(discriminator='kind')]
 
 
@@ -106,6 +157,8 @@ class ShotRender(Strict):
             raise ValueError('Use a 16:9, 9:16 or square canvas')
         if isinstance(self.shot, ListReveal) and self.duration < 1.5 + .5 * len(self.shot.items):
             raise ValueError('Give each list item reading time and a final hold')
+        if isinstance(self.shot, ProcessChain) and self.duration < 1.5 + .5 * len(self.shot.steps):
+            raise ValueError('Give the process steps reading time and a final hold')
         if isinstance(self.shot, LineChart) and any(not math.isfinite(p.value) for p in self.shot.points):
             raise ValueError('Chart data must be finite')
         return self
